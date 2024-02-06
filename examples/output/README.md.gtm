@@ -1,0 +1,98 @@
+# Output Examples
+
+- [Examples: Output Stdout](#examples-output-stdout)
+- [Examples: Output Stderr](#examples-output-stderr)
+- [Examples: Output Stderr And Stdout](#examples-output-stderr-and-stdout)
+- [Examples: Output Log](#examples-output-log)
+- [Examples: Output Log And Stdout](#examples-output-log-and-stdout)
+- [Examples: Output Log And Stderr](#examples-output-log-and-stderr)
+- [Examples: Output Log And Stderr And Stdout](#examples-output-log-and-stderr-and-stdout)
+- [Examples: Output Log With Stderr](#examples-output-log-with-stderr)
+- [Examples: Output Log With Stderr And Stdout](#examples-output-log-with-stderr-and-stdout)
+
+[Contents](../../README.md#contents)
+
+## Examples Output Stdout
+
+<!--- gotomd::file::./stdout/example_test.go -->
+
+<!--- gotomd::tst::./stdout/package -->
+
+> The failure highlights that there was a line in the output (the got) that is
+missing from the ```chk.Stdout()``` list (the want).  IE the line <font
+style="color:white;background:green">Missing in want</font> indicates that
+this line needs to be added to the want.
+
+[Contents](../../README.md#contents)
+
+### Examples: Output Stderr
+
+<!--- gotomd::file::./stderr/example_test.go -->
+
+<!--- gotomd::tst::./stderr/package -->
+
+> The failure highlights that there was a line in the ```chk.Stderr()``` list
+(the want) that is missing from the got.  IE the line <font
+style="color:white;background:red">Missing in got</font> indicates that
+this line needs to be removed from the want.
+
+[Contents](../../README.md#contents)
+
+### Examples: Output Stderr And Stdout
+
+<!--- gotomd::file::./stderr_and_stdout/example_test.go -->
+
+<!--- gotomd::tst::./stderr_and_stdout/package -->
+
+> Note we first set ```chk.FailFast(false)``` to have all checks within this
+test run before terminating the test function.
+
+[Contents](../../README.md#contents)
+
+### Examples: Output Log
+
+<!--- gotomd::file::./log/example_test.go -->
+
+<!--- gotomd::tst::./log/package -->
+
+[Contents](../../README.md#contents)
+
+### Examples: Output Log And Stdout
+
+<!--- gotomd::file::./log_and_stdout/example_test.go -->
+
+<!--- gotomd::tst::./log_and_stdout/package -->
+
+[Contents](../../README.md#contents)
+
+### Examples: Output Log And Stderr
+
+<!--- gotomd::file::./log_and_stderr/example_test.go -->
+
+<!--- gotomd::tst::./log_and_stderr/package -->
+
+[Contents](../../README.md#contents)
+
+### Examples: Output Log And Stderr And Stdout
+
+<!--- gotomd::file::./log_and_stderr_and_stdout/example_test.go -->
+
+<!--- gotomd::tst::./log_and_stderr_and_stdout/package -->
+
+[Contents](../../README.md#contents)
+
+### Examples: Output Log With Stderr
+
+<!--- gotomd::file::./log_with_stderr/example_test.go -->
+
+<!--- gotomd::tst::./log_with_stderr/package -->
+
+[Contents](../../README.md#contents)
+
+### Examples: Output Log With Stderr And Stdout
+
+<!--- gotomd::file::./log_with_stderr_and_stdout/example_test.go -->
+
+<!--- gotomd::tst::./log_with_stderr_and_stdout/package -->
+
+[Contents](../../README.md#contents)

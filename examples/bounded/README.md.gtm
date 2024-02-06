@@ -1,0 +1,16 @@
+# Bounded Examples
+
+- [Examples: Float64 With no Message](examples/bounded/README.md#examples-float64-with-no-message)
+
+[Contents](../../README.md#contents)
+
+## Examples: Float64 With No Message
+
+This demonstrates that a float value is within the specified bounds.
+
+<!--- gotomd::file::./float64_with_no_message/example_test.go -->
+
+<!--- gotomd::tst::./float64_with_no_message/package -->
+
+
+[Contents](../../README.md#contents)

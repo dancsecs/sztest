@@ -1,0 +1,59 @@
+# IO Interface
+
+  - [Example: IO Read Error](#example-io-read-error)
+  - [Example: IO Write Error](#example-io-write-error)
+  - [Example: IO Read Seek Error](#example-io-read-seek-error)
+  - [Example: IO Write Seek Error](#example-io-write-seek-error)
+  - [Example: IO Close Error](#example-io-close-error)
+
+[Contents](../../README.md#contents)
+
+### Example: IO Read Error
+
+<!--- gotomd::file::./read_error/example.go -->
+
+<!--- gotomd::file::./read_error/example_test.go -->
+
+<!--- gotomd::tst::./read_error/package -->
+
+[Contents](../../README.md#contents)
+
+### Example: IO Write Error
+
+<!--- gotomd::file::./write_error/example.go -->
+
+<!--- gotomd::file::./write_error/example_test.go -->
+
+<!--- gotomd::tst::./write_error/package -->
+
+[Contents](../../README.md#contents)
+
+### Example: IO Read Seek Error
+
+<!--- gotomd::file::./read_seek_error/example.go -->
+
+<!--- gotomd::file::./read_seek_error/example_test.go -->
+
+<!--- gotomd::tst::./read_seek_error/package -->
+
+[Contents](../../README.md#contents)
+
+### Example: IO Write Seek Error
+
+<!--- gotomd::file::./write_seek_error/example.go -->
+
+<!--- gotomd::file::./write_seek_error/example_test.go -->
+
+<!--- gotomd::tst::./write_seek_error/package -->
+
+[Contents](../../README.md#contents)
+
+### Example: IO Close Error
+
+<!--- gotomd::file::./close_error/example.go -->
+
+<!--- gotomd::file::./close_error/example_test.go -->
+
+<!--- gotomd::tst::./close_error/package -->
+
+[Contents](../../README.md#contents)

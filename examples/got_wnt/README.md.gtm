@@ -1,0 +1,64 @@
+# Got / Want Examples
+
+- [Examples: Integer With No Message](#examples-integer-with-no-message)
+- [Examples: Float32 With Unformatted Message](#examples-float32-with-unformatted-message)
+- [Examples: String With Formatted Message](#examples-string-with-formatted-message)
+
+[Contents](../../README.md#contents)
+
+## Examples: Integer With No Message
+
+This is the simplest form of a builtin Got/Wnt test.  Just comparing the wanted
+value with the gotten value and an error registered if they are not equal.
+No additional context information is provided.
+
+<!--- gotomd::file::./integer_with_no_message/example_test.go -->
+
+<!--- gotomd::tst::./integer_with_no_message/package -->
+
+> Here the failing test has its fourth number highlighted as <font
+style="color:white;background:blue">changed</font> while the passing
+test produced no output.
+
+[Contents](../../README.md#contents)
+
+## Examples: Float32 With Unformatted Message
+
+> This example shows the float Got/Wnt test with an unformatted message.  Due to
+the nature of floats it is the only builtin type check that includes a
+tolerance factor.  If the absolute value of the difference between the got and
+want values is less than the tolerance then the two floats will be considered
+equivalent.
+
+<!--- gotomd::file::./float32_with_unformatted_message/example_test.go -->
+
+<!--- gotomd::tst::./float32_with_unformatted_message/package -->
+
+> Here the thousandth fractional position is flagged as being out of tolerance
+and is highlighted as <font
+style="color:white;background:blue">changed/different</font> while the specific
+tolerance value used has been added to the type name.  Finally the
+additional unformatted message is displayed just before the <font
+style="color:magenta">GOT:</font> line.
+
+[Contents](../../README.md#contents)
+
+## Examples: String With Formatted Message
+
+This example shows a string Got/Wnt test with a formatted message.
+
+<!--- gotomd::file::./string_with_formatted_message/example_test.go -->
+
+<!--- gotomd::tst::./string_with_formatted_message/package -->
+
+> Here the got string has extra information<font
+style="color:white;background:green"> (extra)</font>  not found in the want
+string while the want string has missing information<font
+style="color:white;background:red"> (missing)</font> not found in the got
+string.  Then there is a changed area area between the got<font
+style="color:white;background:blue"> Go</font> and the want<font
+style="color:white;background:blue"> Wn</font>.  Finally the
+additional formatted message is displayed just before the <font
+style="color:magenta">GOT:</font> line.
+
+[Contents](../../README.md#contents)

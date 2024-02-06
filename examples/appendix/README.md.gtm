@@ -1,0 +1,41 @@
+# Package sztest
+
+## Example Contents
+
+- [Appendix F: Large Example Function](#appendix-f-large-example-function)
+- [Appendix G: Large Example Main Function](#appendix-g-large-example-main-function)
+
+[Contents](../../README.md#contents)
+
+## Appendix F: Large Example Function
+
+This example shows several of the types of checks this library is designed to
+assist with.  Suppose we have the following function:
+
+<!--- gotomd::file::./large_example_function/example.go -->
+
+we could test all of the expected outputs with the following test (with
+passing and failing version)s
+
+<!--- gotomd::file::./large_example_function/example_test.go -->
+
+causing the following output when these tests are run:
+
+<!--- gotomd::tst::./large_example_function/package -->
+
+[Contents](../../README.md#contents)
+
+## Appendix G: Large Example Main Function
+
+Given the following main.go file:
+
+<!--- gotomd::file::./large_example_main_function/main.go -->
+
+we can provide 100% test coverage with the following test file showing both
+successful and failing responses:
+
+<!--- gotomd::file::./large_example_main_function/main_test.go -->
+
+<!--- gotomd::tst::./large_example_main_function/package -->
+
+[Contents](../../README.md#contents)

@@ -1,0 +1,31 @@
+#Arguments And Flags
+
+- [Example: Valid Flag](#example-arguments-and-flags-valid-flag)
+- [Example: Invalid Flag](#example-arguments-and-flags-invalid-flag)
+- [Example: Invalid Integer](#example-arguments-and-flags-invalid-integer)
+
+[Contents](../../README.md#contents)
+
+## Example: Arguments And Flags: Valid Flag
+
+<!--- gotomd::file::./valid_flag/example_test.go -->
+
+<!--- gotomd::tst::./valid_flag/package -->
+
+[Contents](../../README.md#contents)
+
+## Example: Arguments And Flags: Invalid Flag
+
+<!--- gotomd::file::./invalid_flag/example_test.go -->
+
+<!--- gotomd::tst::./invalid_flag/package -->
+
+[Contents](../../README.md#contents)
+
+## Example: Arguments And Flags: Invalid Integer
+
+<!--- gotomd::file::./invalid_integer/example_test.go -->
+
+<!--- gotomd::tst::./invalid_integer/package -->
+
+[Contents](../../README.md#contents)

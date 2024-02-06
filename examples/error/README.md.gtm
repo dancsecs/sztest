@@ -1,0 +1,40 @@
+# Error Examples
+
+- [Examples: No Error](#examples-no-error)
+- [Examples: No Error Helper](#examples-no-error-helper)
+- [Examples: Error](#examples-error)
+- [Examples: Blank Error](#examples-blank-error)
+
+[Contents](../../README.md#contents)
+
+## Examples: No Error
+
+<!--- gotomd::file::./no_error/example_test.go -->
+
+<!--- gotomd::tst::./no_error/package -->
+
+[Contents](../../README.md#contents)
+
+## Examples: No Error Helper
+
+<!--- gotomd::file::./no_error_helper/example_test.go -->
+
+<!--- gotomd::tst::./no_error_helper/package -->
+
+[Contents](../../README.md#contents)
+
+## Examples: Error
+
+<!--- gotomd::file::./Error/example_test.go -->
+
+<!--- gotomd::tst::./Error/package -->
+
+[Contents](../../README.md#contents)
+
+## Examples: Blank Error
+
+<!--- gotomd::file::./blank_error/example_test.go -->
+
+<!--- gotomd::tst::./blank_error/package -->
+
+[Contents](../../README.md#contents)

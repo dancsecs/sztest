@@ -1,0 +1,44 @@
+# Slice Examples
+
+- [Examples: String Slice With no Message](#examples-string-slice-with-no-message)
+- [Examples: Float64 Slice With Unformatted Message](#examples-float64-slice-with-unformatted-message)
+- [Examples: Uint64 Slice With Formatted Message](#examples-uint64-slice-with-formatted-message)
+
+[Contents](../../README.md#contents)
+
+## Examples: String Slice With No Message
+
+This demonstrates that each element in a got slice of string values matches the
+wnt slice.
+
+<!--- gotomd::file::./string_slice_with_no_message/example_test.go -->
+
+<!--- gotomd::tst::./string_slice_with_no_message/package -->
+
+
+[Contents](../../README.md#contents)
+
+## Examples: Float64 Slice With Unformatted Message
+
+This demonstrates that each element in a slice of float64 values is within
+the specified tolerance between the got and wnt slice elements.  It uses an
+additional message to display the function as it was called should a mismatch
+occur.
+
+<!--- gotomd::file::./float64_slice_with_unformatted_message/example_test.go -->
+
+<!--- gotomd::tst::./float64_slice_with_unformatted_message/package -->
+
+> The failing element of the slice can easily be identified and can be read as
+the Wnt needs to have the 8.1 deleted and the 8 inserted as it is beyond the
+specified tolerance.
+
+[Contents](../../README.md#contents)
+
+## Examples: Uint64 Slice With Formatted Message
+
+<!--- gotomd::file::./uint64_slice_with_formatted_message/example_test.go -->
+
+<!--- gotomd::tst::./uint64_slice_with_formatted_message/package -->
+
+[Contents](../../README.md#contents)

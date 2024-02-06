@@ -1,0 +1,40 @@
+# Temporary directories, files, scripts
+
+- [Example: Temporary Directory](#example-temporary-directory)
+- [Example: Temporary File](#example-temporary-file)
+- [Example: Temporary Unix Script](#example-temporary-unix-script)
+- [Example: Temporary Directory Tree](#example-temporary-directory-tree)
+
+[Contents](../../README.md#contents)
+
+## Example: Temporary Directory
+
+<!--- gotomd::file::./temporary_directory/example_test.go -->
+
+<!--- gotomd::tst::./temporary_directory/package -->
+
+[Contents](../../README.md#contents)
+
+## Example: Temporary File
+
+<!--- gotomd::file::./temporary_file/example_test.go -->
+
+<!--- gotomd::tst::./temporary_file/package -->
+
+[Contents](../../README.md#contents)
+
+## Example: Temporary Unix Script
+
+<!--- gotomd::file::./temporary_unix_script/example_test.go -->
+
+<!--- gotomd::tst::./temporary_unix_script/package -->
+
+[Contents](../../README.md#contents)
+
+## Example: Temporary Directory Tree
+
+<!--- gotomd::file::./temporary_directory_tree/example_test.go -->
+
+<!--- gotomd::tst::./temporary_directory_tree/package -->
+
+[Contents](../../README.md#contents)

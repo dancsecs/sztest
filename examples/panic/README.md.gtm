@@ -1,0 +1,41 @@
+# Panic examples
+
+  - [Examples: No Panic](#examples-no-panic)
+  - [Examples: No Panic Helper](#examples-no-panic-helper)
+  - [Examples: Panic](#examples-panic)
+  - [Examples: Blank Panic](#examples-blank-panic)
+
+[Contents](../../README.md#contents)
+
+## Examples: No Panic
+
+<!--- gotomd::file::./no_panic/example_test.go -->
+
+<!--- gotomd::tst::./no_panic/package -->
+
+[Contents](../../README.md#contents)
+
+## Examples: No Panic Helper
+
+<!--- gotomd::file::./no_panic_helper/example_test.go -->
+
+<!--- gotomd::tst::./no_panic_helper/package -->
+
+[Contents](../../README.md#contents)
+
+## Examples: Panic
+
+<!--- gotomd::file::./panic/example_test.go -->
+
+<!--- gotomd::tst::./panic/package -->
+
+[Contents](../../README.md#contents)
+
+## Examples: Blank Panic
+
+
+<!--- gotomd::file::./blank_panic/example_test.go -->
+
+<!--- gotomd::tst::./blank_panic/package -->
+
+[Contents](../../README.md#contents)

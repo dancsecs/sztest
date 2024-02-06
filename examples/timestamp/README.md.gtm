@@ -1,0 +1,16 @@
+# Timestamp Examples
+
+- [Examples: Logging](examples/timestamp/README.md#examples-logging)
+
+[Contents](../../README.md#contents)
+
+## Examples: Logging
+
+This demonstrates using the internal clock functions to test logging with
+timestamps.
+
+<!--- gotomd::file::./logging/example.go example_test.go -->
+
+<!--- gotomd::tst::./logging/package -->
+
+[Contents](../../README.md#contents)
