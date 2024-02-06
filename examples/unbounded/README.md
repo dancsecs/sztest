@@ -78,5 +78,4 @@ $\small{\texttt{FAIL}}$
 <br>
 <!--- gotomd::End::tst::./float64_with_no_message/package -->
 
-
 [Contents](../../README.md#contents)

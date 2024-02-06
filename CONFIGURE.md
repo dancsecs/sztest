@@ -257,7 +257,7 @@ per variable while multiple styles may be specified.
 NOTE: If the style ```DEFAULT``` is chosen than no other styles, colors or
 custom strings may be specified.
 
-#### Foreground Colors
+### Foreground Colors
 
 ```go
     // Regular Colors.
@@ -281,7 +281,7 @@ custom strings may be specified.
     HI-WHITE
 ```
 
-#### Background Colors
+### Background Colors
 
 ```go
     // Background Regular Colors.
@@ -307,7 +307,7 @@ custom strings may be specified.
     BK-HI-WHITE
 ```
 
-#### Styles
+### Styles
 
 ```go
     DEFAULT

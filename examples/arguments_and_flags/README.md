@@ -1,6 +1,6 @@
 <!--- gotomd::Auto:: See github.com/dancsecs/gotomd ** DO NOT MODIFY ** -->
 
-#Arguments And Flags
+# Arguments And Flags
 
 - [Example: Valid Flag](#example-arguments-and-flags-valid-flag)
 - [Example: Invalid Flag](#example-arguments-and-flags-invalid-flag)

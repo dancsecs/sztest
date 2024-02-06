@@ -1,4 +1,4 @@
-// Package example demostraits a larger test function.
+// Package example demonstrates a larger test function.
 package example
 
 import (
@@ -6,7 +6,7 @@ import (
 	"log"
 )
 
-// Process returs known changes to its parameters for testing.
+// Process returns known changes to its parameters for testing.
 func Process(factor int, msg string) (int, string, float64) {
 	const mulFactor = 2
 	const aThird = 1.0 / 3.0

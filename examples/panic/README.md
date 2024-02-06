@@ -2,10 +2,10 @@
 
 # Panic examples
 
-  - [Examples: No Panic](#examples-no-panic)
-  - [Examples: No Panic Helper](#examples-no-panic-helper)
-  - [Examples: Panic](#examples-panic)
-  - [Examples: Blank Panic](#examples-blank-panic)
+- [Examples: No Panic](#examples-no-panic)
+- [Examples: No Panic Helper](#examples-no-panic-helper)
+- [Examples: Panic](#examples-panic)
+- [Examples: Blank Panic](#examples-blank-panic)
 
 [Contents](../../README.md#contents)
 
@@ -236,7 +236,6 @@ $\small{\texttt{FAIL}}$
 [Contents](../../README.md#contents)
 
 ## Examples: Blank Panic
-
 
 <!--- gotomd::Bgn::file::./blank_panic/example_test.go -->
 ```bash

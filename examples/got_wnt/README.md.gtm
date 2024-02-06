@@ -16,9 +16,8 @@ No additional context information is provided.
 
 <!--- gotomd::tst::./integer_with_no_message/package -->
 
-> Here the failing test has its fourth number highlighted as <font
-style="color:white;background:blue">changed</font> while the passing
-test produced no output.
+> Here the failing test has its fourth number highlighted as changed while 
+the passing test produced no output.
 
 [Contents](../../README.md#contents)
 
@@ -35,11 +34,9 @@ equivalent.
 <!--- gotomd::tst::./float32_with_unformatted_message/package -->
 
 > Here the thousandth fractional position is flagged as being out of tolerance
-and is highlighted as <font
-style="color:white;background:blue">changed/different</font> while the specific
+and is highlighted as changed/different while the specific
 tolerance value used has been added to the type name.  Finally the
-additional unformatted message is displayed just before the <font
-style="color:magenta">GOT:</font> line.
+additional unformatted message is displayed just before the GOT: line.
 
 [Contents](../../README.md#contents)
 
@@ -51,14 +48,10 @@ This example shows a string Got/Wnt test with a formatted message.
 
 <!--- gotomd::tst::./string_with_formatted_message/package -->
 
-> Here the got string has extra information<font
-style="color:white;background:green"> (extra)</font>  not found in the want
-string while the want string has missing information<font
-style="color:white;background:red"> (missing)</font> not found in the got
-string.  Then there is a changed area area between the got<font
-style="color:white;background:blue"> Go</font> and the want<font
-style="color:white;background:blue"> Wn</font>.  Finally the
-additional formatted message is displayed just before the <font
-style="color:magenta">GOT:</font> line.
+> Here the got string has extra information (extra) not found in the want
+string while the want string has missing information (missing) not found 
+in the got string.  Then there is a changed area area between the got Go and
+the want Wnt.  Finally the additional formatted message is displayed just 
+before the GOT: line.
 
 [Contents](../../README.md#contents)

@@ -32,7 +32,7 @@ const (
 	clkSubNano = clkSubTS + ".000000000"
 )
 
-// Clock substutions.
+// Clock substitutions.
 const (
 	ClockSubNone = 0           // No substitutions.
 	ClockSubTime = 1 << iota   // {{clkTime#}} = HHmmSS.
@@ -233,7 +233,7 @@ func (chk *Chk) ClockOffsetDay(dayOffset int, inc ...time.Duration) func() {
 
 // ClockOffset moves the current clock by the specified amount.  No
 // defined increments are applied and if a clock has not yet been set the the
-// current time advanced by the specified amount will be used. Nothng is
+// current time advanced by the specified amount will be used. Nothing is
 // returned.
 func (chk *Chk) ClockOffset(d time.Duration) func() {
 	t := chk.clk.nextTS

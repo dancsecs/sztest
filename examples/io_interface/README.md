@@ -2,15 +2,15 @@
 
 # IO Interface
 
-  - [Example: IO Read Error](#example-io-read-error)
-  - [Example: IO Write Error](#example-io-write-error)
-  - [Example: IO Read Seek Error](#example-io-read-seek-error)
-  - [Example: IO Write Seek Error](#example-io-write-seek-error)
-  - [Example: IO Close Error](#example-io-close-error)
+- [Example: IO Read Error](#example-io-read-error)
+- [Example: IO Write Error](#example-io-write-error)
+- [Example: IO Read Seek Error](#example-io-read-seek-error)
+- [Example: IO Write Seek Error](#example-io-write-seek-error)
+- [Example: IO Close Error](#example-io-close-error)
 
 [Contents](../../README.md#contents)
 
-### Example: IO Read Error
+## Example: IO Read Error
 
 <!--- gotomd::Bgn::file::./read_error/example.go -->
 ```bash
@@ -70,7 +70,7 @@ func Test_IoInterface_ReadError(t *testing.T) {
     chk := sztest.CaptureNothing(t)
     defer chk.Release()
 
-    // Read without anyset will cause immediate EOF.
+    // Read without any data set will cause immediate EOF.
     _, err := readFile(chk)
     chk.Err(err, "unexpected EOF")
 
@@ -141,7 +141,7 @@ $\small{\texttt{ok\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{1
 
 [Contents](../../README.md#contents)
 
-### Example: IO Write Error
+## Example: IO Write Error
 
 <!--- gotomd::Bgn::file::./write_error/example.go -->
 ```bash
@@ -225,7 +225,7 @@ $\small{\texttt{ok\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{1
 
 [Contents](../../README.md#contents)
 
-### Example: IO Read Seek Error
+## Example: IO Read Seek Error
 
 <!--- gotomd::Bgn::file::./read_seek_error/example.go -->
 ```bash
@@ -296,7 +296,7 @@ $\small{\texttt{ok\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{1
 
 [Contents](../../README.md#contents)
 
-### Example: IO Write Seek Error
+## Example: IO Write Seek Error
 
 <!--- gotomd::Bgn::file::./write_seek_error/example.go -->
 ```bash
@@ -367,7 +367,7 @@ $\small{\texttt{ok\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{1
 
 [Contents](../../README.md#contents)
 
-### Example: IO Close Error
+## Example: IO Close Error
 
 <!--- gotomd::Bgn::file::./close_error/example.go -->
 ```bash

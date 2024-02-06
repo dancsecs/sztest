@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-// Now provids a link to get the current time that can be replaced by
+// Now provides a link to get the current time that can be replaced by
 // (*Chk).ClockNext to facilitate testing date related code.
 var now = time.Now
 

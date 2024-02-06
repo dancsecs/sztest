@@ -289,7 +289,6 @@ For a complete list of builtin got/wnt slice tests and their helpers see
 [Appendix C: List of got/wnt slice test methods](
          #appendix-c-list-of-gotwnt-slice-test-methods).
 
-
 - [Examples: String Slice With no Message](examples/slice/README.md#examples-string-slice-with-no-message)
 - [Examples: Float64 Slice With Unformatted Message](examples/slice/README.md#examples-float64-slice-with-unformatted-message)
 - [Examples: Uint64 Slice With Formatted Message](examples/slice/README.md#examples-uint64-slice-with-formatted-message)
@@ -472,11 +471,11 @@ func (chk *Chk) NoPanicf(gotF func(), msgFmt string, msgArgs ...any) bool
 Programs writing to standard outputs (```os.Stdout```, ```os.Stderr```) and
 the go log package (which may be distinct from os.Stderr) can have the
 outputs captured and reviewed as part of testing.  This can be to confirm
-failing conditions are preperly logged and reported as part of full testing.
+failing conditions are properly logged and reported as part of full testing.
 
 Each can be captured individually or the log package and os.Stderr can be
 combined together into a single captured feed.  Selection of the feeds is
-instatiated whwn the check object is initially created.  See
+instantiated when the check object is initially created.  See
 [Appendix A: Capture* creation functions](#appendix-a-list-of-sztestcapture-create-functions)
 for a complete list.
 
@@ -670,15 +669,15 @@ func (chk *Chk) SetPermExe(p os.FileMode) os.FileMode
 
 ## Timestamps
 
-Predictable timestamps are provided to permit full testing of timestamping
-applications.  In order to facilite this the application must use its own
-timestamp funtion pointer that defaults to be the standard```time.Now```
+Predictable timestamps are provided to permit full testing of applications
+using timestamps.  In order to facilitate this the application must use its own
+timestamp function pointer that defaults to be the standard```time.Now```
 function and can be replaced by the the testing clock function
 ```(*Chk).ClockNext```.
 
 > Replacing the internal time.Now method is possible using an external monkey
 patch library such as [go-mpatch](https://github.com/undefinedlabs/go-mpatch)
-using something similiar to:
+using something similar to:
 
 ```go
 //  ...
@@ -703,7 +702,7 @@ func Test_UsesTimeStamps(t *testing) {
 }
 ```
 
-Chk.ClockNext may be invoked indirectely with the formatting convienience
+Chk.ClockNext may be invoked indirectly with the formatting convenience
 methods:
 
 <!--- gotomd::Bgn::dcls::./Chk.ClockNextFmtTime Chk.ClockNextFmtDate Chk.ClockNextFmtTS Chk.ClockNextFmtNano Chk.ClockNextFmtCusA Chk.ClockNextFmtCusB Chk.ClockNextFmtCusC -->
@@ -717,7 +716,6 @@ func (chk *Chk) ClockNextFmtCusB() string
 func (chk *Chk) ClockNextFmtCusC() string
 ```
 <!--- gotomd::End::dcls::./Chk.ClockNextFmtTime Chk.ClockNextFmtDate Chk.ClockNextFmtTS Chk.ClockNextFmtNano Chk.ClockNextFmtCusA Chk.ClockNextFmtCusB Chk.ClockNextFmtCusC -->
-
 
 As timestamps are generated they are saved and can be queried with the
 function:
@@ -739,7 +737,7 @@ methods:
 
 ```
 
-Clock substutions.
+Clock substitutions.
 <!--- gotomd::End::doc::./ClockSubNone -->
 
 <!--- gotomd::Bgn::doc::./Chk.ClockSetSub Chk.ClockAddSub Chk.ClockRemoveSub Chk.ClockSetCusA Chk.ClockSetCusB Chk.ClockSetCusC -->
@@ -813,7 +811,7 @@ func (chk *Chk) ClockOffset(d time.Duration) func()
 
 ClockOffset moves the current clock by the specified amount.  No
 defined increments are applied and if a clock has not yet been set the the
-current time advanced by the specified amount will be used. Nothng is
+current time advanced by the specified amount will be used. Nothing is
 returned.
 <!--- gotomd::End::doc::./Chk.ClockOffset -->
 
@@ -827,7 +825,7 @@ func (chk *Chk) ClockLast() time.Time
 ClockLast returns the last timestamp generated.
 <!--- gotomd::End::doc::./Chk.ClockLast -->
 
-or the formatting convienience methods:
+or the formatting convenience methods:
 
 <!--- gotomd::Bgn::dcls::./Chk.ClockLastFmtTime Chk.ClockLastFmtDate Chk.ClockLastFmtTS Chk.ClockLastFmtNano Chk.ClockLastFmtCusA Chk.ClockLastFmtCusB Chk.ClockLastFmtCusC -->
 ```go
@@ -989,7 +987,7 @@ which must be tested by calling ONE the methods:
 
 and the method:
 
--  (*Chk).Stdout(wantLines ...string) bool
+- (*Chk).Stdout(wantLines ...string) bool
 
 before (*Chk).Release() is invoked.
 <!--- gotomd::End::doc::./CaptureLogWithStderrAndStdout -->
@@ -1002,11 +1000,11 @@ func CaptureStderr(t testingT) *Chk
 CaptureStderr returns a new *sztest.Chk reference
 capturing:
 
--  os.Stderr
+- os.Stderr
 
 which must be tested by calling the method:
 
--  (*Chk).Stderr(wantLines ...string) bool
+- (*Chk).Stderr(wantLines ...string) bool
 
 before (*Chk).Release() is invoked.
 <!--- gotomd::End::doc::./CaptureStderr -->
@@ -1019,13 +1017,13 @@ func CaptureStderrAndStdout(t testingT) *Chk
 CaptureStderrAndStdout returns a new *sztest.Chk reference
 capturing:
 
--  os.Stderr
--  os.Stdout
+- os.Stderr
+- os.Stdout
 
 which must be tested by calling the methods:
 
--  (*Chk).Stderr(wantLines ...string) bool
--  (*Chk).Stdout(wantLines ...string) bool
+- (*Chk).Stderr(wantLines ...string) bool
+- (*Chk).Stdout(wantLines ...string) bool
 
 before (*Chk).Release() is invoked.
 <!--- gotomd::End::doc::./CaptureStderrAndStdout -->
@@ -1092,7 +1090,6 @@ func (chk *Chk) Durf(got, want time.Duration, msgFmt string, msgArgs ...any) boo
 ```
 <!--- gotomd::End::dcls::./Chk.Boolf Chk.Falsef Chk.Truef Chk.Bytef Chk.Complex64f Chk.Complex128f Chk.Float32f Chk.Float64f Chk.Intf Chk.Int8f Chk.Int16f Chk.Int32f Chk.Int64f Chk.Runef Chk.Strf Chk.Uintf Chk.Uint8f Chk.Uint16f Chk.Uint32f Chk.Uint64f Chk.Uintptrf Chk.Durf -->
 
-
 #### Pointers and References Unformatted
 
 <!--- gotomd::Bgn::dcls::./Chk.Nil Chk.NotNil -->
@@ -1115,7 +1112,7 @@ func (chk *Chk) NotNilf(got any, msgFmt string, msgArgs ...any) bool
 
 ### Appendix C: List of got/wnt slice test methods
 
-#### Unformatted
+#### Unformatted Slice
 
 <!--- gotomd::Bgn::dcls::./Chk.BoolSlice Chk.ByteSlice Chk.Complex64Slice Chk.Complex128Slice Chk.Float32Slice Chk.Float64Slice Chk.IntSlice Chk.Int8Slice Chk.Int16Slice Chk.Int32Slice Chk.Int64Slice Chk.RuneSlice Chk.StrSlice Chk.UintSlice Chk.Uint8Slice Chk.Uint16Slice Chk.Uint32Slice Chk.Uint64Slice Chk.UintptrSlice Chk.DurSlice Chk.ErrSlice -->
 ```go
@@ -1143,7 +1140,7 @@ func (chk *Chk) ErrSlice(got []error, want []string, msg ...any) bool
 ```
 <!--- gotomd::End::dcls::./Chk.BoolSlice Chk.ByteSlice Chk.Complex64Slice Chk.Complex128Slice Chk.Float32Slice Chk.Float64Slice Chk.IntSlice Chk.Int8Slice Chk.Int16Slice Chk.Int32Slice Chk.Int64Slice Chk.RuneSlice Chk.StrSlice Chk.UintSlice Chk.Uint8Slice Chk.Uint16Slice Chk.Uint32Slice Chk.Uint64Slice Chk.UintptrSlice Chk.DurSlice Chk.ErrSlice -->
 
-#### Formatted
+#### Formatted Slice
 
 <!--- gotomd::Bgn::dcls::./Chk.BoolSlicef Chk.ByteSlicef Chk.Complex64Slicef Chk.Complex128Slicef Chk.Float32Slicef Chk.Float64Slicef Chk.IntSlicef Chk.Int8Slicef Chk.Int16Slicef Chk.Int32Slicef Chk.Int64Slicef Chk.RuneSlicef Chk.StrSlicef Chk.UintSlicef Chk.Uint8Slicef Chk.Uint16Slicef Chk.Uint32Slicef Chk.Uint64Slicef Chk.UintptrSlicef Chk.DurSlicef Chk.ErrSlicef -->
 ```go
@@ -1175,7 +1172,7 @@ func (chk *Chk) ErrSlicef(got []error, want []string, msgFmt string, msgArgs ...
 
 ### Appendix D: List of Bounded and Unbounded Interval tests
 
-#### Bounded Unformated
+#### Bounded Unformatted
 
 <!--- gotomd::Bgn::dcls::./Chk.ByteBounded Chk.Float32Bounded Chk.Float64Bounded Chk.IntBounded Chk.Int8Bounded Chk.Int16Bounded Chk.Int32Bounded Chk.Int64Bounded Chk.RuneBounded Chk.StrBounded Chk.UintBounded Chk.Uint8Bounded Chk.Uint16Bounded Chk.Uint32Bounded Chk.Uint64Bounded Chk.DurBounded -->
 ```go
@@ -1198,7 +1195,7 @@ func (chk *Chk) DurBounded(got time.Duration, option BoundedOption, min, max tim
 ```
 <!--- gotomd::End::dcls::./Chk.ByteBounded Chk.Float32Bounded Chk.Float64Bounded Chk.IntBounded Chk.Int8Bounded Chk.Int16Bounded Chk.Int32Bounded Chk.Int64Bounded Chk.RuneBounded Chk.StrBounded Chk.UintBounded Chk.Uint8Bounded Chk.Uint16Bounded Chk.Uint32Bounded Chk.Uint64Bounded Chk.DurBounded -->
 
-#### Bounded Formated
+#### Bounded Formatted
 
 <!--- gotomd::Bgn::dcls::./Chk.ByteBoundedf Chk.Float32Boundedf Chk.Float64Boundedf Chk.IntBoundedf Chk.Int8Boundedf Chk.Int16Boundedf Chk.Int32Boundedf Chk.Int64Boundedf Chk.RuneBoundedf Chk.StrBoundedf Chk.UintBoundedf Chk.Uint8Boundedf Chk.Uint16Boundedf Chk.Uint32Boundedf Chk.Uint64Boundedf Chk.DurBoundedf -->
 ```go
@@ -1211,17 +1208,17 @@ func (chk *Chk) Int16Boundedf(got int16, option BoundedOption, min, max int16msg
 func (chk *Chk) Int32Boundedf(got int32, option BoundedOption, min, max int32msgFmt string, msgArgs ...any) bool
 func (chk *Chk) Int64Boundedf(got int64, option BoundedOption, min, max int64msgFmt string, msgArgs ...any) bool
 func (chk *Chk) RuneBoundedf(got rune, option BoundedOption, min, max rune, msgFmt string, msgArgs ...any) bool
-func (chk *Chk) StrBoundedf(got string, option BoundedOption, min, max stringmsgFmt string, msgArgs ...any) bool
+func (chk *Chk) StrBoundedf(got string, option BoundedOption, min, max, msgFmt string, msgArgs ...any) bool
 func (chk *Chk) UintBoundedf(got uint, option BoundedOption, min, max uint, msgFmt string, msgArgs ...any) bool
 func (chk *Chk) Uint8Boundedf(got uint8, option BoundedOption, min, max uint8msgFmt string, msgArgs ...any) bool
 func (chk *Chk) Uint16Boundedf(got uint16, option BoundedOption, min, max uint16msgFmt string, msgArgs ...any) bool
 func (chk *Chk) Uint32Boundedf(got uint32, option BoundedOption, min, max uint32msgFmt string, msgArgs ...any) bool
 func (chk *Chk) Uint64Boundedf(got uint64, option BoundedOption, min, max uint64msgFmt string, msgArgs ...any) bool
-func (chk *Chk) DurBoundedf(got time.Duration, option BoundedOption, min, max time.DurationmsgFmt string, msgArgs ...any) bool
+func (chk *Chk) DurBoundedf(got time.Duration, option BoundedOption, min, max time.Duration, msgFmt string, msgArgs ...any) bool
 ```
 <!--- gotomd::End::dcls::./Chk.ByteBoundedf Chk.Float32Boundedf Chk.Float64Boundedf Chk.IntBoundedf Chk.Int8Boundedf Chk.Int16Boundedf Chk.Int32Boundedf Chk.Int64Boundedf Chk.RuneBoundedf Chk.StrBoundedf Chk.UintBoundedf Chk.Uint8Boundedf Chk.Uint16Boundedf Chk.Uint32Boundedf Chk.Uint64Boundedf Chk.DurBoundedf -->
 
-#### Unbounded Unformated
+#### Unbounded Unformatted
 
 <!--- gotomd::Bgn::dcls::./Chk.ByteUnbounded Chk.Float32Unbounded Chk.Float64Unbounded Chk.IntUnbounded Chk.Int8Unbounded Chk.Int16Unbounded Chk.Int32Unbounded Chk.Int64Unbounded Chk.RuneUnbounded Chk.StrUnbounded Chk.UintUnbounded Chk.Uint8Unbounded Chk.Uint16Unbounded Chk.Uint32Unbounded Chk.Uint64Unbounded Chk.DurUnbounded -->
 ```go
@@ -1244,7 +1241,7 @@ func (chk *Chk) DurUnbounded(got time.Duration, option UnboundedOption, bound ti
 ```
 <!--- gotomd::End::dcls::./Chk.ByteUnbounded Chk.Float32Unbounded Chk.Float64Unbounded Chk.IntUnbounded Chk.Int8Unbounded Chk.Int16Unbounded Chk.Int32Unbounded Chk.Int64Unbounded Chk.RuneUnbounded Chk.StrUnbounded Chk.UintUnbounded Chk.Uint8Unbounded Chk.Uint16Unbounded Chk.Uint32Unbounded Chk.Uint64Unbounded Chk.DurUnbounded -->
 
-#### Unbounded Formated
+#### Unbounded Formatted
 
 <!--- gotomd::Bgn::dcls::./Chk.ByteUnboundedf Chk.Float32Unboundedf Chk.Float64Unboundedf Chk.IntUnboundedf Chk.Int8Unboundedf Chk.Int16Unboundedf Chk.Int32Unboundedf Chk.Int64Unboundedf Chk.RuneUnboundedf Chk.StrUnboundedf Chk.UintUnboundedf Chk.Uint8Unboundedf Chk.Uint16Unboundedf Chk.Uint32Unboundedf Chk.Uint64Unboundedf Chk.DurUnboundedf -->
 ```go
@@ -1257,13 +1254,13 @@ func (chk *Chk) Int16Unboundedf(got int16, option UnboundedOption, bound int16ms
 func (chk *Chk) Int32Unboundedf(got int32, option UnboundedOption, bound int32msgFmt string, msgArgs ...any) bool
 func (chk *Chk) Int64Unboundedf(got int64, option UnboundedOption, bound int64msgFmt string, msgArgs ...any) bool
 func (chk *Chk) RuneUnboundedf(got rune, option UnboundedOption, bound rune, msgFmt string, msgArgs ...any) bool
-func (chk *Chk) StrUnboundedf(got string, option UnboundedOption, bound stringmsgFmt string, msgArgs ...any) bool
+func (chk *Chk) StrUnboundedf(got string, option UnboundedOption, bound , msgFmt string, msgArgs ...any) bool
 func (chk *Chk) UintUnboundedf(got uint, option UnboundedOption, bound uint, msgFmt string, msgArgs ...any) bool
 func (chk *Chk) Uint8Unboundedf(got uint8, option UnboundedOption, bound uint8msgFmt string, msgArgs ...any) bool
 func (chk *Chk) Uint16Unboundedf(got uint16, option UnboundedOption, bound uint16msgFmt string, msgArgs ...any) bool
 func (chk *Chk) Uint32Unboundedf(got uint32, option UnboundedOption, bound uint32msgFmt string, msgArgs ...any) bool
 func (chk *Chk) Uint64Unboundedf(got uint64, option UnboundedOption, bound uint64msgFmt string, msgArgs ...any) bool
-func (chk *Chk) DurUnboundedf(got time.Duration, option UnboundedOption, bound time.DurationmsgFmt string, msgArgs ...any) bool
+func (chk *Chk) DurUnboundedf(got time.Duration, option UnboundedOption, bound time.Duration, msgFmt string, msgArgs ...any) bool
 ```
 <!--- gotomd::End::dcls::./Chk.ByteUnboundedf Chk.Float32Unboundedf Chk.Float64Unboundedf Chk.IntUnboundedf Chk.Int8Unboundedf Chk.Int16Unboundedf Chk.Int32Unboundedf Chk.Int64Unboundedf Chk.RuneUnboundedf Chk.StrUnboundedf Chk.UintUnboundedf Chk.Uint8Unboundedf Chk.Uint16Unboundedf Chk.Uint32Unboundedf Chk.Uint64Unboundedf Chk.DurUnboundedf -->
 

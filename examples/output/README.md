@@ -106,9 +106,8 @@ $\small{\texttt{FAIL}}$
 <!--- gotomd::End::tst::./stdout/package -->
 
 > The failure highlights that there was a line in the output (the got) that is
-missing from the ```chk.Stdout()``` list (the want).  IE the line <font
-style="color:white;background:green">Missing in want</font> indicates that
-this line needs to be added to the want.
+missing from the ```chk.Stdout()``` list (the want).  IE the line Missing in
+want indicates that this line needs to be added to the want.
 
 [Contents](../../README.md#contents)
 
@@ -205,9 +204,8 @@ $\small{\texttt{FAIL}}$
 <!--- gotomd::End::tst::./stderr/package -->
 
 > The failure highlights that there was a line in the ```chk.Stderr()``` list
-(the want) that is missing from the got.  IE the line <font
-style="color:white;background:red">Missing in got</font> indicates that
-this line needs to be removed from the want.
+(the want) that is missing from the got.  IE the line Missing in got
+indicates that this line needs to be removed from the want.
 
 [Contents](../../README.md#contents)
 
@@ -591,7 +589,7 @@ func Test_PASS_CaptureLogAndStderr(t *testing.T) {
 }
 
 // Failing test.
-func Test_FAIL_CaptureLogAndStserr(t *testing.T) {
+func Test_FAIL_CaptureLogAndStderr(t *testing.T) {
     chk := sztest.CaptureLogAndStderr(t)
     defer chk.Release()
 
@@ -630,7 +628,7 @@ $\small{\texttt{===\unicode{160}RUN\unicode{160}\unicode{160}\unicode{160}Test&#
 <br>
 $\small{\texttt{---\unicode{160}PASS:\unicode{160}Test&#x332;PASS&#x332;CaptureLogAndStderr\unicode{160}(0.0s)}}$
 <br>
-$\small{\texttt{===\unicode{160}RUN\unicode{160}\unicode{160}\unicode{160}Test&#x332;FAIL&#x332;CaptureLogAndStserr}}$
+$\small{\texttt{===\unicode{160}RUN\unicode{160}\unicode{160}\unicode{160}Test&#x332;FAIL&#x332;CaptureLogAndStderr}}$
 <br>
 $\small{\texttt{\unicode{160}\unicode{160}\unicode{160}\unicode{160}example&#x332;test.go:51:\unicode{160}Unexpected\unicode{160}log\unicode{160}Entry:\unicode{160}got\unicode{160}(5\unicode{160}lines)\unicode{160}-\unicode{160}want\unicode{160}(5\unicode{160}lines)}}$
 <br>
@@ -650,7 +648,7 @@ $\small{\texttt{\unicode{160}\unicode{160}\unicode{160}\unicode{160}example&#x33
 <br>
 $\small{\texttt{\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}\color{darkturquoise}0\color{default}:\color{darkturquoise}0\color{default}\unicode{160}this\unicode{160}line\unicode{160}will\unicode{160}\color{red}not\unicode{160}\color{default}be\unicode{160}\color{red}the\unicode{160}same\color{default}\color{yellow}/\color{default}\color{green}different\color{default}}}$
 <br>
-$\small{\texttt{---\unicode{160}FAIL:\unicode{160}Test&#x332;FAIL&#x332;CaptureLogAndStserr\unicode{160}(0.0s)}}$
+$\small{\texttt{---\unicode{160}FAIL:\unicode{160}Test&#x332;FAIL&#x332;CaptureLogAndStderr\unicode{160}(0.0s)}}$
 <br>
 $\small{\texttt{FAIL}}$
 <br>
@@ -715,7 +713,7 @@ func Test_PASS_CaptureLogAndStderrAndStdout(t *testing.T) {
 }
 
 // Failing test.
-func Test_FAIL_CaptureLogAndStserrAndStdout(t *testing.T) {
+func Test_FAIL_CaptureLogAndStderrAndStdout(t *testing.T) {
     chk := sztest.CaptureLogAndStderrAndStdout(t)
     defer chk.Release()
 
@@ -760,7 +758,7 @@ $\small{\texttt{===\unicode{160}RUN\unicode{160}\unicode{160}\unicode{160}Test&#
 <br>
 $\small{\texttt{---\unicode{160}PASS:\unicode{160}Test&#x332;PASS&#x332;CaptureLogAndStderrAndStdout\unicode{160}(0.0s)}}$
 <br>
-$\small{\texttt{===\unicode{160}RUN\unicode{160}\unicode{160}\unicode{160}Test&#x332;FAIL&#x332;CaptureLogAndStserrAndStdout}}$
+$\small{\texttt{===\unicode{160}RUN\unicode{160}\unicode{160}\unicode{160}Test&#x332;FAIL&#x332;CaptureLogAndStderrAndStdout}}$
 <br>
 $\small{\texttt{\unicode{160}\unicode{160}\unicode{160}\unicode{160}example&#x332;test.go:61:\unicode{160}Unexpected\unicode{160}log\unicode{160}Entry:\unicode{160}got\unicode{160}(5\unicode{160}lines)\unicode{160}-\unicode{160}want\unicode{160}(5\unicode{160}lines)}}$
 <br>
@@ -784,7 +782,7 @@ $\small{\texttt{\unicode{160}\unicode{160}\unicode{160}\unicode{160}example&#x33
 <br>
 $\small{\texttt{\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}\color{darkturquoise}0\color{default}:\color{darkturquoise}0\color{default}\unicode{160}this\unicode{160}stderr\unicode{160}line\unicode{160}will\unicode{160}\color{red}not\unicode{160}\color{default}be\unicode{160}\color{red}the\unicode{160}same\color{default}\color{yellow}/\color{default}\color{green}different\color{default}}}$
 <br>
-$\small{\texttt{---\unicode{160}FAIL:\unicode{160}Test&#x332;FAIL&#x332;CaptureLogAndStserrAndStdout\unicode{160}(0.0s)}}$
+$\small{\texttt{---\unicode{160}FAIL:\unicode{160}Test&#x332;FAIL&#x332;CaptureLogAndStderrAndStdout\unicode{160}(0.0s)}}$
 <br>
 $\small{\texttt{FAIL}}$
 <br>

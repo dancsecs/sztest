@@ -113,7 +113,6 @@ $\small{\texttt{FAIL}}$
 <br>
 <!--- gotomd::End::tst::./string_slice_with_no_message/package -->
 
-
 [Contents](../../README.md#contents)
 
 ## Examples: Float64 Slice With Unformatted Message

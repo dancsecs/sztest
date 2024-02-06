@@ -11,7 +11,7 @@ func Test_IoInterface_ReadError(t *testing.T) {
 	chk := sztest.CaptureNothing(t)
 	defer chk.Release()
 
-	// Read without anyset will cause immediate EOF.
+	// Read without any data set will cause immediate EOF.
 	_, err := readFile(chk)
 	chk.Err(err, "unexpected EOF")
 

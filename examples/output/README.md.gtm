@@ -19,9 +19,8 @@
 <!--- gotomd::tst::./stdout/package -->
 
 > The failure highlights that there was a line in the output (the got) that is
-missing from the ```chk.Stdout()``` list (the want).  IE the line <font
-style="color:white;background:green">Missing in want</font> indicates that
-this line needs to be added to the want.
+missing from the ```chk.Stdout()``` list (the want).  IE the line Missing in
+want indicates that this line needs to be added to the want.
 
 [Contents](../../README.md#contents)
 
@@ -32,9 +31,8 @@ this line needs to be added to the want.
 <!--- gotomd::tst::./stderr/package -->
 
 > The failure highlights that there was a line in the ```chk.Stderr()``` list
-(the want) that is missing from the got.  IE the line <font
-style="color:white;background:red">Missing in got</font> indicates that
-this line needs to be removed from the want.
+(the want) that is missing from the got.  IE the line Missing in got
+indicates that this line needs to be removed from the want.
 
 [Contents](../../README.md#contents)
 

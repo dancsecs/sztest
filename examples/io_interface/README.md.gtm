@@ -1,14 +1,14 @@
 # IO Interface
 
-  - [Example: IO Read Error](#example-io-read-error)
-  - [Example: IO Write Error](#example-io-write-error)
-  - [Example: IO Read Seek Error](#example-io-read-seek-error)
-  - [Example: IO Write Seek Error](#example-io-write-seek-error)
-  - [Example: IO Close Error](#example-io-close-error)
+- [Example: IO Read Error](#example-io-read-error)
+- [Example: IO Write Error](#example-io-write-error)
+- [Example: IO Read Seek Error](#example-io-read-seek-error)
+- [Example: IO Write Seek Error](#example-io-write-seek-error)
+- [Example: IO Close Error](#example-io-close-error)
 
 [Contents](../../README.md#contents)
 
-### Example: IO Read Error
+## Example: IO Read Error
 
 <!--- gotomd::file::./read_error/example.go -->
 
@@ -18,7 +18,7 @@
 
 [Contents](../../README.md#contents)
 
-### Example: IO Write Error
+## Example: IO Write Error
 
 <!--- gotomd::file::./write_error/example.go -->
 
@@ -28,7 +28,7 @@
 
 [Contents](../../README.md#contents)
 
-### Example: IO Read Seek Error
+## Example: IO Read Seek Error
 
 <!--- gotomd::file::./read_seek_error/example.go -->
 
@@ -38,7 +38,7 @@
 
 [Contents](../../README.md#contents)
 
-### Example: IO Write Seek Error
+## Example: IO Write Seek Error
 
 <!--- gotomd::file::./write_seek_error/example.go -->
 
@@ -48,7 +48,7 @@
 
 [Contents](../../README.md#contents)
 
-### Example: IO Close Error
+## Example: IO Close Error
 
 <!--- gotomd::file::./close_error/example.go -->
 

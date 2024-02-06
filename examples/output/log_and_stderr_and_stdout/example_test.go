@@ -41,7 +41,7 @@ func Test_PASS_CaptureLogAndStderrAndStdout(t *testing.T) {
 }
 
 // Failing test.
-func Test_FAIL_CaptureLogAndStserrAndStdout(t *testing.T) {
+func Test_FAIL_CaptureLogAndStderrAndStdout(t *testing.T) {
 	chk := sztest.CaptureLogAndStderrAndStdout(t)
 	defer chk.Release()
 
