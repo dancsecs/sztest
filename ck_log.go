@@ -305,7 +305,7 @@ func CaptureLogWithStderr(t testingT) *Chk {
 //
 // and the method:
 //
-// -  (*Chk).Stdout(wantLines ...string) bool
+// - (*Chk).Stdout(wantLines ...string) bool
 //
 // before (*Chk).Release() is invoked.
 func CaptureLogWithStderrAndStdout(t testingT) *Chk {
@@ -316,11 +316,11 @@ func CaptureLogWithStderrAndStdout(t testingT) *Chk {
 // CaptureStderr returns a new *sztest.Chk reference
 // capturing:
 //
-// -  os.Stderr
+// - os.Stderr
 //
 // which must be tested by calling the method:
 //
-// -  (*Chk).Stderr(wantLines ...string) bool
+// - (*Chk).Stderr(wantLines ...string) bool
 //
 // before (*Chk).Release() is invoked.
 func CaptureStderr(t testingT) *Chk {
@@ -331,13 +331,13 @@ func CaptureStderr(t testingT) *Chk {
 // CaptureStderrAndStdout returns a new *sztest.Chk reference
 // capturing:
 //
-// -  os.Stderr
-// -  os.Stdout
+// - os.Stderr
+// - os.Stdout
 //
 // which must be tested by calling the methods:
 //
-// -  (*Chk).Stderr(wantLines ...string) bool
-// -  (*Chk).Stdout(wantLines ...string) bool
+// - (*Chk).Stderr(wantLines ...string) bool
+// - (*Chk).Stdout(wantLines ...string) bool
 //
 // before (*Chk).Release() is invoked.
 func CaptureStderrAndStdout(t testingT) *Chk {

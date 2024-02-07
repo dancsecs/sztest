@@ -1200,20 +1200,20 @@ func (chk *Chk) DurBounded(got time.Duration, option BoundedOption, min, max tim
 <!--- gotomd::Bgn::dcls::./Chk.ByteBoundedf Chk.Float32Boundedf Chk.Float64Boundedf Chk.IntBoundedf Chk.Int8Boundedf Chk.Int16Boundedf Chk.Int32Boundedf Chk.Int64Boundedf Chk.RuneBoundedf Chk.StrBoundedf Chk.UintBoundedf Chk.Uint8Boundedf Chk.Uint16Boundedf Chk.Uint32Boundedf Chk.Uint64Boundedf Chk.DurBoundedf -->
 ```go
 func (chk *Chk) ByteBoundedf(got byte, option BoundedOption, min, max byte, msgFmt string, msgArgs ...any) bool
-func (chk *Chk) Float32Boundedf(got float32, option BoundedOption, min, max float32msgFmt string, msgArgs ...any) bool
-func (chk *Chk) Float64Boundedf(got float64, option BoundedOption, min, max float64msgFmt string, msgArgs ...any) bool
+func (chk *Chk) Float32Boundedf(got float32, option BoundedOption, min, max float32, msgFmt string, msgArgs ...any) bool
+func (chk *Chk) Float64Boundedf(got float64, option BoundedOption, min, max float64, msgFmt string, msgArgs ...any) bool
 func (chk *Chk) IntBoundedf(got int, option BoundedOption, min, max int, msgFmt string, msgArgs ...any) bool
 func (chk *Chk) Int8Boundedf(got int8, option BoundedOption, min, max int8, msgFmt string, msgArgs ...any) bool
-func (chk *Chk) Int16Boundedf(got int16, option BoundedOption, min, max int16msgFmt string, msgArgs ...any) bool
-func (chk *Chk) Int32Boundedf(got int32, option BoundedOption, min, max int32msgFmt string, msgArgs ...any) bool
-func (chk *Chk) Int64Boundedf(got int64, option BoundedOption, min, max int64msgFmt string, msgArgs ...any) bool
+func (chk *Chk) Int16Boundedf(got int16, option BoundedOption, min, max int16, msgFmt string, msgArgs ...any) bool
+func (chk *Chk) Int32Boundedf(got int32, option BoundedOption, min, max int32, msgFmt string, msgArgs ...any) bool
+func (chk *Chk) Int64Boundedf(got int64, option BoundedOption, min, max int64, msgFmt string, msgArgs ...any) bool
 func (chk *Chk) RuneBoundedf(got rune, option BoundedOption, min, max rune, msgFmt string, msgArgs ...any) bool
-func (chk *Chk) StrBoundedf(got string, option BoundedOption, min, max, msgFmt string, msgArgs ...any) bool
+func (chk *Chk) StrBoundedf(got string, option BoundedOption, min, max string, msgFmt string, msgArgs ...any) bool
 func (chk *Chk) UintBoundedf(got uint, option BoundedOption, min, max uint, msgFmt string, msgArgs ...any) bool
-func (chk *Chk) Uint8Boundedf(got uint8, option BoundedOption, min, max uint8msgFmt string, msgArgs ...any) bool
-func (chk *Chk) Uint16Boundedf(got uint16, option BoundedOption, min, max uint16msgFmt string, msgArgs ...any) bool
-func (chk *Chk) Uint32Boundedf(got uint32, option BoundedOption, min, max uint32msgFmt string, msgArgs ...any) bool
-func (chk *Chk) Uint64Boundedf(got uint64, option BoundedOption, min, max uint64msgFmt string, msgArgs ...any) bool
+func (chk *Chk) Uint8Boundedf(got uint8, option BoundedOption, min, max uint8, msgFmt string, msgArgs ...any) bool
+func (chk *Chk) Uint16Boundedf(got uint16, option BoundedOption, min, max uint16, msgFmt string, msgArgs ...any) bool
+func (chk *Chk) Uint32Boundedf(got uint32, option BoundedOption, min, max uint32, msgFmt string, msgArgs ...any) bool
+func (chk *Chk) Uint64Boundedf(got uint64, option BoundedOption, min, max uint64, msgFmt string, msgArgs ...any) bool
 func (chk *Chk) DurBoundedf(got time.Duration, option BoundedOption, min, max time.Duration, msgFmt string, msgArgs ...any) bool
 ```
 <!--- gotomd::End::dcls::./Chk.ByteBoundedf Chk.Float32Boundedf Chk.Float64Boundedf Chk.IntBoundedf Chk.Int8Boundedf Chk.Int16Boundedf Chk.Int32Boundedf Chk.Int64Boundedf Chk.RuneBoundedf Chk.StrBoundedf Chk.UintBoundedf Chk.Uint8Boundedf Chk.Uint16Boundedf Chk.Uint32Boundedf Chk.Uint64Boundedf Chk.DurBoundedf -->
@@ -1246,20 +1246,20 @@ func (chk *Chk) DurUnbounded(got time.Duration, option UnboundedOption, bound ti
 <!--- gotomd::Bgn::dcls::./Chk.ByteUnboundedf Chk.Float32Unboundedf Chk.Float64Unboundedf Chk.IntUnboundedf Chk.Int8Unboundedf Chk.Int16Unboundedf Chk.Int32Unboundedf Chk.Int64Unboundedf Chk.RuneUnboundedf Chk.StrUnboundedf Chk.UintUnboundedf Chk.Uint8Unboundedf Chk.Uint16Unboundedf Chk.Uint32Unboundedf Chk.Uint64Unboundedf Chk.DurUnboundedf -->
 ```go
 func (chk *Chk) ByteUnboundedf(got byte, option UnboundedOption, bound byte, msgFmt string, msgArgs ...any) bool
-func (chk *Chk) Float32Unboundedf(got float32, option UnboundedOption, bound float32msgFmt string, msgArgs ...any) bool
-func (chk *Chk) Float64Unboundedf(got float64, option UnboundedOption, bound float64msgFmt string, msgArgs ...any) bool
+func (chk *Chk) Float32Unboundedf(got float32, option UnboundedOption, bound float32, msgFmt string, msgArgs ...any) bool
+func (chk *Chk) Float64Unboundedf(got float64, option UnboundedOption, bound float64, msgFmt string, msgArgs ...any) bool
 func (chk *Chk) IntUnboundedf(got int, option UnboundedOption, bound int, msgFmt string, msgArgs ...any) bool
 func (chk *Chk) Int8Unboundedf(got int8, option UnboundedOption, bound int8, msgFmt string, msgArgs ...any) bool
-func (chk *Chk) Int16Unboundedf(got int16, option UnboundedOption, bound int16msgFmt string, msgArgs ...any) bool
-func (chk *Chk) Int32Unboundedf(got int32, option UnboundedOption, bound int32msgFmt string, msgArgs ...any) bool
-func (chk *Chk) Int64Unboundedf(got int64, option UnboundedOption, bound int64msgFmt string, msgArgs ...any) bool
+func (chk *Chk) Int16Unboundedf(got int16, option UnboundedOption, bound int16, msgFmt string, msgArgs ...any) bool
+func (chk *Chk) Int32Unboundedf(got int32, option UnboundedOption, bound int32, msgFmt string, msgArgs ...any) bool
+func (chk *Chk) Int64Unboundedf(got int64, option UnboundedOption, bound int64, msgFmt string, msgArgs ...any) bool
 func (chk *Chk) RuneUnboundedf(got rune, option UnboundedOption, bound rune, msgFmt string, msgArgs ...any) bool
-func (chk *Chk) StrUnboundedf(got string, option UnboundedOption, bound , msgFmt string, msgArgs ...any) bool
+func (chk *Chk) StrUnboundedf(got string, option UnboundedOption, bound string, msgFmt string, msgArgs ...any) bool
 func (chk *Chk) UintUnboundedf(got uint, option UnboundedOption, bound uint, msgFmt string, msgArgs ...any) bool
-func (chk *Chk) Uint8Unboundedf(got uint8, option UnboundedOption, bound uint8msgFmt string, msgArgs ...any) bool
-func (chk *Chk) Uint16Unboundedf(got uint16, option UnboundedOption, bound uint16msgFmt string, msgArgs ...any) bool
-func (chk *Chk) Uint32Unboundedf(got uint32, option UnboundedOption, bound uint32msgFmt string, msgArgs ...any) bool
-func (chk *Chk) Uint64Unboundedf(got uint64, option UnboundedOption, bound uint64msgFmt string, msgArgs ...any) bool
+func (chk *Chk) Uint8Unboundedf(got uint8, option UnboundedOption, bound uint8, msgFmt string, msgArgs ...any) bool
+func (chk *Chk) Uint16Unboundedf(got uint16, option UnboundedOption, bound uint16, msgFmt string, msgArgs ...any) bool
+func (chk *Chk) Uint32Unboundedf(got uint32, option UnboundedOption, bound uint32, msgFmt string, msgArgs ...any) bool
+func (chk *Chk) Uint64Unboundedf(got uint64, option UnboundedOption, bound uint64, msgFmt string, msgArgs ...any) bool
 func (chk *Chk) DurUnboundedf(got time.Duration, option UnboundedOption, bound time.Duration, msgFmt string, msgArgs ...any) bool
 ```
 <!--- gotomd::End::dcls::./Chk.ByteUnboundedf Chk.Float32Unboundedf Chk.Float64Unboundedf Chk.IntUnboundedf Chk.Int8Unboundedf Chk.Int16Unboundedf Chk.Int32Unboundedf Chk.Int64Unboundedf Chk.RuneUnboundedf Chk.StrUnboundedf Chk.UintUnboundedf Chk.Uint8Unboundedf Chk.Uint16Unboundedf Chk.Uint32Unboundedf Chk.Uint64Unboundedf Chk.DurUnboundedf -->
