@@ -114,7 +114,7 @@
          "wntf"
     ],
     "markdownlint.config": {
-        "MD033": { "allowed_elements": ["figure","pre","br","blockquote"] },
+        "MD033": { "allowed_elements": ["pre","br"] },
         "MD010": {"spaces_per_tab": 4},
         "no-hard-tabs": true
     }
