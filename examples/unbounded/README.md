@@ -1,4 +1,4 @@
-<!--- gotomd::Auto:: See github.com/dancsecs/gotomd ** DO NOT MODIFY ** -->
+<!--- gotomd::Auto:: See github.com/dancsecs/gotomd **DO NOT MODIFY** -->
 
 # Unbounded Examples
 
