@@ -86,8 +86,8 @@ $\small{\texttt{FAIL}}$
 <br>
 <!--- gotomd::End::tst::./integer_with_no_message/package -->
 
-> Here the failing test has its fourth number highlighted as changed
-while the passing test produced no output.
+> Here the failing test has its fourth number highlighted as changed while
+the passing test produced no output.
 
 [Contents](../../README.md#contents)
 
@@ -182,7 +182,7 @@ $\small{\texttt{FAIL}}$
 > Here the thousandth fractional position is flagged as being out of tolerance
 and is highlighted as changed/different while the specific
 tolerance value used has been added to the type name.  Finally the
-additional unformatted message is displayed just before the line.
+additional unformatted message is displayed just before the GOT: line.
 
 [Contents](../../README.md#contents)
 
@@ -264,9 +264,9 @@ $\small{\texttt{FAIL}}$
 <!--- gotomd::End::tst::./string_with_formatted_message/package -->
 
 > Here the got string has extra information (extra) not found in the want
-string while the want string has missing information (missing) not
-found in the got string.  Then there is a changed area area between the got Go
-and the want Wnt.  Finally the additional formatted message is displayed
-just before the line.
+string while the want string has missing information (missing) not found
+in the got string.  Then there is a changed area area between the got Go and
+the want Wnt.  Finally the additional formatted message is displayed just
+before the GOT: line.
 
 [Contents](../../README.md#contents)
