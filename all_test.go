@@ -32,6 +32,8 @@ package sztest
 
 import (
 	"fmt"
+	"log"
+	"os"
 	"strings"
 	"testing"
 )
@@ -43,9 +45,38 @@ type tstMarkupFunc func(string, any, any) string
 // Gets updated once markup and diff functions are fully tested.
 var errGotWnt tstMarkupFunc
 
+func saveThenSetupDefaultEnvironment() func() {
+	var restoreFunc func()
+	orig := make(map[string]string)
+	for _, e := range os.Environ() {
+		s := strings.SplitN(e, "=", 2)
+		if len(s) == 2 &&
+			strings.HasPrefix(s[0], "SZTEST_") &&
+			s[0] != "SZTEST_TMP_DIR" {
+			// Save env variable for restoration.
+			orig[s[0]] = s[1]
+			// Remove env override
+			if err := os.Unsetenv(s[0]); err != nil {
+				log.Printf("Could not unsetEnv(%q): %v", s[0], err)
+			}
+		}
+	}
+	restoreFunc = func() {
+		for k, v := range orig {
+			if err := os.Setenv(k, v); err != nil {
+				log.Printf("Could not SetEnv(%q,%q): %v", k, v, err)
+			}
+		}
+	}
+	return restoreFunc
+}
+
 func TestSzTest(t *testing.T) {
 	// Set initial testing got/want function to plain
 	errGotWnt = errMarkupFuncNone
+
+	resEnv := saveThenSetupDefaultEnvironment()
+	defer resEnv()
 
 	// Test configuration overrides.
 	t.Run("Config Validate", test_config_validate)

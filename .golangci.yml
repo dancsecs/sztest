@@ -146,6 +146,12 @@ issues:
     - path: ck_.+\.go
       linters:
         - dupl
+    - text: func DiffString(
+      linters:
+        - funlen
+    -text: func testConfig_ValidateColor(     
+      linters:
+        - gocyclo
     # Exclude known linters from partially hard-vendored code,
   include:
     - EXC0001

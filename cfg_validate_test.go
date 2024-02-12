@@ -402,6 +402,14 @@ func testConfig_ValidateColor(t *testing.T) {
 	testColor("strikeout", "chg", settingMarkChgOn, clrStrikeout)
 
 	v, ok := validateMark("", envMarkChgOn, settingMarkChgOn)
+	if !ok {
+		t.Fatalf(invalidOkBool, envMarkChgOn, ok, true)
+	}
+	if v != "" {
+		t.Fatalf(invalidString, jsonNameChg, v, "")
+	}
+
+	v, ok = validateMark("_and_", envMarkChgOn, settingMarkChgOn)
 	if ok {
 		t.Fatalf(invalidOkBool, envMarkChgOn, ok, false)
 	}
@@ -462,7 +470,7 @@ func testConfig_ValidateColor(t *testing.T) {
 	}
 
 	wLine = fmt.Sprintf(
-		errMsg, envMarkChgOn, "", validColor, settingMarkChgOn,
+		errMsg, envMarkChgOn, "_and_", validColor, settingMarkChgOn,
 	)
 	if !strings.Contains(lines[1], wLine) {
 		t.Fatalf(invalidString, jsonName, buf.String(), wLine)

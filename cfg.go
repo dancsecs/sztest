@@ -49,6 +49,12 @@ var (
 	settingMarkSepOff string
 )
 
+// ReloadSettings re-initializes the settings permitting an application
+// to force certain settings required for embedded runs.
+func ReloadSettings() {
+	initAll()
+}
+
 // SettingFailFast returns the default setting overridden by env settings.
 func SettingFailFast() bool {
 	return settingFailFast

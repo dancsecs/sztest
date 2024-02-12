@@ -22,8 +22,8 @@ import (
 	"os"
 )
 
+// Environment variable identifiers.
 const (
-	// Environment variable identifiers.
 	envFailFast   = "SZTEST_FAIL_FAST"
 	envBufferSize = "SZTEST_BUFFER_SIZE"
 	envPermDir    = "SZTEST_PERM_DIR"
@@ -74,7 +74,7 @@ const (
 
 //nolint:goCheckNoInits // Ok.
 func init() {
-	initAll()
+	ReloadSettings()
 }
 
 func initAll() {

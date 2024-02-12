@@ -175,8 +175,15 @@ func validateMark(colors, envVarName, defaultColor string) (string, bool) {
 	clr := ""
 	sty := ""
 
-	splitRegExp := regexp.MustCompile(`_[A|a][N|n][D|d]_`)
-	for _, c := range splitRegExp.Split(colors, -1) {
+	colors = strings.TrimSpace(colors)
+	if colors == "" {
+		// SZTEST env variable was there and set to nothing ""
+		// so we honor that override.  Env variable not there and validate
+		// does not get called but default is set.
+		return "", true
+	}
+	splitOnWordANDRegExp := regexp.MustCompile(`_[A|a][N|n][D|d]_`)
+	for _, c := range splitOnWordANDRegExp.Split(colors, -1) {
 		uC := strings.ToUpper(strings.TrimSpace(c))
 		if uC == "" {
 			ok = false
