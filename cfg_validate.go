@@ -48,7 +48,7 @@ func validateFailFast(s string) (bool, bool) {
 	case "FALSE":
 		return false, true
 	}
-	log.Printf(errMsg, envFailFast,
+	log.Printf(errMsg, EnvFailFast,
 		s,
 		validFailFast,
 		defFailFast,
@@ -71,7 +71,7 @@ func valPerm(s, prefix string) (os.FileMode, bool) {
 func validatePermDir(s string) (os.FileMode, bool) {
 	p, ok := valPerm(s, "07")
 	if !ok {
-		log.Printf(errMsg, envPermDir,
+		log.Printf(errMsg, EnvPermDir,
 			s,
 			validPermDir,
 			settingPermDir,
@@ -83,7 +83,7 @@ func validatePermDir(s string) (os.FileMode, bool) {
 func validatePermFile(s string) (os.FileMode, bool) {
 	p, ok := valPerm(s, "06")
 	if !ok {
-		log.Printf(errMsg, envPermFile,
+		log.Printf(errMsg, EnvPermFile,
 			s,
 			validPermFile,
 			settingPermFile,
@@ -95,7 +95,7 @@ func validatePermFile(s string) (os.FileMode, bool) {
 func validatePermExe(s string) (os.FileMode, bool) {
 	p, ok := valPerm(s, "07")
 	if !ok {
-		log.Printf(errMsg, envPermExe,
+		log.Printf(errMsg, EnvPermExe,
 			s,
 			validPermExe,
 			settingPermExe,
@@ -110,7 +110,7 @@ func validateTmpDir(s string) (string, bool) {
 		err = errors.New("not a directory")
 	}
 	if err != nil {
-		log.Printf(errMsg, envTmpDir, s, validTmpDir, settingTmpDir)
+		log.Printf(errMsg, EnvTmpDir, s, validTmpDir, settingTmpDir)
 		return "", false
 	}
 	return s, true
@@ -259,7 +259,7 @@ func validateMinRunString(s string) (int, bool) {
 	const bits64 = 64
 	n, err := strconv.ParseInt(s, base10, bits64)
 	if err != nil || n < 1 || n > 5 {
-		log.Printf(errMsg, envDiffChars,
+		log.Printf(errMsg, EnvDiffChars,
 			s,
 			validMinRunString,
 			defDiffChars,
@@ -274,7 +274,7 @@ func validateMinRunSlice(s string) (int, bool) {
 	const bits64 = 64
 	n, err := strconv.ParseInt(s, base10, bits64)
 	if err != nil || n < 1 || n > 5 {
-		log.Printf(errMsg, envDiffSlice,
+		log.Printf(errMsg, EnvDiffSlice,
 			s,
 			"1 <= x <= 5",
 			defDiffSlice,
@@ -289,7 +289,7 @@ func validateBufferSize(s string) (int, bool) {
 	const bits64 = 64
 	n, err := strconv.ParseInt(s, base10, bits64)
 	if err != nil || n < 1000 {
-		log.Printf(errMsg, envBufferSize,
+		log.Printf(errMsg, EnvBufferSize,
 			s,
 			validBufferSize,
 			defBufferSize,

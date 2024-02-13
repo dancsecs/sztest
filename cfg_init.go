@@ -24,28 +24,28 @@ import (
 
 // Environment variable identifiers.
 const (
-	envFailFast   = "SZTEST_FAIL_FAST"
-	envBufferSize = "SZTEST_BUFFER_SIZE"
-	envPermDir    = "SZTEST_PERM_DIR"
-	envPermFile   = "SZTEST_PERM_FILE"
-	envPermExe    = "SZTEST_PERM_EXE"
-	envTmpDir     = "SZTEST_TMP_DIR"
-	envDiffChars  = "SZTEST_DIFF_CHARS"
-	envDiffSlice  = "SZTEST_DIFF_SLICE"
-	envMarkWntOn  = "SZTEST_MARK_WNT_ON"
-	envMarkWntOff = "SZTEST_MARK_WNT_OFF"
-	envMarkGotOn  = "SZTEST_MARK_GOT_ON"
-	envMarkGotOff = "SZTEST_MARK_GOT_OFF"
-	envMarkMsgOn  = "SZTEST_MARK_MSG_ON"
-	envMarkMsgOff = "SZTEST_MARK_MSG_OFF"
-	envMarkInsOn  = "SZTEST_MARK_INS_ON"
-	envMarkInsOff = "SZTEST_MARK_INS_OFF"
-	envMarkDelOn  = "SZTEST_MARK_DEL_ON"
-	envMarkDelOff = "SZTEST_MARK_DEL_OFF"
-	envMarkChgOn  = "SZTEST_MARK_CHG_ON"
-	envMarkChgOff = "SZTEST_MARK_CHG_OFF"
-	envMarkSepOn  = "SZTEST_MARK_SEP_ON"
-	envMarkSepOff = "SZTEST_MARK_SEP_OFF"
+	EnvFailFast   = "SZTEST_FAIL_FAST"
+	EnvBufferSize = "SZTEST_BUFFER_SIZE"
+	EnvPermDir    = "SZTEST_PERM_DIR"
+	EnvPermFile   = "SZTEST_PERM_FILE"
+	EnvPermExe    = "SZTEST_PERM_EXE"
+	EnvTmpDir     = "SZTEST_TMP_DIR"
+	EnvDiffChars  = "SZTEST_DIFF_CHARS"
+	EnvDiffSlice  = "SZTEST_DIFF_SLICE"
+	EnvMarkWntOn  = "SZTEST_MARK_WNT_ON"
+	EnvMarkWntOff = "SZTEST_MARK_WNT_OFF"
+	EnvMarkGotOn  = "SZTEST_MARK_GOT_ON"
+	EnvMarkGotOff = "SZTEST_MARK_GOT_OFF"
+	EnvMarkMsgOn  = "SZTEST_MARK_MSG_ON"
+	EnvMarkMsgOff = "SZTEST_MARK_MSG_OFF"
+	EnvMarkInsOn  = "SZTEST_MARK_INS_ON"
+	EnvMarkInsOff = "SZTEST_MARK_INS_OFF"
+	EnvMarkDelOn  = "SZTEST_MARK_DEL_ON"
+	EnvMarkDelOff = "SZTEST_MARK_DEL_OFF"
+	EnvMarkChgOn  = "SZTEST_MARK_CHG_ON"
+	EnvMarkChgOff = "SZTEST_MARK_CHG_OFF"
+	EnvMarkSepOn  = "SZTEST_MARK_SEP_ON"
+	EnvMarkSepOff = "SZTEST_MARK_SEP_OFF"
 )
 
 const (
@@ -105,7 +105,7 @@ func initAll() {
 
 func initFailFast() {
 	r := defFailFast
-	v, ok := os.LookupEnv(envFailFast)
+	v, ok := os.LookupEnv(EnvFailFast)
 	if ok {
 		cleanValue, passed := validateFailFast(v)
 		if passed {
@@ -117,7 +117,7 @@ func initFailFast() {
 
 func initBufferSize() {
 	r := defBufferSize
-	v, ok := os.LookupEnv(envBufferSize)
+	v, ok := os.LookupEnv(EnvBufferSize)
 	if ok {
 		cleanValue, passed := validateBufferSize(v)
 		if passed {
@@ -129,7 +129,7 @@ func initBufferSize() {
 
 func initPermDir() {
 	r := defPermDir
-	v, ok := os.LookupEnv(envPermDir)
+	v, ok := os.LookupEnv(EnvPermDir)
 	if ok {
 		cleanValue, passed := validatePermDir(v)
 		if passed {
@@ -141,7 +141,7 @@ func initPermDir() {
 
 func initPermFile() {
 	r := defPermFile
-	v, ok := os.LookupEnv(envPermFile)
+	v, ok := os.LookupEnv(EnvPermFile)
 	if ok {
 		cleanValue, passed := validatePermFile(v)
 		if passed {
@@ -153,7 +153,7 @@ func initPermFile() {
 
 func initPermExe() {
 	r := defPermExe
-	v, ok := os.LookupEnv(envPermExe)
+	v, ok := os.LookupEnv(EnvPermExe)
 	if ok {
 		cleanValue, passed := validatePermExe(v)
 		if passed {
@@ -164,7 +164,7 @@ func initPermExe() {
 }
 
 func initTmpDir() {
-	v, ok := os.LookupEnv(envTmpDir)
+	v, ok := os.LookupEnv(EnvTmpDir)
 	if ok {
 		cleanValue, passed := validateTmpDir(v)
 		if passed {
@@ -177,7 +177,7 @@ func initTmpDir() {
 
 func initDiffChars() {
 	r := defDiffChars
-	v, ok := os.LookupEnv(envDiffChars)
+	v, ok := os.LookupEnv(EnvDiffChars)
 	if ok {
 		cleanValue, passed := validateMinRunString(v)
 		if passed {
@@ -189,7 +189,7 @@ func initDiffChars() {
 
 func initDiffSlice() {
 	r := defDiffSlice
-	v, ok := os.LookupEnv(envDiffSlice)
+	v, ok := os.LookupEnv(EnvDiffSlice)
 	if ok {
 		cleanValue, passed := validateMinRunSlice(v)
 		if passed {
@@ -201,9 +201,9 @@ func initDiffSlice() {
 
 func initMarkWntOn() {
 	r := defMarkWntOn
-	v, ok := os.LookupEnv(envMarkWntOn)
+	v, ok := os.LookupEnv(EnvMarkWntOn)
 	if ok {
-		cleanValue, passed := validateMark(v, envMarkWntOn, defMarkWntOn)
+		cleanValue, passed := validateMark(v, EnvMarkWntOn, defMarkWntOn)
 		if passed {
 			r = cleanValue
 		}
@@ -213,9 +213,9 @@ func initMarkWntOn() {
 
 func initMarkWntOff() {
 	r := defMarkWntOff
-	v, ok := os.LookupEnv(envMarkWntOff)
+	v, ok := os.LookupEnv(EnvMarkWntOff)
 	if ok {
-		cleanValue, passed := validateMark(v, envMarkWntOff, defMarkWntOff)
+		cleanValue, passed := validateMark(v, EnvMarkWntOff, defMarkWntOff)
 		if passed {
 			r = cleanValue
 		}
@@ -225,9 +225,9 @@ func initMarkWntOff() {
 
 func initMarkGotOn() {
 	r := defMarkGotOn
-	v, ok := os.LookupEnv(envMarkGotOn)
+	v, ok := os.LookupEnv(EnvMarkGotOn)
 	if ok {
-		cleanValue, passed := validateMark(v, envMarkGotOn, defMarkGotOn)
+		cleanValue, passed := validateMark(v, EnvMarkGotOn, defMarkGotOn)
 		if passed {
 			r = cleanValue
 		}
@@ -237,9 +237,9 @@ func initMarkGotOn() {
 
 func initMarkGotOff() {
 	r := defMarkGotOff
-	v, ok := os.LookupEnv(envMarkGotOff)
+	v, ok := os.LookupEnv(EnvMarkGotOff)
 	if ok {
-		cleanValue, passed := validateMark(v, envMarkGotOff, defMarkGotOff)
+		cleanValue, passed := validateMark(v, EnvMarkGotOff, defMarkGotOff)
 		if passed {
 			r = cleanValue
 		}
@@ -249,9 +249,9 @@ func initMarkGotOff() {
 
 func initMarkMsgOn() {
 	r := defMarkMsgOn
-	v, ok := os.LookupEnv(envMarkMsgOn)
+	v, ok := os.LookupEnv(EnvMarkMsgOn)
 	if ok {
-		cleanValue, passed := validateMark(v, envMarkMsgOn, defMarkMsgOn)
+		cleanValue, passed := validateMark(v, EnvMarkMsgOn, defMarkMsgOn)
 		if passed {
 			r = cleanValue
 		}
@@ -261,9 +261,9 @@ func initMarkMsgOn() {
 
 func initMarkMsgOff() {
 	r := defMarkMsgOff
-	v, ok := os.LookupEnv(envMarkMsgOff)
+	v, ok := os.LookupEnv(EnvMarkMsgOff)
 	if ok {
-		cleanValue, passed := validateMark(v, envMarkMsgOff, defMarkMsgOff)
+		cleanValue, passed := validateMark(v, EnvMarkMsgOff, defMarkMsgOff)
 		if passed {
 			r = cleanValue
 		}
@@ -273,9 +273,9 @@ func initMarkMsgOff() {
 
 func initMarkInsOn() {
 	r := defMarkInsOn
-	v, ok := os.LookupEnv(envMarkInsOn)
+	v, ok := os.LookupEnv(EnvMarkInsOn)
 	if ok {
-		cleanValue, passed := validateMark(v, envMarkInsOn, defMarkInsOn)
+		cleanValue, passed := validateMark(v, EnvMarkInsOn, defMarkInsOn)
 		if passed {
 			r = cleanValue
 		}
@@ -285,9 +285,9 @@ func initMarkInsOn() {
 
 func initMarkInsOff() {
 	r := defMarkInsOff
-	v, ok := os.LookupEnv(envMarkInsOff)
+	v, ok := os.LookupEnv(EnvMarkInsOff)
 	if ok {
-		cleanValue, passed := validateMark(v, envMarkInsOff, defMarkInsOff)
+		cleanValue, passed := validateMark(v, EnvMarkInsOff, defMarkInsOff)
 		if passed {
 			r = cleanValue
 		}
@@ -297,9 +297,9 @@ func initMarkInsOff() {
 
 func initMarkDelOn() {
 	r := defMarkDelOn
-	v, ok := os.LookupEnv(envMarkDelOn)
+	v, ok := os.LookupEnv(EnvMarkDelOn)
 	if ok {
-		cleanValue, passed := validateMark(v, envMarkDelOn, defMarkDelOn)
+		cleanValue, passed := validateMark(v, EnvMarkDelOn, defMarkDelOn)
 		if passed {
 			r = cleanValue
 		}
@@ -309,9 +309,9 @@ func initMarkDelOn() {
 
 func initMarkDelOff() {
 	r := defMarkDelOff
-	v, ok := os.LookupEnv(envMarkDelOff)
+	v, ok := os.LookupEnv(EnvMarkDelOff)
 	if ok {
-		cleanValue, passed := validateMark(v, envMarkDelOff, defMarkDelOff)
+		cleanValue, passed := validateMark(v, EnvMarkDelOff, defMarkDelOff)
 		if passed {
 			r = cleanValue
 		}
@@ -321,9 +321,9 @@ func initMarkDelOff() {
 
 func initMarkChgOn() {
 	r := defMarkChgOn
-	v, ok := os.LookupEnv(envMarkChgOn)
+	v, ok := os.LookupEnv(EnvMarkChgOn)
 	if ok {
-		cleanValue, passed := validateMark(v, envMarkChgOn, defMarkChgOn)
+		cleanValue, passed := validateMark(v, EnvMarkChgOn, defMarkChgOn)
 		if passed {
 			r = cleanValue
 		}
@@ -333,9 +333,9 @@ func initMarkChgOn() {
 
 func initMarkChgOff() {
 	r := defMarkChgOff
-	v, ok := os.LookupEnv(envMarkChgOff)
+	v, ok := os.LookupEnv(EnvMarkChgOff)
 	if ok {
-		cleanValue, passed := validateMark(v, envMarkChgOff, defMarkChgOff)
+		cleanValue, passed := validateMark(v, EnvMarkChgOff, defMarkChgOff)
 		if passed {
 			r = cleanValue
 		}
@@ -345,9 +345,9 @@ func initMarkChgOff() {
 
 func initMarkSepOn() {
 	r := defMarkSepOn
-	v, ok := os.LookupEnv(envMarkSepOn)
+	v, ok := os.LookupEnv(EnvMarkSepOn)
 	if ok {
-		cleanValue, passed := validateMark(v, envMarkSepOn, defMarkSepOn)
+		cleanValue, passed := validateMark(v, EnvMarkSepOn, defMarkSepOn)
 		if passed {
 			r = cleanValue
 		}
@@ -357,9 +357,9 @@ func initMarkSepOn() {
 
 func initMarkSepOff() {
 	r := defMarkSepOff
-	v, ok := os.LookupEnv(envMarkSepOff)
+	v, ok := os.LookupEnv(EnvMarkSepOff)
 	if ok {
-		cleanValue, passed := validateMark(v, envMarkSepOff, defMarkSepOff)
+		cleanValue, passed := validateMark(v, EnvMarkSepOff, defMarkSepOff)
 		if passed {
 			r = cleanValue
 		}

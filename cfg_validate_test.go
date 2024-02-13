@@ -86,7 +86,7 @@ func testConfig_ValidateFailFast(t *testing.T) {
 		t.Fatalf(invalidCaptureLength, jsonName, len(lines), wLineLength)
 	}
 	wLine := fmt.Sprintf(
-		errMsg, envFailFast, "invalid", validFailFast, settingFailFast,
+		errMsg, EnvFailFast, "invalid", validFailFast, settingFailFast,
 	)
 	if !strings.Contains(lines[0], wLine) {
 		t.Fatalf(invalidString, jsonName, buf.String(), wLine)
@@ -136,7 +136,7 @@ func testConfig_ValidatePermDir(t *testing.T) {
 	}
 
 	wLine := fmt.Sprintf(
-		errMsg, envPermDir, "0900", validPermDir, settingPermDir,
+		errMsg, EnvPermDir, "0900", validPermDir, settingPermDir,
 	)
 	if !strings.Contains(lines[0], wLine) {
 		t.Fatalf(invalidString, jsonName, buf.String(), wLine)
@@ -186,7 +186,7 @@ func testConfig_ValidatePermFile(t *testing.T) {
 	}
 
 	wLine := fmt.Sprintf(
-		errMsg, envPermFile, "0700", validPermFile, settingPermFile,
+		errMsg, EnvPermFile, "0700", validPermFile, settingPermFile,
 	)
 	if !strings.Contains(lines[0], wLine) {
 		t.Fatalf(invalidString, jsonName, buf.String(), wLine)
@@ -236,7 +236,7 @@ func testConfig_ValidatePermExe(t *testing.T) {
 	}
 
 	wLine := fmt.Sprintf(
-		errMsg, envPermExe, "0800", validPermExe, settingPermExe,
+		errMsg, EnvPermExe, "0800", validPermExe, settingPermExe,
 	)
 	if !strings.Contains(lines[0], wLine) {
 		t.Fatalf(invalidString, jsonName, buf.String(), wLine)
@@ -325,13 +325,13 @@ func testConfig_ValidateTmpDir(t *testing.T) {
 	}
 
 	wLine := fmt.Sprintf(
-		errMsg, envTmpDir, newTmpPath, validTmpDir, settingTmpDir,
+		errMsg, EnvTmpDir, newTmpPath, validTmpDir, settingTmpDir,
 	)
 	if !strings.Contains(lines[0], wLine) {
 		t.Fatalf(invalidString, jsonName, buf.String(), wLine)
 	}
 	wLine = fmt.Sprintf(
-		errMsg, envTmpDir, badDir, validTmpDir, settingTmpDir,
+		errMsg, EnvTmpDir, badDir, validTmpDir, settingTmpDir,
 	)
 	if !strings.Contains(lines[1], wLine) {
 		t.Fatalf(invalidString, jsonName, buf.String(), wLine)
@@ -401,60 +401,60 @@ func testConfig_ValidateColor(t *testing.T) {
 	testColor("reverse", "chg", settingMarkChgOn, clrReverse)
 	testColor("strikeout", "chg", settingMarkChgOn, clrStrikeout)
 
-	v, ok := validateMark("", envMarkChgOn, settingMarkChgOn)
+	v, ok := validateMark("", EnvMarkChgOn, settingMarkChgOn)
 	if !ok {
-		t.Fatalf(invalidOkBool, envMarkChgOn, ok, true)
+		t.Fatalf(invalidOkBool, EnvMarkChgOn, ok, true)
 	}
 	if v != "" {
 		t.Fatalf(invalidString, jsonNameChg, v, "")
 	}
 
-	v, ok = validateMark("_and_", envMarkChgOn, settingMarkChgOn)
+	v, ok = validateMark("_and_", EnvMarkChgOn, settingMarkChgOn)
 	if ok {
-		t.Fatalf(invalidOkBool, envMarkChgOn, ok, false)
+		t.Fatalf(invalidOkBool, EnvMarkChgOn, ok, false)
 	}
 	if v != "" {
 		t.Fatalf(invalidString, jsonNameChg, v, "")
 	}
 
-	v, ok = validateMark("blue_And_blue", envMarkChgOn, settingMarkChgOn)
+	v, ok = validateMark("blue_And_blue", EnvMarkChgOn, settingMarkChgOn)
 	if ok {
-		t.Fatalf(invalidOkBool, envMarkChgOn, ok, true)
+		t.Fatalf(invalidOkBool, EnvMarkChgOn, ok, true)
 	}
 	if v != "" {
 		t.Fatalf(invalidString, jsonNameChg, v, "")
 	}
 
-	v, ok = validateMark("bk-blue_AND_bk-blue", envMarkChgOn, settingMarkChgOn)
+	v, ok = validateMark("bk-blue_AND_bk-blue", EnvMarkChgOn, settingMarkChgOn)
 	if ok {
-		t.Fatalf(invalidOkBool, envMarkChgOn, ok, true)
+		t.Fatalf(invalidOkBool, EnvMarkChgOn, ok, true)
 	}
 	if v != "" {
 		t.Fatalf(invalidString, jsonNameChg, v, "")
 	}
 
-	v, ok = validateMark("bold_and_bold", envMarkChgOn, settingMarkChgOn)
+	v, ok = validateMark("bold_and_bold", EnvMarkChgOn, settingMarkChgOn)
 	if ok {
-		t.Fatalf(invalidOkBool, envMarkChgOn, ok, true)
+		t.Fatalf(invalidOkBool, EnvMarkChgOn, ok, true)
 	}
 	if v != "" {
 		t.Fatalf(invalidString, jsonNameChg, v, "")
 	}
 
-	v, ok = validateMark("custom_aNd_custom", envMarkChgOn, "")
+	v, ok = validateMark("custom_aNd_custom", EnvMarkChgOn, "")
 	if ok {
-		t.Fatalf(invalidOkBool, envMarkChgOn, ok, true)
+		t.Fatalf(invalidOkBool, EnvMarkChgOn, ok, true)
 	}
 	if v != "" {
-		t.Fatalf(invalidString, envMarkChgOn, v, "")
+		t.Fatalf(invalidString, EnvMarkChgOn, v, "")
 	}
 
-	v, ok = validateMark("blue_aNd_default", envMarkChgOn, "")
+	v, ok = validateMark("blue_aNd_default", EnvMarkChgOn, "")
 	if ok {
-		t.Fatalf(invalidOkBool, envMarkChgOn, ok, true)
+		t.Fatalf(invalidOkBool, EnvMarkChgOn, ok, true)
 	}
 	if v != "" {
-		t.Fatalf(invalidString, envMarkChgOn, v, "")
+		t.Fatalf(invalidString, EnvMarkChgOn, v, "")
 	}
 
 	lines := strings.Split(buf.String(), "\n")
@@ -470,7 +470,7 @@ func testConfig_ValidateColor(t *testing.T) {
 	}
 
 	wLine = fmt.Sprintf(
-		errMsg, envMarkChgOn, "_and_", validColor, settingMarkChgOn,
+		errMsg, EnvMarkChgOn, "_and_", validColor, settingMarkChgOn,
 	)
 	if !strings.Contains(lines[1], wLine) {
 		t.Fatalf(invalidString, jsonName, buf.String(), wLine)
@@ -482,7 +482,7 @@ func testConfig_ValidateColor(t *testing.T) {
 	}
 
 	wLine = fmt.Sprintf(
-		errMsg, envMarkChgOn, "blue_And_blue", validColor, settingMarkChgOn,
+		errMsg, EnvMarkChgOn, "blue_And_blue", validColor, settingMarkChgOn,
 	)
 	if !strings.Contains(lines[3], wLine) {
 		t.Fatalf(invalidString, jsonName, lines[3], wLine)
@@ -494,7 +494,7 @@ func testConfig_ValidateColor(t *testing.T) {
 	}
 
 	wLine = fmt.Sprintf(
-		errMsg, envMarkChgOn, "bk-blue_AND_bk-blue", validColor, settingMarkChgOn,
+		errMsg, EnvMarkChgOn, "bk-blue_AND_bk-blue", validColor, settingMarkChgOn,
 	)
 	if !strings.Contains(lines[5], wLine) {
 		t.Fatalf(invalidString, jsonName, lines[5], wLine)
@@ -506,7 +506,7 @@ func testConfig_ValidateColor(t *testing.T) {
 	}
 
 	wLine = fmt.Sprintf(
-		errMsg, envMarkChgOn, "bold_and_bold", validColor, settingMarkChgOn,
+		errMsg, EnvMarkChgOn, "bold_and_bold", validColor, settingMarkChgOn,
 	)
 	if !strings.Contains(lines[7], wLine) {
 		t.Fatalf(invalidString, jsonName, lines[7], wLine)
@@ -518,7 +518,7 @@ func testConfig_ValidateColor(t *testing.T) {
 	}
 
 	wLine = fmt.Sprintf(
-		errMsg, envMarkChgOn, "custom_aNd_custom", validColor, "",
+		errMsg, EnvMarkChgOn, "custom_aNd_custom", validColor, "",
 	)
 	if !strings.Contains(lines[9], wLine) {
 		t.Fatalf(invalidString, jsonName, lines[9], wLine)
@@ -530,7 +530,7 @@ func testConfig_ValidateColor(t *testing.T) {
 	}
 
 	wLine = fmt.Sprintf(
-		errMsg, envMarkChgOn, "blue_aNd_default", validColor, "",
+		errMsg, EnvMarkChgOn, "blue_aNd_default", validColor, "",
 	)
 	if !strings.Contains(lines[11], wLine) {
 		t.Fatalf(invalidString, jsonName, lines[11], wLine)
@@ -576,14 +576,14 @@ func testConfig_ValidateMinRunString(t *testing.T) {
 	}
 
 	wLine := fmt.Sprintf(
-		errMsg, envDiffChars, "0", validMinRunString, settingDiffChars,
+		errMsg, EnvDiffChars, "0", validMinRunString, settingDiffChars,
 	)
 	if !strings.Contains(lines[0], wLine) {
 		t.Fatalf(invalidString, jsonName, buf.String(), wLine)
 	}
 
 	wLine = fmt.Sprintf(
-		errMsg, envDiffChars, "6", validMinRunString, settingDiffChars,
+		errMsg, EnvDiffChars, "6", validMinRunString, settingDiffChars,
 	)
 	if !strings.Contains(lines[1], wLine) {
 		t.Fatalf(invalidString, jsonName, buf.String(), wLine)
@@ -629,14 +629,14 @@ func testConfig_ValidateMinRunSlice(t *testing.T) {
 	}
 
 	wLine := fmt.Sprintf(
-		errMsg, envDiffSlice, "0", validMinRunSlice, settingDiffSlice,
+		errMsg, EnvDiffSlice, "0", validMinRunSlice, settingDiffSlice,
 	)
 	if !strings.Contains(lines[0], wLine) {
 		t.Fatalf(invalidString, jsonName, buf.String(), wLine)
 	}
 
 	wLine = fmt.Sprintf(
-		errMsg, envDiffSlice, "6", validMinRunSlice, settingDiffSlice,
+		errMsg, EnvDiffSlice, "6", validMinRunSlice, settingDiffSlice,
 	)
 	if !strings.Contains(lines[1], wLine) {
 		t.Fatalf(invalidString, jsonName, buf.String(), wLine)
@@ -676,7 +676,7 @@ func testConfig_ValidateBufferSize(t *testing.T) {
 	}
 
 	wLine := fmt.Sprintf(
-		errMsg, envBufferSize, "-1", validBufferSize, settingBufferSize,
+		errMsg, EnvBufferSize, "-1", validBufferSize, settingBufferSize,
 	)
 	if !strings.Contains(lines[0], wLine) {
 		t.Fatalf(invalidString, jsonName, buf.String(), wLine)
