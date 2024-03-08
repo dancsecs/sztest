@@ -1040,7 +1040,7 @@ func chkTest_TstUnboundedRange_Closed(t *testing.T) {
 	)
 }
 
-func runChkTest_ReleaseWithUnexpectedPanic(t *testing.T) {
+func runChkTest_ReleaseWithUnexpectedPanic(_ *testing.T) {
 	iT := iTst{}
 	chk := CaptureNothing(&iT)
 	iT.chk = chk
