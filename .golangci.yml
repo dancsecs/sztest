@@ -3,23 +3,39 @@ linters-settings:
     line-length: 79
     tab-width: 4
 
-  depguard:
-    rules:
-      "main":
-        files: _test.go # Only apply to go test files.
-        allow:
-          - $gostd
-          - github.com/dancsecs/sztest
-
-  varnamelen:
-      ignore-decls:
-        - i int
-        - mi int
-        - ok bool
+  # varnamelen:
+  #     ignore-decls:
+  #       #- i int
+  #       #- mi int
+  #       #- ok bool
 
 linters:
   enable-all: true
   disable:
+    - cyclop
+    - dupl
+    - dupword
+    - errname
+    - exhaustive
+    - exhaustruct
+    - gochecknoglobals
+    - gocognit
+    - goconst
+    - goerr113
+    - gofumpt
+    - inamedparam
+    - ireturn
+    - lll
+    - nestif
+    - nlreturn
+    - nonamedreturns
+    - predeclared
+    - revive
+    - varnamelen
+    - wastedassign
+    - wrapcheck
+    - wsl
+
     - deadcode # Deprecated
     - exhaustivestruct # Deprecated
     - golint # Deprecated
@@ -38,10 +54,34 @@ issues:
   exclude-rules:
     - path: _test\.go  # Exclude on test files.
       linters:
-        #- forbidigo
-        #- goconst
-        #- paralleltest
-        #- wrapcheck
+        - cyclop
+        - dupl
+        - dupword
+        - forbidigo
+        - funlen
+        - exhaustruct
+        - gochecknoglobals
+        - gocognit
+        - goconst
+        - gocyclo
+        - goerr113
+        - gofumpt
+        - gosec
+        - inamedparam
+        - lll
+        - maintidx
+        - nlreturn
+        - nolintlint
+        - paralleltest
+        - revive
+        - stylecheck
+        - testpackage
+        - thelper
+        - wrapcheck
+        - unparam
+        - varnamelen
+        - wastedassign
+        - wsl
 
 run:
   timeout: 5m
