@@ -16,7 +16,6 @@ linters:
     - dupl
     - exhaustive
     - exhaustruct
-    - gochecknoglobals
     - gocognit
     - goconst
     - gofumpt
@@ -50,7 +49,6 @@ issues:
         - forbidigo
         - funlen
         - exhaustruct
-        - gochecknoglobals
         - gocognit
         - goconst
         - gocyclo

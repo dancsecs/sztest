@@ -38,12 +38,14 @@ import (
 	"testing"
 )
 
+const tstErrMinStr = 3
+
 // tstMarkupFunc defines the function type used to decorate error messages
 // to assist deciphering the problem between the got and the want.
 type tstMarkupFunc func(string, any, any) string
 
 // Gets updated once markup and diff functions are fully tested.
-var errGotWnt tstMarkupFunc
+var errGotWnt tstMarkupFunc //nolint:gochecknoglobals // Ok.
 
 func saveThenSetupDefaultEnvironment() func() {
 	var restoreFunc func()
@@ -143,8 +145,6 @@ func chkInterface(t *testing.T) {
 	t.Run("ErrLast", tstChkErrLast)
 	t.Run("Panic", tstChkPanic)
 }
-
-var tstErrMinStr = 3
 
 func errMarkupFuncNone(area string, got, wnt any) string {
 	g := fmt.Sprintf("%v", got)
