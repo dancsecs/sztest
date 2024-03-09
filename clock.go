@@ -136,7 +136,7 @@ func (chk *Chk) ClockNext() time.Time {
 	const base10 = 10
 	t := chk.clk.next()
 	chk.clkTicks = append(chk.clkTicks, t)
-	if chk.clkSub != 0 {
+	if chk.clkSub != 0 { //nolint:nestif // Ok.
 		idx := strconv.FormatInt(int64(len(chk.clkTicks)-1), base10)
 		if chk.clkSub&ClockSubTime > 0 {
 			chk.AddSub("{{clkTime"+idx+"}}", t.Format(clkSubTime))

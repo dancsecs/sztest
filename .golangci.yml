@@ -23,7 +23,6 @@ linters:
     - gofumpt
     - ireturn
     - lll
-    - nestif
     - nlreturn
     - nonamedreturns
     - predeclared

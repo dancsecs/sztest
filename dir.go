@@ -182,7 +182,7 @@ func (chk *Chk) CreateTmpUnixScriptIn(path string, lines []string) string {
 	for _, entry := range lines {
 		for _, l := range strings.Split(entry, "\n") {
 			cl := strings.TrimRight(l, spaceCutouts)
-			if cleanScript == "" {
+			if cleanScript == "" { //nolint:nestif // Ok.
 				if cl != "" {
 					// found first non blank line
 					ccl := strings.TrimLeft(cl, spaceCutouts)
@@ -237,7 +237,7 @@ func (chk *Chk) CreateTmpSubDir(d ...string) string {
 func (chk *Chk) CreateTmpDir() string {
 	var err error
 	path := filepath.Join(settingTmpDir, chk.Name())
-	if !chk.tmpDirCreated {
+	if !chk.tmpDirCreated { //nolint:nestif // Ok.
 		chk.t.Helper()
 		err = removeTestDir(path)
 		if err == nil {
