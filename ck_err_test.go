@@ -24,9 +24,9 @@ import (
 )
 
 const (
-	s1 = "entry1"
-	s2 = "entry2"
-	s3 = "entry3"
+	tstStr1 = "entry1"
+	tstStr2 = "entry2"
+	tstStr3 = "entry3"
 )
 
 func tstChkErr(t *testing.T) {
@@ -220,9 +220,9 @@ func chkErrSliceTestGood(t *testing.T) {
 	chk := CaptureNothing(iT)
 	iT.chk = chk
 
-	e1 := errors.New(s1)
-	e2 := errors.New(s2)
-	e3 := errors.New(s3)
+	tstErr1 := errors.New(tstStr1)
+	tstErr2 := errors.New(tstStr2)
+	tstErr3 := errors.New(tstStr3)
 
 	chk.ErrSlice(
 		nil, nil, "This message will NOT be displayed",
@@ -237,24 +237,24 @@ func chkErrSliceTestGood(t *testing.T) {
 		[]error{}, []string{}, "This message will NOT be displayed",
 	)
 	chk.ErrSlice(
-		[]error{e1}, []string{s1}, "This message will NOT be displayed",
+		[]error{tstErr1}, []string{tstStr1}, "This message will NOT be displayed",
 	)
 	chk.ErrSlice(
-		[]error{e1, e2}, []string{s1, s2}, "This message will NOT be displayed",
+		[]error{tstErr1, tstErr2}, []string{tstStr1, tstStr2}, "This message will NOT be displayed",
 	)
 	chk.ErrSlice(
-		[]error{e1, e2, e3}, []string{s1, s2, s3},
+		[]error{tstErr1, tstErr2, tstErr3}, []string{tstStr1, tstStr2, tstStr3},
 		"This message will NOT be displayed",
 	)
 	chk.ErrSlice(
-		[]error{e2, e3}, []string{s2, s3}, "This message will NOT be displayed",
+		[]error{tstErr2, tstErr3}, []string{tstStr2, tstStr3}, "This message will NOT be displayed",
 	)
 	chk.ErrSlice(
-		[]error{e3}, []string{s3}, "This message will NOT be displayed",
+		[]error{tstErr3}, []string{tstStr3}, "This message will NOT be displayed",
 	)
 
 	chk.ErrSlicef(
-		[]error{e3, e2}, []string{s3, s2},
+		[]error{tstErr3, tstErr2}, []string{tstStr3, tstStr2},
 		"This message will NOT be %s",
 		"displayed",
 	)
@@ -309,10 +309,10 @@ func chkErrSliceTestBadMsg3(t *testing.T) {
 	chk := CaptureNothing(iT)
 	iT.chk = chk
 
-	e3 := errors.New(s3)
+	tstErr3 := errors.New(tstStr3)
 
 	chk.ErrSlicef(
-		[]error{e3}, []string{s1}, "This message will be %s", "displayed",
+		[]error{tstErr3}, []string{tstStr1}, "This message will be %s", "displayed",
 	)
 
 	chk.Release()
@@ -332,11 +332,11 @@ func chkErrSliceTestBadMsg4(t *testing.T) {
 	chk := CaptureNothing(iT)
 	iT.chk = chk
 
-	e1 := errors.New(s1)
-	e3 := errors.New(s3)
+	tstErr1 := errors.New(tstStr1)
+	tstErr3 := errors.New(tstStr3)
 
 	chk.ErrSlice(
-		[]error{e1, e1, e3}, []string{s1, s2, s3},
+		[]error{tstErr1, tstErr1, tstErr3}, []string{tstStr1, tstStr2, tstStr3},
 		"This message will be displayed",
 	)
 

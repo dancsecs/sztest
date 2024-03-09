@@ -56,28 +56,28 @@ func testConfigValidateFailFast(t *testing.T) {
 
 	const jsonName = "fail_fast"
 
-	v, ok := validateFailFast("true")
+	failFastValue, ok := validateFailFast("true")
 	if !ok {
 		t.Fatalf(invalidOkBool, jsonName, ok, true)
 	}
-	if !v {
-		t.Fatalf(invalidBool, jsonName, v, true)
+	if !failFastValue {
+		t.Fatalf(invalidBool, jsonName, failFastValue, true)
 	}
 
-	v, ok = validateFailFast("false")
+	failFastValue, ok = validateFailFast("false")
 	if !ok {
 		t.Fatalf(invalidBool, jsonName, ok, true)
 	}
-	if v {
-		t.Fatalf(invalidBool, jsonName, v, false)
+	if failFastValue {
+		t.Fatalf(invalidBool, jsonName, failFastValue, false)
 	}
 
-	v, ok = validateFailFast("invalid")
+	failFastValue, ok = validateFailFast("invalid")
 	if ok {
 		t.Fatalf(invalidOkBool, jsonName, ok, false)
 	}
-	if v {
-		t.Fatalf(invalidBool, jsonName, v, false)
+	if failFastValue {
+		t.Fatalf(invalidBool, jsonName, failFastValue, false)
 	}
 
 	lines := strings.Split(buf.String(), "\n")
@@ -100,30 +100,30 @@ func testConfigValidatePermDir(t *testing.T) {
 
 	const jsonName = "perm_dir"
 
-	v, ok := validatePermDir("0712")
+	permDirValue, ok := validatePermDir("0712")
 	if !ok {
 		t.Fatalf(invalidOkBool, jsonName,
 			ok,
 			true,
 		)
 	}
-	if v != 0o0712 {
+	if permDirValue != 0o0712 {
 		t.Fatalf(invalidPerm, jsonName,
-			v,
+			permDirValue,
 			0o0712,
 		)
 	}
 
-	v, ok = validatePermDir("0900")
+	permDirValue, ok = validatePermDir("0900")
 	if ok {
 		t.Fatalf(invalidOkBool, jsonName,
 			ok,
 			false,
 		)
 	}
-	if v != 0 {
+	if permDirValue != 0 {
 		t.Fatalf(invalidPerm, jsonName,
-			v,
+			permDirValue,
 			0,
 		)
 	}
@@ -150,30 +150,30 @@ func testConfigValidatePermFile(t *testing.T) {
 
 	const jsonName = "perm_file"
 
-	v, ok := validatePermFile("0612")
+	permFileValue, ok := validatePermFile("0612")
 	if !ok {
 		t.Fatalf(invalidOkBool, jsonName,
 			ok,
 			true,
 		)
 	}
-	if v != 0o0612 {
+	if permFileValue != 0o0612 {
 		t.Fatalf(invalidPerm, jsonName,
-			v,
+			permFileValue,
 			0o0612,
 		)
 	}
 
-	v, ok = validatePermFile("0700")
+	permFileValue, ok = validatePermFile("0700")
 	if ok {
 		t.Fatalf(invalidOkBool, jsonName,
 			ok,
 			false,
 		)
 	}
-	if v != 0 {
+	if permFileValue != 0 {
 		t.Fatalf(invalidPerm, jsonName,
-			v,
+			permFileValue,
 			0,
 		)
 	}
@@ -200,30 +200,30 @@ func testConfigValidatePermExe(t *testing.T) {
 
 	const jsonName = "perm_exe"
 
-	v, ok := validatePermExe("0712")
+	permExeValue, ok := validatePermExe("0712")
 	if !ok {
 		t.Fatalf(invalidOkBool, jsonName,
 			ok,
 			true,
 		)
 	}
-	if v != 0o0712 {
+	if permExeValue != 0o0712 {
 		t.Fatalf(invalidPerm, jsonName,
-			v,
+			permExeValue,
 			0o0712,
 		)
 	}
 
-	v, ok = validatePermExe("0800")
+	permExeValue, ok = validatePermExe("0800")
 	if ok {
 		t.Fatalf(invalidOkBool, jsonName,
 			ok,
 			false,
 		)
 	}
-	if v != 0 {
+	if permExeValue != 0 {
 		t.Fatalf(invalidPerm, jsonName,
-			v,
+			permExeValue,
 			0,
 		)
 	}
@@ -257,16 +257,16 @@ func testConfigValidateTmpDir(t *testing.T) {
 		t.Fatal("could not clear test directory: " + err.Error())
 	}
 
-	v, ok := validateTmpDir(newTmpPath)
+	tmpDirValue, ok := validateTmpDir(newTmpPath)
 	if ok {
 		t.Fatalf(invalidOkBool, jsonName,
 			ok,
 			false,
 		)
 	}
-	if v != "" {
+	if tmpDirValue != "" {
 		t.Fatalf(invalidString, jsonName,
-			v,
+			tmpDirValue,
 			"",
 		)
 	}
@@ -279,16 +279,16 @@ func testConfigValidateTmpDir(t *testing.T) {
 		_ = os.Remove(newTmpPath)
 	}()
 
-	v, ok = validateTmpDir(newTmpPath)
+	tmpDirValue, ok = validateTmpDir(newTmpPath)
 	if !ok {
 		t.Fatalf(invalidOkBool, jsonName,
 			ok,
 			true,
 		)
 	}
-	if v != newTmpPath {
+	if tmpDirValue != newTmpPath {
 		t.Fatalf(invalidString, jsonName,
-			v,
+			tmpDirValue,
 			newTmpPath,
 		)
 	}
@@ -303,16 +303,16 @@ func testConfigValidateTmpDir(t *testing.T) {
 		_ = os.Remove(badDir)
 	}()
 
-	v, ok = validateTmpDir(badDir)
+	tmpDirValue, ok = validateTmpDir(badDir)
 	if ok {
 		t.Fatalf(invalidOkBool, jsonName,
 			ok,
 			false,
 		)
 	}
-	if v != "" {
+	if tmpDirValue != "" {
 		t.Fatalf(invalidString, jsonName,
-			v,
+			tmpDirValue,
 			"",
 		)
 	}
@@ -401,60 +401,60 @@ func testConfigValidateColor(t *testing.T) {
 	testColor("reverse", "chg", settingMarkChgOn, clrReverse)
 	testColor("strikeout", "chg", settingMarkChgOn, clrStrikeout)
 
-	v, ok := validateMark("", EnvMarkChgOn, settingMarkChgOn)
+	markValue, ok := validateMark("", EnvMarkChgOn, settingMarkChgOn)
 	if !ok {
 		t.Fatalf(invalidOkBool, EnvMarkChgOn, ok, true)
 	}
-	if v != "" {
-		t.Fatalf(invalidString, jsonNameChg, v, "")
+	if markValue != "" {
+		t.Fatalf(invalidString, jsonNameChg, markValue, "")
 	}
 
-	v, ok = validateMark("_and_", EnvMarkChgOn, settingMarkChgOn)
+	markValue, ok = validateMark("_and_", EnvMarkChgOn, settingMarkChgOn)
 	if ok {
 		t.Fatalf(invalidOkBool, EnvMarkChgOn, ok, false)
 	}
-	if v != "" {
-		t.Fatalf(invalidString, jsonNameChg, v, "")
+	if markValue != "" {
+		t.Fatalf(invalidString, jsonNameChg, markValue, "")
 	}
 
-	v, ok = validateMark("blue_And_blue", EnvMarkChgOn, settingMarkChgOn)
+	markValue, ok = validateMark("blue_And_blue", EnvMarkChgOn, settingMarkChgOn)
 	if ok {
 		t.Fatalf(invalidOkBool, EnvMarkChgOn, ok, true)
 	}
-	if v != "" {
-		t.Fatalf(invalidString, jsonNameChg, v, "")
+	if markValue != "" {
+		t.Fatalf(invalidString, jsonNameChg, markValue, "")
 	}
 
-	v, ok = validateMark("bk-blue_AND_bk-blue", EnvMarkChgOn, settingMarkChgOn)
+	markValue, ok = validateMark("bk-blue_AND_bk-blue", EnvMarkChgOn, settingMarkChgOn)
 	if ok {
 		t.Fatalf(invalidOkBool, EnvMarkChgOn, ok, true)
 	}
-	if v != "" {
-		t.Fatalf(invalidString, jsonNameChg, v, "")
+	if markValue != "" {
+		t.Fatalf(invalidString, jsonNameChg, markValue, "")
 	}
 
-	v, ok = validateMark("bold_and_bold", EnvMarkChgOn, settingMarkChgOn)
+	markValue, ok = validateMark("bold_and_bold", EnvMarkChgOn, settingMarkChgOn)
 	if ok {
 		t.Fatalf(invalidOkBool, EnvMarkChgOn, ok, true)
 	}
-	if v != "" {
-		t.Fatalf(invalidString, jsonNameChg, v, "")
+	if markValue != "" {
+		t.Fatalf(invalidString, jsonNameChg, markValue, "")
 	}
 
-	v, ok = validateMark("custom_aNd_custom", EnvMarkChgOn, "")
+	markValue, ok = validateMark("custom_aNd_custom", EnvMarkChgOn, "")
 	if ok {
 		t.Fatalf(invalidOkBool, EnvMarkChgOn, ok, true)
 	}
-	if v != "" {
-		t.Fatalf(invalidString, EnvMarkChgOn, v, "")
+	if markValue != "" {
+		t.Fatalf(invalidString, EnvMarkChgOn, markValue, "")
 	}
 
-	v, ok = validateMark("blue_aNd_default", EnvMarkChgOn, "")
+	markValue, ok = validateMark("blue_aNd_default", EnvMarkChgOn, "")
 	if ok {
 		t.Fatalf(invalidOkBool, EnvMarkChgOn, ok, true)
 	}
-	if v != "" {
-		t.Fatalf(invalidString, EnvMarkChgOn, v, "")
+	if markValue != "" {
+		t.Fatalf(invalidString, EnvMarkChgOn, markValue, "")
 	}
 
 	lines := strings.Split(buf.String(), "\n")
@@ -544,28 +544,28 @@ func testConfigValidateMinRunString(t *testing.T) {
 
 	const jsonName = "min_run_string"
 
-	v, ok := validateMinRunString("0")
+	runStringValue, ok := validateMinRunString("0")
 	if ok {
 		t.Fatalf(invalidOkBool, jsonName, ok, false)
 	}
-	if v != 0 {
-		t.Fatalf(invalidInt, jsonName, v, 0)
+	if runStringValue != 0 {
+		t.Fatalf(invalidInt, jsonName, runStringValue, 0)
 	}
 
-	v, ok = validateMinRunString("6")
+	runStringValue, ok = validateMinRunString("6")
 	if ok {
 		t.Fatalf(invalidOkBool, jsonName, ok, false)
 	}
-	if v != 0 {
-		t.Fatalf(invalidInt, jsonName, v, 0)
+	if runStringValue != 0 {
+		t.Fatalf(invalidInt, jsonName, runStringValue, 0)
 	}
 
-	v, ok = validateMinRunString("1")
+	runStringValue, ok = validateMinRunString("1")
 	if !ok {
 		t.Fatalf(invalidOkBool, jsonName, ok, true)
 	}
-	if v != 1 {
-		t.Fatalf(invalidInt, jsonName, v, 1)
+	if runStringValue != 1 {
+		t.Fatalf(invalidInt, jsonName, runStringValue, 1)
 	}
 
 	lines := strings.Split(buf.String(), "\n")
@@ -597,28 +597,28 @@ func testConfigValidateMinRunSlice(t *testing.T) {
 
 	const jsonName = "min_run_slice"
 
-	v, ok := validateMinRunSlice("0")
+	runSliceValue, ok := validateMinRunSlice("0")
 	if ok {
 		t.Fatalf(invalidOkBool, jsonName, ok, false)
 	}
-	if v != 0 {
-		t.Fatalf(invalidInt, jsonName, v, 0)
+	if runSliceValue != 0 {
+		t.Fatalf(invalidInt, jsonName, runSliceValue, 0)
 	}
 
-	v, ok = validateMinRunSlice("6")
+	runSliceValue, ok = validateMinRunSlice("6")
 	if ok {
 		t.Fatalf(invalidOkBool, jsonName, ok, false)
 	}
-	if v != 0 {
-		t.Fatalf(invalidInt, jsonName, v, 0)
+	if runSliceValue != 0 {
+		t.Fatalf(invalidInt, jsonName, runSliceValue, 0)
 	}
 
-	v, ok = validateMinRunSlice("5")
+	runSliceValue, ok = validateMinRunSlice("5")
 	if !ok {
 		t.Fatalf(invalidOkBool, jsonName, ok, true)
 	}
-	if v != 5 {
-		t.Fatalf(invalidInt, jsonName, v, 5)
+	if runSliceValue != 5 {
+		t.Fatalf(invalidInt, jsonName, runSliceValue, 5)
 	}
 
 	lines := strings.Split(buf.String(), "\n")
@@ -650,22 +650,22 @@ func testConfigValidateBufferSize(t *testing.T) {
 
 	const jsonName = "output_buffer_size"
 
-	v, ok := validateBufferSize("-1")
+	bufSizeValue, ok := validateBufferSize("-1")
 	if ok {
 		t.Fatalf(invalidOkBool, jsonName, ok, false)
 	}
 
-	if v != 0 {
-		t.Fatalf(invalidInt, jsonName, v, 0)
+	if bufSizeValue != 0 {
+		t.Fatalf(invalidInt, jsonName, bufSizeValue, 0)
 	}
 
-	v, ok = validateBufferSize("15000")
+	bufSizeValue, ok = validateBufferSize("15000")
 	if !ok {
 		t.Fatalf(invalidOkBool, jsonName, ok, true)
 	}
 
-	if v != 15000 {
-		t.Fatalf(invalidInt, jsonName, v, 15000)
+	if bufSizeValue != 15000 {
+		t.Fatalf(invalidInt, jsonName, bufSizeValue, 15000)
 	}
 
 	lines := strings.Split(buf.String(), "\n")

@@ -78,35 +78,35 @@ func markAsMsg(s string) string {
 	return markMsgOn + s + markMsgOff
 }
 
-func resolveMarksForDisplay(r string) string {
-	r = strings.ReplaceAll(r, markDelOn, settingMarkDelOn)
-	r = strings.ReplaceAll(r, markDelOff, settingMarkDelOff)
-	r = strings.ReplaceAll(r, markInsOn, settingMarkInsOn)
-	r = strings.ReplaceAll(r, markInsOff, settingMarkInsOff)
-	r = strings.ReplaceAll(r, markChgOn, settingMarkChgOn)
-	r = strings.ReplaceAll(r, markChgOff, settingMarkChgOff)
-	r = strings.ReplaceAll(r, markSepOn, settingMarkSepOn)
-	r = strings.ReplaceAll(r, markSepOff, settingMarkSepOff)
-	r = strings.ReplaceAll(r, markWntOn, settingMarkWntOn)
-	r = strings.ReplaceAll(r, markWntOff, settingMarkWntOff)
-	r = strings.ReplaceAll(r, markGotOn, settingMarkGotOn)
-	r = strings.ReplaceAll(r, markGotOff, settingMarkGotOff)
-	r = strings.ReplaceAll(r, markMsgOn, settingMarkMsgOn)
-	r = strings.ReplaceAll(r, markMsgOff, settingMarkMsgOff)
+func resolveMarksForDisplay(line string) string {
+	line = strings.ReplaceAll(line, markDelOn, settingMarkDelOn)
+	line = strings.ReplaceAll(line, markDelOff, settingMarkDelOff)
+	line = strings.ReplaceAll(line, markInsOn, settingMarkInsOn)
+	line = strings.ReplaceAll(line, markInsOff, settingMarkInsOff)
+	line = strings.ReplaceAll(line, markChgOn, settingMarkChgOn)
+	line = strings.ReplaceAll(line, markChgOff, settingMarkChgOff)
+	line = strings.ReplaceAll(line, markSepOn, settingMarkSepOn)
+	line = strings.ReplaceAll(line, markSepOff, settingMarkSepOff)
+	line = strings.ReplaceAll(line, markWntOn, settingMarkWntOn)
+	line = strings.ReplaceAll(line, markWntOff, settingMarkWntOff)
+	line = strings.ReplaceAll(line, markGotOn, settingMarkGotOn)
+	line = strings.ReplaceAll(line, markGotOff, settingMarkGotOff)
+	line = strings.ReplaceAll(line, markMsgOn, settingMarkMsgOn)
+	line = strings.ReplaceAll(line, markMsgOff, settingMarkMsgOff)
 
-	return r
+	return line
 }
 
 func gotWnt(got, wnt string) string {
-	h := ""
+	prefix := ""
 	if strings.Count(got, "\n")+strings.Count(wnt, "\n") > 0 {
-		h = "\n"
+		prefix = "\n"
 	}
 
 	return fmt.Sprint(
-		g(h+got),
+		g(prefix+got),
 		"\n",
-		w(h+wnt),
+		w(prefix+wnt),
 	)
 }
 

@@ -183,12 +183,12 @@ func chkIoWriterTestSetWriteError(t *testing.T) {
 	defer chk.Release()
 
 	buf := make([]byte, 1)
-	p, err := chk.Write(buf)
-	chk.Int(p, 1)
+	numWritten, err := chk.Write(buf)
+	chk.Int(numWritten, 1)
 	chk.NoErr(err)
 
 	chk.SetWriteError(24, errors.New("the write error"))
-	p, err = chk.Write(buf)
-	chk.Int(p, 24)
+	numWritten, err = chk.Write(buf)
+	chk.Int(numWritten, 24)
 	chk.Err(err, "the write error")
 }

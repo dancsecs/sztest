@@ -81,46 +81,46 @@ func testSzTestInternalMarkup(t *testing.T) {
 
 func testSzTestMarkupForTerminal(t *testing.T) {
 	const area = "markup for terminal"
-	const s1 = "ABC"
-	const s2 = "DEF"
+	const tstStr1 = "ABC"
+	const tstStr2 = "DEF"
 	var got, wnt string
 
-	got = resolveMarksForDisplay(markAsIns(s1))
-	wnt = settingMarkInsOn + s1 + settingMarkInsOff
+	got = resolveMarksForDisplay(markAsIns(tstStr1))
+	wnt = settingMarkInsOn + tstStr1 + settingMarkInsOff
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
 
-	got = resolveMarksForDisplay(markAsDel(s1))
-	wnt = settingMarkDelOn + s1 + settingMarkDelOff
+	got = resolveMarksForDisplay(markAsDel(tstStr1))
+	wnt = settingMarkDelOn + tstStr1 + settingMarkDelOff
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
 
-	got = resolveMarksForDisplay(markAsChg(s1, s2, DiffGot))
-	wnt = settingMarkChgOn + s1 + settingMarkChgOff
+	got = resolveMarksForDisplay(markAsChg(tstStr1, tstStr2, DiffGot))
+	wnt = settingMarkChgOn + tstStr1 + settingMarkChgOff
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
 
-	got = resolveMarksForDisplay(markAsChg(s1, s2, DiffWant))
-	wnt = settingMarkChgOn + s2 + settingMarkChgOff
+	got = resolveMarksForDisplay(markAsChg(tstStr1, tstStr2, DiffWant))
+	wnt = settingMarkChgOn + tstStr2 + settingMarkChgOff
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
 
-	got = resolveMarksForDisplay(markAsChg(s1, s2, DiffMerge))
+	got = resolveMarksForDisplay(markAsChg(tstStr1, tstStr2, DiffMerge))
 	wnt = "" +
-		settingMarkDelOn + s2 + settingMarkDelOff +
+		settingMarkDelOn + tstStr2 + settingMarkDelOff +
 		settingMarkSepOn + "/" + settingMarkSepOff +
-		settingMarkInsOn + s1 + settingMarkInsOff
+		settingMarkInsOn + tstStr1 + settingMarkInsOff
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
 
-	got = resolveMarksForDisplay(markAsMsg(s1))
+	got = resolveMarksForDisplay(markAsMsg(tstStr1))
 	wnt = "" +
-		settingMarkMsgOn + s1 + settingMarkMsgOff
+		settingMarkMsgOn + tstStr1 + settingMarkMsgOff
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}

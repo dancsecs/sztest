@@ -437,18 +437,18 @@ func tstFreezeMarks(t *testing.T) {
 	const tstName = "testFreezeMarks"
 	iT := new(iTst)
 
-	s := "No markups in string so will remain unchanged"
-	got, err := freezeMarks(s)
+	tstStr := "No markups in string so will remain unchanged"
+	got, err := freezeMarks(tstStr)
 	if err != nil {
 		t.Fatal(err)
 	}
-	wnt := s
+	wnt := tstStr
 
 	if got != wnt {
 		t.Error(errGotWnt(tstName, got, wnt))
 	}
 
-	s = "this string has representations of all default marks used in " +
+	tstStr = "this string has representations of all default marks used in " +
 		"testing including empty strings:\n" +
 		settingMarkInsOn + settingMarkInsOff + "\n" +
 		settingMarkDelOn + settingMarkDelOff + "\n" +
@@ -465,7 +465,7 @@ func tstFreezeMarks(t *testing.T) {
 		settingMarkSepOn + "sep" + settingMarkSepOff + "\n" +
 		settingMarkMsgOn + "msg" + settingMarkMsgOff + "\n" +
 		""
-	got, err = freezeMarks(s)
+	got, err = freezeMarks(tstStr)
 	if err != nil {
 		t.Fatal(err)
 	}

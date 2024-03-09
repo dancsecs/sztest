@@ -182,13 +182,13 @@ func chkIOReaderSetReadError(t *testing.T) {
 	defer chk.Release()
 
 	buf := make([]byte, 1)
-	p, err := chk.Read(buf)
-	chk.Int(p, 0)
+	numRead, err := chk.Read(buf)
+	chk.Int(numRead, 0)
 	chk.Err(err, io.EOF.Error())
 
 	chk.SetReadError(24, errors.New("the read error"))
-	p, err = chk.Read(buf)
-	chk.Int(p, 24)
+	numRead, err = chk.Read(buf)
+	chk.Int(numRead, 24)
 	chk.Err(err, "the read error")
 }
 

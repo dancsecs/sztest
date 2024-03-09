@@ -21,17 +21,17 @@ package sztest
 // LastErr returns the last argument in the list as an error.  If there are
 // no arguments or the last parameter is not an Error interface then
 // ErrInvalidLastErrArg is returned.
-func (*Chk) LastErr(p ...any) error {
+func (*Chk) LastErr(args ...any) error {
 	var err error
 	var lastErr error
 	var ok bool
-	if len(p) == 0 {
+	if len(args) == 0 {
 		err = ErrInvalidLastArg
 	}
 	if err == nil {
-		lastErr, ok = p[len(p)-1].(error)
+		lastErr, ok = args[len(args)-1].(error)
 		if !ok {
-			if p[len(p)-1] != nil {
+			if args[len(args)-1] != nil {
 				err = ErrInvalidLastArg
 			}
 		}

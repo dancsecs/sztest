@@ -134,34 +134,34 @@ func (chk *Chk) ClockLastFmtCusC() string {
 // been set.
 func (chk *Chk) ClockNext() time.Time {
 	const base10 = 10
-	t := chk.clk.next()
-	chk.clkTicks = append(chk.clkTicks, t)
+	nextTS := chk.clk.next()
+	chk.clkTicks = append(chk.clkTicks, nextTS)
 	if chk.clkSub != 0 { //nolint:nestif // Ok.
 		idx := strconv.FormatInt(int64(len(chk.clkTicks)-1), base10)
 		if chk.clkSub&ClockSubTime > 0 {
-			chk.AddSub("{{clkTime"+idx+"}}", t.Format(clkSubTime))
+			chk.AddSub("{{clkTime"+idx+"}}", nextTS.Format(clkSubTime))
 		}
 		if chk.clkSub&ClockSubDate > 0 {
-			chk.AddSub("{{clkDate"+idx+"}}", t.Format(clkSubDate))
+			chk.AddSub("{{clkDate"+idx+"}}", nextTS.Format(clkSubDate))
 		}
 		if chk.clkSub&ClockSubTS > 0 {
-			chk.AddSub("{{clkTS"+idx+"}}", t.Format(clkSubTS))
+			chk.AddSub("{{clkTS"+idx+"}}", nextTS.Format(clkSubTS))
 		}
 		if chk.clkSub&ClockSubNano > 0 {
-			chk.AddSub("{{clkNano"+idx+"}}", t.Format(clkSubNano))
+			chk.AddSub("{{clkNano"+idx+"}}", nextTS.Format(clkSubNano))
 		}
 		if chk.clkSub&ClockSubCusA > 0 {
-			chk.AddSub("{{clkCusA"+idx+"}}", t.Format(chk.clkCusA))
+			chk.AddSub("{{clkCusA"+idx+"}}", nextTS.Format(chk.clkCusA))
 		}
 		if chk.clkSub&ClockSubCusB > 0 {
-			chk.AddSub("{{clkCusB"+idx+"}}", t.Format(chk.clkCusB))
+			chk.AddSub("{{clkCusB"+idx+"}}", nextTS.Format(chk.clkCusB))
 		}
 		if chk.clkSub&ClockSubCusC > 0 {
-			chk.AddSub("{{clkCusC"+idx+"}}", t.Format(chk.clkCusC))
+			chk.AddSub("{{clkCusC"+idx+"}}", nextTS.Format(chk.clkCusC))
 		}
 	}
 
-	return t
+	return nextTS
 }
 
 // ClockNextFmtTime returns the last time generated in the indicated format.

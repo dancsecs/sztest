@@ -3,11 +3,13 @@ linters-settings:
     line-length: 79
     tab-width: 4
 
-  # varnamelen:
-  #     ignore-decls:
-  #       #- i int
-  #       #- mi int
-  #       #- ok bool
+  varnamelen:
+      ignore-decls:
+        - i int
+        - mi int
+        - ok bool
+        - re *regexp.Regexp
+        - iT *iTst
 
 linters:
   enable-all: true
@@ -16,7 +18,6 @@ linters:
     - dupl
     - gocognit
     - lll
-    - varnamelen
     - wsl
 
     - deadcode # Deprecated
@@ -53,7 +54,6 @@ issues:
         - testpackage
         - thelper
         - unparam
-        - varnamelen
         - wsl
 
 run:

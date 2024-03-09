@@ -367,15 +367,15 @@ func (chk *Chk) errGotWntf(
 	return false
 }
 
-func (chk *Chk) isStringify(value any) string {
-	s := fmt.Sprintf("%v", value)
-	s = chk.subStr(s)
-	s = fmt.Sprintf("%q", s)
-	s = s[1 : len(s)-1]                  // trim "%q" added quotemarks
-	s = strings.ReplaceAll(s, `\"`, `"`) // reverse "%q" action on quotes
-	s = strings.ReplaceAll(s, `\\`, `\`) // reverse "%q" action on backslashes
+func (chk *Chk) isStringify(rawStr any) string {
+	str := fmt.Sprintf("%v", rawStr)
+	str = chk.subStr(str)
+	str = fmt.Sprintf("%q", str)
+	str = str[1 : len(str)-1]                // trim "%q" added quotemarks
+	str = strings.ReplaceAll(str, `\"`, `"`) // reverse "%q" action on quotes
+	str = strings.ReplaceAll(str, `\\`, `\`) // reverse "%q" action on backslashes
 
-	return s
+	return str
 }
 
 func (chk *Chk) errChk(
@@ -418,17 +418,17 @@ func errSlice[V chkType](
 	chk.t.Helper()
 	var errMsg string
 
-	d1 := false
+	diffFound := false
 	gDiff := DiffSlice(
 		got,
 		want,
 		newDiffLnFmt(len(got), len(want)),
-		&d1,
+		&diffFound,
 		settingDiffSlice,
 		settingDiffChars,
 		cmp,
 	)
-	if d1 {
+	if diffFound {
 		errMsg = fmt.Sprint("Length Got: ", len(got), " Wnt: ", len(want))
 	} else {
 		errMsg = "invalid invocation: arrays are identical"
@@ -450,17 +450,17 @@ func errSlicef[V chkType](
 	chk.t.Helper()
 	var errMsg string
 
-	d1 := false
+	diffFound := false
 	gDiff := DiffSlice(
 		got,
 		want,
 		newDiffLnFmt(len(got), len(want)),
-		&d1,
+		&diffFound,
 		settingDiffSlice,
 		settingDiffChars,
 		cmp,
 	)
-	if d1 {
+	if diffFound {
 		errMsg = fmt.Sprint("Length Got: ", len(got), " Wnt: ", len(want))
 	} else {
 		errMsg = "invalid invocation: arrays are identical"
@@ -511,27 +511,27 @@ func inBoundedRange[V chkBoundedType](
 ) (bool, string) {
 	var inRange bool
 	var want string
-	v := "%v"
+	vFmt := "%v"
 	if reflect.TypeOf(got).Name() == "string" {
-		v = "\"%v\""
+		vFmt = "\"%v\""
 	}
 	switch option {
 	case BoundedOpen:
 		// IntervalBoundedOpen (a,b) = { x | a < x < b }
 		inRange = min < got && got < max
-		want = "(" + v + "," + v + ") - { want | " + v + " < want < " + v + " }"
+		want = "(" + vFmt + "," + vFmt + ") - { want | " + vFmt + " < want < " + vFmt + " }"
 	case BoundedClosed:
 		// IntervalBoundedClosed [a,b] = { x | a <= x <= b }
 		inRange = min <= got && got <= max
-		want = "[" + v + "," + v + "] - { want | " + v + " <= want <= " + v + " }"
+		want = "[" + vFmt + "," + vFmt + "] - { want | " + vFmt + " <= want <= " + vFmt + " }"
 	case BoundedMinOpen, BoundedMaxClosed:
 		// IntervalBoundedLeftOpen (a,b] = { x | a < x ≦ b }
 		inRange = min < got && got <= max
-		want = "(" + v + "," + v + "] - { want | " + v + " < want <= " + v + " }"
+		want = "(" + vFmt + "," + vFmt + "] - { want | " + vFmt + " < want <= " + vFmt + " }"
 	case BoundedMaxOpen, BoundedMinClosed:
 		// IntervalBoundedRightOpen [a,b) = { x | a ≦ x < b }
 		inRange = min <= got && got < max
-		want = "[" + v + "," + v + ") - { want | " + v + " <= want < " + v + " }"
+		want = "[" + vFmt + "," + vFmt + ") - { want | " + vFmt + " <= want < " + vFmt + " }"
 	default:
 
 		return false, fmt.Sprint("unknown bounded option ", option)
@@ -548,27 +548,27 @@ func inUnboundedRange[V chkBoundedType](
 ) (bool, string) {
 	var inRange bool
 	var want string
-	v := "%v"
+	vFmt := "%v"
 	if reflect.TypeOf(got).Name() == "string" {
-		v = "\"%v\""
+		vFmt = "\"%v\""
 	}
 	switch option {
 	case UnboundedMinOpen:
 		// (a,+∞) = { x | x > a }
 		inRange = got > bound
-		want = "(" + v + ",MAX) - { want | want > " + v + " }"
+		want = "(" + vFmt + ",MAX) - { want | want > " + vFmt + " }"
 	case UnboundedMinClosed:
 		// [a,+∞) = { x | x ≧ a }
 		inRange = got >= bound
-		want = "[" + v + ",MAX) - { want | want >= " + v + " }"
+		want = "[" + vFmt + ",MAX) - { want | want >= " + vFmt + " }"
 	case UnboundedMaxOpen:
 		// (-∞, b) = { x | x < b }
 		inRange = got < bound
-		want = "(MIN," + v + ") - { want | want < " + v + " }"
+		want = "(MIN," + vFmt + ") - { want | want < " + vFmt + " }"
 	case UnboundedMaxClosed:
 		// (-∞, b] = { x | x ≦ b }
 		inRange = got <= bound
-		want = "(MIN," + v + "] - { want | want <= " + v + " }"
+		want = "(MIN," + vFmt + "] - { want | want <= " + vFmt + " }"
 	default:
 
 		return false, fmt.Sprint("unknown unbounded option ", option)

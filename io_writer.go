@@ -40,7 +40,7 @@ func (chk *Chk) SetWriteError(pos int, err error) {
 }
 
 // Write implements the ioReader interface.
-func (chk *Chk) Write(b []byte) (int, error) {
+func (chk *Chk) Write(data []byte) (int, error) {
 	if chk.ioWriteErrSet {
 		writePos := chk.ioWriteErrPos
 		writeErr := chk.ioWriteErr
@@ -54,7 +54,7 @@ func (chk *Chk) Write(b []byte) (int, error) {
 	if chk.wErr != nil && chk.wErrPos <= 0 {
 		return 0, chk.wErr
 	}
-	for _, nb := range b {
+	for _, nextByte := range data {
 		if chk.wErrPos == 0 {
 			if chk.wErr == nil {
 				return count, ErrForcedOutOfSpace
@@ -62,7 +62,7 @@ func (chk *Chk) Write(b []byte) (int, error) {
 
 			return count, chk.wErr
 		}
-		chk.wData = append(chk.wData, nb)
+		chk.wData = append(chk.wData, nextByte)
 		chk.wErrPos--
 		count++
 	}

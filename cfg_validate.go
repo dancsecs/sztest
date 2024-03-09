@@ -40,15 +40,15 @@ const (
 	validBufferSize   = "x >= 1000"
 )
 
-func validateFailFast(s string) (bool, bool) {
-	switch strings.ToUpper(strings.TrimSpace(s)) {
+func validateFailFast(rawSetting string) (bool, bool) {
+	switch strings.ToUpper(strings.TrimSpace(rawSetting)) {
 	case "TRUE":
 		return true, true
 	case "FALSE":
 		return false, true
 	}
 	log.Printf(errMsg, EnvFailFast,
-		s,
+		rawSetting,
 		validFailFast,
 		defFailFast,
 	)
@@ -69,54 +69,54 @@ func valPerm(s, prefix string) (os.FileMode, bool) {
 	return 0, false
 }
 
-func validatePermDir(s string) (os.FileMode, bool) {
-	p, ok := valPerm(s, "07")
+func validatePermDir(rawSetting string) (os.FileMode, bool) {
+	permission, ok := valPerm(rawSetting, "07")
 	if !ok {
 		log.Printf(errMsg, EnvPermDir,
-			s,
+			rawSetting,
 			validPermDir,
 			settingPermDir,
 		)
 	}
 
-	return p, ok
+	return permission, ok
 }
 
-func validatePermFile(s string) (os.FileMode, bool) {
-	p, ok := valPerm(s, "06")
+func validatePermFile(rawSetting string) (os.FileMode, bool) {
+	permission, ok := valPerm(rawSetting, "06")
 	if !ok {
 		log.Printf(errMsg, EnvPermFile,
-			s,
+			rawSetting,
 			validPermFile,
 			settingPermFile,
 		)
 	}
 
-	return p, ok
+	return permission, ok
 }
 
-func validatePermExe(s string) (os.FileMode, bool) {
-	p, ok := valPerm(s, "07")
+func validatePermExe(rawSetting string) (os.FileMode, bool) {
+	permission, ok := valPerm(rawSetting, "07")
 	if !ok {
 		log.Printf(errMsg, EnvPermExe,
-			s,
+			rawSetting,
 			validPermExe,
 			settingPermExe,
 		)
 	}
 
-	return p, ok
+	return permission, ok
 }
 
-func validateTmpDir(s string) (string, bool) {
-	stat, err := os.Stat(s)
+func validateTmpDir(rawSetting string) (string, bool) {
+	stat, err := os.Stat(rawSetting)
 	if err != nil || !stat.IsDir() {
-		log.Printf(errMsg, EnvTmpDir, s, validTmpDir, settingTmpDir)
+		log.Printf(errMsg, EnvTmpDir, rawSetting, validTmpDir, settingTmpDir)
 
 		return "", false
 	}
 
-	return s, true
+	return rawSetting, true
 }
 
 //nolint:gochecknoglobals // Ok.
@@ -192,15 +192,15 @@ func validateMark(colors, envVarName, defaultColor string) (string, bool) {
 		return "", true
 	}
 	splitOnWordANDRegExp := regexp.MustCompile(`_[A|a][N|n][D|d]_`)
-	for _, c := range splitOnWordANDRegExp.Split(colors, -1) {
-		uC := strings.ToUpper(strings.TrimSpace(c))
-		if uC == "" {
+	for _, clrEntry := range splitOnWordANDRegExp.Split(colors, -1) {
+		uClrEntry := strings.ToUpper(strings.TrimSpace(clrEntry))
+		if uClrEntry == "" {
 			ok = false
 			log.Print("missing (empty) attribute")
 
 			break
 		}
-		clr, found = markFG[uC]
+		clr, found = markFG[uClrEntry]
 		if found {
 			if foregroundColor != "" {
 				ok = false
@@ -212,7 +212,7 @@ func validateMark(colors, envVarName, defaultColor string) (string, bool) {
 
 			continue
 		}
-		clr, found = markBG[uC]
+		clr, found = markBG[uClrEntry]
 		if found {
 			if backgroundColor != "" {
 				ok = false
@@ -224,7 +224,7 @@ func validateMark(colors, envVarName, defaultColor string) (string, bool) {
 
 			continue
 		}
-		sty, found = markStyles[uC]
+		sty, found = markStyles[uClrEntry]
 		if found {
 			if styles[sty] {
 				ok = false
@@ -233,7 +233,7 @@ func validateMark(colors, envVarName, defaultColor string) (string, bool) {
 				break
 			}
 			styles[sty] = true
-			if uC == "DEFAULT" {
+			if uClrEntry == "DEFAULT" {
 				isDefault = true
 			}
 
@@ -245,7 +245,7 @@ func validateMark(colors, envVarName, defaultColor string) (string, bool) {
 
 			break
 		}
-		custom = c
+		custom = clrEntry
 
 		continue
 	}
@@ -270,13 +270,13 @@ func validateMark(colors, envVarName, defaultColor string) (string, bool) {
 	return "", false
 }
 
-func validateMinRunString(s string) (int, bool) {
+func validateMinRunString(rawSetting string) (int, bool) {
 	const base10 = 10
 	const bits64 = 64
-	n, err := strconv.ParseInt(s, base10, bits64)
-	if err != nil || n < 1 || n > 5 {
+	minRun64, err := strconv.ParseInt(rawSetting, base10, bits64)
+	if err != nil || minRun64 < 1 || minRun64 > 5 {
 		log.Printf(errMsg, EnvDiffChars,
-			s,
+			rawSetting,
 			validMinRunString,
 			defDiffChars,
 		)
@@ -284,16 +284,16 @@ func validateMinRunString(s string) (int, bool) {
 		return 0, false
 	}
 
-	return int(n), true
+	return int(minRun64), true
 }
 
-func validateMinRunSlice(s string) (int, bool) {
+func validateMinRunSlice(rawSetting string) (int, bool) {
 	const base10 = 10
 	const bits64 = 64
-	n, err := strconv.ParseInt(s, base10, bits64)
-	if err != nil || n < 1 || n > 5 {
+	minRun64, err := strconv.ParseInt(rawSetting, base10, bits64)
+	if err != nil || minRun64 < 1 || minRun64 > 5 {
 		log.Printf(errMsg, EnvDiffSlice,
-			s,
+			rawSetting,
 			"1 <= x <= 5",
 			defDiffSlice,
 		)
@@ -301,16 +301,16 @@ func validateMinRunSlice(s string) (int, bool) {
 		return 0, false
 	}
 
-	return int(n), true
+	return int(minRun64), true
 }
 
-func validateBufferSize(s string) (int, bool) {
+func validateBufferSize(rawSetting string) (int, bool) {
 	const base10 = 10
 	const bits64 = 64
-	n, err := strconv.ParseInt(s, base10, bits64)
-	if err != nil || n < 1000 {
+	bufSize64, err := strconv.ParseInt(rawSetting, base10, bits64)
+	if err != nil || bufSize64 < 1000 {
 		log.Printf(errMsg, EnvBufferSize,
-			s,
+			rawSetting,
 			validBufferSize,
 			defBufferSize,
 		)
@@ -318,5 +318,5 @@ func validateBufferSize(s string) (int, bool) {
 		return 0, false
 	}
 
-	return int(n), true
+	return int(bufSize64), true
 }

@@ -56,23 +56,23 @@ func (chk *Chk) SetPermExe(p os.FileMode) os.FileMode {
 
 // SetTmpDir changes the root directory used when creating
 // directories and returns the current value.
-func (chk *Chk) SetTmpDir(d string) string {
+func (chk *Chk) SetTmpDir(dir string) string {
 	lastTmpDir := settingTmpDir
-	if d == "" {
+	if dir == "" {
 		initTmpDir()
-		d = settingTmpDir
-	} else if !filepath.IsAbs(d) {
+		dir = settingTmpDir
+	} else if !filepath.IsAbs(dir) {
 		initTmpDir()
-		d = filepath.Join(settingTmpDir, d)
+		dir = filepath.Join(settingTmpDir, dir)
 	}
 
-	fi, err := os.Stat(d)
+	fi, err := os.Stat(dir)
 
 	if err != nil || !fi.IsDir() {
 		chk.t.Helper()
-		chk.Error("invalid directory: ", d)
+		chk.Error("invalid directory: ", dir)
 	} else {
-		settingTmpDir = d
+		settingTmpDir = dir
 	}
 
 	return lastTmpDir
@@ -192,11 +192,11 @@ func (chk *Chk) CreateTmpUnixScriptIn(path string, lines []string) string {
 	const spaceCutouts = " \t"
 	for _, entry := range lines {
 		for _, l := range strings.Split(entry, "\n") {
-			cl := strings.TrimRight(l, spaceCutouts)
+			cleanLine := strings.TrimRight(l, spaceCutouts)
 			if cleanScript == "" { //nolint:nestif // Ok.
-				if cl != "" {
+				if cleanLine != "" {
 					// found first non blank line
-					ccl := strings.TrimLeft(cl, spaceCutouts)
+					ccl := strings.TrimLeft(cleanLine, spaceCutouts)
 					if len(ccl) < 3 || ccl[0:3] != "#!/" {
 						chk.Error(
 							"invalid unix script:  " +
@@ -205,16 +205,16 @@ func (chk *Chk) CreateTmpUnixScriptIn(path string, lines []string) string {
 
 						return ""
 					}
-					if len(ccl) < len(cl) {
-						trimFirst = len(cl) - len(ccl)
+					if len(ccl) < len(cleanLine) {
+						trimFirst = len(cleanLine) - len(ccl)
 					}
 					cleanScript = ccl + "\n"
 				}
 			} else {
-				if trimFirst > 0 && len(cl) >= trimFirst {
-					cleanScript += cl[trimFirst:] + "\n"
+				if trimFirst > 0 && len(cleanLine) >= trimFirst {
+					cleanScript += cleanLine[trimFirst:] + "\n"
 				} else {
-					cleanScript += cl + "\n"
+					cleanScript += cleanLine + "\n"
 				}
 			}
 		}

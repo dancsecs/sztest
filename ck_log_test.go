@@ -105,8 +105,8 @@ func chkLogTestRemoveLogPrefixes(t *testing.T) {
 
 	finalResult := strings.Split(createLogString("", 0), "\n")
 	var (
-		f int
-		p string
+		flags  int
+		prefix string
 	)
 
 	explain := ""
@@ -125,49 +125,49 @@ func chkLogTestRemoveLogPrefixes(t *testing.T) {
 					for bms := 0; bms < 2; bms++ {
 						for btm := 0; btm < 2; btm++ {
 							for bdt := 0; bdt < 2; bdt++ {
-								f = 0
+								flags = 0
 								explain = ""
 
 								if bPrefix == 0 {
-									p = ""
+									prefix = ""
 								} else {
-									p = "PREFIX"
+									prefix = "PREFIX"
 									addExplanation("PREFIX")
 								}
 
 								if bMsgPrefix != 0 {
-									f |= log.Lmsgprefix
+									flags |= log.Lmsgprefix
 									addExplanation("Lmsgprefix")
 								}
 
 								if bShortFile != 0 {
-									f |= log.Lshortfile
+									flags |= log.Lshortfile
 									addExplanation("Lshortfile")
 								}
 
 								if bLongFile != 0 {
-									f |= log.Llongfile
+									flags |= log.Llongfile
 									addExplanation("Llongfile")
 								}
 
 								if bms != 0 {
-									f |= log.Lmicroseconds
+									flags |= log.Lmicroseconds
 									addExplanation("Lmicroseconds")
 								}
 
 								if btm != 0 {
-									f |= log.Ltime
+									flags |= log.Ltime
 									addExplanation("Ltime")
 								}
 
 								if bdt != 0 {
-									f |= log.Ldate
+									flags |= log.Ldate
 									addExplanation("Ldate")
 								}
 
 								chk.StrSlice(
 									strings.Split(
-										removeLogPrefixes(createLogString(p, f)),
+										removeLogPrefixes(createLogString(prefix, flags)),
 										"\n",
 									),
 									finalResult,

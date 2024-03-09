@@ -160,18 +160,18 @@ func (chk *Chk) setupStdoutLogger() {
 
 func (chk *Chk) copyStdout() error {
 	var err error
-	var r *os.File
-	var w *os.File
+	var rFile *os.File
+	var wFile *os.File
 
-	r, w, err = os.Pipe()
+	rFile, wFile, err = os.Pipe()
 	if err == nil {
 		go func() {
 			defer func() {
-				_ = r.Close()
+				_ = rFile.Close()
 			}()
-			_, _ = io.Copy(chk.outBuf, r)
+			_, _ = io.Copy(chk.outBuf, rFile)
 		}()
-		os.Stdout = w
+		os.Stdout = wFile
 	}
 
 	return err //nolint:wrapcheck // Ok.
@@ -179,18 +179,18 @@ func (chk *Chk) copyStdout() error {
 
 func (chk *Chk) copyStderr() error {
 	var err error
-	var r *os.File
-	var w *os.File
+	var rFile *os.File
+	var wFile *os.File
 
-	r, w, err = os.Pipe()
+	rFile, wFile, err = os.Pipe()
 	if err == nil {
 		go func() {
 			defer func() {
-				_ = r.Close()
+				_ = rFile.Close()
 			}()
-			_, _ = io.Copy(chk.errBuf, r)
+			_, _ = io.Copy(chk.errBuf, rFile)
 		}()
-		os.Stderr = w
+		os.Stderr = wFile
 	}
 
 	return err //nolint:wrapcheck // Ok.
@@ -384,17 +384,17 @@ func (chk *Chk) prepareSlice(
 	return lines[firstPos:lastPos]
 }
 
-func prepareWantString(s string) string {
-	s = strings.TrimSpace(s)
+func prepareWantString(line string) string {
+	line = strings.TrimSpace(line)
 	// Replace first har space.
-	if strings.HasPrefix(s, `\s`) {
-		s = " " + s[2:]
+	if strings.HasPrefix(line, `\s`) {
+		line = " " + line[2:]
 	}
-	if strings.HasSuffix(s, `\s`) {
-		s = s[:len(s)-2] + " "
+	if strings.HasSuffix(line, `\s`) {
+		line = line[:len(line)-2] + " "
 	}
 
-	return s
+	return line
 }
 
 func (chk *Chk) compareLog(
@@ -428,48 +428,48 @@ func (chk *Chk) compareLog(
 }
 
 func buildLogPrefixRegexpStr(prefix string, flags int) string {
-	re := "(?m)^" // Multi-line regular expression for log header.
+	regExpStr := "(?m)^" // Multi-line regular expression for log header.
 	if prefix != "" && (flags&log.Lmsgprefix) == 0 {
-		re += prefix
+		regExpStr += prefix
 	}
 	if (flags & log.Ldate) != 0 {
-		re += logDate
+		regExpStr += logDate
 	}
 	if flags&(log.Ltime|log.Lmicroseconds) != 0 {
 		if (flags & log.Lmicroseconds) != 0 {
-			re += logTimeMS
+			regExpStr += logTimeMS
 		} else {
-			re += logTime
+			regExpStr += logTime
 		}
 	}
 	if (flags & (log.Lshortfile | log.Llongfile)) != 0 {
-		re += logFile
+		regExpStr += logFile
 	}
 	if prefix != "" && (flags&log.Lmsgprefix != 0) {
-		re += prefix
+		regExpStr += prefix
 	}
 
-	return re
+	return regExpStr
 }
 
-func removeLogPrefixes(l string) string {
+func removeLogPrefixes(line string) string {
 	var clearLogPrefix *regexp.Regexp
 	var ok bool
 
-	f := log.Flags()
-	p := log.Prefix()
-	if f == 0 && p == "" {
-		return l
+	logFlags := log.Flags()
+	logPrefix := log.Prefix()
+	if logFlags == 0 && logPrefix == "" {
+		return line
 	}
 
-	cacheKey := fmt.Sprint(p, f)
+	cacheKey := fmt.Sprint(logPrefix, logFlags)
 	if clearLogPrefix, ok = logPrefixRegexpCache[cacheKey]; !ok {
-		re := buildLogPrefixRegexpStr(p, f)
+		re := buildLogPrefixRegexpStr(logPrefix, logFlags)
 		clearLogPrefix = regexp.MustCompile(re)
 		logPrefixRegexpCache[cacheKey] = clearLogPrefix
 	}
 
-	return clearLogPrefix.ReplaceAllString(l, "")
+	return clearLogPrefix.ReplaceAllString(line, "")
 }
 
 // Log checks the internally captured log data with the supplied list.

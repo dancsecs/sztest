@@ -50,14 +50,14 @@ func (chk *Chk) AddSub(expr, subStr string) {
 
 // subStr recursively applies all regexp substitution stored in chk.subs
 // to the supplied string.
-func (chk *Chk) subStr(s string) string {
-	beforeString := ""
-	for beforeString != s {
-		beforeString = s
+func (chk *Chk) subStr(lines string) string {
+	beforeLines := ""
+	for beforeLines != lines {
+		beforeLines = lines
 		for _, re := range chk.subs {
-			s = re.re.ReplaceAllString(s, re.subStr)
+			lines = re.re.ReplaceAllString(lines, re.subStr)
 		}
 	}
 
-	return s
+	return lines
 }

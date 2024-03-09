@@ -48,15 +48,15 @@ func (chk *Chk) SetupArgsAndFlags(args []string) *flag.FlagSet {
 
 // CaptureFlagUsage is a convenience function that captures the output
 // of the provided *flag.FlagSet.
-func (*Chk) CaptureFlagUsage(f *flag.FlagSet) string {
+func (*Chk) CaptureFlagUsage(flagSet *flag.FlagSet) string {
 	buf := strings.Builder{}
-	origOut := f.Output()
+	origOut := flagSet.Output()
 	defer func() {
-		f.SetOutput(origOut)
+		flagSet.SetOutput(origOut)
 	}()
-	f.SetOutput(&buf)
+	flagSet.SetOutput(&buf)
 
-	f.Usage()
+	flagSet.Usage()
 
 	return buf.String()
 }

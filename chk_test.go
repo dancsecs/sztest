@@ -272,31 +272,31 @@ func chkTestPushPreReleaseFunc(t *testing.T) {
 	chk := CaptureNothing(iT)
 	iT.chk = chk
 
-	f1 := false
-	f2 := false
+	tstFlag1 := false
+	tstFlag2 := false
 
 	chk.PushPreReleaseFunc(func() error {
 		iT.output += "First Pushed A\n"
-		f1 = true
+		tstFlag1 = true
 
 		return nil
 	})
 
 	chk.PushPreReleaseFunc(func() error {
 		iT.output += "Second Pushed A\n"
-		f2 = true
+		tstFlag2 = true
 
 		return nil
 	})
 
 	chk.Release()
 
-	if !f1 {
-		t.Error(errGotWnt(area, f1, true))
+	if !tstFlag1 {
+		t.Error(errGotWnt(area, tstFlag1, true))
 	}
 
-	if !f2 {
-		t.Error(errGotWnt(area, f2, true))
+	if !tstFlag2 {
+		t.Error(errGotWnt(area, tstFlag2, true))
 	}
 
 	iT.check(t,
@@ -320,31 +320,31 @@ func chkTestPushPostReleaseFunc(t *testing.T) {
 	chk := CaptureNothing(iT)
 	iT.chk = chk
 
-	f1 := false
-	f2 := false
+	tstFlag1 := false
+	tstFlag2 := false
 
 	chk.PushPostReleaseFunc(func() error {
 		iT.output += "First Pushed\n"
-		f1 = true
+		tstFlag1 = true
 
 		return nil
 	})
 
 	chk.PushPostReleaseFunc(func() error {
 		iT.output += "Second Pushed\n"
-		f2 = true
+		tstFlag2 = true
 
 		return nil
 	})
 
 	chk.Release()
 
-	if !f1 {
-		t.Error(errGotWnt(area, f1, true))
+	if !tstFlag1 {
+		t.Error(errGotWnt(area, tstFlag1, true))
 	}
 
-	if !f2 {
-		t.Error(errGotWnt(area, f2, true))
+	if !tstFlag2 {
+		t.Error(errGotWnt(area, tstFlag2, true))
 	}
 
 	iT.check(t,
@@ -365,31 +365,31 @@ func chkTestPushPostReleaseFuncWithError(t *testing.T) {
 	chk := CaptureNothing(iT)
 	iT.chk = chk
 
-	f1 := false
-	f2 := false
+	tstFlag1 := false
+	tstFlag2 := false
 
 	chk.PushPostReleaseFunc(func() error {
 		iT.output += "First Pushed\n"
-		f1 = true
+		tstFlag1 = true
 
 		return nil
 	})
 
 	chk.PushPostReleaseFunc(func() error {
 		iT.output += "Second Pushed\n"
-		f2 = true
+		tstFlag2 = true
 
 		return errors.New("Second release forced error")
 	})
 
 	chk.Release()
 
-	if !f1 {
-		t.Error(errGotWnt(area, f1, true))
+	if !tstFlag1 {
+		t.Error(errGotWnt(area, tstFlag1, true))
 	}
 
-	if !f2 {
-		t.Error(errGotWnt(area, f2, true))
+	if !tstFlag2 {
+		t.Error(errGotWnt(area, tstFlag2, true))
 	}
 
 	iT.check(t,
@@ -561,56 +561,56 @@ func chkTestTstBoundedRangeOpen(t *testing.T) {
 	iT.chk = chk
 
 	var got, wnt bool
-	g := "" // wantStringAccumulator
+	gotBuf := ""
 
 	min := int(-2)
 	max := int(2)
 
-	got = tstBounded(BoundedOpen, -3, min, max, &g)
+	got = tstBounded(BoundedOpen, -3, min, max, &gotBuf)
 	wnt = false
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
-	got = tstBounded(BoundedOpen, -2, min, max, &g)
+	got = tstBounded(BoundedOpen, -2, min, max, &gotBuf)
 	wnt = false
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
-	got = tstBounded(BoundedOpen, -1, min, max, &g)
+	got = tstBounded(BoundedOpen, -1, min, max, &gotBuf)
 	wnt = true
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
-	got = tstBounded(BoundedOpen, -0, min, max, &g)
+	got = tstBounded(BoundedOpen, -0, min, max, &gotBuf)
 	wnt = true
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
-	got = tstBounded(BoundedOpen, 1, min, max, &g)
+	got = tstBounded(BoundedOpen, 1, min, max, &gotBuf)
 	wnt = true
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
-	got = tstBounded(BoundedOpen, 2, min, max, &g)
+	got = tstBounded(BoundedOpen, 2, min, max, &gotBuf)
 	wnt = false
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
-	got = tstBounded(BoundedOpen, 3, min, max, &g)
+	got = tstBounded(BoundedOpen, 3, min, max, &gotBuf)
 	wnt = false
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
 
-	w := "" +
+	wntBuf := "" +
 		"out of bounds: (-2,2) - { want | -2 < want < 2 }" +
 		"out of bounds: (-2,2) - { want | -2 < want < 2 }" +
 		"out of bounds: (-2,2) - { want | -2 < want < 2 }" +
 		"out of bounds: (-2,2) - { want | -2 < want < 2 }" +
 		""
 
-	if g != w {
-		t.Error(errGotWnt(area, g, w))
+	if gotBuf != wntBuf {
+		t.Error(errGotWnt(area, gotBuf, wntBuf))
 	}
 
 	chk.Release()
@@ -627,55 +627,55 @@ func chkTestTstBoundedRangeClosed(t *testing.T) {
 	iT.chk = chk
 
 	var got, wnt bool
-	g := "" // wantStringAccumulator
+	gotBuf := ""
 
 	min := int8(-2)
 	max := int8(2)
 
-	got = tstBounded(BoundedClosed, -3, min, max, &g)
+	got = tstBounded(BoundedClosed, -3, min, max, &gotBuf)
 	wnt = false
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
 
-	got = tstBounded(BoundedClosed, -2, min, max, &g)
+	got = tstBounded(BoundedClosed, -2, min, max, &gotBuf)
 	wnt = true
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
-	got = tstBounded(BoundedClosed, -1, min, max, &g)
+	got = tstBounded(BoundedClosed, -1, min, max, &gotBuf)
 	wnt = true
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
-	got = tstBounded(BoundedClosed, -0, min, max, &g)
+	got = tstBounded(BoundedClosed, -0, min, max, &gotBuf)
 	wnt = true
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
-	got = tstBounded(BoundedClosed, 1, min, max, &g)
+	got = tstBounded(BoundedClosed, 1, min, max, &gotBuf)
 	wnt = true
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
-	got = tstBounded(BoundedClosed, 2, min, max, &g)
+	got = tstBounded(BoundedClosed, 2, min, max, &gotBuf)
 	wnt = true
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
 
-	got = tstBounded(BoundedClosed, 3, min, max, &g)
+	got = tstBounded(BoundedClosed, 3, min, max, &gotBuf)
 	wnt = false
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
 
-	w := "" +
+	wntBuf := "" +
 		"out of bounds: [-2,2] - { want | -2 <= want <= 2 }" +
 		"out of bounds: [-2,2] - { want | -2 <= want <= 2 }" +
 		""
-	if g != w {
-		t.Error(errGotWnt(area, g, w))
+	if gotBuf != wntBuf {
+		t.Error(errGotWnt(area, gotBuf, wntBuf))
 	}
 
 	chk.Release()
@@ -692,84 +692,84 @@ func chkTestTstBoundedRangeOpenMinOrClosedMax(t *testing.T) {
 	iT.chk = chk
 
 	var got, wnt bool
-	g := "" // wantStringAccumulator
+	gotBuf := ""
 
 	min := int8(-2)
 	max := int8(2)
 
-	got = tstBounded(BoundedMinOpen, -3, min, max, &g)
+	got = tstBounded(BoundedMinOpen, -3, min, max, &gotBuf)
 	wnt = false
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
-	got = tstBounded(BoundedMinOpen, -2, min, max, &g)
+	got = tstBounded(BoundedMinOpen, -2, min, max, &gotBuf)
 	wnt = false
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
-	got = tstBounded(BoundedMinOpen, -1, min, max, &g)
+	got = tstBounded(BoundedMinOpen, -1, min, max, &gotBuf)
 	wnt = true
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
-	got = tstBounded(BoundedMinOpen, -0, min, max, &g)
+	got = tstBounded(BoundedMinOpen, -0, min, max, &gotBuf)
 	wnt = true
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
-	got = tstBounded(BoundedMinOpen, 1, min, max, &g)
+	got = tstBounded(BoundedMinOpen, 1, min, max, &gotBuf)
 	wnt = true
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
-	got = tstBounded(BoundedMinOpen, 2, min, max, &g)
+	got = tstBounded(BoundedMinOpen, 2, min, max, &gotBuf)
 	wnt = true
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
-	got = tstBounded(BoundedMinOpen, 3, min, max, &g)
-	wnt = false
-	if got != wnt {
-		t.Error(errGotWnt(area, got, wnt))
-	}
-
-	got = tstBounded(BoundedMaxClosed, -3, min, max, &g)
-	wnt = false
-	if got != wnt {
-		t.Error(errGotWnt(area, got, wnt))
-	}
-	got = tstBounded(BoundedMaxClosed, -2, min, max, &g)
-	wnt = false
-	if got != wnt {
-		t.Error(errGotWnt(area, got, wnt))
-	}
-	got = tstBounded(BoundedMaxClosed, -1, min, max, &g)
-	wnt = true
-	if got != wnt {
-		t.Error(errGotWnt(area, got, wnt))
-	}
-	got = tstBounded(BoundedMaxClosed, -0, min, max, &g)
-	wnt = true
-	if got != wnt {
-		t.Error(errGotWnt(area, got, wnt))
-	}
-	got = tstBounded(BoundedMaxClosed, 1, min, max, &g)
-	wnt = true
-	if got != wnt {
-		t.Error(errGotWnt(area, got, wnt))
-	}
-	got = tstBounded(BoundedMaxClosed, 2, min, max, &g)
-	wnt = true
-	if got != wnt {
-		t.Error(errGotWnt(area, got, wnt))
-	}
-	got = tstBounded(BoundedMaxClosed, 3, min, max, &g)
+	got = tstBounded(BoundedMinOpen, 3, min, max, &gotBuf)
 	wnt = false
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
 
-	w := "" +
+	got = tstBounded(BoundedMaxClosed, -3, min, max, &gotBuf)
+	wnt = false
+	if got != wnt {
+		t.Error(errGotWnt(area, got, wnt))
+	}
+	got = tstBounded(BoundedMaxClosed, -2, min, max, &gotBuf)
+	wnt = false
+	if got != wnt {
+		t.Error(errGotWnt(area, got, wnt))
+	}
+	got = tstBounded(BoundedMaxClosed, -1, min, max, &gotBuf)
+	wnt = true
+	if got != wnt {
+		t.Error(errGotWnt(area, got, wnt))
+	}
+	got = tstBounded(BoundedMaxClosed, -0, min, max, &gotBuf)
+	wnt = true
+	if got != wnt {
+		t.Error(errGotWnt(area, got, wnt))
+	}
+	got = tstBounded(BoundedMaxClosed, 1, min, max, &gotBuf)
+	wnt = true
+	if got != wnt {
+		t.Error(errGotWnt(area, got, wnt))
+	}
+	got = tstBounded(BoundedMaxClosed, 2, min, max, &gotBuf)
+	wnt = true
+	if got != wnt {
+		t.Error(errGotWnt(area, got, wnt))
+	}
+	got = tstBounded(BoundedMaxClosed, 3, min, max, &gotBuf)
+	wnt = false
+	if got != wnt {
+		t.Error(errGotWnt(area, got, wnt))
+	}
+
+	wntBuf := "" +
 		"out of bounds: (-2,2] - { want | -2 < want <= 2 }" +
 		"out of bounds: (-2,2] - { want | -2 < want <= 2 }" +
 		"out of bounds: (-2,2] - { want | -2 < want <= 2 }" +
@@ -777,8 +777,8 @@ func chkTestTstBoundedRangeOpenMinOrClosedMax(t *testing.T) {
 		"out of bounds: (-2,2] - { want | -2 < want <= 2 }" +
 		"out of bounds: (-2,2] - { want | -2 < want <= 2 }" +
 		""
-	if g != w {
-		t.Error(errGotWnt(area, g, w))
+	if gotBuf != wntBuf {
+		t.Error(errGotWnt(area, gotBuf, wntBuf))
 	}
 
 	chk.Release()
@@ -795,84 +795,84 @@ func chkTestTstBoundedRangeOpenMaxOrClosedMin(t *testing.T) {
 	iT.chk = chk
 
 	var got, wnt bool
-	g := "" // wantStringAccumulator
+	gotBuf := ""
 
 	min := int16(-2)
 	max := int16(2)
 
-	got = tstBounded(BoundedMaxOpen, -3, min, max, &g)
+	got = tstBounded(BoundedMaxOpen, -3, min, max, &gotBuf)
 	wnt = false
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
-	got = tstBounded(BoundedMaxOpen, -2, min, max, &g)
+	got = tstBounded(BoundedMaxOpen, -2, min, max, &gotBuf)
 	wnt = true
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
-	got = tstBounded(BoundedMaxOpen, -1, min, max, &g)
+	got = tstBounded(BoundedMaxOpen, -1, min, max, &gotBuf)
 	wnt = true
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
-	got = tstBounded(BoundedMaxOpen, -0, min, max, &g)
+	got = tstBounded(BoundedMaxOpen, -0, min, max, &gotBuf)
 	wnt = true
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
-	got = tstBounded(BoundedMaxOpen, 1, min, max, &g)
+	got = tstBounded(BoundedMaxOpen, 1, min, max, &gotBuf)
 	wnt = true
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
-	got = tstBounded(BoundedMaxOpen, 2, min, max, &g)
+	got = tstBounded(BoundedMaxOpen, 2, min, max, &gotBuf)
 	wnt = false
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
-	got = tstBounded(BoundedMaxOpen, 3, min, max, &g)
-	wnt = false
-	if got != wnt {
-		t.Error(errGotWnt(area, got, wnt))
-	}
-
-	got = tstBounded(BoundedMinClosed, -3, min, max, &g)
-	wnt = false
-	if got != wnt {
-		t.Error(errGotWnt(area, got, wnt))
-	}
-	got = tstBounded(BoundedMinClosed, -2, min, max, &g)
-	wnt = true
-	if got != wnt {
-		t.Error(errGotWnt(area, got, wnt))
-	}
-	got = tstBounded(BoundedMinClosed, -1, min, max, &g)
-	wnt = true
-	if got != wnt {
-		t.Error(errGotWnt(area, got, wnt))
-	}
-	got = tstBounded(BoundedMinClosed, -0, min, max, &g)
-	wnt = true
-	if got != wnt {
-		t.Error(errGotWnt(area, got, wnt))
-	}
-	got = tstBounded(BoundedMinClosed, 1, min, max, &g)
-	wnt = true
-	if got != wnt {
-		t.Error(errGotWnt(area, got, wnt))
-	}
-	got = tstBounded(BoundedMinClosed, 2, min, max, &g)
-	wnt = false
-	if got != wnt {
-		t.Error(errGotWnt(area, got, wnt))
-	}
-	got = tstBounded(BoundedMinClosed, 3, min, max, &g)
+	got = tstBounded(BoundedMaxOpen, 3, min, max, &gotBuf)
 	wnt = false
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
 
-	w := "" +
+	got = tstBounded(BoundedMinClosed, -3, min, max, &gotBuf)
+	wnt = false
+	if got != wnt {
+		t.Error(errGotWnt(area, got, wnt))
+	}
+	got = tstBounded(BoundedMinClosed, -2, min, max, &gotBuf)
+	wnt = true
+	if got != wnt {
+		t.Error(errGotWnt(area, got, wnt))
+	}
+	got = tstBounded(BoundedMinClosed, -1, min, max, &gotBuf)
+	wnt = true
+	if got != wnt {
+		t.Error(errGotWnt(area, got, wnt))
+	}
+	got = tstBounded(BoundedMinClosed, -0, min, max, &gotBuf)
+	wnt = true
+	if got != wnt {
+		t.Error(errGotWnt(area, got, wnt))
+	}
+	got = tstBounded(BoundedMinClosed, 1, min, max, &gotBuf)
+	wnt = true
+	if got != wnt {
+		t.Error(errGotWnt(area, got, wnt))
+	}
+	got = tstBounded(BoundedMinClosed, 2, min, max, &gotBuf)
+	wnt = false
+	if got != wnt {
+		t.Error(errGotWnt(area, got, wnt))
+	}
+	got = tstBounded(BoundedMinClosed, 3, min, max, &gotBuf)
+	wnt = false
+	if got != wnt {
+		t.Error(errGotWnt(area, got, wnt))
+	}
+
+	wntBuf := "" +
 		"out of bounds: [-2,2) - { want | -2 <= want < 2 }" +
 		"out of bounds: [-2,2) - { want | -2 <= want < 2 }" +
 		"out of bounds: [-2,2) - { want | -2 <= want < 2 }" +
@@ -880,8 +880,8 @@ func chkTestTstBoundedRangeOpenMaxOrClosedMin(t *testing.T) {
 		"out of bounds: [-2,2) - { want | -2 <= want < 2 }" +
 		"out of bounds: [-2,2) - { want | -2 <= want < 2 }" +
 		""
-	if g != w {
-		t.Error(errGotWnt(area, g, w))
+	if gotBuf != wntBuf {
+		t.Error(errGotWnt(area, gotBuf, wntBuf))
 	}
 
 	chk.Release()
@@ -936,51 +936,51 @@ func chkTestTstUnboundedRangeOpen(t *testing.T) {
 	iT.chk = chk
 
 	var got, wnt bool
-	var g string // wantStringAccumulator
+	var gotBuf string
 
 	bound := int32(-2)
 
-	got = tstUnbounded(UnboundedMinOpen, -3, bound, &g)
+	got = tstUnbounded(UnboundedMinOpen, -3, bound, &gotBuf)
 	wnt = false
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
-	got = tstUnbounded(UnboundedMinOpen, -2, bound, &g)
+	got = tstUnbounded(UnboundedMinOpen, -2, bound, &gotBuf)
 	wnt = false
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
-	got = tstUnbounded(UnboundedMinOpen, -1, bound, &g)
+	got = tstUnbounded(UnboundedMinOpen, -1, bound, &gotBuf)
 	wnt = true
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
 
-	got = tstUnbounded(UnboundedMaxOpen, -3, bound, &g)
+	got = tstUnbounded(UnboundedMaxOpen, -3, bound, &gotBuf)
 	wnt = true
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
-	got = tstUnbounded(UnboundedMaxOpen, -2, bound, &g)
+	got = tstUnbounded(UnboundedMaxOpen, -2, bound, &gotBuf)
 	wnt = false
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
-	got = tstUnbounded(UnboundedMaxOpen, -1, bound, &g)
+	got = tstUnbounded(UnboundedMaxOpen, -1, bound, &gotBuf)
 	wnt = false
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
 
-	w := "" +
+	wntBuf := "" +
 		"out of bounds: (-2,MAX) - { want | want > -2 }" +
 		"out of bounds: (-2,MAX) - { want | want > -2 }" +
 		"out of bounds: (MIN,-2) - { want | want < -2 }" +
 		"out of bounds: (MIN,-2) - { want | want < -2 }" +
 		""
 
-	if g != w {
-		t.Error(errGotWnt(area, g, w))
+	if gotBuf != wntBuf {
+		t.Error(errGotWnt(area, gotBuf, wntBuf))
 	}
 
 	chk.Release()
@@ -997,48 +997,48 @@ func chkTestTstUnboundedRangeClosed(t *testing.T) {
 	iT.chk = chk
 
 	var got, wnt bool
-	var g string // wantStringAccumulator
+	var gotBuf string
 
 	bound := int32(-2)
 
-	got = tstUnbounded(UnboundedMinClosed, -3, bound, &g)
+	got = tstUnbounded(UnboundedMinClosed, -3, bound, &gotBuf)
 	wnt = false
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
-	got = tstUnbounded(UnboundedMinClosed, -2, bound, &g)
+	got = tstUnbounded(UnboundedMinClosed, -2, bound, &gotBuf)
 	wnt = true
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
-	got = tstUnbounded(UnboundedMinClosed, -1, bound, &g)
+	got = tstUnbounded(UnboundedMinClosed, -1, bound, &gotBuf)
 	wnt = true
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
 
-	got = tstUnbounded(UnboundedMaxClosed, -3, bound, &g)
+	got = tstUnbounded(UnboundedMaxClosed, -3, bound, &gotBuf)
 	wnt = true
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
-	got = tstUnbounded(UnboundedMaxClosed, -2, bound, &g)
+	got = tstUnbounded(UnboundedMaxClosed, -2, bound, &gotBuf)
 	wnt = true
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
-	got = tstUnbounded(UnboundedMaxClosed, -1, bound, &g)
+	got = tstUnbounded(UnboundedMaxClosed, -1, bound, &gotBuf)
 	wnt = false
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
 
-	w := "" +
+	wntBuf := "" +
 		"out of bounds: [-2,MAX) - { want | want >= -2 }" +
 		"out of bounds: (MIN,-2] - { want | want <= -2 }" +
 		""
-	if g != w {
-		t.Error(errGotWnt(area, g, w))
+	if gotBuf != wntBuf {
+		t.Error(errGotWnt(area, gotBuf, wntBuf))
 	}
 
 	chk.Release()

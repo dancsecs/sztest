@@ -101,31 +101,31 @@ func (*iTst) prepareSlice(
 	return lines
 }
 
-func (t *iTst) check(tt testingT, rawLines ...string) {
+func (t *iTst) check(testT testingT, rawLines ...string) {
 	wantLines := t.prepareSlice(
-		func(s string) string {
-			s, err := freezeMarks(s)
+		func(line string) string {
+			line, err := freezeMarks(line)
 			if err != nil {
-				tt.Helper()
-				tt.Error(err.Error())
-				tt.FailNow()
+				testT.Helper()
+				testT.Error(err.Error())
+				testT.FailNow()
 			}
 
-			return prepareWantString(s)
+			return prepareWantString(line)
 		},
 		rawLines...,
 	)
 
 	gotLines := t.prepareSlice(
-		func(s string) string {
-			s, err := freezeMarks(s)
+		func(line string) string {
+			line, err := freezeMarks(line)
 			if err != nil {
-				tt.Helper()
-				tt.Error(err.Error())
-				tt.FailNow()
+				testT.Helper()
+				testT.Error(err.Error())
+				testT.FailNow()
 			}
 
-			return s
+			return line
 		},
 		t.output,
 	)
@@ -140,9 +140,9 @@ func (t *iTst) check(tt testingT, rawLines ...string) {
 	)
 
 	if ret != "" {
-		tt.Helper()
-		tt.Errorf("%s", resolveMarksForDisplay(ret))
-		tt.FailNow()
+		testT.Helper()
+		testT.Errorf("%s", resolveMarksForDisplay(ret))
+		testT.FailNow()
 	}
 }
 
@@ -194,29 +194,29 @@ func chkOutLogf(msg string) string {
 
 func chkOutErrorNoFail(msg ...string) string {
 	const caller = "(*Chk).Error"
-	m := strings.Join(msg, "\n")
-	if m != "" {
-		m += "\n"
+	fullMsg := strings.Join(msg, "\n")
+	if fullMsg != "" {
+		fullMsg += "\n"
 	}
 
 	return "" +
 		tstOutHelper(caller) +
 		tstOutError(caller) +
-		m +
+		fullMsg +
 		""
 }
 
 func chkOutErrorfNoFail(msg ...string) string {
 	const caller = "(*Chk).Errorf"
-	m := strings.Join(msg, "\n")
-	if m != "" {
-		m += "\n"
+	fullMsg := strings.Join(msg, "\n")
+	if fullMsg != "" {
+		fullMsg += "\n"
 	}
 
 	return "" +
 		tstOutHelper(caller) +
 		tstOutError(caller) +
-		m +
+		fullMsg +
 		""
 }
 
@@ -260,23 +260,23 @@ func chkOutPush(pos, subFunc string) string {
 // Generic functions.
 
 func chkOutIsError(caller, msg string, additionLines ...string) string {
-	var s string
+	var result string
 	var isFormatted bool
 	if caller != "" {
 		if caller != "f" {
-			s += chkOutHelper(caller)
+			result += chkOutHelper(caller)
 		}
 		isFormatted = strings.HasSuffix(caller, "f")
 	}
 
 	if isFormatted {
-		s += tstOutHelper("(*Chk).errChkf")
+		result += tstOutHelper("(*Chk).errChkf")
 	} else {
-		s += tstOutHelper("(*Chk).errChk")
+		result += tstOutHelper("(*Chk).errChk")
 	}
-	s += chkOutError(append([]string{msg}, additionLines...)...)
+	result += chkOutError(append([]string{msg}, additionLines...)...)
 
-	return s
+	return result
 }
 
 func chkOutCommonMsg(msg, dataType string) string {
@@ -296,11 +296,11 @@ func chkOutIsSliceError(
 	additionalLines ...string,
 ) string {
 	//
-	var s string
+	var result string
 	var isFormatted bool
 	if caller != "" {
 		if caller != "f" {
-			s += tstOutHelper("(*Chk)." + caller)
+			result += tstOutHelper("(*Chk)." + caller)
 		}
 		isFormatted = strings.HasSuffix(caller, "f")
 	}
@@ -319,13 +319,13 @@ func chkOutIsSliceError(
 	lines = append(lines, additionalLines...)
 	lines = append(lines, "]")
 	if isFormatted {
-		s += tstOutHelper("errSlicef[...]")
+		result += tstOutHelper("errSlicef[...]")
 	} else {
-		s += tstOutHelper("errSlice[...]")
+		result += tstOutHelper("errSlice[...]")
 	}
-	s += chkOutError(lines...)
+	result += chkOutError(lines...)
 
-	return s
+	return result
 }
 
 func chkOutLnSame(g, w, s string) string {
@@ -376,19 +376,19 @@ func chkOutNumericBoundedf(
 func chkOutNumericBounded(
 	wantMsg, got, caller, dataType, msg string,
 ) string {
-	s := ""
+	result := ""
 	var isFormatted bool
 	if caller != "" {
-		s += tstOutHelper("(*Chk)." + caller)
+		result += tstOutHelper("(*Chk)." + caller)
 		isFormatted = strings.HasSuffix(caller, "f")
 	}
 	if isFormatted {
-		s += tstOutHelper("(*Chk).errGotWntf")
+		result += tstOutHelper("(*Chk).errGotWntf")
 	} else {
-		s += tstOutHelper("(*Chk).errGotWnt")
+		result += tstOutHelper("(*Chk).errGotWnt")
 	}
 
-	return s +
+	return result +
 		chkOutError(
 			chkOutCommonMsg(msg, dataType),
 			g(got),
@@ -407,19 +407,19 @@ func chkOutNumericUnboundedf(
 func chkOutNumericUnbounded(
 	wantMsg, got, caller, dataType, msg string,
 ) string {
-	s := ""
+	result := ""
 	var isFormatted bool
 	if caller != "" {
-		s += tstOutHelper("(*Chk)." + caller)
+		result += tstOutHelper("(*Chk)." + caller)
 		isFormatted = strings.HasSuffix(caller, "f")
 	}
 	if isFormatted {
-		s += tstOutHelper("(*Chk).errGotWntf")
+		result += tstOutHelper("(*Chk).errGotWntf")
 	} else {
-		s += tstOutHelper("(*Chk).errGotWnt")
+		result += tstOutHelper("(*Chk).errGotWnt")
 	}
 
-	return s +
+	return result +
 		chkOutError(
 			chkOutCommonMsg(msg, dataType),
 			g(got),
@@ -432,19 +432,19 @@ func chkOutStringBoundedf(wantMsg, got, caller, dataType, msg string) string {
 }
 
 func chkOutStringBounded(wantMsg, got, caller, dataType, msg string) string {
-	s := ""
+	result := ""
 	var isFormatted bool
 	if caller != "" {
-		s += tstOutHelper("(*Chk)." + caller)
+		result += tstOutHelper("(*Chk)." + caller)
 		isFormatted = strings.HasSuffix(caller, "f")
 	}
 	if isFormatted {
-		s += tstOutHelper("(*Chk).errGotWntf")
+		result += tstOutHelper("(*Chk).errGotWntf")
 	} else {
-		s += tstOutHelper("(*Chk).errGotWnt")
+		result += tstOutHelper("(*Chk).errGotWnt")
 	}
 
-	return s +
+	return result +
 		chkOutError(
 			chkOutCommonMsg(msg, dataType),
 			g(got),
@@ -457,19 +457,19 @@ func chkOutStrUnboundedf(wantMsg, got, caller, dataType, msg string) string {
 }
 
 func chkOutStrUnbounded(wantMsg, got, caller, dataType, msg string) string {
-	s := ""
+	result := ""
 	var isFormatted bool
 	if caller != "" {
-		s += tstOutHelper("(*Chk)." + caller)
+		result += tstOutHelper("(*Chk)." + caller)
 		isFormatted = strings.HasSuffix(caller, "f")
 	}
 	if isFormatted {
-		s += tstOutHelper("(*Chk).errGotWntf")
+		result += tstOutHelper("(*Chk).errGotWntf")
 	} else {
-		s += tstOutHelper("(*Chk).errGotWnt")
+		result += tstOutHelper("(*Chk).errGotWnt")
 	}
 
-	return s +
+	return result +
 		chkOutError(
 			chkOutCommonMsg(msg, dataType),
 			g(got),
@@ -498,9 +498,9 @@ const (
 )
 
 // findNextMark searches the string for all known marks.
-func findNextMark(s, expectedClose string,
+func findNextMark(data, expectedClose string,
 ) (int, string, string, string) {
-	if s == "" {
+	if data == "" {
 		return -1, "", "", ""
 	}
 
@@ -510,7 +510,7 @@ func findNextMark(s, expectedClose string,
 	markOpenExpectedInternal := ""
 
 	findOnMark := func(eOpenMark, iOpenMark, iCloseMark string) {
-		tmpIndex := strings.Index(s, eOpenMark)
+		tmpIndex := strings.Index(data, eOpenMark)
 		if tmpIndex >= 0 && tmpIndex < markOpenIndex {
 			markOpenIndex = tmpIndex
 			markOpen = eOpenMark
@@ -532,7 +532,7 @@ func findNextMark(s, expectedClose string,
 	markCloseInternal := ""
 
 	findOffMark := func(mark, internalMark string) {
-		tmpIndex := strings.Index(s, mark)
+		tmpIndex := strings.Index(data, mark)
 		if tmpIndex >= 0 &&
 			tmpIndex < markOpenIndex &&
 			tmpIndex <= markCloseIndex {
@@ -567,23 +567,23 @@ func findNextMark(s, expectedClose string,
 	return -1, "", "", ""
 }
 
-func translateToTestSymbols(s string) string {
-	s = strings.ReplaceAll(s, markDelOn, internalTestMarkDelOn)
-	s = strings.ReplaceAll(s, markDelOff, internalTestMarkDelOff)
-	s = strings.ReplaceAll(s, markInsOn, internalTestMarkInsOn)
-	s = strings.ReplaceAll(s, markInsOff, internalTestMarkInsOff)
-	s = strings.ReplaceAll(s, markChgOn, internalTestMarkChgOn)
-	s = strings.ReplaceAll(s, markChgOff, internalTestMarkChgOff)
-	s = strings.ReplaceAll(s, markSepOn, internalTestMarkSepOn)
-	s = strings.ReplaceAll(s, markSepOff, internalTestMarkSepOff)
-	s = strings.ReplaceAll(s, markWntOn, internalTestMarkWntOn)
-	s = strings.ReplaceAll(s, markWntOff, internalTestMarkWntOff)
-	s = strings.ReplaceAll(s, markGotOn, internalTestMarkGotOn)
-	s = strings.ReplaceAll(s, markGotOff, internalTestMarkGotOff)
-	s = strings.ReplaceAll(s, markMsgOn, internalTestMarkMsgOn)
-	s = strings.ReplaceAll(s, markMsgOff, internalTestMarkMsgOff)
+func translateToTestSymbols(line string) string {
+	line = strings.ReplaceAll(line, markDelOn, internalTestMarkDelOn)
+	line = strings.ReplaceAll(line, markDelOff, internalTestMarkDelOff)
+	line = strings.ReplaceAll(line, markInsOn, internalTestMarkInsOn)
+	line = strings.ReplaceAll(line, markInsOff, internalTestMarkInsOff)
+	line = strings.ReplaceAll(line, markChgOn, internalTestMarkChgOn)
+	line = strings.ReplaceAll(line, markChgOff, internalTestMarkChgOff)
+	line = strings.ReplaceAll(line, markSepOn, internalTestMarkSepOn)
+	line = strings.ReplaceAll(line, markSepOff, internalTestMarkSepOff)
+	line = strings.ReplaceAll(line, markWntOn, internalTestMarkWntOn)
+	line = strings.ReplaceAll(line, markWntOff, internalTestMarkWntOff)
+	line = strings.ReplaceAll(line, markGotOn, internalTestMarkGotOn)
+	line = strings.ReplaceAll(line, markGotOff, internalTestMarkGotOff)
+	line = strings.ReplaceAll(line, markMsgOn, internalTestMarkMsgOn)
+	line = strings.ReplaceAll(line, markMsgOff, internalTestMarkMsgOff)
 
-	return s
+	return line
 }
 
 func freezeMarks(source string) (string, error) {

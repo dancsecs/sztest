@@ -93,21 +93,21 @@ func chkClockCLockLastFormat(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
-	tm := chk.ClockNext()
+	nextTS := chk.ClockNext()
 
-	chk.Str(chk.ClockLastFmtTime(), tm.Format("150405"))
-	chk.Str(chk.ClockLastFmtDate(), tm.Format("20060102"))
-	chk.Str(chk.ClockLastFmtTS(), tm.Format("20060102150405"))
-	chk.Str(chk.ClockLastFmtNano(), tm.Format("20060102150405.000000000"))
+	chk.Str(chk.ClockLastFmtTime(), nextTS.Format("150405"))
+	chk.Str(chk.ClockLastFmtDate(), nextTS.Format("20060102"))
+	chk.Str(chk.ClockLastFmtTS(), nextTS.Format("20060102150405"))
+	chk.Str(chk.ClockLastFmtNano(), nextTS.Format("20060102150405.000000000"))
 
 	chk.ClockSetCusA(time.RFC822Z)
-	chk.Str(chk.ClockLastFmtCusA(), tm.Format(time.RFC822Z))
+	chk.Str(chk.ClockLastFmtCusA(), nextTS.Format(time.RFC822Z))
 
 	chk.ClockSetCusB(time.RFC3339Nano)
-	chk.Str(chk.ClockLastFmtCusB(), tm.Format(time.RFC3339Nano))
+	chk.Str(chk.ClockLastFmtCusB(), nextTS.Format(time.RFC3339Nano))
 
 	chk.ClockSetCusC(time.ANSIC)
-	chk.Str(chk.ClockLastFmtCusC(), tm.Format(time.ANSIC))
+	chk.Str(chk.ClockLastFmtCusC(), nextTS.Format(time.ANSIC))
 }
 
 func chkClockCLockNextFormat(t *testing.T) {
@@ -217,34 +217,34 @@ func chkClockSubs(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
-	ts := "2006/01/02 15:03:04"
-	chk.ClockSetCusA(ts)
-	chk.Str(chk.ClockNext().Format(ts), "{{clkCusA0}}")
+	tstTS := "2006/01/02 15:03:04"
+	chk.ClockSetCusA(tstTS)
+	chk.Str(chk.ClockNext().Format(tstTS), "{{clkCusA0}}")
 
-	ts = "20060102"
-	chk.ClockSetCusB(ts)
+	tstTS = "20060102"
+	chk.ClockSetCusB(tstTS)
 	chk.ClockSetCusA("")
-	chk.Str(chk.ClockNext().Format(ts), "{{clkCusB1}}")
+	chk.Str(chk.ClockNext().Format(tstTS), "{{clkCusB1}}")
 
 	chk.ClockSetSub(ClockSubDate)
-	chk.Str(chk.ClockNext().Format(ts), "{{clkDate2}}")
+	chk.Str(chk.ClockNext().Format(tstTS), "{{clkDate2}}")
 
-	ts = "150405"
-	chk.ClockSetCusC(ts)
+	tstTS = "150405"
+	chk.ClockSetCusC(tstTS)
 	chk.ClockSetCusB("")
-	chk.Str(chk.ClockNext().Format(ts), "{{clkCusC3}}")
+	chk.Str(chk.ClockNext().Format(tstTS), "{{clkCusC3}}")
 
 	chk.ClockSetSub(ClockSubTime)
 	chk.ClockSetCusC("")
-	chk.Str(chk.ClockNext().Format(ts), "{{clkTime4}}")
+	chk.Str(chk.ClockNext().Format(tstTS), "{{clkTime4}}")
 
-	ts = "20060102150405"
+	tstTS = "20060102150405"
 	chk.ClockAddSub(ClockSubTS)
-	chk.Str(chk.ClockNext().Format(ts), "{{clkTS5}}")
+	chk.Str(chk.ClockNext().Format(tstTS), "{{clkTS5}}")
 
-	ts = "20060102150405.000000000"
+	tstTS = "20060102150405.000000000"
 	chk.ClockAddSub(ClockSubNano)
-	chk.Str(chk.ClockNext().Format(ts), "{{clkNano6}}")
+	chk.Str(chk.ClockNext().Format(tstTS), "{{clkNano6}}")
 }
 
 func chkClockOffset(t *testing.T) {

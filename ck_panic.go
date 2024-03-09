@@ -24,7 +24,7 @@ import "fmt"
 const BlankPanicMessage = "sztest.BlankPanicMessage"
 
 //nolint:nonamedreturns // Required to set return in deferred function.
-func (chk *Chk) runPanicTest(f func()) (panicMessage string) {
+func (chk *Chk) runPanicTest(testFunc func()) (panicMessage string) {
 	defer func() {
 		r := recover()
 		if r != nil {
@@ -35,7 +35,7 @@ func (chk *Chk) runPanicTest(f func()) (panicMessage string) {
 		}
 	}()
 	chk.runningPanicFunction = true
-	f()
+	testFunc()
 
 	return
 }
@@ -45,13 +45,13 @@ func (chk *Chk) NoPanicf(gotF func(), msgFmt string, msgArgs ...any) bool {
 	defer func() {
 		chk.runningPanicFunction = false
 	}()
-	pm := chk.runPanicTest(gotF)
-	if chk.isStringify(pm) == "" {
+	panicMsg := chk.runPanicTest(gotF)
+	if chk.isStringify(panicMsg) == "" {
 		return true
 	}
 	chk.t.Helper()
 
-	return chk.errChkf(pm, "", "panic", msgFmt, msgArgs...)
+	return chk.errChkf(panicMsg, "", "panic", msgFmt, msgArgs...)
 }
 
 // NoPanic simply invokes Err with want set to "".
@@ -59,13 +59,13 @@ func (chk *Chk) NoPanic(gotF func(), msg ...any) bool {
 	defer func() {
 		chk.runningPanicFunction = false
 	}()
-	pm := chk.runPanicTest(gotF)
-	if chk.isStringify(pm) == "" {
+	panicMsg := chk.runPanicTest(gotF)
+	if chk.isStringify(panicMsg) == "" {
 		return true
 	}
 	chk.t.Helper()
 
-	return chk.errChk(pm, "", "panic", msg...)
+	return chk.errChk(panicMsg, "", "panic", msg...)
 }
 
 // Panicf runs the supplied function and compares the panic value asserted
@@ -76,13 +76,13 @@ func (chk *Chk) Panicf(
 	defer func() {
 		chk.runningPanicFunction = false
 	}()
-	pm := chk.runPanicTest(gotF)
-	if chk.isStringify(pm) == chk.isStringify(want) {
+	panicMsg := chk.runPanicTest(gotF)
+	if chk.isStringify(panicMsg) == chk.isStringify(want) {
 		return true
 	}
 	chk.t.Helper()
 
-	return chk.errChkf(pm, want, "panic", msgFmt, msgArgs...)
+	return chk.errChkf(panicMsg, want, "panic", msgFmt, msgArgs...)
 }
 
 // Panic runs the supplied function and compares the panic value asserted to
@@ -91,11 +91,11 @@ func (chk *Chk) Panic(gotF func(), want string, msg ...any) bool {
 	defer func() {
 		chk.runningPanicFunction = false
 	}()
-	pm := chk.runPanicTest(gotF)
-	if chk.isStringify(pm) == chk.isStringify(want) {
+	panicMsg := chk.runPanicTest(gotF)
+	if chk.isStringify(panicMsg) == chk.isStringify(want) {
 		return true
 	}
 	chk.t.Helper()
 
-	return chk.errChk(pm, want, "panic", msg...)
+	return chk.errChk(panicMsg, want, "panic", msg...)
 }

@@ -117,7 +117,7 @@ func DiffSlice[T chkType](
 	minRunString int,
 	cmp func(a, b T) bool,
 ) []string {
-	var r []string
+	var result []string
 	lenGotSlice := len(gotSlice)
 	lenWntSlice := len(wntSlice)
 	same := lenGotSlice == lenWntSlice
@@ -130,39 +130,41 @@ func DiffSlice[T chkType](
 	if same {
 		// Just return a clean unmarked list with changed equal to false.
 		for lnNbr, s := range gotSlice {
-			r = append(r, dFmt.same(lnNbr, lnNbr, s))
+			result = append(result, dFmt.same(lnNbr, lnNbr, s))
 		}
 
-		return r
+		return result
 	}
 	if lenGotSlice == 0 {
 		for lnNbr, s := range wntSlice {
-			r = append(r, dFmt.justWnt(lnNbr, s))
+			result = append(result, dFmt.justWnt(lnNbr, s))
 		}
 		*changed = true
 
-		return r
+		return result
 	}
 	if lenWntSlice == 0 {
 		for lnNbr, s := range gotSlice {
-			r = append(r, dFmt.justGot(lnNbr, s))
+			result = append(result, dFmt.justGot(lnNbr, s))
 		}
 		*changed = true
 
-		return r
+		return result
 	}
 
 	// biggest matching window between slices
-	o, n, c := bestNextRun(gotSlice, wntSlice, minRunSlice, cmp)
+	gotIdx, wntInd, numLines := bestNextRun(
+		gotSlice, wntSlice, minRunSlice, cmp,
+	)
 
-	if c == 0 {
+	if numLines == 0 {
 		// nothing matched.  All changed
 		*changed = true
 		switch {
 		case lenGotSlice < lenWntSlice:
 			for i := 0; i < lenGotSlice; i++ {
-				r = append(
-					r,
+				result = append(
+					result,
 					dFmt.changed(i, i,
 						DiffString(
 							fmt.Sprint(gotSlice[i]),
@@ -173,12 +175,12 @@ func DiffSlice[T chkType](
 				)
 			}
 			for i := lenGotSlice; i < lenWntSlice; i++ {
-				r = append(r, dFmt.justWnt(i, wntSlice[i]))
+				result = append(result, dFmt.justWnt(i, wntSlice[i]))
 			}
 		case lenGotSlice > lenWntSlice:
 			for i := 0; i < lenWntSlice; i++ {
-				r = append(
-					r,
+				result = append(
+					result,
 					dFmt.changed(i, i,
 						DiffString(
 							fmt.Sprint(gotSlice[i]),
@@ -189,12 +191,12 @@ func DiffSlice[T chkType](
 				)
 			}
 			for i := lenWntSlice; i < lenGotSlice; i++ {
-				r = append(r, dFmt.justGot(i, gotSlice[i]))
+				result = append(result, dFmt.justGot(i, gotSlice[i]))
 			}
 		default: // lengths are equal
 			for i := 0; i < lenGotSlice; i++ {
-				r = append(
-					r,
+				result = append(
+					result,
 					dFmt.changed(i, i,
 						DiffString(
 							fmt.Sprint(gotSlice[i]),
@@ -206,7 +208,7 @@ func DiffSlice[T chkType](
 			}
 		}
 
-		return r
+		return result
 	}
 	// Return a composition of the largest matching segment prefixed
 	// by recursively calling DiffString with the two strings prefix
@@ -215,9 +217,9 @@ func DiffSlice[T chkType](
 
 	// Check lines before largest identical section
 
-	r = append(r, DiffSlice(
-		gotSlice[:o],
-		wntSlice[:n],
+	result = append(result, DiffSlice(
+		gotSlice[:gotIdx],
+		wntSlice[:wntInd],
 		dFmt,
 		changed,
 		minRunSlice,
@@ -226,30 +228,30 @@ func DiffSlice[T chkType](
 	)...)
 
 	// Add unchanged lines
-	for i := 0; i < c; i++ {
-		r = append(r, dFmt.same(i+o, i+n, gotSlice[i+o]))
+	for i := 0; i < numLines; i++ {
+		result = append(result, dFmt.same(i+gotIdx, i+wntInd, gotSlice[i+gotIdx]))
 	}
 
 	// Check lines after largest identical section
 	var endOld []T
 	var endNew []T
-	if o+c < lenGotSlice {
-		endOld = gotSlice[o+c:]
+	if gotIdx+numLines < lenGotSlice {
+		endOld = gotSlice[gotIdx+numLines:]
 	}
-	if n+c < lenWntSlice {
-		endNew = wntSlice[n+c:]
+	if wntInd+numLines < lenWntSlice {
+		endNew = wntSlice[wntInd+numLines:]
 	}
-	r = append(r, DiffSlice(
+	result = append(result, DiffSlice(
 		endOld,
 		endNew,
-		dFmt.newOffset(o+c, n+c),
+		dFmt.newOffset(gotIdx+numLines, wntInd+numLines),
 		changed,
 		minRunSlice,
 		minRunString,
 		cmp,
 	)...)
 
-	return r
+	return result
 }
 
 // DiffString checks two strings for differences.
@@ -288,9 +290,9 @@ func DiffString(gotStr, wntStr string, dType diffType, minRun int) string {
 		}
 	}
 	// Biggest matching window between strings.
-	o, n, c := bestNextRunString(gotStr, wntStr, minRun)
+	gotIdx, wntIdx, numChars := bestNextRunString(gotStr, wntStr, minRun)
 
-	if c == 0 {
+	if numChars == 0 {
 		// nothing matched.  All changed
 		return markAsChg(gotStr, wntStr, dType)
 	}
@@ -298,9 +300,9 @@ func DiffString(gotStr, wntStr string, dType diffType, minRun int) string {
 	// by recursively calling DiffString with prefix and suffix strings
 	// respectively.
 	return "" +
-		DiffString(gotStr[:o], wntStr[:n], dType, minRun) +
-		gotStr[o:o+c] +
-		DiffString(gotStr[o+c:], wntStr[n+c:], dType, minRun)
+		DiffString(gotStr[:gotIdx], wntStr[:wntIdx], dType, minRun) +
+		gotStr[gotIdx:gotIdx+numChars] +
+		DiffString(gotStr[gotIdx+numChars:], wntStr[wntIdx+numChars:], dType, minRun)
 }
 
 func bestNextRunString(got, wnt string, minRun int) (int, int, int) {
@@ -329,22 +331,22 @@ func calculateScores[V chkType](
 	for gotIdx := range gotSlice {
 		for wntIdx := range wntSlice {
 			if cmp(gotSlice[gotIdx], wntSlice[wntIdx]) {
-				c := 1
+				numProcessed := 1
 				cGotIdx := gotIdx + 1
 				cWntIdx := wntIdx + 1
 				for cGotIdx < gotMax &&
 					cWntIdx < wntMax &&
 					cmp(gotSlice[cGotIdx], wntSlice[cWntIdx]) {
 					//
-					c++
+					numProcessed++
 					cGotIdx++
 					cWntIdx++
 				}
-				if c >= minRun {
+				if numProcessed >= minRun {
 					scores = append(scores, match{
 						gotStart: gotIdx,
 						wntStart: wntIdx,
-						length:   c,
+						length:   numProcessed,
 					})
 				}
 			}
@@ -363,18 +365,18 @@ func bestNextRun[V chkType](
 
 	sort.Slice(scores, func(i int, j int) bool {
 		// return true if i < j
-		m1 := scores[i]
-		m2 := scores[j]
+		iMatch := scores[i]
+		jMatch := scores[j]
 
-		if m1.length == m2.length {
-			if m1.gotStart == m2.gotStart {
-				return m1.wntStart <= m2.wntStart
+		if iMatch.length == jMatch.length {
+			if iMatch.gotStart == jMatch.gotStart {
+				return iMatch.wntStart <= jMatch.wntStart
 			}
 
-			return m1.gotStart <= m2.gotStart
+			return iMatch.gotStart <= jMatch.gotStart
 		}
 
-		return m1.length >= m2.length
+		return iMatch.length >= jMatch.length
 	})
 
 	if len(scores) == 0 {

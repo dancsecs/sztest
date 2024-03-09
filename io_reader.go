@@ -54,7 +54,7 @@ func (chk *Chk) SetReadError(pos int, err error) {
 }
 
 // Read implements the ioReader interface.
-func (chk *Chk) Read(b []byte) (int, error) {
+func (chk *Chk) Read(dataBuf []byte) (int, error) {
 	if chk.ioReadErrSet {
 		readPos := chk.ioReadErrPos
 		readErr := chk.ioReadErr
@@ -74,9 +74,9 @@ func (chk *Chk) Read(b []byte) (int, error) {
 	}
 
 	i := 0
-	mi := len(b)
+	mi := len(dataBuf)
 	for i < mi && chk.rLeft > 0 {
-		b[i] = chk.rData[chk.rPos]
+		dataBuf[i] = chk.rData[chk.rPos]
 		chk.rPos++
 		chk.rLeft--
 		chk.rErrPos--
@@ -90,25 +90,25 @@ func (chk *Chk) Read(b []byte) (int, error) {
 }
 
 // SetStdinData sets the os.Stdin to stream the provided data.
-func (chk *Chk) SetStdinData(d ...string) {
+func (chk *Chk) SetStdinData(lines ...string) {
 	chk.t.Helper()
 	origStdin := os.Stdin
-	r, w, err := os.Pipe()
+	rPipe, wPipe, err := os.Pipe()
 
 	if chk.NoErr(err) {
 		chk.PushPostReleaseFunc(func() error {
 			os.Stdin = origStdin
-			err = w.Close()
+			err = wPipe.Close()
 			if err == nil {
-				err = r.Close()
+				err = rPipe.Close()
 			}
 
 			return err //nolint:wrapcheck // Ok.
 		})
 
 		chk.NoErr(err)
-		os.Stdin = r
+		os.Stdin = rPipe
 
-		fmt.Fprint(w, strings.Join(d, ""))
+		fmt.Fprint(wPipe, strings.Join(lines, ""))
 	}
 }

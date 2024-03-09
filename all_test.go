@@ -51,15 +51,15 @@ func saveThenSetupDefaultEnvironment() func() {
 	var restoreFunc func()
 	orig := make(map[string]string)
 	for _, e := range os.Environ() {
-		s := strings.SplitN(e, "=", 2)
-		if len(s) == 2 &&
-			strings.HasPrefix(s[0], "SZTEST_") &&
-			s[0] != "SZTEST_TMP_DIR" {
+		setting := strings.SplitN(e, "=", 2)
+		if len(setting) == 2 &&
+			strings.HasPrefix(setting[0], "SZTEST_") &&
+			setting[0] != "SZTEST_TMP_DIR" {
 			// Save env variable for restoration.
-			orig[s[0]] = s[1]
+			orig[setting[0]] = setting[1]
 			// Remove env override
-			if err := os.Unsetenv(s[0]); err != nil {
-				log.Printf("Could not unsetEnv(%q): %v", s[0], err)
+			if err := os.Unsetenv(setting[0]); err != nil {
+				log.Printf("Could not unsetEnv(%q): %v", setting[0], err)
 			}
 		}
 	}
@@ -148,16 +148,16 @@ func chkInterface(t *testing.T) {
 }
 
 func errMarkupFuncNone(area string, got, wnt any) string {
-	g := fmt.Sprintf("%v", got)
-	w := fmt.Sprintf("%v", wnt)
-	h := ""
-	if strings.Count(g, "\n") > 1 && strings.Count(w, "\n") > 1 {
-		h = "\n"
+	cleanGot := fmt.Sprintf("%v", got)
+	cleanWnt := fmt.Sprintf("%v", wnt)
+	prefix := ""
+	if strings.Count(cleanGot, "\n") > 1 && strings.Count(cleanWnt, "\n") > 1 {
+		prefix = "\n"
 	}
 
 	return commonMsgPrefix + area + "\n" +
-		"GOT: " + h + g + "\n" +
-		"WNT: " + h + w
+		"GOT: " + prefix + cleanGot + "\n" +
+		"WNT: " + prefix + cleanWnt
 }
 
 func errMarkupFuncDefault(area string, got, wnt any) string {

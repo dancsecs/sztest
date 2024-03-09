@@ -22,13 +22,13 @@ import (
 	"strconv"
 )
 
-func float32TypeString(t float32) string {
-	if t == 0.0 {
+func float32TypeString(tolerance float32) string {
+	if tolerance == 0.0 {
 		return "float32"
 	}
 
 	return "float32(+/- " +
-		strconv.FormatFloat(float64(t), 'g', -1, 64) +
+		strconv.FormatFloat(float64(tolerance), 'g', -1, 64) +
 		")"
 }
 
@@ -113,16 +113,16 @@ func (chk *Chk) Float32Slice(
 
 // IsFloat32Similar compares two floats to see if they match within the
 // specified tolerance.
-func IsFloat32Similar(a, b, t float32) bool {
-	if t == 0.0 {
-		return a == b
+func IsFloat32Similar(num1, num2, tolerance float32) bool {
+	if tolerance == 0.0 {
+		return num1 == num2
 	}
 	// Are a and b within tolerance t
 	switch {
-	case a < b:
-		return (b - a) <= t
-	case a > b:
-		return (a - b) <= t
+	case num1 < num2:
+		return (num2 - num1) <= tolerance
+	case num1 > num2:
+		return (num1 - num2) <= tolerance
 	}
 
 	return true // a == b

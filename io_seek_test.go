@@ -32,12 +32,12 @@ func chkIOSeekTestSetSeekError(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
-	p, err := chk.Seek(2, io.SeekStart)
-	chk.Int64(p, 0)
+	newPos, err := chk.Seek(2, io.SeekStart)
+	chk.Int64(newPos, 0)
 	chk.NoErr(err)
 
 	chk.SetSeekError(24, errors.New("the seek error"))
-	p, err = chk.Seek(2, io.SeekStart)
-	chk.Int64(p, 24)
+	newPos, err = chk.Seek(2, io.SeekStart)
+	chk.Int64(newPos, 24)
 	chk.Err(err, "the seek error")
 }
