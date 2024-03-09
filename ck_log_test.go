@@ -803,6 +803,7 @@ func chkLogTestCheckLoggingStdoutMissing(t *testing.T) {
 	chk := CaptureStdout(iT)
 	iT.chk = chk
 
+	//nolint:forbidigo // Ok testing print capture.
 	fmt.Print("Forced error message\n")
 
 	chk.markupForDisplay = func(s string) string {
@@ -1005,6 +1006,7 @@ func chkLogTestLeadingAndTrainingSpaces(t *testing.T) {
 	chk := CaptureLogAndStderrAndStdout(iT)
 	iT.chk = chk
 
+	//nolint:forbidigo // Ok testing print capture.
 	fmt.Println("   stdout   ")
 	fmt.Fprintln(os.Stderr, "   stderr   ")
 	log.Print("   logger   ")

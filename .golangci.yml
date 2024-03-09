@@ -41,7 +41,6 @@ issues:
         - dupl
     - path: _test\.go  # Exclude on test files.
       linters:
-        - forbidigo
         - funlen
         - goconst
         - goerr113
