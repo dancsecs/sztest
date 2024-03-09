@@ -499,9 +499,9 @@ implemented by the ```*Chk``` object are:
 
 <!--- gotomd::Bgn::dcls::./Chk.Seek Chk.Read Chk.Write Chk.Close -->
 ```go
-func (chk *Chk) Seek(pos int64, whence int) (int64, error)
-func (chk *Chk) Read(b []byte) (n int, err error)
-func (chk *Chk) Write(b []byte) (n int, err error)
+func (chk *Chk) Seek(_ int64, _ int) (int64, error)
+func (chk *Chk) Read(dataBuf []byte) (int, error)
+func (chk *Chk) Write(data []byte) (int, error)
 func (chk *Chk) Close() error
 ```
 <!--- gotomd::End::dcls::./Chk.Seek Chk.Read Chk.Write Chk.Close -->
@@ -614,7 +614,7 @@ func (chk *Chk) CreateTmpFile(data []byte) string
 func (chk *Chk) CreateTmpFileIn(path string, data []byte) string
 func (chk *Chk) CreateTmpUnixScript(lines []string) string
 func (chk *Chk) CreateTmpUnixScriptIn(path string, lines []string) string
-func (chk *Chk) CreateTmpSubDir(d ...string) string
+func (chk *Chk) CreateTmpSubDir(subDirs ...string) string
 ```
 <!--- gotomd::End::dcls::./Chk.CreateTmpFile Chk.CreateTmpFileIn Chk.CreateTmpUnixScript Chk.CreateTmpUnixScriptIn Chk.CreateTmpSubDir -->
 
@@ -631,7 +631,7 @@ or set from within the test with:
 
 <!--- gotomd::Bgn::dcls::./Chk.SetTmpDir -->
 ```go
-func (chk *Chk) SetTmpDir(d string) string
+func (chk *Chk) SetTmpDir(dir string) string
 ```
 <!--- gotomd::End::dcls::./Chk.SetTmpDir -->
 
@@ -782,7 +782,7 @@ The time (and increments used between successive timestamps can be set with:
 
 <!--- gotomd::Bgn::doc::./Chk.ClockSet -->
 ```go
-func (chk *Chk) ClockSet(t time.Time, inc ...time.Duration) func()
+func (chk *Chk) ClockSet(setTime time.Time, inc ...time.Duration) func()
 ```
 
 ClockSet set the current test time and optionally sets the increments if
@@ -810,7 +810,7 @@ func (chk *Chk) ClockOffset(d time.Duration) func()
 ```
 
 ClockOffset moves the current clock by the specified amount.  No
-defined increments are applied and if a clock has not yet been set the the
+defined increments are applied and if a clock has not yet been set the
 current time advanced by the specified amount will be used. Nothing is
 returned.
 <!--- gotomd::End::doc::./Chk.ClockOffset -->
@@ -1326,11 +1326,11 @@ func CompareArrays[T chkType](got, wnt []T) string
 
 <!--- gotomd::Bgn::dcls::./Chk.LastErr Chk.Log Chk.Stderr Chk.Stdout Chk.SetStdinData -->
 ```go
-func (*Chk) LastErr(p ...any) error
+func (*Chk) LastErr(args ...any) error
 func (chk *Chk) Log(wantLines ...string) bool
 func (chk *Chk) Stderr(wantLines ...string) bool
 func (chk *Chk) Stdout(wantLines ...string) bool
-func (chk *Chk) SetStdinData(d ...string)
+func (chk *Chk) SetStdinData(lines ...string)
 ```
 <!--- gotomd::End::dcls::./Chk.LastErr Chk.Log Chk.Stderr Chk.Stdout Chk.SetStdinData -->
 
