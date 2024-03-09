@@ -496,7 +496,7 @@ func chkDirTest_CreateTmpUnixScriptNoLeading(t *testing.T) {
 		filepath.Join(settingTmpDir, chk.Name(), "tmpFile0.tmp"),
 	)
 
-	fData, err := os.ReadFile(fileName)
+	fData, err := os.ReadFile(fileName) //nolint:gosec // Ok.
 
 	chk.NoErr(err)
 	chk.StrSlice(strings.Split(string(fData), "\n"), []string{
@@ -539,7 +539,7 @@ func chkDirTest_CreateTmpUnixScriptWithLeading(t *testing.T) {
 		filepath.Join(settingTmpDir, chk.Name(), "tmpFile0.tmp"),
 	)
 
-	fData, err := os.ReadFile(fileName)
+	fData, err := os.ReadFile(fileName) //nolint:gosec // Ok.
 
 	chk.NoErr(err)
 	chk.StrSlice(strings.Split(string(fData), "\n"), []string{

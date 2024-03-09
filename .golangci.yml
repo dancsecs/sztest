@@ -58,7 +58,6 @@ issues:
         - gocyclo
         - goerr113
         - gofumpt
-        - gosec
         - lll
         - maintidx
         - nlreturn
