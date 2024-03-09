@@ -47,7 +47,7 @@ func (chk *Chk) AddSub(expr, subStr string) {
 	})
 }
 
-// subStr recursively applies all regexp substitution stored in in chk.subs
+// subStr recursively applies all regexp substitution stored in chk.subs
 // to the supplied string.
 func (chk *Chk) subStr(s string) string {
 	beforeString := ""

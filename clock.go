@@ -232,7 +232,7 @@ func (chk *Chk) ClockOffsetDay(dayOffset int, inc ...time.Duration) func() {
 }
 
 // ClockOffset moves the current clock by the specified amount.  No
-// defined increments are applied and if a clock has not yet been set the the
+// defined increments are applied and if a clock has not yet been set the
 // current time advanced by the specified amount will be used. Nothing is
 // returned.
 func (chk *Chk) ClockOffset(d time.Duration) func() {

@@ -335,7 +335,7 @@ func testCfgInit_AllOverrides(t *testing.T) {
 	savedEnvVars := clearAndCaptureAll()
 	defer restoreAll(savedEnvVars)
 
-	// Used as another directory directory to test Tmp Dir overrides.
+	// Used as another directory to test Tmp Dir overrides.
 	userHomeDir, err := os.UserHomeDir()
 	if err != nil {
 		t.Fatal("could not retrieve user home directory: " + err.Error())

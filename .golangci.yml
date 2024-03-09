@@ -14,7 +14,6 @@ linters:
   disable:
     - cyclop
     - dupl
-    - dupword
     - exhaustive
     - exhaustruct
     - gochecknoglobals
@@ -51,7 +50,6 @@ issues:
       linters:
         - cyclop
         - dupl
-        - dupword
         - forbidigo
         - funlen
         - exhaustruct
