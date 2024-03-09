@@ -23,7 +23,6 @@ linters:
     - ireturn
     - lll
     - nlreturn
-    - nonamedreturns
     - revive
     - varnamelen
     - wsl

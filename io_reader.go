@@ -54,7 +54,7 @@ func (chk *Chk) SetReadError(pos int, err error) {
 }
 
 // Read implements the ioReader interface.
-func (chk *Chk) Read(b []byte) (n int, err error) {
+func (chk *Chk) Read(b []byte) (int, error) {
 	if chk.ioReadErrSet {
 		readPos := chk.ioReadErrPos
 		readErr := chk.ioReadErr

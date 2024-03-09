@@ -23,6 +23,7 @@ import "fmt"
 // BlankPanicMessage represents an empty panic message received.
 const BlankPanicMessage = "sztest.BlankPanicMessage"
 
+//nolint:nonamedreturns // Required to set return in deferred function.
 func (chk *Chk) runPanicTest(f func()) (panicMessage string) {
 	defer func() {
 		r := recover()

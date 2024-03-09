@@ -40,7 +40,7 @@ func (chk *Chk) SetWriteError(pos int, err error) {
 }
 
 // Write implements the ioReader interface.
-func (chk *Chk) Write(b []byte) (n int, err error) {
+func (chk *Chk) Write(b []byte) (int, error) {
 	if chk.ioWriteErrSet {
 		writePos := chk.ioWriteErrPos
 		writeErr := chk.ioWriteErr
