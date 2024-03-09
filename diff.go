@@ -250,7 +250,7 @@ func DiffString(gotStr, wntStr string, dType diffType, minRun int) string {
 		// unchanged
 		return gotStr
 	}
-	switch dType {
+	switch dType { //nolint:exhaustive // Default handles all other cases.
 	case DiffWant:
 		if wntStr == "" {
 			// missing from section

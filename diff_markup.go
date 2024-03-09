@@ -63,7 +63,7 @@ func markAsDel(s string) string {
 }
 
 func markAsChg(got, wnt string, dType diffType) string {
-	switch dType {
+	switch dType { //nolint:exhaustive // Default handles all other cases.
 	case DiffGot:
 		return markChgOn + got + markChgOff
 	case DiffWant:
