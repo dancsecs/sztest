@@ -88,7 +88,10 @@ func chkComplex64TestBad1(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Complex64f",
-			chkOutCommonMsg("This message will be displayed first", complex64TypeName),
+			chkOutCommonMsg(
+				"This message will be displayed first",
+				complex64TypeName,
+			),
 			g(markAsChg("(2", "(1", DiffGot)+"+0i)"),
 			w(markAsChg("(2", "(1", DiffWant)+"+0i)"),
 		),
@@ -108,7 +111,10 @@ func chkComplex64TestBad2(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Complex64",
-			chkOutCommonMsg("This message will be displayed second", complex64TypeName),
+			chkOutCommonMsg(
+				"This message will be displayed second",
+				complex64TypeName,
+			),
 			g(markAsChg("(2", "(1", DiffGot)+"+0i)"),
 			w(markAsChg("(2", "(1", DiffWant)+"+0i)"),
 		),
@@ -128,7 +134,10 @@ func chkComplex64TestBad3(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Complex64f",
-			chkOutCommonMsg("This message will be displayed third", complex64TypeName),
+			chkOutCommonMsg(
+				"This message will be displayed third",
+				complex64TypeName,
+			),
 			g(markAsChg("(0", "(1", DiffGot)+"+0i)"),
 			w(markAsChg("(0", "(1", DiffWant)+"+0i)"),
 		),

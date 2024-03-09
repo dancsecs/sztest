@@ -63,8 +63,9 @@ const (
 	// must be tested with the chk.Log method.
 	captureLogWithStderr
 
-	// Writes to both the standard log package and to os.Stderr are individually
-	// captured and must be tested with the chk.Log and chk.Stderr methods.
+	// Writes to both the standard log package and to os.Stderr are
+	// individually captured and must be tested with the chk.Log and chk.Stderr
+	// methods.
 	captureLogAndStderr
 
 	// Writes both the standard log package and os.Stderr are captured and must
@@ -73,8 +74,8 @@ const (
 	captureLogWithStderrAndStdout
 
 	// Writes to the standard log package, to os.Stderr and os.Stdout are each
-	// individually captured and must be tested with the chk.Log, chk.Stderr and
-	// chk.Stdout methods.
+	// individually captured and must be tested with the chk.Log, chk.Stderr
+	// and chk.Stdout methods.
 	captureLogAndStderrAndStdout
 
 	// Writes to the standard log package and os.Stdout are each
@@ -389,8 +390,8 @@ func (chk *Chk) isStringify(rawStr any) string {
 	str = chk.subStr(str)
 	str = fmt.Sprintf("%q", str)
 	str = str[1 : len(str)-1]                // trim "%q" added quotemarks
-	str = strings.ReplaceAll(str, `\"`, `"`) // reverse "%q" action on quotes
-	str = strings.ReplaceAll(str, `\\`, `\`) // reverse "%q" action on backslashes
+	str = strings.ReplaceAll(str, `\"`, `"`) // reverse "%q" on quotes
+	str = strings.ReplaceAll(str, `\\`, `\`) // reverse "%q" on backslashes
 
 	return str
 }
@@ -548,23 +549,40 @@ func inBoundedRange[V chkBoundedType](
 		vFmt = "\"%v\""
 	}
 
+	const (
+		definitionSeparator = " - "
+		wntLabel            = "{ want | "
+	)
+
 	switch option {
 	case BoundedOpen:
 		// IntervalBoundedOpen (a,b) = { x | a < x < b }
 		inRange = min < got && got < max
-		want = "(" + vFmt + "," + vFmt + ") - { want | " + vFmt + " < want < " + vFmt + " }"
+		want = "" +
+			"(" + vFmt + "," + vFmt + ")" +
+			definitionSeparator +
+			wntLabel + vFmt + " < want < " + vFmt + " }"
 	case BoundedClosed:
 		// IntervalBoundedClosed [a,b] = { x | a <= x <= b }
 		inRange = min <= got && got <= max
-		want = "[" + vFmt + "," + vFmt + "] - { want | " + vFmt + " <= want <= " + vFmt + " }"
+		want = "" +
+			"[" + vFmt + "," + vFmt + "]" +
+			definitionSeparator +
+			wntLabel + vFmt + " <= want <= " + vFmt + " }"
 	case BoundedMinOpen, BoundedMaxClosed:
 		// IntervalBoundedLeftOpen (a,b] = { x | a < x ≦ b }
 		inRange = min < got && got <= max
-		want = "(" + vFmt + "," + vFmt + "] - { want | " + vFmt + " < want <= " + vFmt + " }"
+		want = "" +
+			"(" + vFmt + "," + vFmt + "]" +
+			definitionSeparator +
+			wntLabel + vFmt + " < want <= " + vFmt + " }"
 	case BoundedMaxOpen, BoundedMinClosed:
 		// IntervalBoundedRightOpen [a,b) = { x | a ≦ x < b }
 		inRange = min <= got && got < max
-		want = "[" + vFmt + "," + vFmt + ") - { want | " + vFmt + " <= want < " + vFmt + " }"
+		want = "" +
+			"[" + vFmt + "," + vFmt + ")" +
+			definitionSeparator +
+			wntLabel + vFmt + " <= want < " + vFmt + " }"
 	default:
 		return false, fmt.Sprint("unknown bounded option ", option)
 	}

@@ -97,7 +97,10 @@ func chkStringTestBad1(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Strf",
-			chkOutCommonMsg("This message will be displayed first", stringTypeName),
+			chkOutCommonMsg(
+				"This message will be displayed first",
+				stringTypeName,
+			),
 			g(""),
 			w(markAsDel("Blank got")),
 		),
@@ -117,7 +120,10 @@ func chkStringTestBad2(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Str",
-			chkOutCommonMsg("This message will be displayed second", stringTypeName),
+			chkOutCommonMsg(
+				"This message will be displayed second",
+				stringTypeName,
+			),
 			g(markAsIns("Blank want")),
 			w(""),
 		),
@@ -137,7 +143,10 @@ func chkStringTestBad3(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Strf",
-			chkOutCommonMsg("This message will be displayed third", stringTypeName),
+			chkOutCommonMsg(
+				"This message will be displayed third",
+				stringTypeName,
+			),
 			g(markAsChg("got", "want", DiffGot)),
 			w(markAsChg("got", "want", DiffWant)),
 		),

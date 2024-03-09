@@ -84,5 +84,7 @@ func (chk *Chk) UintptrSlice(got, want []uintptr, msg ...any) bool {
 
 	chk.t.Helper()
 
-	return errSlice(chk, got, want, uintptrTypeName, defaultCmpFunc[uintptr], msg...)
+	return errSlice(
+		chk, got, want, uintptrTypeName, defaultCmpFunc[uintptr], msg...,
+	)
 }

@@ -93,7 +93,10 @@ func chkInt8TestBad1(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Int8f",
-			chkOutCommonMsg("This message will be displayed first", int8TypeName),
+			chkOutCommonMsg(
+				"This message will be displayed first",
+				int8TypeName,
+			),
 			g(markAsChg("2", "1", DiffGot)),
 			w(markAsChg("2", "1", DiffWant)),
 		),
@@ -113,7 +116,10 @@ func chkInt8TestBad2(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Int8",
-			chkOutCommonMsg("This message will be displayed second", int8TypeName),
+			chkOutCommonMsg(
+				"This message will be displayed second",
+				int8TypeName,
+			),
 			g(markAsChg("-2", "1", DiffGot)),
 			w(markAsChg("-2", "1", DiffWant)),
 		),
@@ -133,7 +139,10 @@ func chkInt8TestBad3(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Int8f",
-			chkOutCommonMsg("This message will be displayed third", int8TypeName),
+			chkOutCommonMsg(
+				"This message will be displayed third",
+				int8TypeName,
+			),
 			g(markAsChg("0", "-1", DiffGot)),
 			w(markAsChg("0", "-1", DiffWant)),
 		),

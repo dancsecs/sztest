@@ -93,7 +93,10 @@ func chkIntTestBad1(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Intf",
-			chkOutCommonMsg("This message will be displayed first", intTypeName),
+			chkOutCommonMsg(
+				"This message will be displayed first",
+				intTypeName,
+			),
 			g(markAsChg("2", "1", DiffGot)),
 			w(markAsChg("2", "1", DiffWant)),
 		),
@@ -113,7 +116,10 @@ func chkIntTestBad2(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Int",
-			chkOutCommonMsg("This message will be displayed second", intTypeName),
+			chkOutCommonMsg(
+				"This message will be displayed second",
+				intTypeName,
+			),
 			g(markAsChg("-2", "1", DiffGot)),
 			w(markAsChg("-2", "1", DiffWant)),
 		),
@@ -133,7 +139,10 @@ func chkIntTestBad3(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Intf",
-			chkOutCommonMsg("This message will be displayed third", intTypeName),
+			chkOutCommonMsg(
+				"This message will be displayed third",
+				intTypeName,
+			),
 			g(markAsChg("0", "-1", DiffGot)),
 			w(markAsChg("0", "-1", DiffWant)),
 		),

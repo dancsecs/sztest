@@ -90,7 +90,9 @@ func chkFloat64TestBad1(t *testing.T) {
 	chk := CaptureNothing(iT)
 	iT.chk = chk
 
-	chk.Float64f(0.02, 0.01, 0.005, "This message will be displayed %s", "first")
+	chk.Float64f(
+		0.02, 0.01, 0.005, "This message will be displayed %s", "first",
+	)
 
 	chk.Release()
 	iT.check(t,
@@ -184,7 +186,9 @@ func chkFloat64SliceTestGood(t *testing.T) {
 	)
 
 	chk.Float64Slicef(
-		[]float64{0.02, 0.06, -.07, 9.0}, []float64{0.01, 0.05, -0.08, 9.0}, 0.1,
+		[]float64{0.02, 0.06, -.07, 9.0},
+		[]float64{0.01, 0.05, -0.08, 9.0},
+		0.1,
 		"This message will NOT be %s", "displayed",
 	)
 
@@ -480,7 +484,9 @@ func chkFloat64UnboundedTestAll(t *testing.T) {
 	// Good:  No error displayed.
 	chk.Float64Unbounded(128, UnboundedMinClosed, bound)
 	chk.Float64Unbounded(129, UnboundedMinClosed, bound, "not ", "displayed")
-	chk.Float64Unboundedf(130, UnboundedMinClosed, bound, "not %s", "displayed")
+	chk.Float64Unboundedf(
+		130, UnboundedMinClosed, bound, "not %s", "displayed",
+	)
 
 	const (
 		wntMsg = "out of bounds: [128,MAX) - { want | want >= 128 }"
@@ -492,8 +498,12 @@ func chkFloat64UnboundedTestAll(t *testing.T) {
 		chkOutCapture("Nothing"),
 
 		chkOutNumericUnbounded(wntMsg, "125", fName, float64TypeName, ""),
-		chkOutNumericUnbounded(wntMsg, "126", fName, float64TypeName, "msg:126"),
-		chkOutNumericUnboundedf(wntMsg, "127", fName, float64TypeName, "msg:127"),
+		chkOutNumericUnbounded(
+			wntMsg, "126", fName, float64TypeName, "msg:126",
+		),
+		chkOutNumericUnboundedf(
+			wntMsg, "127", fName, float64TypeName, "msg:127",
+		),
 
 		chkOutRelease(),
 	)

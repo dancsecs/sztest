@@ -579,7 +579,10 @@ func chkDiffSlice(t *testing.T, tst *tstDiffSlice) {
 
 	if changed != tst.expChanged {
 		t.Error(
-			"invalid error changed:  got: ", changed, "  wnt: ", tst.expChanged,
+			"invalid error changed:  got: ",
+			changed,
+			"  wnt: ",
+			tst.expChanged,
 		)
 	}
 

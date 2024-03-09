@@ -14,8 +14,6 @@ linters-settings:
 linters:
   enable-all: true
   disable:
-    - lll
-
     - deadcode # Deprecated
     - exhaustivestruct # Deprecated
     - golint # Deprecated
@@ -48,7 +46,6 @@ issues:
         - goconst
         - gocyclo
         - goerr113
-        - lll
         - maintidx
         - nolintlint
         - paralleltest

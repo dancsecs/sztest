@@ -96,7 +96,10 @@ func chkDurTestBad1(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Durf",
-			chkOutCommonMsg("This message will be displayed first", durTypeName),
+			chkOutCommonMsg(
+				"This message will be displayed first",
+				durTypeName,
+			),
 			g(markAsChg("3s", "2s", DiffGot)),
 			w(markAsChg("3s", "2s", DiffWant)),
 		),
@@ -484,7 +487,9 @@ func chkDurUnboundedTestAll(t *testing.T) {
 
 		chkOutNumericUnbounded(wntMsg, "125ns", fName, durTypeName, ""),
 		chkOutNumericUnbounded(wntMsg, "126ns", fName, durTypeName, "msg:126"),
-		chkOutNumericUnboundedf(wntMsg, "127ns", fName, durTypeName, "msg:127"),
+		chkOutNumericUnboundedf(
+			wntMsg, "127ns", fName, durTypeName, "msg:127",
+		),
 
 		chkOutRelease(),
 	)

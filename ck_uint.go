@@ -90,7 +90,10 @@ func (chk *Chk) UintSlice(got, want []uint, msg ...any) bool {
 
 // UintBoundedf checks value is within specified bounded range.
 func (chk *Chk) UintBoundedf(
-	got uint, option BoundedOption, min, max uint, msgFmt string, msgArgs ...any,
+	got uint,
+	option BoundedOption,
+	min, max uint,
+	msgFmt string, msgArgs ...any,
 ) bool {
 	inRange, want := inBoundedRange(got, option, min, max)
 	if inRange {
@@ -118,7 +121,10 @@ func (chk *Chk) UintBounded(
 
 // UintUnboundedf checks value is within specified unbounded range.
 func (chk *Chk) UintUnboundedf(
-	got uint, option UnboundedOption, bound uint, msgFmt string, msgArgs ...any,
+	got uint,
+	option UnboundedOption,
+	bound uint,
+	msgFmt string, msgArgs ...any,
 ) bool {
 	inRange, want := inUnboundedRange(got, option, bound)
 	if inRange {

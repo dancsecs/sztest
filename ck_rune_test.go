@@ -93,7 +93,10 @@ func chkRuneTestBad1(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Runef",
-			chkOutCommonMsg("This message will be displayed first", runeTypeName),
+			chkOutCommonMsg(
+				"This message will be displayed first",
+				runeTypeName,
+			),
 			g(markAsChg("2", "1", DiffGot)),
 			w(markAsChg("2", "1", DiffWant)),
 		),
@@ -113,7 +116,10 @@ func chkRuneTestBad2(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Rune",
-			chkOutCommonMsg("This message will be displayed second", runeTypeName),
+			chkOutCommonMsg(
+				"This message will be displayed second",
+				runeTypeName,
+			),
 			g(markAsChg("-2", "1", DiffGot)),
 			w(markAsChg("-2", "1", DiffWant)),
 		),
@@ -133,7 +139,10 @@ func chkRuneTestBad3(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Runef",
-			chkOutCommonMsg("This message will be displayed third", runeTypeName),
+			chkOutCommonMsg(
+				"This message will be displayed third",
+				runeTypeName,
+			),
 			g(markAsChg("0", "-1", DiffGot)),
 			w(markAsChg("0", "-1", DiffWant)),
 		),

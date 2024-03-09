@@ -213,7 +213,8 @@ func (chk *Chk) CreateTmpUnixScriptIn(path string, lines []string) string {
 					if len(ccl) < 3 || ccl[0:3] != "#!/" {
 						chk.Error(
 							"invalid unix script:  " +
-								"first line must start with '#!/' after optional whitespace",
+								"first line must start with '#!/' " +
+								"after optional whitespace",
 						)
 
 						return ""
@@ -257,7 +258,7 @@ func (chk *Chk) CreateTmpSubDir(subDirs ...string) string {
 	err := os.MkdirAll(fullPath, settingPermDir)
 	if err != nil {
 		chk.t.Helper()
-		chk.Error("createTmpSubDir cause: ", err)
+		chk.Error("createTmpSubDir caused: ", err)
 	}
 
 	return fullPath
@@ -289,7 +290,7 @@ func (chk *Chk) CreateTmpDir() string {
 	}
 
 	if err != nil {
-		chk.Error("createTmpDir cause: ", err)
+		chk.Error("createTmpDir caused: ", err)
 	}
 
 	chk.tmpDirCreated = true

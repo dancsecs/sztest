@@ -90,7 +90,10 @@ func (chk *Chk) ByteSlice(got, want []byte, msg ...any) bool {
 
 // ByteBoundedf checks value is within specified bounded range.
 func (chk *Chk) ByteBoundedf(
-	got byte, option BoundedOption, min, max byte, msgFmt string, msgArgs ...any,
+	got byte,
+	option BoundedOption,
+	min, max byte,
+	msgFmt string, msgArgs ...any,
 ) bool {
 	inRange, want := inBoundedRange(got, option, min, max)
 
@@ -120,7 +123,10 @@ func (chk *Chk) ByteBounded(
 
 // ByteUnboundedf checks value is within specified unbounded range.
 func (chk *Chk) ByteUnboundedf(
-	got byte, option UnboundedOption, bound byte, msgFmt string, msgArgs ...any,
+	got byte,
+	option UnboundedOption,
+	bound byte,
+	msgFmt string, msgArgs ...any,
 ) bool {
 	inRange, want := inUnboundedRange(got, option, bound)
 

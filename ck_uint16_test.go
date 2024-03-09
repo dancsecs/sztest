@@ -93,7 +93,10 @@ func chkUint16TestBad1(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Uint16f",
-			chkOutCommonMsg("This message will be displayed first", uint16TypeName),
+			chkOutCommonMsg(
+				"This message will be displayed first",
+				uint16TypeName,
+			),
 			g(markAsChg("2", "1", DiffGot)),
 			w(markAsChg("2", "1", DiffWant)),
 		),
@@ -113,7 +116,10 @@ func chkUint16TestBad2(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Uint16",
-			chkOutCommonMsg("This message will be displayed second", uint16TypeName),
+			chkOutCommonMsg(
+				"This message will be displayed second",
+				uint16TypeName,
+			),
 			g(markAsChg("2", "1", DiffGot)),
 			w(markAsChg("2", "1", DiffWant)),
 		),
@@ -133,7 +139,10 @@ func chkUint16TestBad3(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Uint16f",
-			chkOutCommonMsg("This message will be displayed third", uint16TypeName),
+			chkOutCommonMsg(
+				"This message will be displayed third",
+				uint16TypeName,
+			),
 			g(markAsChg("0", "1", DiffGot)),
 			w(markAsChg("0", "1", DiffWant)),
 		),

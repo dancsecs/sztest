@@ -30,7 +30,9 @@ func tstChkArgsAndFlags(t *testing.T) {
 	t.Run("SetupOneArg", chkArgsAndFlagsTestSetupOneArg)
 	t.Run("GoodParseDefault", chkArgsAndFlagsTestGoodParseDefault)
 	t.Run("GoodParse", chkArgsAndFlagsTestGoodParse)
-	t.Run("GoodParseExtraArguments", chkArgsAndFlagsTestGoodParseExtraArguments)
+	t.Run("GoodParseExtraArguments",
+		chkArgsAndFlagsTestGoodParseExtraArguments,
+	)
 	t.Run("BadParseInteger", chkArgsAndFlagsTestBadParseInteger)
 	t.Run("CaptureFlagUsage", chkArgsAndFlagsTestCaptureFlagUsage)
 }

@@ -88,7 +88,10 @@ func chkComplex128TestBad1(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Complex128f",
-			chkOutCommonMsg("This message will be displayed first", complex128TypeName),
+			chkOutCommonMsg(
+				"This message will be displayed first",
+				complex128TypeName,
+			),
 			g(markAsChg("(2", "(1", DiffGot)+"+0i)"),
 			w(markAsChg("(2", "(1", DiffWant)+"+0i)"),
 		),
@@ -108,7 +111,10 @@ func chkComplex128TestBad2(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Complex128",
-			chkOutCommonMsg("This message will be displayed second", complex128TypeName),
+			chkOutCommonMsg(
+				"This message will be displayed second",
+				complex128TypeName,
+			),
 			g(markAsChg("(2", "(1", DiffGot)+"+0i)"),
 			w(markAsChg("(2", "(1", DiffWant)+"+0i)"),
 		),
@@ -128,7 +134,10 @@ func chkComplex128TestBad3(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Complex128f",
-			chkOutCommonMsg("This message will be displayed third", complex128TypeName),
+			chkOutCommonMsg(
+				"This message will be displayed third",
+				complex128TypeName,
+			),
 			g(markAsChg("(0", "(1", DiffGot)+"+0i)"),
 			w(markAsChg("(0", "(1", DiffWant)+"+0i)"),
 		),

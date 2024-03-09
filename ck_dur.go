@@ -114,7 +114,10 @@ func (chk *Chk) DurBoundedf(
 
 // DurBounded checks value is within specified bounded range.
 func (chk *Chk) DurBounded(
-	got time.Duration, option BoundedOption, min, max time.Duration, msg ...any,
+	got time.Duration,
+	option BoundedOption,
+	min, max time.Duration,
+	msg ...any,
 ) bool {
 	inRange, want := inBoundedRange(got, option, min, max)
 	if inRange {

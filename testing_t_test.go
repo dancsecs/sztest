@@ -572,7 +572,8 @@ func findNextMark(data, expectedClose string,
 		if tmpIndex >= 0 &&
 			tmpIndex < markOpenIndex &&
 			tmpIndex <= markCloseIndex {
-			if tmpIndex == markCloseIndex && markCloseInternal == expectedClose {
+			if tmpIndex == markCloseIndex &&
+				markCloseInternal == expectedClose {
 				return
 			}
 

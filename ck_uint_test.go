@@ -93,7 +93,10 @@ func chkUintTestBad1(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Uintf",
-			chkOutCommonMsg("This message will be displayed first", uintTypeName),
+			chkOutCommonMsg(
+				"This message will be displayed first",
+				uintTypeName,
+			),
 			g(markAsChg("2", "1", DiffGot)),
 			w(markAsChg("2", "1", DiffWant)),
 		),
@@ -113,7 +116,10 @@ func chkUintTestBad2(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Uint",
-			chkOutCommonMsg("This message will be displayed second", uintTypeName),
+			chkOutCommonMsg(
+				"This message will be displayed second",
+				uintTypeName,
+			),
 			g(markAsChg("2", "1", DiffGot)),
 			w(markAsChg("2", "1", DiffWant)),
 		),
@@ -133,7 +139,10 @@ func chkUintTestBad3(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Uintf",
-			chkOutCommonMsg("This message will be displayed third", uintTypeName),
+			chkOutCommonMsg(
+				"This message will be displayed third",
+				uintTypeName,
+			),
 			g(markAsChg("0", "1", DiffGot)),
 			w(markAsChg("0", "1", DiffWant)),
 		),

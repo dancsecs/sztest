@@ -81,7 +81,9 @@ func (chk *Chk) Int32Slice(got, want []int32, msg ...any) bool {
 
 	chk.t.Helper()
 
-	return errSlice(chk, got, want, int32TypeName, defaultCmpFunc[int32], msg...)
+	return errSlice(
+		chk, got, want, int32TypeName, defaultCmpFunc[int32], msg...,
+	)
 }
 
 //

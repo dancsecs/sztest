@@ -91,7 +91,10 @@ func chkByteTestBad1(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Bytef",
-			chkOutCommonMsg("This message will be displayed first", byteTypeName),
+			chkOutCommonMsg(
+				"This message will be displayed first",
+				byteTypeName,
+			),
 			g(markAsChg("2", "1", DiffGot)),
 			w(markAsChg("2", "1", DiffWant)),
 		),
@@ -111,7 +114,10 @@ func chkByteTestBad2(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Byte",
-			chkOutCommonMsg("This message will be displayed second", byteTypeName),
+			chkOutCommonMsg(
+				"This message will be displayed second",
+				byteTypeName,
+			),
 			g(markAsChg("2", "1", DiffGot)),
 			w(markAsChg("2", "1", DiffWant)),
 		),
@@ -131,7 +137,10 @@ func chkByteTestBad3(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Bytef",
-			chkOutCommonMsg("This message will be displayed third", byteTypeName),
+			chkOutCommonMsg(
+				"This message will be displayed third",
+				byteTypeName,
+			),
 			g(markAsChg("0", "1", DiffGot)),
 			w(markAsChg("0", "1", DiffWant)),
 		),

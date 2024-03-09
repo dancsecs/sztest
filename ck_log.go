@@ -512,7 +512,9 @@ func (chk *Chk) Log(wantLines ...string) bool {
 	chk.t.Helper()
 
 	if !chk.logOn && !(chk.errOn && chk.errIncLog) {
-		chk.Error("invalid log.Writer check without information being captured")
+		chk.Error(
+			"invalid log.Writer check without information being captured",
+		)
 
 		return true
 	}

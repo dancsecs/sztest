@@ -93,7 +93,10 @@ func chkInt64TestBad1(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Int64f",
-			chkOutCommonMsg("This message will be displayed first", int64TypeName),
+			chkOutCommonMsg(
+				"This message will be displayed first",
+				int64TypeName,
+			),
 			g(markAsChg("2", "1", DiffGot)),
 			w(markAsChg("2", "1", DiffWant)),
 		),
@@ -113,7 +116,10 @@ func chkInt64TestBad2(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Int64",
-			chkOutCommonMsg("This message will be displayed second", int64TypeName),
+			chkOutCommonMsg(
+				"This message will be displayed second",
+				int64TypeName,
+			),
 			g(markAsChg("-2", "1", DiffGot)),
 			w(markAsChg("-2", "1", DiffWant)),
 		),
@@ -133,7 +139,10 @@ func chkInt64TestBad3(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Int64f",
-			chkOutCommonMsg("This message will be displayed third", int64TypeName),
+			chkOutCommonMsg(
+				"This message will be displayed third",
+				int64TypeName,
+			),
 			g(markAsChg("0", "-1", DiffGot)),
 			w(markAsChg("0", "-1", DiffWant)),
 		),

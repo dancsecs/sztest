@@ -40,7 +40,8 @@ func tstChkDir(t *testing.T) {
 	t.Run("CreateTmpFileEmpty", chkDirTestCreateTmpFileEmpty)
 	t.Run("CreateTmpFileEmptyKeepTmp", chkDirTestCreateTmpFileEmptyKeepTmp)
 	t.Run(
-		"CreateTmpFileInvalidDIrectory", chkDirTestCreateTmpFileInvalidDIrectory,
+		"CreateTmpFileInvalidDIrectory",
+		chkDirTestCreateTmpFileInvalidDIrectory,
 	)
 	t.Run("CreateTmpUnixScriptEmpty", chkDirTestCreateTmpUnixScriptEmpty)
 	t.Run("CreateTmpUnixScriptInvalid", chkDirTestCreateTmpUnixScriptInvalid)
@@ -309,7 +310,8 @@ func chkDirTestCreateDirNotExist(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutHelper("CreateTmpDir"),
 		chkOutError(
-			"createTmpDir cause: mkdir /DOES_NOT_EXIST/Internal Testing Object: "+
+			"createTmpDir caused: "+
+				"mkdir /DOES_NOT_EXIST/Internal Testing Object: "+
 				"no such file or directory",
 		),
 		chkOutRelease(),
@@ -602,7 +604,7 @@ func chkDirTestCreateTmpSubDir(t *testing.T) {
 		chkOutPush("Pre", ""),
 		chkOutHelper("CreateTmpSubDir"),
 		chkOutError(
-			"createTmpSubDir cause: mkdir /here: read-only file system",
+			"createTmpSubDir caused: mkdir /here: read-only file system",
 		),
 		chkOutRelease(),
 		chkOutPush("Pre", "func1"),
@@ -621,7 +623,10 @@ func chkDirTestCreateRealTmpDir(t *testing.T) {
 	rawPath := filepath.Join(settingTmpDir, rawName)
 	adjPath := filepath.Join(settingTmpDir, adjName)
 
-	chk.False(rawPath == adjPath, "should be a path as it is executed via t.Run")
+	chk.False(
+		rawPath == adjPath,
+		"should be a path as it is executed via t.Run",
+	)
 
 	chk.Str(
 		dir,

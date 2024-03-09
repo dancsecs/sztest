@@ -114,7 +114,10 @@ func chkErrTestBad1(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Errf",
-			chkOutCommonMsg("This err message will be displayed first", errTypeName),
+			chkOutCommonMsg(
+				"This err message will be displayed first",
+				errTypeName,
+			),
 			g(markAsIns(`error mismatch for ""`)),
 			w(""),
 		),
@@ -137,7 +140,10 @@ func chkErrTestBad2(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Errf",
-			chkOutCommonMsg("This err message will be displayed second", errTypeName),
+			chkOutCommonMsg(
+				"This err message will be displayed second",
+				errTypeName,
+			),
 			g(markAsIns("error mismatch for \"")+"<nil>"+markAsIns("\"")),
 			w("<nil>"),
 		),
@@ -160,8 +166,14 @@ func chkErrTestBad3(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Err",
-			chkOutCommonMsg("This err message will be displayed third", errTypeName),
-			g(markAsIns("error mismatch for \"")+"expected error"+markAsIns("\"")),
+			chkOutCommonMsg(
+				"This err message will be displayed third",
+				errTypeName,
+			),
+			g(
+				markAsIns(
+					"error mismatch for \"")+"expected error"+markAsIns("\""),
+			),
 			w("expected error"),
 		),
 		chkOutRelease(),
@@ -207,7 +219,10 @@ func chkErrTestNoErrBad2(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"NoErrf",
-			chkOutCommonMsg("This err message will be displayed noErrSecond", errTypeName),
+			chkOutCommonMsg(
+				"This err message will be displayed noErrSecond",
+				errTypeName,
+			),
 			g(markAsIns("expected error")),
 			w(""),
 		),
@@ -237,20 +252,29 @@ func chkErrSliceTestGood(t *testing.T) {
 		[]error{}, []string{}, "This message will NOT be displayed",
 	)
 	chk.ErrSlice(
-		[]error{tstErr1}, []string{tstStr1}, "This message will NOT be displayed",
-	)
-	chk.ErrSlice(
-		[]error{tstErr1, tstErr2}, []string{tstStr1, tstStr2}, "This message will NOT be displayed",
-	)
-	chk.ErrSlice(
-		[]error{tstErr1, tstErr2, tstErr3}, []string{tstStr1, tstStr2, tstStr3},
+		[]error{tstErr1},
+		[]string{tstStr1},
 		"This message will NOT be displayed",
 	)
 	chk.ErrSlice(
-		[]error{tstErr2, tstErr3}, []string{tstStr2, tstStr3}, "This message will NOT be displayed",
+		[]error{tstErr1, tstErr2},
+		[]string{tstStr1, tstStr2},
+		"This message will NOT be displayed",
 	)
 	chk.ErrSlice(
-		[]error{tstErr3}, []string{tstStr3}, "This message will NOT be displayed",
+		[]error{tstErr1, tstErr2, tstErr3},
+		[]string{tstStr1, tstStr2, tstStr3},
+		"This message will NOT be displayed",
+	)
+	chk.ErrSlice(
+		[]error{tstErr2, tstErr3},
+		[]string{tstStr2, tstStr3},
+		"This message will NOT be displayed",
+	)
+	chk.ErrSlice(
+		[]error{tstErr3},
+		[]string{tstStr3},
+		"This message will NOT be displayed",
 	)
 
 	chk.ErrSlicef(
@@ -290,7 +314,11 @@ func chkErrSliceTestBadMsg2(t *testing.T) {
 	chk := CaptureNothing(iT)
 	iT.chk = chk
 
-	chk.ErrSlice([]error{errors.New("x")}, nil, "This message will be displayed")
+	chk.ErrSlice(
+		[]error{errors.New("x")},
+		nil,
+		"This message will be displayed",
+	)
 
 	chk.Release()
 	iT.check(t,
@@ -312,7 +340,9 @@ func chkErrSliceTestBadMsg3(t *testing.T) {
 	tstErr3 := errors.New(tstStr3)
 
 	chk.ErrSlicef(
-		[]error{tstErr3}, []string{tstStr1}, "This message will be %s", "displayed",
+		[]error{tstErr3},
+		[]string{tstStr1},
+		"This message will be %s", "displayed",
 	)
 
 	chk.Release()
@@ -336,7 +366,8 @@ func chkErrSliceTestBadMsg4(t *testing.T) {
 	tstErr3 := errors.New(tstStr3)
 
 	chk.ErrSlice(
-		[]error{tstErr1, tstErr1, tstErr3}, []string{tstStr1, tstStr2, tstStr3},
+		[]error{tstErr1, tstErr1, tstErr3},
+		[]string{tstStr1, tstStr2, tstStr3},
 		"This message will be displayed",
 	)
 

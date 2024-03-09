@@ -81,7 +81,9 @@ func (chk *Chk) NoErrf(got error, msgFmt string, msgArgs ...any) bool {
 
 	chk.t.Helper()
 
-	return chk.errChkf(chk.errPrepareGot(got), nilStr, errTypeName, msgFmt, msgArgs...)
+	return chk.errChkf(
+		chk.errPrepareGot(got), nilStr, errTypeName, msgFmt, msgArgs...,
+	)
 }
 
 // NoErr simply invokes Err with want set to "".
@@ -147,8 +149,12 @@ func (chk *Chk) ErrSlicef(
 	chk.t.Helper()
 
 	return errSlicef(
-		chk, chk.errPrepareGotSlice(got), chk.errPrepareWantSlice(want), errTypeName,
-		defaultCmpFunc[string], msgFmt, msgArgs...,
+		chk,
+		chk.errPrepareGotSlice(got),
+		chk.errPrepareWantSlice(want),
+		errTypeName,
+		defaultCmpFunc[string],
+		msgFmt, msgArgs...,
 	)
 }
 
@@ -170,8 +176,12 @@ func (chk *Chk) ErrSlice(
 
 	chk.t.Helper()
 
-	return errSlice(chk,
-		chk.errPrepareGotSlice(got), chk.errPrepareWantSlice(want), errTypeName,
-		defaultCmpFunc[string], msg...,
+	return errSlice(
+		chk,
+		chk.errPrepareGotSlice(got),
+		chk.errPrepareWantSlice(want),
+		errTypeName,
+		defaultCmpFunc[string],
+		msg...,
 	)
 }

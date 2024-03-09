@@ -239,7 +239,10 @@ func DiffSlice[T chkType](
 
 	// Add unchanged lines
 	for i := 0; i < numLines; i++ {
-		result = append(result, dFmt.same(i+gotIdx, i+wntInd, gotSlice[i+gotIdx]))
+		result = append(
+			result,
+			dFmt.same(i+gotIdx, i+wntInd, gotSlice[i+gotIdx]),
+		)
 	}
 
 	// Check lines after largest identical section
@@ -317,13 +320,15 @@ func DiffString(gotStr, wntStr string, dType diffType, minRun int) string {
 		// nothing matched.  All changed
 		return markAsChg(gotStr, wntStr, dType)
 	}
-	// Return a composition of the largest matching segment prefixed and suffixed
-	// by recursively calling DiffString with prefix and suffix strings
-	// respectively.
+	// Return a composition of the largest matching segment prefixed and
+	// suffixed by recursively calling DiffString with prefix and suffix
+	// strings respectively.
 	return "" +
 		DiffString(gotStr[:gotIdx], wntStr[:wntIdx], dType, minRun) +
 		gotStr[gotIdx:gotIdx+numChars] +
-		DiffString(gotStr[gotIdx+numChars:], wntStr[wntIdx+numChars:], dType, minRun)
+		DiffString(
+			gotStr[gotIdx+numChars:], wntStr[wntIdx+numChars:], dType, minRun,
+		)
 }
 
 func bestNextRunString(got, wnt string, minRun int) (int, int, int) {

@@ -90,7 +90,10 @@ func (chk *Chk) RuneSlice(got, want []rune, msg ...any) bool {
 
 // RuneBoundedf checks value is within specified bounded range.
 func (chk *Chk) RuneBoundedf(
-	got rune, option BoundedOption, min, max rune, msgFmt string, msgArgs ...any,
+	got rune,
+	option BoundedOption,
+	min, max rune,
+	msgFmt string, msgArgs ...any,
 ) bool {
 	inRange, want := inBoundedRange(got, option, min, max)
 	if inRange {
@@ -118,7 +121,10 @@ func (chk *Chk) RuneBounded(
 
 // RuneUnboundedf checks value is within specified unbounded range.
 func (chk *Chk) RuneUnboundedf(
-	got rune, option UnboundedOption, bound rune, msgFmt string, msgArgs ...any,
+	got rune,
+	option UnboundedOption,
+	bound rune,
+	msgFmt string, msgArgs ...any,
 ) bool {
 	inRange, want := inUnboundedRange(got, option, bound)
 	if inRange {

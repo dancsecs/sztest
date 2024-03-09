@@ -66,7 +66,8 @@ func tstChkLogging(t *testing.T) {
 	t.Run("CheckLogging_StderrMissing",
 		chkLogTestCheckLoggingStderrMissing)
 	t.Run("WriteLogLoggerWithStderrAndStdoutWithCheckErrorBlockingCheck",
-		chkLogTestWriteLogLoggerWithStderrAndStdoutWithCheckErrorBlockingCheck)
+		chkLogTestWriteLogLoggerWithStderrAndStdoutWithCheckErrorBlockingCheck,
+	)
 	t.Run("ReleasePanicInteractionPanicInternal",
 		chkLogTestReleasePanicInteractionPanicInternal)
 	t.Run("LeadingAndTrainingSpaces",
@@ -178,7 +179,9 @@ func chkLogTestRemoveLogPrefixes(t *testing.T) {
 
 								chk.StrSlice(
 									strings.Split(
-										removeLogPrefixes(createLogString(prefix, flags)),
+										removeLogPrefixes(
+											createLogString(prefix, flags),
+										),
 										"\n",
 									),
 									finalResult,
@@ -213,13 +216,17 @@ func chkLogTestWriteNoneCaptureNothing(t *testing.T) {
 	iT.check(t,
 		chkOutCapture("Nothing"),
 		chkOutHelper("Stdout"),
-		chkOutError("invalid os.Stdout check without information being captured"),
+		chkOutError(
+			"invalid os.Stdout check without information being captured",
+		),
 		chkOutHelper("Log"),
 		chkOutError(
 			"invalid log.Writer check without information being captured",
 		),
 		chkOutHelper("Stderr"),
-		chkOutError("invalid os.Stderr check without information being captured"),
+		chkOutError(
+			"invalid os.Stderr check without information being captured",
+		),
 		chkOutRelease(),
 	)
 }
@@ -296,11 +303,15 @@ func chkLogTestWriteNoneLogLogger(t *testing.T) {
 		chkOutHelper("setupLogLogger"),
 		chkOutPush("Pre", ""),
 		chkOutHelper("Stdout"),
-		chkOutError("invalid os.Stdout check without information being captured"),
+		chkOutError(
+			"invalid os.Stdout check without information being captured",
+		),
 		chkOutHelper("Log"),
 		chkOutHelper("compareLog"),
 		chkOutHelper("Stderr"),
-		chkOutError("invalid os.Stderr check without information being captured"),
+		chkOutError(
+			"invalid os.Stderr check without information being captured",
+		),
 		chkOutRelease(),
 		chkOutPush("Pre", "func1"),
 	)
@@ -323,7 +334,9 @@ func chkLogTestWriteNoneLogStderr(t *testing.T) {
 		chkOutHelper("setupStderrLogger"),
 		chkOutPush("Pre", ""),
 		chkOutHelper("Stdout"),
-		chkOutError("invalid os.Stdout check without information being captured"),
+		chkOutError(
+			"invalid os.Stdout check without information being captured",
+		),
 		chkOutHelper("Log"),
 		chkOutError(
 			"invalid log.Writer check without information being captured",
@@ -358,7 +371,9 @@ func chkLogTestWriteNoneLogStdout(t *testing.T) {
 			"invalid log.Writer check without information being captured",
 		),
 		chkOutHelper("Stderr"),
-		chkOutError("invalid os.Stderr check without information being captured"),
+		chkOutError(
+			"invalid os.Stderr check without information being captured",
+		),
 		chkOutRelease(),
 		chkOutPush("Pre", "func1"),
 	)
@@ -383,7 +398,9 @@ func chkLogTestWriteNoneLogLoggerAndStderr(t *testing.T) {
 		chkOutHelper("setupStderrLogger"),
 		chkOutPush("Pre", ""),
 		chkOutHelper("Stdout"),
-		chkOutError("invalid os.Stdout check without information being captured"),
+		chkOutError(
+			"invalid os.Stdout check without information being captured",
+		),
 		chkOutHelper("Log"),
 		chkOutHelper("compareLog"),
 		chkOutHelper("Stderr"),
@@ -417,7 +434,9 @@ func chkLogTestWriteNoneLogLoggerAndStdout(t *testing.T) {
 		chkOutHelper("Log"),
 		chkOutHelper("compareLog"),
 		chkOutHelper("Stderr"),
-		chkOutError("invalid os.Stderr check without information being captured"),
+		chkOutError(
+			"invalid os.Stderr check without information being captured",
+		),
 		chkOutRelease(),
 		chkOutPush("Pre", "func2"),
 		chkOutPush("Pre", "func1"),
@@ -471,7 +490,9 @@ func chkLogTestWriteNoneLogLoggerWithStderrChkStderr(t *testing.T) {
 		chkOutHelper("setupStderrLogger"),
 		chkOutPush("Pre", ""),
 		chkOutHelper("Stdout"),
-		chkOutError("invalid os.Stdout check without information being captured"),
+		chkOutError(
+			"invalid os.Stdout check without information being captured",
+		),
 		chkOutHelper("Stderr"),
 		chkOutHelper("compareLog"),
 		chkOutRelease(),
@@ -494,7 +515,9 @@ func chkLogTestWriteNoneLogLoggerWithStderrChkLog(t *testing.T) {
 		chkOutHelper("setupStderrLogger"),
 		chkOutPush("Pre", ""),
 		chkOutHelper("Stdout"),
-		chkOutError("invalid os.Stdout check without information being captured"),
+		chkOutError(
+			"invalid os.Stdout check without information being captured",
+		),
 		chkOutHelper("Log"),
 		chkOutHelper("compareLog"),
 		chkOutRelease(),
@@ -519,7 +542,9 @@ func chkLogTestWriteNoneLogLoggerWithStderrChkBoth(t *testing.T) {
 		chkOutHelper("setupStderrLogger"),
 		chkOutPush("Pre", ""),
 		chkOutHelper("Stdout"),
-		chkOutError("invalid os.Stdout check without information being captured"),
+		chkOutError(
+			"invalid os.Stdout check without information being captured",
+		),
 		chkOutHelper("Log"),
 		chkOutHelper("compareLog"),
 		chkOutHelper("Stderr"),
@@ -679,7 +704,9 @@ func chkLogTestCheckLoggingNotStdoutWithExpected(t *testing.T) {
 			"invalid log.Writer check without information being captured",
 		),
 		chkOutHelper("Stderr"),
-		chkOutError("invalid os.Stderr check without information being captured"),
+		chkOutError(
+			"invalid os.Stderr check without information being captured",
+		),
 		chkOutRelease(),
 		chkOutPush("Pre", "func1"),
 	)
@@ -709,7 +736,9 @@ func chkLogTestCheckLoggingNoLoggingWithExpected(t *testing.T) {
 		chkOutHelper("setupLogLogger"),
 		chkOutPush("Pre", ""),
 		chkOutHelper("Stdout"),
-		chkOutError("invalid os.Stdout check without information being captured"),
+		chkOutError(
+			"invalid os.Stdout check without information being captured",
+		),
 		chkOutHelper("Log"),
 		chkOutHelper("compareLog"),
 		chkOutHelper("Error"),
@@ -718,7 +747,9 @@ func chkLogTestCheckLoggingNoLoggingWithExpected(t *testing.T) {
 		chkOutLnWnt("0", "This line should be flagged as not in log"),
 		"Fail Now: (*Chk).Error",
 		chkOutHelper("Stderr"),
-		chkOutError("invalid os.Stderr check without information being captured"),
+		chkOutError(
+			"invalid os.Stderr check without information being captured",
+		),
 		chkOutRelease(),
 		chkOutPush("Pre", "func1"),
 	)
@@ -748,7 +779,9 @@ func chkLogTestCheckLoggingNotStderrWithExpected(t *testing.T) {
 		chkOutHelper("setupStderrLogger"),
 		chkOutPush("Pre", ""),
 		chkOutHelper("Stdout"),
-		chkOutError("invalid os.Stdout check without information being captured"),
+		chkOutError(
+			"invalid os.Stdout check without information being captured",
+		),
 		chkOutHelper("Log"),
 		chkOutError(
 			"invalid log.Writer check without information being captured",
@@ -799,7 +832,9 @@ func chkLogTestCheckLoggingStdoutMissing(t *testing.T) {
 			"invalid log.Writer check without information being captured",
 		),
 		chkOutHelper("Stderr"),
-		chkOutError("invalid os.Stderr check without information being captured"),
+		chkOutError(
+			"invalid os.Stderr check without information being captured",
+		),
 		chkOutRelease(),
 		chkOutPush("Pre", "func1"),
 	)
@@ -828,7 +863,9 @@ func chkLogTestCheckLoggingLoggerMissing(t *testing.T) {
 		chkOutHelper("setupLogLogger"),
 		chkOutPush("Pre", ""),
 		chkOutHelper("Stdout"),
-		chkOutError("invalid os.Stdout check without information being captured"),
+		chkOutError(
+			"invalid os.Stdout check without information being captured",
+		),
 		chkOutHelper("Log"),
 		chkOutHelper("compareLog"),
 		chkOutHelper("Error"),
@@ -837,7 +874,9 @@ func chkLogTestCheckLoggingLoggerMissing(t *testing.T) {
 		chkOutLnGot("0", "Forced error message"),
 		"Fail Now: (*Chk).Error",
 		chkOutHelper("Stderr"),
-		chkOutError("invalid os.Stderr check without information being captured"),
+		chkOutError(
+			"invalid os.Stderr check without information being captured",
+		),
 		chkOutRelease(),
 		chkOutPush("Pre", "func1"),
 	)
@@ -866,7 +905,9 @@ func chkLogTestCheckLoggingStderrMissing(t *testing.T) {
 		chkOutHelper("setupStderrLogger"),
 		chkOutPush("Pre", ""),
 		chkOutHelper("Stdout"),
-		chkOutError("invalid os.Stdout check without information being captured"),
+		chkOutError(
+			"invalid os.Stdout check without information being captured",
+		),
 		chkOutHelper("Log"),
 		chkOutError(
 			"invalid log.Writer check without information being captured",
@@ -908,7 +949,9 @@ func chkLogTestWriteLogLoggerWithStderrAndStdoutWithCheckErrorBlockingCheck(
 			w(markAsChg("this", "that", DiffWant)),
 		),
 		chkOutHelper("Stdout"),
-		chkOutError("invalid os.Stdout check without information being captured"),
+		chkOutError(
+			"invalid os.Stdout check without information being captured",
+		),
 		chkOutHelper("Log"),
 		chkOutHelper("compareLog"),
 		chkOutRelease(),

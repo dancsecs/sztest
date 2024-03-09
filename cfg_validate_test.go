@@ -451,7 +451,9 @@ func testConfigValidateColor(t *testing.T) {
 		t.Fatalf(invalidString, jsonNameChg, markValue, "")
 	}
 
-	markValue, ok = validateMark("blue_And_blue", EnvMarkChgOn, settingMarkChgOn)
+	markValue, ok = validateMark(
+		"blue_And_blue", EnvMarkChgOn, settingMarkChgOn,
+	)
 	if ok {
 		t.Fatalf(invalidOkBool, EnvMarkChgOn, ok, true)
 	}
@@ -460,7 +462,9 @@ func testConfigValidateColor(t *testing.T) {
 		t.Fatalf(invalidString, jsonNameChg, markValue, "")
 	}
 
-	markValue, ok = validateMark("bk-blue_AND_bk-blue", EnvMarkChgOn, settingMarkChgOn)
+	markValue, ok = validateMark(
+		"bk-blue_AND_bk-blue", EnvMarkChgOn, settingMarkChgOn,
+	)
 	if ok {
 		t.Fatalf(invalidOkBool, EnvMarkChgOn, ok, true)
 	}
@@ -469,7 +473,9 @@ func testConfigValidateColor(t *testing.T) {
 		t.Fatalf(invalidString, jsonNameChg, markValue, "")
 	}
 
-	markValue, ok = validateMark("bold_and_bold", EnvMarkChgOn, settingMarkChgOn)
+	markValue, ok = validateMark(
+		"bold_and_bold", EnvMarkChgOn, settingMarkChgOn,
+	)
 	if ok {
 		t.Fatalf(invalidOkBool, EnvMarkChgOn, ok, true)
 	}
@@ -533,7 +539,11 @@ func testConfigValidateColor(t *testing.T) {
 	}
 
 	wLine = fmt.Sprintf(
-		errMsg, EnvMarkChgOn, "bk-blue_AND_bk-blue", validColor, settingMarkChgOn,
+		errMsg,
+		EnvMarkChgOn,
+		"bk-blue_AND_bk-blue",
+		validColor,
+		settingMarkChgOn,
 	)
 	if !strings.Contains(lines[5], wLine) {
 		t.Fatalf(invalidString, jsonName, lines[5], wLine)

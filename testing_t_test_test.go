@@ -523,7 +523,8 @@ func tstFreezeMarks(t *testing.T) {
 	got, err = freezeMarks(settingMarkInsOn + "abc" + settingMarkGotOn)
 	if err == nil ||
 		err.Error() !=
-			`unexpected closing mark: Got: "|-|GoTOn|-|"  Want: "|-|InSOff|-|"` {
+			`unexpected closing mark: Got: `+
+				`"|-|GoTOn|-|"  Want: "|-|InSOff|-|"` {
 		t.Fatalf("unexpected error for: %v", err)
 	}
 
@@ -875,7 +876,9 @@ func tstChkOutIsSliceError(t *testing.T) {
 		t.Error(errGotWnt(tstName, got, wnt))
 	}
 
-	got = chkOutIsSliceError(false, 1, 2, "[]dataType", "", "message1", "line1")
+	got = chkOutIsSliceError(
+		false, 1, 2, "[]dataType", "", "message1", "line1",
+	)
 	wnt = "" +
 		"Helper: errSlice[...]\n" +
 		"Helper: (*Chk).Error\n" +
@@ -948,7 +951,8 @@ func tstChkOutIsSliceError(t *testing.T) {
 	}
 
 	got = chkOutIsSliceError(
-		false, 2, 1, "[]dataType", "functionName", "message1", "line1", "line2",
+		false, 2, 1,
+		"[]dataType", "functionName", "message1", "line1", "line2",
 	)
 	wnt = "" +
 		"Helper: (*Chk).functionName\n" +

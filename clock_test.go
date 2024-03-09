@@ -194,7 +194,9 @@ func chkClockUseCase2(t *testing.T) {
 	t1 := chk.ClockNext()
 	chk.True(t1.Before(n))
 
-	_ = chk.ClockSet(time.Date(2999, 12, 25, 13, 15, 45, 555555555, time.Local))
+	_ = chk.ClockSet(
+		time.Date(2999, 12, 25, 13, 15, 45, 555555555, time.Local),
+	)
 
 	t2 := chk.ClockNext()
 	t3 := chk.ClockNext()
@@ -207,7 +209,9 @@ func chkClockUseCase3(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
-	_ = chk.ClockSet(time.Date(2999, 12, 25, 13, 15, 45, 555555555, time.Local))
+	_ = chk.ClockSet(
+		time.Date(2999, 12, 25, 13, 15, 45, 555555555, time.Local),
+	)
 
 	t1 := chk.ClockNext()
 	t2 := chk.ClockNext()

@@ -90,7 +90,10 @@ func (chk *Chk) Int8Slice(got, want []int8, msg ...any) bool {
 
 // Int8Boundedf checks value is within specified bounded range.
 func (chk *Chk) Int8Boundedf(
-	got int8, option BoundedOption, min, max int8, msgFmt string, msgArgs ...any,
+	got int8,
+	option BoundedOption,
+	min, max int8,
+	msgFmt string, msgArgs ...any,
 ) bool {
 	inRange, want := inBoundedRange(got, option, min, max)
 	if inRange {
@@ -118,7 +121,10 @@ func (chk *Chk) Int8Bounded(
 
 // Int8Unboundedf checks value is within specified unbounded range.
 func (chk *Chk) Int8Unboundedf(
-	got int8, option UnboundedOption, bound int8, msgFmt string, msgArgs ...any,
+	got int8,
+	option UnboundedOption,
+	bound int8,
+	msgFmt string, msgArgs ...any,
 ) bool {
 	inRange, want := inUnboundedRange(got, option, bound)
 	if inRange {
