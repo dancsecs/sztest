@@ -21,7 +21,6 @@ linters:
     - gocognit
     - goconst
     - gofumpt
-    - inamedparam
     - ireturn
     - lll
     - nestif
@@ -64,7 +63,6 @@ issues:
         - goerr113
         - gofumpt
         - gosec
-        - inamedparam
         - lll
         - maintidx
         - nlreturn

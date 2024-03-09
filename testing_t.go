@@ -21,9 +21,9 @@ package sztest
 // Used internally to represent the testing.T object.
 type testingT interface {
 	Helper()
-	Logf(string, ...any)
-	Errorf(string, ...any)
-	Error(...any)
+	Logf(msgFmt string, msgArgs ...any)
+	Errorf(msgFmt string, msgArgs ...any)
+	Error(msgArgs ...any)
 	FailNow()
 	SkipNow()
 	Name() string
