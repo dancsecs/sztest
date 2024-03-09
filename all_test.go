@@ -77,6 +77,7 @@ func saveThenSetupDefaultEnvironment() func() {
 	return restoreFunc
 }
 
+//nolint:paralleltest // Ok single test drives all tests in sequence.
 func TestSzTest(t *testing.T) {
 	// Set initial testing got/want function to plain
 	errGotWnt = errMarkupFuncNone
