@@ -15,7 +15,6 @@ linters:
     - cyclop
     - dupl
     - gocognit
-    - goconst
     - gofumpt
     - ireturn
     - lll

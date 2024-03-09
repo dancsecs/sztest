@@ -153,13 +153,13 @@ func errMarkupFuncNone(area string, got, wnt any) string {
 	if strings.Count(g, "\n") > 1 && strings.Count(w, "\n") > 1 {
 		h = "\n"
 	}
-	return "unexpected " + area + "\n" +
+	return commonMsgPrefix + area + "\n" +
 		"GOT: " + h + g + "\n" +
 		"WNT: " + h + w
 }
 
 func errMarkupFuncDefault(area string, got, wnt any) string {
-	return "unexpected " + area + "\n" +
+	return commonMsgPrefix + area + "\n" +
 		resolveMarksForDisplay(
 			gotWntDiff(
 				fmt.Sprintf("%v", got),

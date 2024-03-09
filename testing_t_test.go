@@ -269,11 +269,10 @@ func chkOutIsError(caller, msg string, additionLines ...string) string {
 }
 
 func chkOutCommonMsg(msg, dataType string) string {
-	const commonMsg = "unexpected "
 	if msg == "" {
-		msg = commonMsg + dataType
+		msg = commonMsgPrefix + dataType
 	} else {
-		msg = commonMsg + dataType + ":\n" + markMsgOn + msg + markMsgOff
+		msg = commonMsgPrefix + dataType + ":\n" + markMsgOn + msg + markMsgOff
 	}
 	return msg + ":"
 }

@@ -95,6 +95,8 @@ const (
 	captureStderrAndStdout
 )
 
+const commonMsgPrefix = "unexpected "
+
 // Chk structure provides a selector and data to perform testing functions.
 type Chk struct {
 	t testingT
@@ -317,7 +319,7 @@ func errMsgHeader(typeName string, msgArgs ...any) string {
 			msg = ":\n" + markMsgOn + msg + markMsgOff
 		}
 	}
-	return "unexpected " + typeName + msg + ":\n"
+	return commonMsgPrefix + typeName + msg + ":\n"
 }
 
 func errMsgHeaderf(typeName, msgFmt string, msgArgs ...any) string {
@@ -325,7 +327,7 @@ func errMsgHeaderf(typeName, msgFmt string, msgArgs ...any) string {
 	if msg != "" {
 		msg = ":\n" + markMsgOn + msg + markMsgOff
 	}
-	return "unexpected " + typeName + msg + ":\n"
+	return commonMsgPrefix + typeName + msg + ":\n"
 }
 
 func (chk *Chk) errGotWnt(typeName string, got, wnt any, msg ...any) bool {
