@@ -18,8 +18,6 @@
 
 package sztest
 
-import "errors"
-
 // GetIOWriterData returns the bytes received on the ioWriter interface.
 func (chk *Chk) GetIOWriterData() []byte {
 	return chk.wData
@@ -58,7 +56,7 @@ func (chk *Chk) Write(b []byte) (n int, err error) {
 	for _, nb := range b {
 		if chk.wErrPos == 0 {
 			if chk.wErr == nil {
-				return count, errors.New("forced chk error: out of space")
+				return count, ErrForcedOutOfSpace
 			}
 			return count, chk.wErr
 		}

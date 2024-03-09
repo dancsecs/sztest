@@ -73,7 +73,7 @@ func chkDirTest_RemoveTestDir(t *testing.T) {
 
 	chk.Err(
 		removeTestDir(fileName),
-		"not a directory: "+fileName,
+		ErrInvalidDirectory.Error()+": \""+fileName+"\"",
 	)
 
 	chk.NoErr(removeTestDir(tstDir))
@@ -93,7 +93,7 @@ func chkDirTest_RemoveTestFile(t *testing.T) {
 
 	chk.Err(
 		removeTestFile(tstDir),
-		"not a file: "+tstDir,
+		ErrInvalidFile.Error()+": \""+tstDir+"\"",
 	)
 
 	fileName := filepath.Join(tstDir, "fileNotDir")
@@ -418,7 +418,8 @@ func chkDirTest_CreateTmpFileInvalidDIrectory(t *testing.T) {
 		chkOutHelper("CreateTmpFileIn"),
 		chkOutHelper("createFile"),
 		chkOutError(
-			"createFile cause: invalid directory",
+			"createFile cause: "+ErrInvalidDirectory.Error()+
+				": \"/tmp/Internal Testing Object\"",
 		),
 		chkOutRelease(),
 	)

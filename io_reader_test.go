@@ -113,7 +113,7 @@ func chkIoReader_IOReaderError1(t *testing.T) {
 	_, err := chk.Read(make([]byte, 10))
 	chk.Err(
 		err,
-		"Read past end of data",
+		ErrReadPastEndOfData.Error(),
 	)
 
 	chk.Str(

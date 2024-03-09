@@ -69,7 +69,7 @@ func chkIoWriterTest_IOWriterError1(t *testing.T) {
 	_, err := chk.Write([]byte("This is the first line.\n"))
 	chk.Err(
 		err,
-		"forced chk error: out of space",
+		ErrForcedOutOfSpace.Error(),
 	)
 
 	chk.Str(
@@ -105,7 +105,7 @@ func chkIoWriterTest_IOWriterError3(t *testing.T) {
 	_, err := chk.Write([]byte("This is the first line.\n"))
 	chk.Err(
 		err,
-		"forced chk error: out of space",
+		ErrForcedOutOfSpace.Error(),
 	)
 
 	chk.Str(
@@ -141,7 +141,10 @@ func chkIoWriterTest_IOWriterError5(t *testing.T) {
 	_, err := chk.Write([]byte("This is the first line.\n"))
 	chk.Err(err, "")
 	_, err = chk.Write([]byte("This is the second line.\n"))
-	chk.Err(err, "forced chk error: out of space")
+	chk.Err(
+		err,
+		ErrForcedOutOfSpace.Error(),
+	)
 
 	chk.Str(
 		string(chk.GetIOWriterData()),

@@ -18,13 +18,6 @@
 
 package sztest
 
-import "errors"
-
-// Exported errors.
-var (
-	ErrInvalidLastErrArg = errors.New("invalid last arg error")
-)
-
 // LastErr returns the last argument in the list as an error.  If there are
 // no arguments or the last parameter is not an Error interface then
 // ErrInvalidLastErrArg is returned.

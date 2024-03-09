@@ -80,7 +80,7 @@ func removeTestDir(dir string) error {
 		return nil
 	}
 	if err == nil && !fi.IsDir() {
-		err = errors.New("not a directory: " + dir)
+		err = fmt.Errorf("%w: %q", ErrInvalidDirectory, dir)
 	}
 	if err == nil {
 		err = os.Chmod(dir, settingPermDir)
@@ -97,7 +97,7 @@ func removeTestFile(path string) error {
 		return nil
 	}
 	if err == nil && fi.IsDir() {
-		err = errors.New("not a file: " + path)
+		err = fmt.Errorf("%w: %q", ErrInvalidFile, path)
 	}
 	if err == nil {
 		err = os.Chmod(path, settingPermFile)
@@ -116,7 +116,7 @@ func (chk *Chk) createFile(path string, data []byte, perm os.FileMode) string {
 
 	pathStat, err := os.Stat(path)
 	if err != nil || !pathStat.IsDir() {
-		err = errors.New("invalid directory")
+		err = fmt.Errorf("%w: %q", ErrInvalidDirectory, path)
 	}
 	if err == nil {
 		err = removeTestFile(fName)

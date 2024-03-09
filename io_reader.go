@@ -19,7 +19,6 @@
 package sztest
 
 import (
-	"errors"
 	"fmt"
 	"io"
 	"os"
@@ -68,7 +67,7 @@ func (chk *Chk) Read(b []byte) (n int, err error) {
 		return 0, chk.rErr
 	}
 	if chk.rLeft <= 0 {
-		chk.rErr = errors.New("Read past end of data")
+		chk.rErr = ErrReadPastEndOfData
 		return 0, io.EOF
 	}
 

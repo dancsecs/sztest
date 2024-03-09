@@ -19,7 +19,6 @@
 package sztest
 
 import (
-	"errors"
 	"log"
 	"os"
 	"regexp"
@@ -106,10 +105,7 @@ func validatePermExe(s string) (os.FileMode, bool) {
 
 func validateTmpDir(s string) (string, bool) {
 	stat, err := os.Stat(s)
-	if err == nil && !stat.IsDir() {
-		err = errors.New("not a directory")
-	}
-	if err != nil {
+	if err != nil || !stat.IsDir() {
 		log.Printf(errMsg, EnvTmpDir, s, validTmpDir, settingTmpDir)
 		return "", false
 	}
