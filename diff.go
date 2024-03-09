@@ -108,7 +108,7 @@ func CompareSlices[T chkType](
 
 // DiffSlice compares two Slices.
 //
-//nolint:funlen,cyclop // ok
+//nolint:funlen,cyclop,gocognit // Ok.
 func DiffSlice[T chkType](
 	gotSlice, wntSlice []T,
 	dFmt *diffLnFmt,

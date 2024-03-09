@@ -15,7 +15,6 @@ linters:
   enable-all: true
   disable:
     - dupl
-    - gocognit
     - lll
     - wsl
 
@@ -40,7 +39,6 @@ issues:
         - dupl
         - forbidigo
         - funlen
-        - gocognit
         - goconst
         - gocyclo
         - goerr113

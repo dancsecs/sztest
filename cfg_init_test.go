@@ -212,7 +212,7 @@ func setupSysEnvVarTest(tmpDir string) error {
 	return nil
 }
 
-//nolint:cyclop,gocyclo // Ok.
+//nolint:cyclop,gocyclo,gocognit // Ok.
 func testCfgInitAllDefaults(t *testing.T) {
 	const errMsg = "unexpected default for %s: Got: %v Wnt: %v"
 
@@ -331,7 +331,7 @@ func testCfgInitAllDefaults(t *testing.T) {
 	}
 }
 
-//nolint:cyclop,gocyclo // Ok.
+//nolint:cyclop,gocyclo,gocognit // Ok.
 func testCfgInitAllOverrides(t *testing.T) {
 	const errMsg = "unexpected override for %s: Got: %v Wnt: %v"
 
