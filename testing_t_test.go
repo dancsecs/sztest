@@ -69,8 +69,13 @@ func (t *iTst) Name() string {
 //
 
 func (t *iTst) getCallerName() string {
-	const stackDepth = 2
+	const (
+		pkgPrefix  = `github.com/dancsecs/sztest.`
+		stackDepth = 2
+	)
+
 	calledFrom := "<unknown>"
+
 	pc, _, _, ok := runtime.Caller(stackDepth)
 	if ok {
 		details := runtime.FuncForPC(pc)
@@ -78,7 +83,6 @@ func (t *iTst) getCallerName() string {
 			calledFrom = details.Name()
 		}
 	}
-	const pkgPrefix = `github.com/dancsecs/sztest.`
 
 	return strings.TrimPrefix(calledFrom, pkgPrefix)
 }
@@ -88,6 +92,7 @@ func (*iTst) prepareSlice(
 	rawLines ...string,
 ) []string {
 	var lines []string
+
 	for _, rl := range rawLines {
 		for _, l := range strings.Split(rl, "\n") {
 			l = strings.TrimSpace(l)
@@ -194,6 +199,7 @@ func chkOutLogf(msg string) string {
 
 func chkOutErrorNoFail(msg ...string) string {
 	const caller = "(*Chk).Error"
+
 	fullMsg := strings.Join(msg, "\n")
 	if fullMsg != "" {
 		fullMsg += "\n"
@@ -208,6 +214,7 @@ func chkOutErrorNoFail(msg ...string) string {
 
 func chkOutErrorfNoFail(msg ...string) string {
 	const caller = "(*Chk).Errorf"
+
 	fullMsg := strings.Join(msg, "\n")
 	if fullMsg != "" {
 		fullMsg += "\n"
@@ -260,12 +267,16 @@ func chkOutPush(pos, subFunc string) string {
 // Generic functions.
 
 func chkOutIsError(caller, msg string, additionLines ...string) string {
-	var result string
-	var isFormatted bool
+	var (
+		result      string
+		isFormatted bool
+	)
+
 	if caller != "" {
 		if caller != "f" {
 			result += chkOutHelper(caller)
 		}
+
 		isFormatted = strings.HasSuffix(caller, "f")
 	}
 
@@ -274,6 +285,7 @@ func chkOutIsError(caller, msg string, additionLines ...string) string {
 	} else {
 		result += tstOutHelper("(*Chk).errChk")
 	}
+
 	result += chkOutError(append([]string{msg}, additionLines...)...)
 
 	return result
@@ -295,13 +307,16 @@ func chkOutIsSliceError(
 	dataType, caller, msg string,
 	additionalLines ...string,
 ) string {
-	//
-	var result string
-	var isFormatted bool
+	var (
+		result      string
+		isFormatted bool
+	)
+
 	if caller != "" {
 		if caller != "f" {
 			result += tstOutHelper("(*Chk)." + caller)
 		}
+
 		isFormatted = strings.HasSuffix(caller, "f")
 	}
 
@@ -316,13 +331,16 @@ func chkOutIsSliceError(
 			fmt.Sprint("Length Got: ", gNum, " Wnt: ", wNum, " ["),
 		)
 	}
+
 	lines = append(lines, additionalLines...)
 	lines = append(lines, "]")
+
 	if isFormatted {
 		result += tstOutHelper("errSlicef[...]")
 	} else {
 		result += tstOutHelper("errSlice[...]")
 	}
+
 	result += chkOutError(lines...)
 
 	return result
@@ -376,12 +394,16 @@ func chkOutNumericBoundedf(
 func chkOutNumericBounded(
 	wantMsg, got, caller, dataType, msg string,
 ) string {
-	result := ""
-	var isFormatted bool
+	var (
+		result      string
+		isFormatted bool
+	)
+
 	if caller != "" {
 		result += tstOutHelper("(*Chk)." + caller)
 		isFormatted = strings.HasSuffix(caller, "f")
 	}
+
 	if isFormatted {
 		result += tstOutHelper("(*Chk).errGotWntf")
 	} else {
@@ -407,12 +429,16 @@ func chkOutNumericUnboundedf(
 func chkOutNumericUnbounded(
 	wantMsg, got, caller, dataType, msg string,
 ) string {
-	result := ""
-	var isFormatted bool
+	var (
+		result      string
+		isFormatted bool
+	)
+
 	if caller != "" {
 		result += tstOutHelper("(*Chk)." + caller)
 		isFormatted = strings.HasSuffix(caller, "f")
 	}
+
 	if isFormatted {
 		result += tstOutHelper("(*Chk).errGotWntf")
 	} else {
@@ -432,12 +458,16 @@ func chkOutStringBoundedf(wantMsg, got, caller, dataType, msg string) string {
 }
 
 func chkOutStringBounded(wantMsg, got, caller, dataType, msg string) string {
-	result := ""
-	var isFormatted bool
+	var (
+		result      string
+		isFormatted bool
+	)
+
 	if caller != "" {
 		result += tstOutHelper("(*Chk)." + caller)
 		isFormatted = strings.HasSuffix(caller, "f")
 	}
+
 	if isFormatted {
 		result += tstOutHelper("(*Chk).errGotWntf")
 	} else {
@@ -457,12 +487,16 @@ func chkOutStrUnboundedf(wantMsg, got, caller, dataType, msg string) string {
 }
 
 func chkOutStrUnbounded(wantMsg, got, caller, dataType, msg string) string {
-	result := ""
-	var isFormatted bool
+	var (
+		result      string
+		isFormatted bool
+	)
+
 	if caller != "" {
 		result += tstOutHelper("(*Chk)." + caller)
 		isFormatted = strings.HasSuffix(caller, "f")
 	}
+
 	if isFormatted {
 		result += tstOutHelper("(*Chk).errGotWntf")
 	} else {
@@ -541,6 +575,7 @@ func findNextMark(data, expectedClose string,
 			if tmpIndex == markCloseIndex && markCloseInternal == expectedClose {
 				return
 			}
+
 			markCloseIndex = tmpIndex
 			markClose = mark
 			markCloseInternal = internalMark
@@ -589,8 +624,11 @@ func translateToTestSymbols(line string) string {
 }
 
 func freezeMarks(source string) (string, error) {
-	iCloseMarkExpected := ""
-	newS := ""
+	var (
+		iCloseMarkExpected string
+		newS               string
+	)
+
 	for {
 		i, eNextMark, iNextMark, iNextCloseMark := findNextMark(
 			source, iCloseMarkExpected,
@@ -633,6 +671,7 @@ func freezeMarks(source string) (string, error) {
 					iCloseMarkExpected,
 				)
 			}
+
 			iCloseMarkExpected = ""
 		} else {
 			iCloseMarkExpected = iNextCloseMark

@@ -133,29 +133,36 @@ func (chk *Chk) ClockLastFmtCusC() string {
 // ClockNext returns the current time or the next time sequence if a clock has
 // been set.
 func (chk *Chk) ClockNext() time.Time {
-	const base10 = 10
 	nextTS := chk.clk.next()
 	chk.clkTicks = append(chk.clkTicks, nextTS)
+
 	if chk.clkSub != 0 { //nolint:nestif // Ok.
 		idx := strconv.FormatInt(int64(len(chk.clkTicks)-1), base10)
+
 		if chk.clkSub&ClockSubTime > 0 {
 			chk.AddSub("{{clkTime"+idx+"}}", nextTS.Format(clkSubTime))
 		}
+
 		if chk.clkSub&ClockSubDate > 0 {
 			chk.AddSub("{{clkDate"+idx+"}}", nextTS.Format(clkSubDate))
 		}
+
 		if chk.clkSub&ClockSubTS > 0 {
 			chk.AddSub("{{clkTS"+idx+"}}", nextTS.Format(clkSubTS))
 		}
+
 		if chk.clkSub&ClockSubNano > 0 {
 			chk.AddSub("{{clkNano"+idx+"}}", nextTS.Format(clkSubNano))
 		}
+
 		if chk.clkSub&ClockSubCusA > 0 {
 			chk.AddSub("{{clkCusA"+idx+"}}", nextTS.Format(chk.clkCusA))
 		}
+
 		if chk.clkSub&ClockSubCusB > 0 {
 			chk.AddSub("{{clkCusB"+idx+"}}", nextTS.Format(chk.clkCusB))
 		}
+
 		if chk.clkSub&ClockSubCusC > 0 {
 			chk.AddSub("{{clkCusC"+idx+"}}", nextTS.Format(chk.clkCusC))
 		}
@@ -211,12 +218,14 @@ func (chk *Chk) ClockTick(i int) time.Time {
 // ClockSet set the current test time and optionally sets the increments if
 // provided.  It returns a func to reset the clk back to its state when
 // this function was called.
-func (chk *Chk) ClockSet(t time.Time, inc ...time.Duration) func() {
+func (chk *Chk) ClockSet(setTime time.Time, inc ...time.Duration) func() {
 	savedClk := chk.clk
+
 	if inc == nil {
 		inc = chk.clk.inc
 	}
-	chk.clk = newTstClock(t, inc)
+
+	chk.clk = newTstClock(setTime, inc)
 
 	return func() {
 		chk.clk = savedClk
@@ -267,6 +276,7 @@ func (clk *tstClk) next() time.Time {
 	if clk.nextIndex >= len(clk.inc) {
 		clk.nextIndex = 0
 	}
+
 	clk.nextTS = clk.nextTS.Add(clk.inc[clk.nextIndex])
 	clk.nextIndex++
 

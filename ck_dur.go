@@ -22,6 +22,8 @@ import (
 	"time"
 )
 
+const durTypeName = "time.Duration"
+
 // Durf compare the wanted boolean against the gotten bool invoking an
 // error should they not match.
 func (chk *Chk) Durf(
@@ -30,9 +32,10 @@ func (chk *Chk) Durf(
 	if got == want {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errChkf(got, want, "time.Duration", msgFmt, msgArgs...)
+	return chk.errChkf(got, want, durTypeName, msgFmt, msgArgs...)
 }
 
 // Dur compare the wanted boolean against the gotten bool invoking an
@@ -41,9 +44,10 @@ func (chk *Chk) Dur(got, want time.Duration, msg ...any) bool {
 	if got == want {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errChk(got, want, "time.Duration", msg...)
+	return chk.errChk(got, want, durTypeName, msg...)
 }
 
 // DurSlicef checks two time.Duration slices for equality.
@@ -52,16 +56,19 @@ func (chk *Chk) DurSlicef(
 ) bool {
 	l := len(got)
 	equal := l == len(want)
+
 	for i := 0; equal && i < l; i++ {
 		equal = got[i] == want[i]
 	}
+
 	if equal {
 		return true
 	}
+
 	chk.t.Helper()
 
 	return errSlicef(chk,
-		got, want, "time.Duration", defaultCmpFunc[time.Duration],
+		got, want, durTypeName, defaultCmpFunc[time.Duration],
 		msgFmt, msgArgs...,
 	)
 }
@@ -70,16 +77,19 @@ func (chk *Chk) DurSlicef(
 func (chk *Chk) DurSlice(got, want []time.Duration, msg ...any) bool {
 	l := len(got)
 	equal := l == len(want)
+
 	for i := 0; equal && i < l; i++ {
 		equal = got[i] == want[i]
 	}
+
 	if equal {
 		return true
 	}
+
 	chk.t.Helper()
 
 	return errSlice(chk,
-		got, want, "time.Duration", defaultCmpFunc[time.Duration], msg...,
+		got, want, durTypeName, defaultCmpFunc[time.Duration], msg...,
 	)
 }
 
@@ -92,28 +102,28 @@ func (chk *Chk) DurBoundedf(
 	got time.Duration, option BoundedOption, min, max time.Duration,
 	msgFmt string, msgArgs ...any,
 ) bool {
-	const typeName = "time.Duration"
 	inRange, want := inBoundedRange(got, option, min, max)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWntf(typeName, got, want, msgFmt, msgArgs...)
+	return chk.errGotWntf(durTypeName, got, want, msgFmt, msgArgs...)
 }
 
 // DurBounded checks value is within specified bounded range.
 func (chk *Chk) DurBounded(
 	got time.Duration, option BoundedOption, min, max time.Duration, msg ...any,
 ) bool {
-	const typeName = "time.Duration"
 	inRange, want := inBoundedRange(got, option, min, max)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWnt(typeName, got, want, msg...)
+	return chk.errGotWnt(durTypeName, got, want, msg...)
 }
 
 // DurUnboundedf checks value is within specified unbounded range.
@@ -121,26 +131,26 @@ func (chk *Chk) DurUnboundedf(
 	got time.Duration, option UnboundedOption, bound time.Duration,
 	msgFmt string, msgArgs ...any,
 ) bool {
-	const typeName = "time.Duration"
 	inRange, want := inUnboundedRange(got, option, bound)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWntf(typeName, got, want, msgFmt, msgArgs...)
+	return chk.errGotWntf(durTypeName, got, want, msgFmt, msgArgs...)
 }
 
 // DurUnbounded checks value is within specified unbounded range.
 func (chk *Chk) DurUnbounded(
 	got time.Duration, option UnboundedOption, bound time.Duration, msg ...any,
 ) bool {
-	const typeName = "time.Duration"
 	inRange, want := inUnboundedRange(got, option, bound)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWnt(typeName, got, want, msg...)
+	return chk.errGotWnt(durTypeName, got, want, msg...)
 }

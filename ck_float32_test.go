@@ -442,18 +442,20 @@ func chkFloat32BoundedTestAll(t *testing.T) {
 	// Bad: Error displayed.
 	chk.Float32Bounded(36, BoundedClosed, min, max)
 
-	const wntMsg = "out of bounds: [33,35] - { want | 33 <= want <= 35 }"
-	const fName = "Float32Bounded"
+	const (
+		wntMsg = "out of bounds: [33,35] - { want | 33 <= want <= 35 }"
+		fName  = "Float32Bounded"
+	)
 
 	chk.Release()
 	iT.check(t,
 		chkOutCapture("Nothing"),
 
-		chkOutNumericBounded(wntMsg, "30", fName, "float32", ""),
-		chkOutNumericBounded(wntMsg, "31", fName, "float32", "msg:31"),
-		chkOutNumericBoundedf(wntMsg, "32", fName, "float32", "msg:32"),
+		chkOutNumericBounded(wntMsg, "30", fName, float32TypeName, ""),
+		chkOutNumericBounded(wntMsg, "31", fName, float32TypeName, "msg:31"),
+		chkOutNumericBoundedf(wntMsg, "32", fName, float32TypeName, "msg:32"),
 
-		chkOutNumericBounded(wntMsg, "36", fName, "float32", ""),
+		chkOutNumericBounded(wntMsg, "36", fName, float32TypeName, ""),
 
 		chkOutRelease(),
 	)
@@ -480,16 +482,18 @@ func chkFloat32UnboundedTestAll(t *testing.T) {
 	chk.Float32Unbounded(129, UnboundedMinClosed, bound, "not ", "displayed")
 	chk.Float32Unboundedf(130, UnboundedMinClosed, bound, "not %s", "displayed")
 
-	const wntMsg = "out of bounds: [128,MAX) - { want | want >= 128 }"
-	const fName = "Float32Unbounded"
+	const (
+		wntMsg = "out of bounds: [128,MAX) - { want | want >= 128 }"
+		fName  = "Float32Unbounded"
+	)
 
 	chk.Release()
 	iT.check(t,
 		chkOutCapture("Nothing"),
 
-		chkOutNumericUnbounded(wntMsg, "125", fName, "float32", ""),
-		chkOutNumericUnbounded(wntMsg, "126", fName, "float32", "msg:126"),
-		chkOutNumericUnboundedf(wntMsg, "127", fName, "float32", "msg:127"),
+		chkOutNumericUnbounded(wntMsg, "125", fName, float32TypeName, ""),
+		chkOutNumericUnbounded(wntMsg, "126", fName, float32TypeName, "msg:126"),
+		chkOutNumericUnboundedf(wntMsg, "127", fName, float32TypeName, "msg:127"),
 
 		chkOutRelease(),
 	)

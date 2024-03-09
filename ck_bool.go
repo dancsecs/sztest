@@ -18,6 +18,8 @@
 
 package sztest
 
+const boolTypeName = "bool"
+
 // Helpers.
 
 // Truef simply invokes Bool with want set to true and msg formatted.
@@ -25,9 +27,10 @@ func (chk *Chk) Truef(got bool, msgFmt string, msgArgs ...any) bool {
 	if got {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errChkf(got, true, "bool", msgFmt, msgArgs...)
+	return chk.errChkf(got, true, boolTypeName, msgFmt, msgArgs...)
 }
 
 // True simply invokes Bool with want set to true.
@@ -35,9 +38,10 @@ func (chk *Chk) True(got bool, msg ...any) bool {
 	if got {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errChk(got, true, "bool", msg...)
+	return chk.errChk(got, true, boolTypeName, msg...)
 }
 
 // Falsef simply invokes Bool with want set to true and msg formatted.
@@ -45,9 +49,10 @@ func (chk *Chk) Falsef(got bool, msgFmt string, msgArgs ...any) bool {
 	if !got {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errChkf(got, false, "bool", msgFmt, msgArgs...)
+	return chk.errChkf(got, false, boolTypeName, msgFmt, msgArgs...)
 }
 
 // False simply invokes Bool with want set to true.
@@ -55,9 +60,10 @@ func (chk *Chk) False(got bool, msg ...any) bool {
 	if !got {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errChk(got, false, "bool", msg...)
+	return chk.errChk(got, false, boolTypeName, msg...)
 }
 
 // Boolf compare the wanted boolean against the gotten bool invoking an
@@ -66,9 +72,10 @@ func (chk *Chk) Boolf(got, want bool, msgFmt string, msgArgs ...any) bool {
 	if got == want {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errChkf(got, want, "bool", msgFmt, msgArgs...)
+	return chk.errChkf(got, want, boolTypeName, msgFmt, msgArgs...)
 }
 
 // Bool compare the wanted boolean against the gotten bool invoking an
@@ -77,9 +84,10 @@ func (chk *Chk) Bool(got, want bool, msg ...any) bool {
 	if got == want {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errChk(got, want, "bool", msg...)
+	return chk.errChk(got, want, boolTypeName, msg...)
 }
 
 // BoolSlicef checks two boolean slices for equality.
@@ -88,16 +96,19 @@ func (chk *Chk) BoolSlicef(
 ) bool {
 	l := len(got)
 	equal := l == len(want)
+
 	for i := 0; equal && i < l; i++ {
 		equal = got[i] == want[i]
 	}
+
 	if equal {
 		return true
 	}
+
 	chk.t.Helper()
 
 	return errSlicef(chk,
-		got, want, "bool", defaultCmpFunc[bool], msgFmt, msgArgs...,
+		got, want, boolTypeName, defaultCmpFunc[bool], msgFmt, msgArgs...,
 	)
 }
 
@@ -105,13 +116,16 @@ func (chk *Chk) BoolSlicef(
 func (chk *Chk) BoolSlice(got, want []bool, msg ...any) bool {
 	l := len(got)
 	equal := l == len(want)
+
 	for i := 0; equal && i < l; i++ {
 		equal = got[i] == want[i]
 	}
+
 	if equal {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return errSlice(chk, got, want, "bool", defaultCmpFunc[bool], msg...)
+	return errSlice(chk, got, want, boolTypeName, defaultCmpFunc[bool], msg...)
 }

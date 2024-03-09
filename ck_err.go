@@ -19,7 +19,8 @@
 package sztest
 
 const (
-	nilStr = ""
+	nilStr      = ""
+	errTypeName = "err"
 )
 
 // BlankErrorMessage represents an empty panic message received.
@@ -37,6 +38,7 @@ func (chk *Chk) errPrepareWantSlice(want []string) []string {
 	if len(want) == 0 {
 		return nil
 	}
+
 	r := make([]string, len(want))
 	for i, s := range want {
 		r[i] = chk.errPrepareWant(s)
@@ -49,6 +51,7 @@ func (chk *Chk) errPrepareGot(got error) string {
 	if got == nil {
 		return nilStr
 	}
+
 	errMsg := got.Error()
 	if errMsg == "" {
 		return BlankErrorMessage
@@ -61,6 +64,7 @@ func (chk *Chk) errPrepareGotSlice(got []error) []string {
 	if len(got) == 0 {
 		return nil
 	}
+
 	r := make([]string, len(got))
 	for i, err := range got {
 		r[i] = chk.errPrepareGot(err)
@@ -74,9 +78,10 @@ func (chk *Chk) NoErrf(got error, msgFmt string, msgArgs ...any) bool {
 	if chk.errPrepareGot(got) == nilStr {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errChkf(chk.errPrepareGot(got), nilStr, "err", msgFmt, msgArgs...)
+	return chk.errChkf(chk.errPrepareGot(got), nilStr, errTypeName, msgFmt, msgArgs...)
 }
 
 // NoErr simply invokes Err with want set to "".
@@ -84,9 +89,10 @@ func (chk *Chk) NoErr(got error, msg ...any) bool {
 	if chk.errPrepareGot(got) == nilStr {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errChk(chk.errPrepareGot(got), nilStr, "err", msg...)
+	return chk.errChk(chk.errPrepareGot(got), nilStr, errTypeName, msg...)
 }
 
 // Errf compare the gotten error against the wanted error string.
@@ -97,12 +103,13 @@ func (chk *Chk) Errf(
 	if chk.errPrepareGot(got) == chk.errPrepareWant(want) {
 		return true
 	}
+
 	chk.t.Helper()
 
 	return chk.errChkf(
 		chk.errPrepareGot(got),
 		chk.errPrepareWant(want),
-		"err",
+		errTypeName,
 		msgFmt, msgArgs...,
 	)
 }
@@ -113,10 +120,11 @@ func (chk *Chk) Err(got error, want string, msg ...any) bool {
 	if chk.errPrepareGot(got) == chk.errPrepareWant(want) {
 		return true
 	}
+
 	chk.t.Helper()
 
 	return chk.errChk(
-		chk.errPrepareGot(got), chk.errPrepareWant(want), "err", msg...,
+		chk.errPrepareGot(got), chk.errPrepareWant(want), errTypeName, msg...,
 	)
 }
 
@@ -127,16 +135,19 @@ func (chk *Chk) ErrSlicef(
 ) bool {
 	l := len(got)
 	equal := l == len(want)
+
 	for i := 0; equal && i < l; i++ {
 		equal = chk.errPrepareGot(got[i]) == chk.errPrepareWant(want[i])
 	}
+
 	if equal {
 		return true
 	}
+
 	chk.t.Helper()
 
 	return errSlicef(
-		chk, chk.errPrepareGotSlice(got), chk.errPrepareWantSlice(want), "err",
+		chk, chk.errPrepareGotSlice(got), chk.errPrepareWantSlice(want), errTypeName,
 		defaultCmpFunc[string], msgFmt, msgArgs...,
 	)
 }
@@ -148,16 +159,19 @@ func (chk *Chk) ErrSlice(
 ) bool {
 	l := len(got)
 	equal := l == len(want)
+
 	for i := 0; equal && i < l; i++ {
 		equal = chk.errPrepareGot(got[i]) == chk.errPrepareWant(want[i])
 	}
+
 	if equal {
 		return true
 	}
+
 	chk.t.Helper()
 
 	return errSlice(chk,
-		chk.errPrepareGotSlice(got), chk.errPrepareWantSlice(want), "err",
+		chk.errPrepareGotSlice(got), chk.errPrepareWantSlice(want), errTypeName,
 		defaultCmpFunc[string], msg...,
 	)
 }

@@ -18,6 +18,8 @@
 
 package sztest
 
+const complex128TypeName = "complex128"
+
 // Complex128f compares the wanted complex128 against the gotten complex128
 // invoking an error should they not match.
 func (chk *Chk) Complex128f(
@@ -26,9 +28,10 @@ func (chk *Chk) Complex128f(
 	if got == want {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errChkf(got, want, "complex128", msgFmt, msgArgs...)
+	return chk.errChkf(got, want, complex128TypeName, msgFmt, msgArgs...)
 }
 
 // Complex128 compares the wanted complex128 against the gotten complex128
@@ -37,9 +40,10 @@ func (chk *Chk) Complex128(got, want complex128, msg ...any) bool {
 	if got == want {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errChk(got, want, "complex128", msg...)
+	return chk.errChk(got, want, complex128TypeName, msg...)
 }
 
 // Complex128Slicef checks two complex128 slices for equality.
@@ -48,16 +52,19 @@ func (chk *Chk) Complex128Slicef(
 ) bool {
 	l := len(got)
 	equal := l == len(want)
+
 	for i := 0; equal && i < l; i++ {
 		equal = got[i] == want[i]
 	}
+
 	if equal {
 		return true
 	}
+
 	chk.t.Helper()
 
 	return errSlicef(chk,
-		got, want, "complex128", defaultCmpFunc[complex128],
+		got, want, complex128TypeName, defaultCmpFunc[complex128],
 		msgFmt, msgArgs...,
 	)
 }
@@ -68,15 +75,18 @@ func (chk *Chk) Complex128Slice(
 ) bool {
 	l := len(got)
 	equal := l == len(want)
+
 	for i := 0; equal && i < l; i++ {
 		equal = got[i] == want[i]
 	}
+
 	if equal {
 		return true
 	}
+
 	chk.t.Helper()
 
 	return errSlice(chk,
-		got, want, "complex128", defaultCmpFunc[complex128], msg...,
+		got, want, complex128TypeName, defaultCmpFunc[complex128], msg...,
 	)
 }

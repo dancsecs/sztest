@@ -49,7 +49,9 @@ func chkClockCurrentTime(t *testing.T) {
 	defer chk.Release()
 
 	ts0 := chk.ClockNext()
+
 	time.Sleep(time.Nanosecond)
+
 	ts1 := chk.ClockNext()
 
 	chk.True(ts0.Equal(chk.ClockTick(0)))
@@ -239,10 +241,12 @@ func chkClockSubs(t *testing.T) {
 	chk.Str(chk.ClockNext().Format(tstTS), "{{clkTime4}}")
 
 	tstTS = "20060102150405"
+
 	chk.ClockAddSub(ClockSubTS)
 	chk.Str(chk.ClockNext().Format(tstTS), "{{clkTS5}}")
 
 	tstTS = "20060102150405.000000000"
+
 	chk.ClockAddSub(ClockSubNano)
 	chk.Str(chk.ClockNext().Format(tstTS), "{{clkNano6}}")
 }

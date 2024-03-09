@@ -77,11 +77,14 @@ func (chk *Chk) setupStderrLogger(includeLog bool) {
 	chk.t.Helper()
 
 	var errBuf bytes.Buffer
+
 	errBuf.Grow(settingBufferSize)
+
 	chk.errOn = true
 	chk.errBuf = &errBuf
 	chk.errOrig = os.Stderr
 	_ = chk.copyStderr()
+
 	if includeLog {
 		chk.errIncLog = true
 		chk.logOrigLogFlags = log.Flags()
@@ -93,13 +96,16 @@ func (chk *Chk) setupStderrLogger(includeLog bool) {
 	chk.PushPreReleaseFunc(func() error {
 		if !chk.errChecked {
 			chk.t.Helper()
+
 			if chk.faultCount == 0 {
 				chk.Error("os.Stderr data was collected but never checked")
 			}
 		}
+
 		t := os.Stderr
 		os.Stderr = chk.errOrig
 		err := t.Close()
+
 		if includeLog {
 			log.SetOutput(chk.logOrig)
 			log.SetFlags(chk.logOrigLogFlags)
@@ -113,7 +119,9 @@ func (chk *Chk) setupLogLogger() {
 	chk.t.Helper()
 
 	var logBuf bytes.Buffer
+
 	logBuf.Grow(settingBufferSize)
+
 	chk.logOn = true
 	chk.logBuf = &logBuf
 	chk.logOrigLogFlags = log.Flags()
@@ -124,10 +132,12 @@ func (chk *Chk) setupLogLogger() {
 	chk.PushPreReleaseFunc(func() error {
 		if !chk.logChecked {
 			chk.t.Helper()
+
 			if chk.faultCount == 0 {
 				chk.Error("log.Writer data was collected but never checked")
 			}
 		}
+
 		log.SetOutput(chk.logOrig)
 		log.SetFlags(chk.logOrigLogFlags)
 
@@ -139,7 +149,9 @@ func (chk *Chk) setupStdoutLogger() {
 	chk.t.Helper()
 
 	var outBuf bytes.Buffer
+
 	outBuf.Grow(settingBufferSize)
+
 	chk.outOn = true
 	chk.outBuf = &outBuf
 	chk.outOrig = os.Stdout
@@ -148,10 +160,12 @@ func (chk *Chk) setupStdoutLogger() {
 	chk.PushPreReleaseFunc(func() error {
 		if !chk.outChecked {
 			chk.t.Helper()
+
 			if chk.faultCount == 0 {
 				chk.Error("os.Stdout data was collected but never checked")
 			}
 		}
+
 		t := os.Stdout
 		os.Stdout = chk.outOrig
 
@@ -160,9 +174,11 @@ func (chk *Chk) setupStdoutLogger() {
 }
 
 func (chk *Chk) copyStdout() error {
-	var err error
-	var rFile *os.File
-	var wFile *os.File
+	var (
+		err   error
+		rFile *os.File
+		wFile *os.File
+	)
 
 	rFile, wFile, err = os.Pipe()
 	if err == nil {
@@ -170,8 +186,10 @@ func (chk *Chk) copyStdout() error {
 			defer func() {
 				_ = rFile.Close()
 			}()
+
 			_, _ = io.Copy(chk.outBuf, rFile)
 		}()
+
 		os.Stdout = wFile
 	}
 
@@ -179,9 +197,11 @@ func (chk *Chk) copyStdout() error {
 }
 
 func (chk *Chk) copyStderr() error {
-	var err error
-	var rFile *os.File
-	var wFile *os.File
+	var (
+		err   error
+		rFile *os.File
+		wFile *os.File
+	)
 
 	rFile, wFile, err = os.Pipe()
 	if err == nil {
@@ -189,8 +209,10 @@ func (chk *Chk) copyStderr() error {
 			defer func() {
 				_ = rFile.Close()
 			}()
+
 			_, _ = io.Copy(chk.errBuf, rFile)
 		}()
+
 		os.Stderr = wFile
 	}
 
@@ -365,6 +387,7 @@ func (chk *Chk) prepareSlice(
 	rawLines ...string,
 ) []string {
 	var lines []string
+
 	for _, rl := range rawLines {
 		for _, l := range strings.Split(rl, "\n") {
 			l = processFunc(l)
@@ -374,6 +397,7 @@ func (chk *Chk) prepareSlice(
 	// remove leading blank lines
 	firstPos := 0
 	lastPos := len(lines)
+
 	for firstPos < lastPos && lines[firstPos] == "" {
 		firstPos++
 	}
@@ -387,10 +411,12 @@ func (chk *Chk) prepareSlice(
 
 func prepareWantString(line string) string {
 	line = strings.TrimSpace(line)
-	// Replace first har space.
+
+	// Replace first hard space.
 	if strings.HasPrefix(line, `\s`) {
 		line = " " + line[2:]
 	}
+
 	if strings.HasSuffix(line, `\s`) {
 		line = line[:len(line)-2] + " "
 	}
@@ -419,6 +445,7 @@ func (chk *Chk) compareLog(
 		defaultCmpFunc[string],
 		chk.isStringify,
 	)
+
 	if ret != "" {
 		chk.Error(ret)
 
@@ -433,9 +460,11 @@ func buildLogPrefixRegexpStr(prefix string, flags int) string {
 	if prefix != "" && (flags&log.Lmsgprefix) == 0 {
 		regExpStr += prefix
 	}
+
 	if (flags & log.Ldate) != 0 {
 		regExpStr += logDate
 	}
+
 	if flags&(log.Ltime|log.Lmicroseconds) != 0 {
 		if (flags & log.Lmicroseconds) != 0 {
 			regExpStr += logTimeMS
@@ -443,9 +472,11 @@ func buildLogPrefixRegexpStr(prefix string, flags int) string {
 			regExpStr += logTime
 		}
 	}
+
 	if (flags & (log.Lshortfile | log.Llongfile)) != 0 {
 		regExpStr += logFile
 	}
+
 	if prefix != "" && (flags&log.Lmsgprefix != 0) {
 		regExpStr += prefix
 	}
@@ -454,11 +485,14 @@ func buildLogPrefixRegexpStr(prefix string, flags int) string {
 }
 
 func removeLogPrefixes(line string) string {
-	var clearLogPrefix *regexp.Regexp
-	var ok bool
+	var (
+		clearLogPrefix *regexp.Regexp
+		ok             bool
+	)
 
 	logFlags := log.Flags()
 	logPrefix := log.Prefix()
+
 	if logFlags == 0 && logPrefix == "" {
 		return line
 	}
@@ -485,8 +519,10 @@ func (chk *Chk) Log(wantLines ...string) bool {
 
 	time.Sleep(pauseTimeForLogToCatchup)
 
-	var gotString string
-	var name string
+	var (
+		gotString string
+		name      string
+	)
 
 	if chk.logOn {
 		chk.logChecked = true
@@ -521,8 +557,11 @@ func (chk *Chk) Stderr(wantLines ...string) bool {
 
 	chk.errChecked = true
 
-	var getFilterFunc func(string) string
-	var name string
+	var (
+		getFilterFunc func(string) string
+		name          string
+	)
+
 	if chk.errIncLog {
 		name = "logWithStderr"
 		getFilterFunc = removeLogPrefixes

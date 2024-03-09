@@ -22,12 +22,16 @@ package sztest
 // no arguments or the last parameter is not an Error interface then
 // ErrInvalidLastErrArg is returned.
 func (*Chk) LastErr(args ...any) error {
-	var err error
-	var lastErr error
-	var ok bool
+	var (
+		err     error
+		lastErr error
+		ok      bool
+	)
+
 	if len(args) == 0 {
 		err = ErrInvalidLastArg
 	}
+
 	if err == nil {
 		lastErr, ok = args[len(args)-1].(error)
 		if !ok {
@@ -36,6 +40,7 @@ func (*Chk) LastErr(args ...any) error {
 			}
 		}
 	}
+
 	if err == nil {
 		return lastErr
 	}

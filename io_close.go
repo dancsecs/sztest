@@ -28,6 +28,7 @@ func (chk *Chk) SetCloseError(err error) {
 // error if provided.
 func (chk *Chk) Close() error {
 	closeErr := chk.ioCloseErr
+
 	if chk.ioCloseErrSet {
 		chk.ioCloseErr = nil
 		chk.ioCloseErrSet = false

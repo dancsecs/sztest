@@ -106,60 +106,70 @@ func initAll() {
 func initFailFast() {
 	result := defFailFast
 	v, ok := os.LookupEnv(EnvFailFast)
+
 	if ok {
 		cleanValue, passed := validateFailFast(v)
 		if passed {
 			result = cleanValue
 		}
 	}
+
 	settingFailFast = result
 }
 
 func initBufferSize() {
 	result := defBufferSize
 	v, ok := os.LookupEnv(EnvBufferSize)
+
 	if ok {
 		cleanValue, passed := validateBufferSize(v)
 		if passed {
 			result = cleanValue
 		}
 	}
+
 	settingBufferSize = result
 }
 
 func initPermDir() {
 	result := defPermDir
 	v, ok := os.LookupEnv(EnvPermDir)
+
 	if ok {
 		cleanValue, passed := validatePermDir(v)
 		if passed {
 			result = cleanValue
 		}
 	}
+
 	settingPermDir = result
 }
 
 func initPermFile() {
 	result := defPermFile
 	v, ok := os.LookupEnv(EnvPermFile)
+
 	if ok {
 		cleanValue, passed := validatePermFile(v)
 		if passed {
 			result = cleanValue
 		}
 	}
+
 	settingPermFile = result
 }
 
 func initPermExe() {
 	result := defPermExe
 	v, ok := os.LookupEnv(EnvPermExe)
+
 	if ok {
 		cleanValue, passed := validatePermExe(v)
 		if passed {
 			result = cleanValue
 		}
 	}
+
 	settingPermExe = result
 }
 
@@ -173,197 +183,230 @@ func initTmpDir() {
 			return
 		}
 	}
+
 	settingTmpDir = os.TempDir()
 }
 
 func initDiffChars() {
 	result := defDiffChars
 	v, ok := os.LookupEnv(EnvDiffChars)
+
 	if ok {
 		cleanValue, passed := validateMinRunString(v)
 		if passed {
 			result = cleanValue
 		}
 	}
+
 	settingDiffChars = result
 }
 
 func initDiffSlice() {
 	result := defDiffSlice
 	v, ok := os.LookupEnv(EnvDiffSlice)
+
 	if ok {
 		cleanValue, passed := validateMinRunSlice(v)
 		if passed {
 			result = cleanValue
 		}
 	}
+
 	settingDiffSlice = result
 }
 
 func initMarkWntOn() {
 	result := defMarkWntOn
 	v, ok := os.LookupEnv(EnvMarkWntOn)
+
 	if ok {
 		cleanValue, passed := validateMark(v, EnvMarkWntOn, defMarkWntOn)
 		if passed {
 			result = cleanValue
 		}
 	}
+
 	settingMarkWntOn = result
 }
 
 func initMarkWntOff() {
 	result := defMarkWntOff
 	v, ok := os.LookupEnv(EnvMarkWntOff)
+
 	if ok {
 		cleanValue, passed := validateMark(v, EnvMarkWntOff, defMarkWntOff)
 		if passed {
 			result = cleanValue
 		}
 	}
+
 	settingMarkWntOff = result
 }
 
 func initMarkGotOn() {
 	result := defMarkGotOn
 	v, ok := os.LookupEnv(EnvMarkGotOn)
+
 	if ok {
 		cleanValue, passed := validateMark(v, EnvMarkGotOn, defMarkGotOn)
 		if passed {
 			result = cleanValue
 		}
 	}
+
 	settingMarkGotOn = result
 }
 
 func initMarkGotOff() {
 	result := defMarkGotOff
 	v, ok := os.LookupEnv(EnvMarkGotOff)
+
 	if ok {
 		cleanValue, passed := validateMark(v, EnvMarkGotOff, defMarkGotOff)
 		if passed {
 			result = cleanValue
 		}
 	}
+
 	settingMarkGotOff = result
 }
 
 func initMarkMsgOn() {
 	result := defMarkMsgOn
 	v, ok := os.LookupEnv(EnvMarkMsgOn)
+
 	if ok {
 		cleanValue, passed := validateMark(v, EnvMarkMsgOn, defMarkMsgOn)
 		if passed {
 			result = cleanValue
 		}
 	}
+
 	settingMarkMsgOn = result
 }
 
 func initMarkMsgOff() {
 	result := defMarkMsgOff
 	v, ok := os.LookupEnv(EnvMarkMsgOff)
+
 	if ok {
 		cleanValue, passed := validateMark(v, EnvMarkMsgOff, defMarkMsgOff)
 		if passed {
 			result = cleanValue
 		}
 	}
+
 	settingMarkMsgOff = result
 }
 
 func initMarkInsOn() {
 	result := defMarkInsOn
 	v, ok := os.LookupEnv(EnvMarkInsOn)
+
 	if ok {
 		cleanValue, passed := validateMark(v, EnvMarkInsOn, defMarkInsOn)
 		if passed {
 			result = cleanValue
 		}
 	}
+
 	settingMarkInsOn = result
 }
 
 func initMarkInsOff() {
 	result := defMarkInsOff
 	v, ok := os.LookupEnv(EnvMarkInsOff)
+
 	if ok {
 		cleanValue, passed := validateMark(v, EnvMarkInsOff, defMarkInsOff)
 		if passed {
 			result = cleanValue
 		}
 	}
+
 	settingMarkInsOff = result
 }
 
 func initMarkDelOn() {
 	result := defMarkDelOn
 	v, ok := os.LookupEnv(EnvMarkDelOn)
+
 	if ok {
 		cleanValue, passed := validateMark(v, EnvMarkDelOn, defMarkDelOn)
 		if passed {
 			result = cleanValue
 		}
 	}
+
 	settingMarkDelOn = result
 }
 
 func initMarkDelOff() {
 	result := defMarkDelOff
 	v, ok := os.LookupEnv(EnvMarkDelOff)
+
 	if ok {
 		cleanValue, passed := validateMark(v, EnvMarkDelOff, defMarkDelOff)
 		if passed {
 			result = cleanValue
 		}
 	}
+
 	settingMarkDelOff = result
 }
 
 func initMarkChgOn() {
 	result := defMarkChgOn
 	v, ok := os.LookupEnv(EnvMarkChgOn)
+
 	if ok {
 		cleanValue, passed := validateMark(v, EnvMarkChgOn, defMarkChgOn)
 		if passed {
 			result = cleanValue
 		}
 	}
+
 	settingMarkChgOn = result
 }
 
 func initMarkChgOff() {
 	result := defMarkChgOff
 	v, ok := os.LookupEnv(EnvMarkChgOff)
+
 	if ok {
 		cleanValue, passed := validateMark(v, EnvMarkChgOff, defMarkChgOff)
 		if passed {
 			result = cleanValue
 		}
 	}
+
 	settingMarkChgOff = result
 }
 
 func initMarkSepOn() {
 	result := defMarkSepOn
 	v, ok := os.LookupEnv(EnvMarkSepOn)
+
 	if ok {
 		cleanValue, passed := validateMark(v, EnvMarkSepOn, defMarkSepOn)
 		if passed {
 			result = cleanValue
 		}
 	}
+
 	settingMarkSepOn = result
 }
 
 func initMarkSepOff() {
 	result := defMarkSepOff
 	v, ok := os.LookupEnv(EnvMarkSepOff)
+
 	if ok {
 		cleanValue, passed := validateMark(v, EnvMarkSepOff, defMarkSepOff)
 		if passed {
 			result = cleanValue
 		}
 	}
+
 	settingMarkSepOff = result
 }

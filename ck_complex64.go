@@ -18,6 +18,8 @@
 
 package sztest
 
+const complex64TypeName = "complex64"
+
 // Complex64f compares the wanted complex64 against the gotten complex64
 // invoking an error should they not match.
 func (chk *Chk) Complex64f(
@@ -26,9 +28,10 @@ func (chk *Chk) Complex64f(
 	if got == want {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errChkf(got, want, "complex64", msgFmt, msgArgs...)
+	return chk.errChkf(got, want, complex64TypeName, msgFmt, msgArgs...)
 }
 
 // Complex64 compares the wanted complex64 against the gotten complex64
@@ -37,9 +40,10 @@ func (chk *Chk) Complex64(got, want complex64, msg ...any) bool {
 	if got == want {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errChk(got, want, "complex64", msg...)
+	return chk.errChk(got, want, complex64TypeName, msg...)
 }
 
 // Complex64Slicef checks two complex64 slices for equality.
@@ -48,16 +52,19 @@ func (chk *Chk) Complex64Slicef(
 ) bool {
 	l := len(got)
 	equal := l == len(want)
+
 	for i := 0; equal && i < l; i++ {
 		equal = got[i] == want[i]
 	}
+
 	if equal {
 		return true
 	}
+
 	chk.t.Helper()
 
 	return errSlicef(chk,
-		got, want, "complex64", defaultCmpFunc[complex64],
+		got, want, complex64TypeName, defaultCmpFunc[complex64],
 		msgFmt, msgArgs...,
 	)
 }
@@ -68,15 +75,18 @@ func (chk *Chk) Complex64Slice(
 ) bool {
 	l := len(got)
 	equal := l == len(want)
+
 	for i := 0; equal && i < l; i++ {
 		equal = got[i] == want[i]
 	}
+
 	if equal {
 		return true
 	}
+
 	chk.t.Helper()
 
 	return errSlice(chk,
-		got, want, "complex64", defaultCmpFunc[complex64], msg...,
+		got, want, complex64TypeName, defaultCmpFunc[complex64], msg...,
 	)
 }

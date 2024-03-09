@@ -18,6 +18,8 @@
 
 package sztest
 
+const uint16TypeName = "uint16"
+
 // Uint16f compares the wanted uint16 against the gotten uint16 invoking an
 // error should they not match.
 func (chk *Chk) Uint16f(
@@ -26,9 +28,10 @@ func (chk *Chk) Uint16f(
 	if got == want {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errChkf(got, want, "uint16", msgFmt, msgArgs...)
+	return chk.errChkf(got, want, uint16TypeName, msgFmt, msgArgs...)
 }
 
 // Uint16 compares the wanted uint16 against the gotten uint16 invoking an
@@ -37,9 +40,10 @@ func (chk *Chk) Uint16(got, want uint16, msg ...any) bool {
 	if got == want {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errChk(got, want, "uint16", msg...)
+	return chk.errChk(got, want, uint16TypeName, msg...)
 }
 
 // Uint16Slicef checks two uint16 slices for equality.
@@ -48,16 +52,19 @@ func (chk *Chk) Uint16Slicef(
 ) bool {
 	l := len(got)
 	equal := l == len(want)
+
 	for i := 0; equal && i < l; i++ {
 		equal = got[i] == want[i]
 	}
+
 	if equal {
 		return true
 	}
+
 	chk.t.Helper()
 
 	return errSlicef(chk,
-		got, want, "uint16", defaultCmpFunc[uint16],
+		got, want, uint16TypeName, defaultCmpFunc[uint16],
 		msgFmt, msgArgs...,
 	)
 }
@@ -66,15 +73,18 @@ func (chk *Chk) Uint16Slicef(
 func (chk *Chk) Uint16Slice(got, want []uint16, msg ...any) bool {
 	l := len(got)
 	equal := l == len(want)
+
 	for i := 0; equal && i < l; i++ {
 		equal = got[i] == want[i]
 	}
+
 	if equal {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return errSlice(chk, got, want, "uint16", defaultCmpFunc[uint16], msg...)
+	return errSlice(chk, got, want, uint16TypeName, defaultCmpFunc[uint16], msg...)
 }
 
 //
@@ -86,28 +96,28 @@ func (chk *Chk) Uint16Boundedf(
 	got uint16, option BoundedOption, min, max uint16,
 	msgFmt string, msgArgs ...any,
 ) bool {
-	const typeName = "uint16"
 	inRange, want := inBoundedRange(got, option, min, max)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWntf(typeName, got, want, msgFmt, msgArgs...)
+	return chk.errGotWntf(uint16TypeName, got, want, msgFmt, msgArgs...)
 }
 
 // Uint16Bounded checks value is within specified bounded range.
 func (chk *Chk) Uint16Bounded(
 	got uint16, option BoundedOption, min, max uint16, msg ...any,
 ) bool {
-	const typeName = "uint16"
 	inRange, want := inBoundedRange(got, option, min, max)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWnt(typeName, got, want, msg...)
+	return chk.errGotWnt(uint16TypeName, got, want, msg...)
 }
 
 // Uint16Unboundedf checks value is within specified unbounded range.
@@ -115,26 +125,26 @@ func (chk *Chk) Uint16Unboundedf(
 	got uint16, option UnboundedOption, bound uint16,
 	msgFmt string, msgArgs ...any,
 ) bool {
-	const typeName = "uint16"
 	inRange, want := inUnboundedRange(got, option, bound)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWntf(typeName, got, want, msgFmt, msgArgs...)
+	return chk.errGotWntf(uint16TypeName, got, want, msgFmt, msgArgs...)
 }
 
 // Uint16Unbounded checks value is within specified unbounded range.
 func (chk *Chk) Uint16Unbounded(
 	got uint16, option UnboundedOption, bound uint16, msg ...any,
 ) bool {
-	const typeName = "uint16"
 	inRange, want := inUnboundedRange(got, option, bound)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWnt(typeName, got, want, msg...)
+	return chk.errGotWnt(uint16TypeName, got, want, msg...)
 }

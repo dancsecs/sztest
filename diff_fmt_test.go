@@ -42,30 +42,35 @@ func testSzTestDiffFmtFmtLnNbr1(t *testing.T) {
 
 	got := dFmt.fmtLnNbr(-1)
 	wnt := "-"
+
 	if got != wnt {
 		t.Error(errGotWnt("-1", got, wnt))
 	}
 
 	got = dFmt.fmtLnNbr(0)
 	wnt = "0"
+
 	if got != wnt {
 		t.Error(errGotWnt("0", got, wnt))
 	}
 
 	got = dFmt.fmtLnNbr(1)
 	wnt = "1"
+
 	if got != wnt {
 		t.Error(errGotWnt("1", got, wnt))
 	}
 
 	got = dFmt.fmtLnNbr(2)
 	wnt = "2"
+
 	if got != wnt {
 		t.Error(errGotWnt("2", got, wnt))
 	}
 
 	got = dFmt.fmtLnNbr(22) // Exceeds width.
 	wnt = "22"
+
 	if got != wnt {
 		t.Error(errGotWnt("22", got, wnt))
 	}
@@ -76,30 +81,35 @@ func testSzTestDiffFmtFmtLnNbr2(t *testing.T) {
 
 	got := dFmt.fmtLnNbr(-1)
 	wnt := "--"
+
 	if got != wnt {
 		t.Error(errGotWnt("-1", got, wnt))
 	}
 
 	got = dFmt.fmtLnNbr(0)
 	wnt = "00"
+
 	if got != wnt {
 		t.Error(errGotWnt("0", got, wnt))
 	}
 
 	got = dFmt.fmtLnNbr(1)
 	wnt = "01"
+
 	if got != wnt {
 		t.Error(errGotWnt("1", got, wnt))
 	}
 
 	got = dFmt.fmtLnNbr(2)
 	wnt = "02"
+
 	if got != wnt {
 		t.Error(errGotWnt("2", got, wnt))
 	}
 
 	got = dFmt.fmtLnNbr(222) // Exceeds width.
 	wnt = "222"
+
 	if got != wnt {
 		t.Error(errGotWnt("222", got, wnt))
 	}
@@ -110,30 +120,35 @@ func testSzTestDiffFmtFmtLnNbr5(t *testing.T) {
 
 	got := dFmt.fmtLnNbr(-1)
 	wnt := "-----"
+
 	if got != wnt {
 		t.Error(errGotWnt("-1", got, wnt))
 	}
 
 	got = dFmt.fmtLnNbr(0)
 	wnt = "00000"
+
 	if got != wnt {
 		t.Error(errGotWnt("0", got, wnt))
 	}
 
 	got = dFmt.fmtLnNbr(1)
 	wnt = "00001"
+
 	if got != wnt {
 		t.Error(errGotWnt("1", got, wnt))
 	}
 
 	got = dFmt.fmtLnNbr(2)
 	wnt = "00002"
+
 	if got != wnt {
 		t.Error(errGotWnt("2", got, wnt))
 	}
 
 	got = dFmt.fmtLnNbr(22222) // Exceeds width.
 	wnt = "22222"
+
 	if got != wnt {
 		t.Error(errGotWnt("22222", got, wnt))
 	}
@@ -144,12 +159,14 @@ func testSzTestDiffFmtFmtSameLine(t *testing.T) {
 
 	got := dFmt.same(0, 0, "the line")
 	wnt := "000:000 the line"
+
 	if got != wnt {
 		t.Error(errGotWnt("the line", got, wnt))
 	}
 
 	got = dFmt.same(223, 159, "the line")
 	wnt = "223:159 the line"
+
 	if got != wnt {
 		t.Error(errGotWnt("the line", got, wnt))
 	}
@@ -158,12 +175,14 @@ func testSzTestDiffFmtFmtSameLine(t *testing.T) {
 
 	got = dFmt.same(0, 0, "the line")
 	wnt = "008:012 the line"
+
 	if got != wnt {
 		t.Error(errGotWnt("the line", got, wnt))
 	}
 
 	got = dFmt.same(223, 159, "the line")
 	wnt = "231:171 the line"
+
 	if got != wnt {
 		t.Error(errGotWnt("the line", got, wnt))
 	}
@@ -178,6 +197,7 @@ func testSzTestDiffFmtFmtChangedLine(t *testing.T) {
 		":" +
 		markAsChg("", "000", DiffWant) +
 		" the line"
+
 	if got != wnt {
 		t.Error(errGotWnt("the line", got, wnt))
 	}
@@ -188,6 +208,7 @@ func testSzTestDiffFmtFmtChangedLine(t *testing.T) {
 		":" +
 		markAsChg("", "159", DiffWant) +
 		" the line"
+
 	if got != wnt {
 		t.Error(errGotWnt("the line", got, wnt))
 	}
@@ -200,6 +221,7 @@ func testSzTestDiffFmtFmtChangedLine(t *testing.T) {
 		":" +
 		markAsChg("", "012", DiffWant) +
 		" the line"
+
 	if got != wnt {
 		t.Error(errGotWnt("the line", got, wnt))
 	}
@@ -210,6 +232,7 @@ func testSzTestDiffFmtFmtChangedLine(t *testing.T) {
 		":" +
 		markAsChg("", "171", DiffWant) +
 		" the line"
+
 	if got != wnt {
 		t.Error(errGotWnt("the line", got, wnt))
 	}
@@ -224,6 +247,7 @@ func testSzTestDiffFmtFmtJustGotLine(t *testing.T) {
 		":" +
 		"--- " +
 		markAsIns("the line")
+
 	if got != wnt {
 		t.Error(errGotWnt("the line", got, wnt))
 	}
@@ -234,6 +258,7 @@ func testSzTestDiffFmtFmtJustGotLine(t *testing.T) {
 		":" +
 		"--- " +
 		markAsIns("the line")
+
 	if got != wnt {
 		t.Error(errGotWnt("the line", got, wnt))
 	}
@@ -246,6 +271,7 @@ func testSzTestDiffFmtFmtJustGotLine(t *testing.T) {
 		":" +
 		"--- " +
 		markAsIns("the line")
+
 	if got != wnt {
 		t.Error(errGotWnt("the line", got, wnt))
 	}
@@ -256,6 +282,7 @@ func testSzTestDiffFmtFmtJustGotLine(t *testing.T) {
 		":" +
 		"--- " +
 		markAsIns("the line")
+
 	if got != wnt {
 		t.Error(errGotWnt("the line", got, wnt))
 	}
@@ -271,6 +298,7 @@ func testSzTestDiffFmtFmtJustWntLine(t *testing.T) {
 		markAsDel("000") +
 		" " +
 		markAsDel("the line")
+
 	if got != wnt {
 		t.Error(errGotWnt("the line", got, wnt))
 	}
@@ -282,6 +310,7 @@ func testSzTestDiffFmtFmtJustWntLine(t *testing.T) {
 		markAsDel("159") +
 		" " +
 		markAsDel("the line")
+
 	if got != wnt {
 		t.Error(errGotWnt("the line", got, wnt))
 	}
@@ -295,6 +324,7 @@ func testSzTestDiffFmtFmtJustWntLine(t *testing.T) {
 		markAsDel("012") +
 		" " +
 		markAsDel("the line")
+
 	if got != wnt {
 		t.Error(errGotWnt("the line", got, wnt))
 	}
@@ -306,6 +336,7 @@ func testSzTestDiffFmtFmtJustWntLine(t *testing.T) {
 		markAsDel("171") +
 		" " +
 		markAsDel("the line")
+
 	if got != wnt {
 		t.Error(errGotWnt("the line", got, wnt))
 	}

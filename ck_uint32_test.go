@@ -73,7 +73,7 @@ func chkUint32TestBad(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Uint32",
-			chkOutCommonMsg("", "uint32"),
+			chkOutCommonMsg("", uint32TypeName),
 			g(markAsChg("2", "1", DiffGot)),
 			w(markAsChg("2", "1", DiffWant)),
 		),
@@ -93,7 +93,7 @@ func chkUint32TestBad1(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Uint32f",
-			chkOutCommonMsg("This message will be displayed first", "uint32"),
+			chkOutCommonMsg("This message will be displayed first", uint32TypeName),
 			g(markAsChg("2", "1", DiffGot)),
 			w(markAsChg("2", "1", DiffWant)),
 		),
@@ -113,7 +113,7 @@ func chkUint32TestBad2(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Uint32",
-			chkOutCommonMsg("This message will be displayed second", "uint32"),
+			chkOutCommonMsg("This message will be displayed second", uint32TypeName),
 			g(markAsChg("2", "1", DiffGot)),
 			w(markAsChg("2", "1", DiffWant)),
 		),
@@ -133,7 +133,7 @@ func chkUint32TestBad3(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Uint32f",
-			chkOutCommonMsg("This message will be displayed third", "uint32"),
+			chkOutCommonMsg("This message will be displayed third", uint32TypeName),
 			g(markAsChg("0", "1", DiffGot)),
 			w(markAsChg("0", "1", DiffWant)),
 		),
@@ -416,18 +416,20 @@ func chkUint32BoundedTestAll(t *testing.T) {
 	// Bad: Error displayed.
 	chk.Uint32Bounded(36, BoundedClosed, min, max)
 
-	const wntMsg = "out of bounds: [33,35] - { want | 33 <= want <= 35 }"
-	const fName = "Uint32Bounded"
+	const (
+		wntMsg = "out of bounds: [33,35] - { want | 33 <= want <= 35 }"
+		fName  = "Uint32Bounded"
+	)
 
 	chk.Release()
 	iT.check(t,
 		chkOutCapture("Nothing"),
 
-		chkOutNumericBounded(wntMsg, "30", fName, "uint32", ""),
-		chkOutNumericBounded(wntMsg, "31", fName, "uint32", "msg:31"),
-		chkOutNumericBoundedf(wntMsg, "32", fName, "uint32", "msg:32"),
+		chkOutNumericBounded(wntMsg, "30", fName, uint32TypeName, ""),
+		chkOutNumericBounded(wntMsg, "31", fName, uint32TypeName, "msg:31"),
+		chkOutNumericBoundedf(wntMsg, "32", fName, uint32TypeName, "msg:32"),
 
-		chkOutNumericBounded(wntMsg, "36", fName, "uint32", ""),
+		chkOutNumericBounded(wntMsg, "36", fName, uint32TypeName, ""),
 
 		chkOutRelease(),
 	)
@@ -454,16 +456,18 @@ func chkUint32UnboundedTestAll(t *testing.T) {
 	chk.Uint32Unbounded(64, UnboundedMinOpen, bound, "not ", "displayed")
 	chk.Uint32Unboundedf(65, UnboundedMinOpen, bound, "not %s", "displayed")
 
-	const wntMsg = "out of bounds: (62,MAX) - { want | want > 62 }"
-	const fName = "Uint32Unbounded"
+	const (
+		wntMsg = "out of bounds: (62,MAX) - { want | want > 62 }"
+		fName  = "Uint32Unbounded"
+	)
 
 	chk.Release()
 	iT.check(t,
 		chkOutCapture("Nothing"),
 
-		chkOutNumericUnbounded(wntMsg, "60", fName, "uint32", ""),
-		chkOutNumericUnbounded(wntMsg, "61", fName, "uint32", "msg:61"),
-		chkOutNumericUnboundedf(wntMsg, "62", fName, "uint32", "msg:62"),
+		chkOutNumericUnbounded(wntMsg, "60", fName, uint32TypeName, ""),
+		chkOutNumericUnbounded(wntMsg, "61", fName, uint32TypeName, "msg:61"),
+		chkOutNumericUnboundedf(wntMsg, "62", fName, uint32TypeName, "msg:62"),
 
 		chkOutRelease(),
 	)

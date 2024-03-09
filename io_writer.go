@@ -50,10 +50,13 @@ func (chk *Chk) Write(data []byte) (int, error) {
 
 		return writePos, writeErr
 	}
+
 	count := 0
+
 	if chk.wErr != nil && chk.wErrPos <= 0 {
 		return 0, chk.wErr
 	}
+
 	for _, nextByte := range data {
 		if chk.wErrPos == 0 {
 			if chk.wErr == nil {
@@ -62,6 +65,7 @@ func (chk *Chk) Write(data []byte) (int, error) {
 
 			return count, chk.wErr
 		}
+
 		chk.wData = append(chk.wData, nextByte)
 		chk.wErrPos--
 		count++

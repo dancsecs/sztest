@@ -68,6 +68,7 @@ func testSzTestingPrerequisites(t *testing.T) {
 
 func testPrerequisiteHelper(t *testing.T) {
 	const tstName = "testPrerequisiteHelper"
+
 	iT := new(iTst)
 
 	iT.Helper()
@@ -85,6 +86,7 @@ func testPrerequisiteHelper(t *testing.T) {
 
 func testPrerequisiteName(t *testing.T) {
 	const tstName = "testPrerequisiteName"
+
 	iT := new(iTst)
 
 	got := iT.Name()
@@ -103,6 +105,7 @@ func testPrerequisiteName(t *testing.T) {
 
 func testPrerequisiteSkipNow(t *testing.T) {
 	const tstName = "testPrerequisiteSkipNow"
+
 	iT := new(iTst)
 
 	iT.SkipNow()
@@ -120,6 +123,7 @@ func testPrerequisiteSkipNow(t *testing.T) {
 
 func testPrerequisiteFailNow(t *testing.T) {
 	const tstName = "testPrerequisiteFailNow"
+
 	iT := new(iTst)
 
 	iT.FailNow()
@@ -137,6 +141,7 @@ func testPrerequisiteFailNow(t *testing.T) {
 
 func testPrerequisiteError(t *testing.T) {
 	const tstName = "testPrerequisiteError"
+
 	iT := new(iTst)
 
 	iT.Error("the error with no args")
@@ -157,6 +162,7 @@ func testPrerequisiteError(t *testing.T) {
 
 func testPrerequisiteErrorf(t *testing.T) {
 	const tstName = "testPrerequisiteErrorf"
+
 	iT := new(iTst)
 
 	iT.Errorf("the error with no args")
@@ -177,6 +183,7 @@ func testPrerequisiteErrorf(t *testing.T) {
 
 func testPrerequisiteLogf(t *testing.T) {
 	const tstName = "testPrerequisiteLogf"
+
 	iT := new(iTst)
 
 	iT.Logf("the msg with no args")
@@ -195,6 +202,7 @@ func testPrerequisiteLogf(t *testing.T) {
 
 func testPrerequisitePrepareSlice(t *testing.T) {
 	const tstName = "testPrerequisitePrepareSlice"
+
 	iT := new(iTst)
 
 	got := strings.Join(
@@ -239,6 +247,7 @@ func testPrerequisitePrepareSlice(t *testing.T) {
 
 func testPrerequisiteCheckGood(t *testing.T) {
 	const tstName = "testPrerequisiteCheckGood"
+
 	iT := new(iTst)
 	iTCheck := new(iTst)
 
@@ -277,6 +286,7 @@ func testPrerequisiteCheckGood(t *testing.T) {
 
 func testPrerequisiteCheckBad1(t *testing.T) {
 	const tstName = "testPrerequisiteCheckBad1"
+
 	iT := new(iTst)
 	iTCheck := new(iTst)
 
@@ -334,6 +344,7 @@ func testPrerequisiteCheckBad1(t *testing.T) {
 
 func testPrerequisiteCheckBad2(t *testing.T) {
 	const tstName = "testPrerequisiteCheckBad2"
+
 	iT := new(iTst)
 	iTCheck := new(iTst)
 
@@ -391,6 +402,7 @@ func testPrerequisiteCheckBad2(t *testing.T) {
 
 func testPrerequisiteCheckBad3(t *testing.T) {
 	const tstName = "testPrerequisiteCheckBad3"
+
 	iT := new(iTst)
 	iTCheck := new(iTst)
 
@@ -436,15 +448,17 @@ func testPrerequisiteCheckBad3(t *testing.T) {
 //nolint:cyclop // Ok.
 func tstFreezeMarks(t *testing.T) {
 	const tstName = "testFreezeMarks"
+
 	iT := new(iTst)
 
 	tstStr := "No markups in string so will remain unchanged"
+
 	got, err := freezeMarks(tstStr)
 	if err != nil {
 		t.Fatal(err)
 	}
-	wnt := tstStr
 
+	wnt := tstStr
 	if got != wnt {
 		t.Error(errGotWnt(tstName, got, wnt))
 	}
@@ -466,10 +480,12 @@ func tstFreezeMarks(t *testing.T) {
 		settingMarkSepOn + "sep" + settingMarkSepOff + "\n" +
 		settingMarkMsgOn + "msg" + settingMarkMsgOff + "\n" +
 		""
+
 	got, err = freezeMarks(tstStr)
 	if err != nil {
 		t.Fatal(err)
 	}
+
 	wnt = "this string has representations of all default marks used in " +
 		"testing including empty strings:\n" +
 		internalTestMarkInsOn + internalTestMarkInsOff + "\n" +
@@ -497,8 +513,8 @@ func tstFreezeMarks(t *testing.T) {
 		err.Error() != `no closing mark found for "|-|InSOff|-|" in ""` {
 		t.Fatalf("unexpected error for: %v", err)
 	}
-	wnt = ""
 
+	wnt = ""
 	if got != wnt {
 		t.Error(errGotWnt(tstName, got, wnt))
 	}
@@ -510,8 +526,8 @@ func tstFreezeMarks(t *testing.T) {
 			`unexpected closing mark: Got: "|-|GoTOn|-|"  Want: "|-|InSOff|-|"` {
 		t.Fatalf("unexpected error for: %v", err)
 	}
-	wnt = ""
 
+	wnt = ""
 	if got != wnt {
 		t.Error(errGotWnt(tstName, got, wnt))
 	}
@@ -592,18 +608,21 @@ func tstChkOutErrorNoFail(t *testing.T) {
 		"Helper: (*Chk).Errorf\n" +
 		"Error: (*Chk).Errorf\n" +
 		""
+
 	if got != wnt {
 		t.Error(errGotWnt(tstName, got, wnt))
 	}
 
 	got = chkOutErrorfNoFail("Line 1")
 	wnt += "Line 1\n"
+
 	if got != wnt {
 		t.Error(errGotWnt(tstName, got, wnt))
 	}
 
 	got = chkOutErrorfNoFail("Line 1", "Line 2")
 	wnt += "Line 2\n"
+
 	if got != wnt {
 		t.Error(errGotWnt(tstName, got, wnt))
 	}

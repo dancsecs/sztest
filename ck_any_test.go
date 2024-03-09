@@ -61,16 +61,16 @@ func chkAnyTestNil(t *testing.T) {
 		chkOutCapture("Nothing"),
 
 		chkOutHelper("Nil"),
-		chkOutError(chkOutCommonMsg("", "not nil interface")),
+		chkOutError(chkOutCommonMsg("", notNilTypeName)),
 
 		chkOutHelper("Nil"),
 		chkOutError(
-			chkOutCommonMsg("This message will be displayed", "not nil interface"),
+			chkOutCommonMsg("This message will be displayed", notNilTypeName),
 		),
 
 		chkOutHelper("Nil"),
 		chkOutError(
-			chkOutCommonMsg("This message will be displayed", "not nil interface"),
+			chkOutCommonMsg("This message will be displayed", notNilTypeName),
 		),
 
 		chkOutRelease(),
@@ -102,16 +102,16 @@ func chkAnyTestNilf(t *testing.T) {
 		chkOutCapture("Nothing"),
 
 		chkOutHelper("Nilf"),
-		chkOutError(chkOutCommonMsg("", "not nil interface")),
+		chkOutError(chkOutCommonMsg("", notNilTypeName)),
 
 		chkOutHelper("Nilf"),
 		chkOutError(
-			chkOutCommonMsg("This message will be displayed", "not nil interface"),
+			chkOutCommonMsg("This message will be displayed", notNilTypeName),
 		),
 
 		chkOutHelper("Nilf"),
 		chkOutError(
-			chkOutCommonMsg("This message will be displayed", "not nil interface"),
+			chkOutCommonMsg("This message will be displayed", notNilTypeName),
 		),
 
 		chkOutRelease(),
@@ -144,22 +144,22 @@ func chkAnyTestNotNil(t *testing.T) {
 
 		chkOutHelper("NotNil"),
 		chkOutError(
-			chkOutCommonMsg("This message will be displayed", "nil interface"),
+			chkOutCommonMsg("This message will be displayed", nilTypeName),
 		),
 
 		chkOutHelper("NotNil"),
 		chkOutError(
-			chkOutCommonMsg("This message will be displayed", "nil interface"),
+			chkOutCommonMsg("This message will be displayed", nilTypeName),
 		),
 
 		chkOutHelper("NotNil"),
 		chkOutError(
-			chkOutCommonMsg("This message will be displayed", "nil interface"),
+			chkOutCommonMsg("This message will be displayed", nilTypeName),
 		),
 
 		chkOutHelper("NotNil"),
 		chkOutError(
-			chkOutCommonMsg("", "nil interface"),
+			chkOutCommonMsg("", nilTypeName),
 		),
 
 		chkOutRelease(),
@@ -192,22 +192,22 @@ func chkAnyTestNotNilf(t *testing.T) {
 
 		chkOutHelper("NotNilf"),
 		chkOutError(
-			chkOutCommonMsg("This message will be displayed", "nil interface"),
+			chkOutCommonMsg("This message will be displayed", nilTypeName),
 		),
 
 		chkOutHelper("NotNilf"),
 		chkOutError(
-			chkOutCommonMsg("This message will be displayed", "nil interface"),
+			chkOutCommonMsg("This message will be displayed", nilTypeName),
 		),
 
 		chkOutHelper("NotNilf"),
 		chkOutError(
-			chkOutCommonMsg("This message will be displayed", "nil interface"),
+			chkOutCommonMsg("This message will be displayed", nilTypeName),
 		),
 
 		chkOutHelper("NotNilf"),
 		chkOutError(
-			chkOutCommonMsg("", "nil interface"),
+			chkOutCommonMsg("", nilTypeName),
 		),
 
 		chkOutRelease(),

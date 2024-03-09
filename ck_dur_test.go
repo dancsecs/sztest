@@ -73,7 +73,7 @@ func chkDurTestBad(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Dur",
-			chkOutCommonMsg("", "time.Duration"),
+			chkOutCommonMsg("", durTypeName),
 			g(markAsChg("9s", "7s", DiffGot)),
 			w(markAsChg("9s", "7s", DiffWant)),
 		),
@@ -96,7 +96,7 @@ func chkDurTestBad1(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Durf",
-			chkOutCommonMsg("This message will be displayed first", "time.Duration"),
+			chkOutCommonMsg("This message will be displayed first", durTypeName),
 			g(markAsChg("3s", "2s", DiffGot)),
 			w(markAsChg("3s", "2s", DiffWant)),
 		),
@@ -120,7 +120,7 @@ func chkDurTestBad2(t *testing.T) {
 		chkOutIsError(
 			"Dur",
 			chkOutCommonMsg(
-				"This message will be displayed second", "time.Duration",
+				"This message will be displayed second", durTypeName,
 			),
 			g(markAsChg("6s", "5s", DiffGot)),
 			w(markAsChg("6s", "5s", DiffWant)),
@@ -433,18 +433,20 @@ func chkDurBoundedTestAll(t *testing.T) {
 	// Bad: Error displayed.
 	chk.DurBounded(36, BoundedClosed, min, max)
 
-	const wntMsg = "out of bounds: [33ns,35ns] - { want | 33ns <= want <= 35ns }"
-	const fName = "DurBounded"
+	const (
+		wntMsg = "out of bounds: [33ns,35ns] - { want | 33ns <= want <= 35ns }"
+		fName  = "DurBounded"
+	)
 
 	chk.Release()
 	iT.check(t,
 		chkOutCapture("Nothing"),
 
-		chkOutNumericBounded(wntMsg, "30ns", fName, "time.Duration", ""),
-		chkOutNumericBounded(wntMsg, "31ns", fName, "time.Duration", "msg:31"),
-		chkOutNumericBoundedf(wntMsg, "32ns", fName, "time.Duration", "msg:32"),
+		chkOutNumericBounded(wntMsg, "30ns", fName, durTypeName, ""),
+		chkOutNumericBounded(wntMsg, "31ns", fName, durTypeName, "msg:31"),
+		chkOutNumericBoundedf(wntMsg, "32ns", fName, durTypeName, "msg:32"),
 
-		chkOutNumericBounded(wntMsg, "36ns", fName, "time.Duration", ""),
+		chkOutNumericBounded(wntMsg, "36ns", fName, durTypeName, ""),
 
 		chkOutRelease(),
 	)
@@ -471,17 +473,18 @@ func chkDurUnboundedTestAll(t *testing.T) {
 	chk.DurUnbounded(129, UnboundedMinClosed, bound, "not ", "displayed")
 	chk.DurUnboundedf(130, UnboundedMinClosed, bound, "not %s", "displayed")
 
-	const wntMsg = "out of bounds: [128ns,MAX) - { want | want >= 128ns }"
-	const fName = "DurUnbounded"
-	const dType = "time.Duration"
+	const (
+		wntMsg = "out of bounds: [128ns,MAX) - { want | want >= 128ns }"
+		fName  = "DurUnbounded"
+	)
 
 	chk.Release()
 	iT.check(t,
 		chkOutCapture("Nothing"),
 
-		chkOutNumericUnbounded(wntMsg, "125ns", fName, dType, ""),
-		chkOutNumericUnbounded(wntMsg, "126ns", fName, dType, "msg:126"),
-		chkOutNumericUnboundedf(wntMsg, "127ns", fName, dType, "msg:127"),
+		chkOutNumericUnbounded(wntMsg, "125ns", fName, durTypeName, ""),
+		chkOutNumericUnbounded(wntMsg, "126ns", fName, durTypeName, "msg:126"),
+		chkOutNumericUnboundedf(wntMsg, "127ns", fName, durTypeName, "msg:127"),
 
 		chkOutRelease(),
 	)

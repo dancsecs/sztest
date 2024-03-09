@@ -32,14 +32,17 @@ func (chk *Chk) SetupArgsAndFlags(args []string) *flag.FlagSet {
 	if len(args) < 1 {
 		args = []string{"unspecifiedProgram"}
 	}
+
 	savedOsArgs := os.Args
 	savedFlagCmdLine := flag.CommandLine
+
 	chk.PushPreReleaseFunc(func() error {
 		os.Args = savedOsArgs
 		flag.CommandLine = savedFlagCmdLine
 
 		return nil
 	})
+
 	os.Args = args
 	flag.CommandLine = flag.NewFlagSet(args[0], flag.PanicOnError)
 
@@ -51,6 +54,7 @@ func (chk *Chk) SetupArgsAndFlags(args []string) *flag.FlagSet {
 func (*Chk) CaptureFlagUsage(flagSet *flag.FlagSet) string {
 	buf := strings.Builder{}
 	origOut := flagSet.Output()
+
 	defer func() {
 		flagSet.SetOutput(origOut)
 	}()

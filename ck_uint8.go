@@ -18,15 +18,18 @@
 
 package sztest
 
+const uint8TypeName = "uint8"
+
 // Uint8f compares the wanted uint8 against the gotten uint8 invoking an
 // error should they not match.
 func (chk *Chk) Uint8f(got, want uint8, msgFmt string, msgArgs ...any) bool {
 	if got == want {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errChkf(got, want, "uint8", msgFmt, msgArgs...)
+	return chk.errChkf(got, want, uint8TypeName, msgFmt, msgArgs...)
 }
 
 // Uint8 compares the wanted uint8 against the gotten uint8 invoking an
@@ -35,9 +38,10 @@ func (chk *Chk) Uint8(got, want uint8, msg ...any) bool {
 	if got == want {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errChk(got, want, "uint8", msg...)
+	return chk.errChk(got, want, uint8TypeName, msg...)
 }
 
 // Uint8Slicef checks two uint8 slices for equality.
@@ -46,9 +50,11 @@ func (chk *Chk) Uint8Slicef(
 ) bool {
 	l := len(got)
 	equal := l == len(want)
+
 	for i := 0; equal && i < l; i++ {
 		equal = got[i] == want[i]
 	}
+
 	if equal {
 		return true
 	}
@@ -56,7 +62,7 @@ func (chk *Chk) Uint8Slicef(
 	chk.t.Helper()
 
 	return errSlicef(chk,
-		got, want, "uint8", defaultCmpFunc[uint8], msgFmt, msgArgs...,
+		got, want, uint8TypeName, defaultCmpFunc[uint8], msgFmt, msgArgs...,
 	)
 }
 
@@ -64,15 +70,18 @@ func (chk *Chk) Uint8Slicef(
 func (chk *Chk) Uint8Slice(got, want []uint8, msg ...any) bool {
 	l := len(got)
 	equal := l == len(want)
+
 	for i := 0; equal && i < l; i++ {
 		equal = got[i] == want[i]
 	}
+
 	if equal {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return errSlice(chk, got, want, "uint8", defaultCmpFunc[uint8], msg...)
+	return errSlice(chk, got, want, uint8TypeName, defaultCmpFunc[uint8], msg...)
 }
 
 ////////////////////////////////////////////////////////////////
@@ -84,28 +93,28 @@ func (chk *Chk) Uint8Boundedf(
 	got uint8, option BoundedOption, min, max uint8,
 	msgFmt string, msgArgs ...any,
 ) bool {
-	const typeName = "uint8"
 	inRange, want := inBoundedRange(got, option, min, max)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWntf(typeName, got, want, msgFmt, msgArgs...)
+	return chk.errGotWntf(uint8TypeName, got, want, msgFmt, msgArgs...)
 }
 
 // Uint8Bounded checks value is within specified bounded range.
 func (chk *Chk) Uint8Bounded(
 	got uint8, option BoundedOption, min, max uint8, msg ...any,
 ) bool {
-	const typeName = "uint8"
 	inRange, want := inBoundedRange(got, option, min, max)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWnt(typeName, got, want, msg...)
+	return chk.errGotWnt(uint8TypeName, got, want, msg...)
 }
 
 // Uint8Unboundedf checks value is within specified unbounded range.
@@ -113,26 +122,26 @@ func (chk *Chk) Uint8Unboundedf(
 	got uint8, option UnboundedOption, bound uint8,
 	msgFmt string, msgArgs ...any,
 ) bool {
-	const typeName = "uint8"
 	inRange, want := inUnboundedRange(got, option, bound)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWntf(typeName, got, want, msgFmt, msgArgs...)
+	return chk.errGotWntf(uint8TypeName, got, want, msgFmt, msgArgs...)
 }
 
 // Uint8Unbounded checks value is within specified unbounded range.
 func (chk *Chk) Uint8Unbounded(
 	got uint8, option UnboundedOption, bound uint8, msg ...any,
 ) bool {
-	const typeName = "uint8"
 	inRange, want := inUnboundedRange(got, option, bound)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWnt(typeName, got, want, msg...)
+	return chk.errGotWnt(uint8TypeName, got, want, msg...)
 }

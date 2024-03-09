@@ -101,6 +101,7 @@ func clearAndCaptureAll() []*sysEnvVar {
 	for _, e := range envVars {
 		e.clear()
 	}
+
 	initAll()
 
 	return envVars
@@ -114,13 +115,16 @@ func restoreAll(envVars []*sysEnvVar) {
 			e.clear()
 		}
 	}
+
 	initAll()
 }
 
 //nolint:cyclop // Ok.
 func setupSysEnvVarTest(tmpDir string) error {
 	const errMsg = "could not set: %s: %v"
+
 	var err error
+
 	if err = os.Setenv(EnvFailFast, "false"); err != nil {
 		return fmt.Errorf(errMsg, EnvFailFast, err)
 	}

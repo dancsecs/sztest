@@ -77,7 +77,7 @@ func chkStringTestBad(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Str",
-			chkOutCommonMsg("", "string"),
+			chkOutCommonMsg("", stringTypeName),
 			g(markAsIns("Blank want")),
 			w(""),
 		),
@@ -97,7 +97,7 @@ func chkStringTestBad1(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Strf",
-			chkOutCommonMsg("This message will be displayed first", "string"),
+			chkOutCommonMsg("This message will be displayed first", stringTypeName),
 			g(""),
 			w(markAsDel("Blank got")),
 		),
@@ -117,7 +117,7 @@ func chkStringTestBad2(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Str",
-			chkOutCommonMsg("This message will be displayed second", "string"),
+			chkOutCommonMsg("This message will be displayed second", stringTypeName),
 			g(markAsIns("Blank want")),
 			w(""),
 		),
@@ -137,7 +137,7 @@ func chkStringTestBad3(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Strf",
-			chkOutCommonMsg("This message will be displayed third", "string"),
+			chkOutCommonMsg("This message will be displayed third", stringTypeName),
 			g(markAsChg("got", "want", DiffGot)),
 			w(markAsChg("got", "want", DiffWant)),
 		),
@@ -420,19 +420,21 @@ func chkStringBoundedTestAll(t *testing.T) {
 	// Bad: Error displayed.
 	chk.StrBounded("36", BoundedClosed, min, max)
 
-	const wntMsg = "out of bounds: [\"33\",\"35\"] - " +
-		"{ want | \"33\" <= want <= \"35\" }"
-	const fName = "StrBounded"
+	const (
+		wntMsg = "out of bounds: [\"33\",\"35\"] - " +
+			"{ want | \"33\" <= want <= \"35\" }"
+		fName = "StrBounded"
+	)
 
 	chk.Release()
 	iT.check(t,
 		chkOutCapture("Nothing"),
 
-		chkOutStringBounded(wntMsg, "30", fName, "string", ""),
-		chkOutStringBounded(wntMsg, "31", fName, "string", "msg:31"),
-		chkOutStringBoundedf(wntMsg, "32", fName, "string", "msg:32"),
+		chkOutStringBounded(wntMsg, "30", fName, stringTypeName, ""),
+		chkOutStringBounded(wntMsg, "31", fName, stringTypeName, "msg:31"),
+		chkOutStringBoundedf(wntMsg, "32", fName, stringTypeName, "msg:32"),
 
-		chkOutStringBounded(wntMsg, "36", fName, "string", ""),
+		chkOutStringBounded(wntMsg, "36", fName, stringTypeName, ""),
 
 		chkOutRelease(),
 	)
@@ -459,16 +461,18 @@ func chkStringUnboundedTestAll(t *testing.T) {
 	chk.StrUnbounded("64", UnboundedMinOpen, bound, "not ", "displayed")
 	chk.StrUnboundedf("65", UnboundedMinOpen, bound, "not %s", "displayed")
 
-	const wntMsg = "out of bounds: (\"62\",MAX) - { want | want > \"62\" }"
-	const fName = "StrUnbounded"
+	const (
+		wntMsg = "out of bounds: (\"62\",MAX) - { want | want > \"62\" }"
+		fName  = "StrUnbounded"
+	)
 
 	chk.Release()
 	iT.check(t,
 		chkOutCapture("Nothing"),
 
-		chkOutStrUnbounded(wntMsg, "60", fName, "string", ""),
-		chkOutStrUnbounded(wntMsg, "61", fName, "string", "msg:61"),
-		chkOutStrUnboundedf(wntMsg, "62", fName, "string", "msg:62"),
+		chkOutStrUnbounded(wntMsg, "60", fName, stringTypeName, ""),
+		chkOutStrUnbounded(wntMsg, "61", fName, stringTypeName, "msg:61"),
+		chkOutStrUnboundedf(wntMsg, "62", fName, stringTypeName, "msg:62"),
 
 		chkOutRelease(),
 	)

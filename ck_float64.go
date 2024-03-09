@@ -22,12 +22,14 @@ import (
 	"strconv"
 )
 
+const float64TypeName = "float64"
+
 func float64TypeString(tolerance float64) string {
 	if tolerance == 0.0 {
-		return "float64"
+		return float64TypeName
 	}
 
-	return "float64(+/- " +
+	return float64TypeName + "(+/- " +
 		strconv.FormatFloat(tolerance, 'g', -1, 64) +
 		")"
 }
@@ -40,6 +42,7 @@ func (chk *Chk) Float64f(
 	if IsFloat64Similar(got, want, tolerance) {
 		return true
 	}
+
 	chk.t.Helper()
 
 	return chk.errChkf(
@@ -55,6 +58,7 @@ func (chk *Chk) Float64(
 	if IsFloat64Similar(got, want, tolerance) {
 		return true
 	}
+
 	chk.t.Helper()
 
 	return chk.errChk(
@@ -69,12 +73,15 @@ func (chk *Chk) Float64Slicef(
 ) bool {
 	l := len(got)
 	equal := l == len(want)
+
 	for i := 0; equal && i < l; i++ {
 		equal = IsFloat64Similar(got[i], want[i], tolerance)
 	}
+
 	if equal {
 		return true
 	}
+
 	chk.t.Helper()
 
 	return errSlicef(chk,
@@ -93,12 +100,15 @@ func (chk *Chk) Float64Slice(
 ) bool {
 	l := len(got)
 	equal := l == len(want)
+
 	for i := 0; equal && i < l; i++ {
 		equal = IsFloat64Similar(got[i], want[i], tolerance)
 	}
+
 	if equal {
 		return true
 	}
+
 	chk.t.Helper()
 
 	return errSlice(chk,
@@ -136,28 +146,28 @@ func (chk *Chk) Float64Boundedf(
 	got float64, option BoundedOption, min, max float64,
 	msgFmt string, msgArgs ...any,
 ) bool {
-	const typeName = "float64"
 	inRange, want := inBoundedRange(got, option, min, max)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWntf(typeName, got, want, msgFmt, msgArgs...)
+	return chk.errGotWntf(float64TypeName, got, want, msgFmt, msgArgs...)
 }
 
 // Float64Bounded checks value is within specified bounded range.
 func (chk *Chk) Float64Bounded(
 	got float64, option BoundedOption, min, max float64, msg ...any,
 ) bool {
-	const typeName = "float64"
 	inRange, want := inBoundedRange(got, option, min, max)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWnt(typeName, got, want, msg...)
+	return chk.errGotWnt(float64TypeName, got, want, msg...)
 }
 
 // Float64Unboundedf checks value is within specified unbounded range.
@@ -165,26 +175,26 @@ func (chk *Chk) Float64Unboundedf(
 	got float64, option UnboundedOption, bound float64,
 	msgFmt string, msgArgs ...any,
 ) bool {
-	const typeName = "float64"
 	inRange, want := inUnboundedRange(got, option, bound)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWntf(typeName, got, want, msgFmt, msgArgs...)
+	return chk.errGotWntf(float64TypeName, got, want, msgFmt, msgArgs...)
 }
 
 // Float64Unbounded checks value is within specified unbounded range.
 func (chk *Chk) Float64Unbounded(
 	got float64, option UnboundedOption, bound float64, msg ...any,
 ) bool {
-	const typeName = "float64"
 	inRange, want := inUnboundedRange(got, option, bound)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWnt(typeName, got, want, msg...)
+	return chk.errGotWnt(float64TypeName, got, want, msg...)
 }

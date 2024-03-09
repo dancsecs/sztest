@@ -30,6 +30,7 @@ func (chk *Chk) SetSeekError(pos int64, err error) {
 func (chk *Chk) Seek(_ int64, _ int) (int64, error) {
 	seekPos := chk.ioSeekErrPos
 	seekErr := chk.ioSeekErr
+
 	if chk.ioSeekErrSet {
 		chk.ioSeekErrPos = 0
 		chk.ioSeekErr = nil

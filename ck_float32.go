@@ -22,12 +22,14 @@ import (
 	"strconv"
 )
 
+const float32TypeName = "float32"
+
 func float32TypeString(tolerance float32) string {
 	if tolerance == 0.0 {
-		return "float32"
+		return float32TypeName
 	}
 
-	return "float32(+/- " +
+	return float32TypeName + "(+/- " +
 		strconv.FormatFloat(float64(tolerance), 'g', -1, 64) +
 		")"
 }
@@ -40,6 +42,7 @@ func (chk *Chk) Float32f(
 	if IsFloat32Similar(got, want, tolerance) {
 		return true
 	}
+
 	chk.t.Helper()
 
 	return chk.errChkf(
@@ -55,6 +58,7 @@ func (chk *Chk) Float32(
 	if IsFloat32Similar(got, want, tolerance) {
 		return true
 	}
+
 	chk.t.Helper()
 
 	return chk.errChk(
@@ -70,12 +74,15 @@ func (chk *Chk) Float32Slicef(
 ) bool {
 	l := len(got)
 	equal := l == len(want)
+
 	for i := 0; equal && i < l; i++ {
 		equal = IsFloat32Similar(got[i], want[i], tolerance)
 	}
+
 	if equal {
 		return true
 	}
+
 	chk.t.Helper()
 
 	return errSlicef(chk,
@@ -94,12 +101,15 @@ func (chk *Chk) Float32Slice(
 ) bool {
 	l := len(got)
 	equal := l == len(want)
+
 	for i := 0; equal && i < l; i++ {
 		equal = IsFloat32Similar(got[i], want[i], tolerance)
 	}
+
 	if equal {
 		return true
 	}
+
 	chk.t.Helper()
 
 	return errSlice(chk,
@@ -137,28 +147,28 @@ func (chk *Chk) Float32Boundedf(
 	got float32, option BoundedOption, min, max float32,
 	msgFmt string, msgArgs ...any,
 ) bool {
-	const typeName = "float32"
 	inRange, want := inBoundedRange(got, option, min, max)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWntf(typeName, got, want, msgFmt, msgArgs...)
+	return chk.errGotWntf(float32TypeName, got, want, msgFmt, msgArgs...)
 }
 
 // Float32Bounded checks value is within specified bounded range.
 func (chk *Chk) Float32Bounded(
 	got float32, option BoundedOption, min, max float32, msg ...any,
 ) bool {
-	const typeName = "float32"
 	inRange, want := inBoundedRange(got, option, min, max)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWnt(typeName, got, want, msg...)
+	return chk.errGotWnt(float32TypeName, got, want, msg...)
 }
 
 // Float32Unboundedf checks value is within specified unbounded range.
@@ -166,26 +176,26 @@ func (chk *Chk) Float32Unboundedf(
 	got float32, option UnboundedOption, bound float32,
 	msgFmt string, msgArgs ...any,
 ) bool {
-	const typeName = "float32"
 	inRange, want := inUnboundedRange(got, option, bound)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWntf(typeName, got, want, msgFmt, msgArgs...)
+	return chk.errGotWntf(float32TypeName, got, want, msgFmt, msgArgs...)
 }
 
 // Float32Unbounded checks value is within specified unbounded range.
 func (chk *Chk) Float32Unbounded(
 	got float32, option UnboundedOption, bound float32, msg ...any,
 ) bool {
-	const typeName = "float32"
 	inRange, want := inUnboundedRange(got, option, bound)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWnt(typeName, got, want, msg...)
+	return chk.errGotWnt(float32TypeName, got, want, msg...)
 }

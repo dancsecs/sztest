@@ -46,8 +46,10 @@ func chkIoReaderTestIOReaderNoError1(t *testing.T) {
 		"This is the third line.\n",
 		"This is the fourth line without linefeed.",
 	)
+
 	got := ""
 	s := bufio.NewScanner(chk)
+
 	for s.Scan() {
 		got += s.Text() + "\n"
 	}
@@ -74,8 +76,10 @@ func chkIoReaderTestIOReaderNoError2(t *testing.T) {
 		"This is the third line.\n",
 		"This is the fourth line with linefeed.\n",
 	)
+
 	got := ""
 	s := bufio.NewScanner(chk)
+
 	for s.Scan() {
 		got += s.Text() + "\n"
 	}
@@ -105,6 +109,7 @@ func chkIoReaderIOReaderError1(t *testing.T) {
 
 	got := ""
 	s := bufio.NewScanner(chk)
+
 	for s.Scan() {
 		got += s.Text() + "\n"
 	}
@@ -158,12 +163,13 @@ func chkIoReaderIOReaderError3(t *testing.T) {
 	chk.SetIOReaderError(55, errors.New("This error after 55 characters"))
 
 	got := ""
-	s := bufio.NewScanner(chk)
-	for s.Scan() {
-		got += s.Text() + "\n"
+	scanner := bufio.NewScanner(chk)
+
+	for scanner.Scan() {
+		got += scanner.Text() + "\n"
 	}
 	chk.Err(
-		s.Err(),
+		scanner.Err(),
 		"This error after 55 characters",
 	)
 

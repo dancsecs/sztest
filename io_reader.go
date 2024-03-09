@@ -31,6 +31,7 @@ func (chk *Chk) SetIOReaderData(d ...string) {
 	for _, e := range d {
 		lines += e
 	}
+
 	chk.rData = []byte(lines)
 	chk.rLeft = len(chk.rData)
 	chk.rPos = 0
@@ -66,9 +67,11 @@ func (chk *Chk) Read(dataBuf []byte) (int, error) {
 
 		return readPos, readErr
 	}
+
 	if chk.rErr != nil && (chk.rErrPos <= 0 || chk.rLeft <= 0) {
 		return 0, chk.rErr
 	}
+
 	if chk.rLeft <= 0 {
 		chk.rErr = ErrReadPastEndOfData
 
@@ -77,12 +80,14 @@ func (chk *Chk) Read(dataBuf []byte) (int, error) {
 
 	i := 0
 	mi := len(dataBuf)
+
 	for i < mi && chk.rLeft > 0 {
 		dataBuf[i] = chk.rData[chk.rPos]
 		chk.rPos++
 		chk.rLeft--
 		chk.rErrPos--
 		i++
+
 		if chk.rErr != nil && (chk.rErrPos <= 0 || chk.rLeft <= 0) {
 			break
 		}
@@ -94,6 +99,7 @@ func (chk *Chk) Read(dataBuf []byte) (int, error) {
 // SetStdinData sets the os.Stdin to stream the provided data.
 func (chk *Chk) SetStdinData(lines ...string) {
 	chk.t.Helper()
+
 	origStdin := os.Stdin
 	rPipe, wPipe, err := os.Pipe()
 
@@ -101,6 +107,7 @@ func (chk *Chk) SetStdinData(lines ...string) {
 		chk.PushPostReleaseFunc(func() error {
 			os.Stdin = origStdin
 			err = wPipe.Close()
+
 			if err == nil {
 				err = rPipe.Close()
 			}
@@ -109,6 +116,7 @@ func (chk *Chk) SetStdinData(lines ...string) {
 		})
 
 		chk.NoErr(err)
+
 		os.Stdin = rPipe
 
 		fmt.Fprint(wPipe, strings.Join(lines, ""))

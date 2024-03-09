@@ -18,6 +18,8 @@
 
 package sztest
 
+const uint64TypeName = "uint64"
+
 // Uint64f compares the wanted uint64 against the gotten uint64 invoking an
 // error should they not match.
 func (chk *Chk) Uint64f(
@@ -26,9 +28,10 @@ func (chk *Chk) Uint64f(
 	if got == want {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errChkf(got, want, "uint64", msgFmt, msgArgs...)
+	return chk.errChkf(got, want, uint64TypeName, msgFmt, msgArgs...)
 }
 
 // Uint64 compares the wanted uint64 against the gotten uint64 invoking an
@@ -37,9 +40,10 @@ func (chk *Chk) Uint64(got, want uint64, msg ...any) bool {
 	if got == want {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errChk(got, want, "uint64", msg...)
+	return chk.errChk(got, want, uint64TypeName, msg...)
 }
 
 // Uint64Slicef checks two uint64 slices for equality.
@@ -48,16 +52,19 @@ func (chk *Chk) Uint64Slicef(
 ) bool {
 	l := len(got)
 	equal := l == len(want)
+
 	for i := 0; equal && i < l; i++ {
 		equal = got[i] == want[i]
 	}
+
 	if equal {
 		return true
 	}
+
 	chk.t.Helper()
 
 	return errSlicef(chk,
-		got, want, "uint64", defaultCmpFunc[uint64],
+		got, want, uint64TypeName, defaultCmpFunc[uint64],
 		msgFmt, msgArgs...,
 	)
 }
@@ -66,15 +73,18 @@ func (chk *Chk) Uint64Slicef(
 func (chk *Chk) Uint64Slice(got, want []uint64, msg ...any) bool {
 	l := len(got)
 	equal := l == len(want)
+
 	for i := 0; equal && i < l; i++ {
 		equal = got[i] == want[i]
 	}
+
 	if equal {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return errSlice(chk, got, want, "uint64", defaultCmpFunc[uint64], msg...)
+	return errSlice(chk, got, want, uint64TypeName, defaultCmpFunc[uint64], msg...)
 }
 
 //
@@ -86,28 +96,28 @@ func (chk *Chk) Uint64Boundedf(
 	got uint64, option BoundedOption, min, max uint64,
 	msgFmt string, msgArgs ...any,
 ) bool {
-	const typeName = "uint64"
 	inRange, want := inBoundedRange(got, option, min, max)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWntf(typeName, got, want, msgFmt, msgArgs...)
+	return chk.errGotWntf(uint64TypeName, got, want, msgFmt, msgArgs...)
 }
 
 // Uint64Bounded checks value is within specified bounded range.
 func (chk *Chk) Uint64Bounded(
 	got uint64, option BoundedOption, min, max uint64, msg ...any,
 ) bool {
-	const typeName = "uint64"
 	inRange, want := inBoundedRange(got, option, min, max)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWnt(typeName, got, want, msg...)
+	return chk.errGotWnt(uint64TypeName, got, want, msg...)
 }
 
 // Uint64Unboundedf checks value is within specified unbounded range.
@@ -115,26 +125,26 @@ func (chk *Chk) Uint64Unboundedf(
 	got uint64, option UnboundedOption, bound uint64,
 	msgFmt string, msgArgs ...any,
 ) bool {
-	const typeName = "uint64"
 	inRange, want := inUnboundedRange(got, option, bound)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWntf(typeName, got, want, msgFmt, msgArgs...)
+	return chk.errGotWntf(uint64TypeName, got, want, msgFmt, msgArgs...)
 }
 
 // Uint64Unbounded checks value is within specified unbounded range.
 func (chk *Chk) Uint64Unbounded(
 	got uint64, option UnboundedOption, bound uint64, msg ...any,
 ) bool {
-	const typeName = "uint64"
 	inRange, want := inUnboundedRange(got, option, bound)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWnt(typeName, got, want, msg...)
+	return chk.errGotWnt(uint64TypeName, got, want, msg...)
 }

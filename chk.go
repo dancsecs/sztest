@@ -172,6 +172,7 @@ type Chk struct {
 
 func newChk(t testingT, option captureOption) *Chk {
 	t.Helper()
+
 	chk := new(Chk)
 	chk.t = t
 	chk.rData = make([]byte, 0)
@@ -211,8 +212,10 @@ func (chk *Chk) Logf(msgFmt string, msgArgs ...any) {
 // Error passthrough to t.
 func (chk *Chk) Error(args ...any) {
 	chk.t.Helper()
+
 	chk.faultCount++
 	chk.t.Error(chk.markupForDisplay(fmt.Sprint(args...)))
+
 	if settingFailFast {
 		chk.t.FailNow()
 	}
@@ -221,8 +224,10 @@ func (chk *Chk) Error(args ...any) {
 // Errorf passthrough to t.
 func (chk *Chk) Errorf(msgFmt string, msgArgs ...any) {
 	chk.t.Helper()
+
 	chk.faultCount++
 	chk.t.Error(chk.markupForDisplay(fmt.Sprintf(msgFmt, msgArgs...)))
+
 	if settingFailFast {
 		chk.t.FailNow()
 	}
@@ -231,6 +236,7 @@ func (chk *Chk) Errorf(msgFmt string, msgArgs ...any) {
 // Fatalf passthrough to t.
 func (chk *Chk) Fatalf(msgFmt string, msgArgs ...any) {
 	chk.t.Helper()
+
 	chk.faultCount++
 	chk.t.Error(chk.markupForDisplay(fmt.Sprintf(msgFmt, msgArgs...)))
 	chk.t.FailNow()
@@ -258,6 +264,7 @@ func (chk *Chk) KeepTmpFiles() {
 // queue.
 func (chk *Chk) PushPreReleaseFunc(newFunc func() error) {
 	chk.t.Helper()
+
 	if chk.releaseFunc == nil {
 		chk.releaseFunc = func() error {
 			chk.t.Helper()
@@ -267,9 +274,12 @@ func (chk *Chk) PushPreReleaseFunc(newFunc func() error) {
 
 		return
 	}
+
 	prevFunc := chk.releaseFunc
+
 	chk.releaseFunc = func() error {
 		chk.t.Helper()
+
 		err := newFunc()
 		if err == nil {
 			err = prevFunc()
@@ -283,6 +293,7 @@ func (chk *Chk) PushPreReleaseFunc(newFunc func() error) {
 // queue.
 func (chk *Chk) PushPostReleaseFunc(newFunc func() error) {
 	chk.t.Helper()
+
 	if chk.releaseFunc == nil {
 		chk.releaseFunc = func() error {
 			chk.t.Helper()
@@ -292,9 +303,11 @@ func (chk *Chk) PushPostReleaseFunc(newFunc func() error) {
 
 		return
 	}
+
 	prevFunc := chk.releaseFunc
 	chk.releaseFunc = func() error {
 		chk.t.Helper()
+
 		err := prevFunc()
 		if err == nil {
 			err = newFunc()
@@ -307,12 +320,14 @@ func (chk *Chk) PushPostReleaseFunc(newFunc func() error) {
 // Release invokes all pushed release functions.
 func (chk *Chk) Release() {
 	chk.t.Helper()
+
 	if !chk.runningPanicFunction {
 		if r := recover(); r != nil {
 			panic(r)
 		} else if chk.releaseFunc != nil {
 			err := chk.releaseFunc()
 			chk.releaseFunc = nil
+
 			if err != nil {
 				chk.Fatalf("release caused error: %v", err)
 			}
@@ -346,6 +361,7 @@ func errMsgHeaderf(typeName, msgFmt string, msgArgs ...any) string {
 func (chk *Chk) errGotWnt(typeName string, got, wnt any, msg ...any) bool {
 	gotf := fmt.Sprintf("%v", got)
 	wntf := fmt.Sprintf("%v", wnt)
+
 	chk.t.Helper()
 	chk.Error(
 		errMsgHeader(typeName, msg...) + gotWnt(gotf, wntf),
@@ -359,6 +375,7 @@ func (chk *Chk) errGotWntf(
 ) bool {
 	gotf := fmt.Sprintf("%v", got)
 	wntf := fmt.Sprintf("%v", wnt)
+
 	chk.t.Helper()
 	chk.Error(
 		errMsgHeaderf(typeName, msgFmt, msgArgs...) + gotWnt(gotf, wntf),
@@ -416,9 +433,12 @@ func errSlice[V chkType](
 	got, want []V, typeName string, cmp func(a, b V) bool, msg ...any,
 ) bool {
 	chk.t.Helper()
-	var errMsg string
 
-	diffFound := false
+	var (
+		errMsg    string
+		diffFound bool
+	)
+
 	gDiff := DiffSlice(
 		got,
 		want,
@@ -428,11 +448,13 @@ func errSlice[V chkType](
 		settingDiffChars,
 		cmp,
 	)
+
 	if diffFound {
 		errMsg = fmt.Sprint("Length Got: ", len(got), " Wnt: ", len(want))
 	} else {
 		errMsg = "invalid invocation: arrays are identical"
 	}
+
 	chk.Error(
 		errMsgHeader("[]"+typeName, msg...) +
 			errMsg +
@@ -448,9 +470,12 @@ func errSlicef[V chkType](
 	msgFmt string, msgArgs ...any,
 ) bool {
 	chk.t.Helper()
-	var errMsg string
 
-	diffFound := false
+	var (
+		errMsg    string
+		diffFound bool
+	)
+
 	gDiff := DiffSlice(
 		got,
 		want,
@@ -460,11 +485,13 @@ func errSlicef[V chkType](
 		settingDiffChars,
 		cmp,
 	)
+
 	if diffFound {
 		errMsg = fmt.Sprint("Length Got: ", len(got), " Wnt: ", len(want))
 	} else {
 		errMsg = "invalid invocation: arrays are identical"
 	}
+
 	chk.Error(
 		errMsgHeaderf("[]"+typeName, msgFmt, msgArgs...) +
 			errMsg +
@@ -510,12 +537,17 @@ const (
 func inBoundedRange[V chkBoundedType](
 	got V, option BoundedOption, min, max V,
 ) (bool, string) {
-	var inRange bool
-	var want string
+	var (
+		inRange bool
+		want    string
+	)
+
 	vFmt := "%v"
+
 	if reflect.TypeOf(got).Name() == "string" {
 		vFmt = "\"%v\""
 	}
+
 	switch option {
 	case BoundedOpen:
 		// IntervalBoundedOpen (a,b) = { x | a < x < b }
@@ -534,9 +566,9 @@ func inBoundedRange[V chkBoundedType](
 		inRange = min <= got && got < max
 		want = "[" + vFmt + "," + vFmt + ") - { want | " + vFmt + " <= want < " + vFmt + " }"
 	default:
-
 		return false, fmt.Sprint("unknown bounded option ", option)
 	}
+
 	if inRange {
 		return true, ""
 	}
@@ -547,12 +579,17 @@ func inBoundedRange[V chkBoundedType](
 func inUnboundedRange[V chkBoundedType](
 	got V, option UnboundedOption, bound V,
 ) (bool, string) {
-	var inRange bool
-	var want string
+	var (
+		inRange bool
+		want    string
+	)
+
 	vFmt := "%v"
+
 	if reflect.TypeOf(got).Name() == "string" {
 		vFmt = "\"%v\""
 	}
+
 	switch option {
 	case UnboundedMinOpen:
 		// (a,+∞) = { x | x > a }
@@ -571,9 +608,9 @@ func inUnboundedRange[V chkBoundedType](
 		inRange = got <= bound
 		want = "(MIN," + vFmt + "] - { want | want <= " + vFmt + " }"
 	default:
-
 		return false, fmt.Sprint("unknown unbounded option ", option)
 	}
+
 	if inRange {
 		return true, ""
 	}

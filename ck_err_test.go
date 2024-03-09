@@ -87,7 +87,7 @@ func chkErrTestBad(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Err",
-			chkOutCommonMsg("", "err"),
+			chkOutCommonMsg("", errTypeName),
 			g(
 				markAsIns(`error mismatch for "`)+
 					"expected error"+
@@ -114,7 +114,7 @@ func chkErrTestBad1(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Errf",
-			chkOutCommonMsg("This err message will be displayed first", "err"),
+			chkOutCommonMsg("This err message will be displayed first", errTypeName),
 			g(markAsIns(`error mismatch for ""`)),
 			w(""),
 		),
@@ -137,7 +137,7 @@ func chkErrTestBad2(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Errf",
-			chkOutCommonMsg("This err message will be displayed second", "err"),
+			chkOutCommonMsg("This err message will be displayed second", errTypeName),
 			g(markAsIns("error mismatch for \"")+"<nil>"+markAsIns("\"")),
 			w("<nil>"),
 		),
@@ -160,7 +160,7 @@ func chkErrTestBad3(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Err",
-			chkOutCommonMsg("This err message will be displayed third", "err"),
+			chkOutCommonMsg("This err message will be displayed third", errTypeName),
 			g(markAsIns("error mismatch for \"")+"expected error"+markAsIns("\"")),
 			w("expected error"),
 		),
@@ -183,7 +183,7 @@ func chkErrTestNoErrBad1(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"NoErr",
-			chkOutCommonMsg("This err message will be displayed", "err"),
+			chkOutCommonMsg("This err message will be displayed", errTypeName),
 			g(markAsIns("expected error")),
 			w(""),
 		),
@@ -207,7 +207,7 @@ func chkErrTestNoErrBad2(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"NoErrf",
-			chkOutCommonMsg("This err message will be displayed noErrSecond", "err"),
+			chkOutCommonMsg("This err message will be displayed noErrSecond", errTypeName),
 			g(markAsIns("expected error")),
 			w(""),
 		),

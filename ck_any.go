@@ -23,14 +23,20 @@ import (
 	"reflect"
 )
 
+const (
+	nilTypeName    = "nil interface"
+	notNilTypeName = "not " + nilTypeName
+)
+
 // Nilf checks that the interface value is nil with formatted msg.
 func (chk *Chk) Nilf(got any, msgFmt string, msgArgs ...any) bool {
 	if got == nil || reflect.ValueOf(got).IsNil() {
 		return true
 	}
+
 	chk.t.Helper()
 	chk.Error(
-		errMsgHeader("not nil interface", fmt.Sprintf(msgFmt, msgArgs...)),
+		errMsgHeader(notNilTypeName, fmt.Sprintf(msgFmt, msgArgs...)),
 	)
 
 	return false
@@ -41,9 +47,10 @@ func (chk *Chk) Nil(got any, msg ...any) bool {
 	if got == nil || reflect.ValueOf(got).IsNil() {
 		return true
 	}
+
 	chk.t.Helper()
 	chk.Error(
-		errMsgHeader("not nil interface", msg...),
+		errMsgHeader(notNilTypeName, msg...),
 	)
 
 	return false
@@ -54,9 +61,10 @@ func (chk *Chk) NotNilf(got any, msgFmt string, msgArgs ...any) bool {
 	if got != nil && !reflect.ValueOf(got).IsNil() {
 		return true
 	}
+
 	chk.t.Helper()
 	chk.Error(
-		errMsgHeader("nil interface", fmt.Sprintf(msgFmt, msgArgs...)),
+		errMsgHeader(nilTypeName, fmt.Sprintf(msgFmt, msgArgs...)),
 	)
 
 	return false
@@ -67,8 +75,9 @@ func (chk *Chk) NotNil(got any, msg ...any) bool {
 	if got != nil && !reflect.ValueOf(got).IsNil() {
 		return true
 	}
+
 	chk.t.Helper()
-	chk.Error(errMsgHeader("nil interface", msg...))
+	chk.Error(errMsgHeader(nilTypeName, msg...))
 
 	return false
 }

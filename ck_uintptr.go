@@ -18,6 +18,8 @@
 
 package sztest
 
+const uintptrTypeName = "uintptr"
+
 // Uintptrf compares the wanted uintptr against the gotten uintptr invoking an
 // error should they not match.
 func (chk *Chk) Uintptrf(
@@ -26,9 +28,10 @@ func (chk *Chk) Uintptrf(
 	if got == want {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errChkf(got, want, "uintptr", msgFmt, msgArgs...)
+	return chk.errChkf(got, want, uintptrTypeName, msgFmt, msgArgs...)
 }
 
 // Uintptr compares the wanted uintptr against the gotten uintptr invoking an
@@ -37,9 +40,10 @@ func (chk *Chk) Uintptr(got, want uintptr, msg ...any) bool {
 	if got == want {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errChk(got, want, "uintptr", msg...)
+	return chk.errChk(got, want, uintptrTypeName, msg...)
 }
 
 // UintptrSlicef checks two uintptr slices for equality.
@@ -48,16 +52,19 @@ func (chk *Chk) UintptrSlicef(
 ) bool {
 	l := len(got)
 	equal := l == len(want)
+
 	for i := 0; equal && i < l; i++ {
 		equal = got[i] == want[i]
 	}
+
 	if equal {
 		return true
 	}
+
 	chk.t.Helper()
 
 	return errSlicef(chk,
-		got, want, "uintptr", defaultCmpFunc[uintptr],
+		got, want, uintptrTypeName, defaultCmpFunc[uintptr],
 		msgFmt, msgArgs...,
 	)
 }
@@ -66,13 +73,16 @@ func (chk *Chk) UintptrSlicef(
 func (chk *Chk) UintptrSlice(got, want []uintptr, msg ...any) bool {
 	l := len(got)
 	equal := l == len(want)
+
 	for i := 0; equal && i < l; i++ {
 		equal = got[i] == want[i]
 	}
+
 	if equal {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return errSlice(chk, got, want, "uintptr", defaultCmpFunc[uintptr], msg...)
+	return errSlice(chk, got, want, uintptrTypeName, defaultCmpFunc[uintptr], msg...)
 }

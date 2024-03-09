@@ -18,15 +18,18 @@
 
 package sztest
 
+const runeTypeName = "rune"
+
 // Runef compares the wanted rune against the gotten rune invoking an
 // error should they not match.
 func (chk *Chk) Runef(got, want rune, msgFmt string, msgArgs ...any) bool {
 	if got == want {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errChkf(got, want, "rune", msgFmt, msgArgs...)
+	return chk.errChkf(got, want, runeTypeName, msgFmt, msgArgs...)
 }
 
 // Rune compares the wanted rune against the gotten rune invoking an
@@ -35,9 +38,10 @@ func (chk *Chk) Rune(got, want rune, msg ...any) bool {
 	if got == want {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errChk(got, want, "rune", msg...)
+	return chk.errChk(got, want, runeTypeName, msg...)
 }
 
 // RuneSlicef checks two rune slices for equality.
@@ -46,16 +50,19 @@ func (chk *Chk) RuneSlicef(
 ) bool {
 	l := len(got)
 	equal := l == len(want)
+
 	for i := 0; equal && i < l; i++ {
 		equal = got[i] == want[i]
 	}
+
 	if equal {
 		return true
 	}
+
 	chk.t.Helper()
 
 	return errSlicef(chk,
-		got, want, "rune", defaultCmpFunc[rune], msgFmt, msgArgs...,
+		got, want, runeTypeName, defaultCmpFunc[rune], msgFmt, msgArgs...,
 	)
 }
 
@@ -63,15 +70,18 @@ func (chk *Chk) RuneSlicef(
 func (chk *Chk) RuneSlice(got, want []rune, msg ...any) bool {
 	l := len(got)
 	equal := l == len(want)
+
 	for i := 0; equal && i < l; i++ {
 		equal = got[i] == want[i]
 	}
+
 	if equal {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return errSlice(chk, got, want, "rune", defaultCmpFunc[rune], msg...)
+	return errSlice(chk, got, want, runeTypeName, defaultCmpFunc[rune], msg...)
 }
 
 //
@@ -82,54 +92,54 @@ func (chk *Chk) RuneSlice(got, want []rune, msg ...any) bool {
 func (chk *Chk) RuneBoundedf(
 	got rune, option BoundedOption, min, max rune, msgFmt string, msgArgs ...any,
 ) bool {
-	const typeName = "rune"
 	inRange, want := inBoundedRange(got, option, min, max)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWntf(typeName, got, want, msgFmt, msgArgs...)
+	return chk.errGotWntf(runeTypeName, got, want, msgFmt, msgArgs...)
 }
 
 // RuneBounded checks value is within specified bounded range.
 func (chk *Chk) RuneBounded(
 	got rune, option BoundedOption, min, max rune, msg ...any,
 ) bool {
-	const typeName = "rune"
 	inRange, want := inBoundedRange(got, option, min, max)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWnt(typeName, got, want, msg...)
+	return chk.errGotWnt(runeTypeName, got, want, msg...)
 }
 
 // RuneUnboundedf checks value is within specified unbounded range.
 func (chk *Chk) RuneUnboundedf(
 	got rune, option UnboundedOption, bound rune, msgFmt string, msgArgs ...any,
 ) bool {
-	const typeName = "rune"
 	inRange, want := inUnboundedRange(got, option, bound)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWntf(typeName, got, want, msgFmt, msgArgs...)
+	return chk.errGotWntf(runeTypeName, got, want, msgFmt, msgArgs...)
 }
 
 // RuneUnbounded checks value is within specified unbounded range.
 func (chk *Chk) RuneUnbounded(
 	got rune, option UnboundedOption, bound rune, msg ...any,
 ) bool {
-	const typeName = "rune"
 	inRange, want := inUnboundedRange(got, option, bound)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWnt(typeName, got, want, msg...)
+	return chk.errGotWnt(runeTypeName, got, want, msg...)
 }

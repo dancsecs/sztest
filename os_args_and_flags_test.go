@@ -41,6 +41,7 @@ func chkArgsAndFlagsTestSetupEmpty(t *testing.T) {
 
 	origArgs := os.Args
 	origFlagCmdLine := flag.CommandLine
+
 	defer func() {
 		os.Args = origArgs
 		flag.CommandLine = origFlagCmdLine
@@ -58,6 +59,7 @@ func chkArgsAndFlagsTestSetupOneArg(t *testing.T) {
 
 	origArgs := os.Args
 	origFlagCmdLine := flag.CommandLine
+
 	defer func() {
 		os.Args = origArgs
 		flag.CommandLine = origFlagCmdLine
@@ -77,6 +79,7 @@ func chkArgsAndFlagsTestGoodParseDefault(t *testing.T) {
 	defer chk.Release()
 
 	var strValue string
+
 	main := func() {
 		flag.StringVar(&strValue, "strValue", "defaultStrValue",
 			"usage of default string value",
@@ -106,6 +109,7 @@ func chkArgsAndFlagsTestGoodParse(t *testing.T) {
 	defer chk.Release()
 
 	var strValue string
+
 	main := func() {
 		flag.StringVar(&strValue, "s", "defaultStrValue",
 			"usage of default string value",
@@ -137,6 +141,7 @@ func chkArgsAndFlagsTestGoodParseExtraArguments(t *testing.T) {
 	defer chk.Release()
 
 	var strValue string
+
 	main := func() {
 		flag.StringVar(&strValue, "s", "defaultStrValue",
 			"usage of default string value",
@@ -170,6 +175,7 @@ func chkArgsAndFlagsTestBadParseInteger(t *testing.T) {
 	defer chk.Release()
 
 	var intValue int
+
 	main := func() {
 		flag.IntVar(&intValue, "n", 10,
 			"usage of default int value",

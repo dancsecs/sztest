@@ -83,6 +83,7 @@ func chkLogTestRemoveLogPrefixes(t *testing.T) {
 	lastPrefix := log.Prefix()
 	lastFlags := log.Flags()
 	lastOutput := log.Writer()
+
 	defer func() {
 		log.SetPrefix(lastPrefix)
 		log.SetFlags(lastFlags)
@@ -105,6 +106,7 @@ func chkLogTestRemoveLogPrefixes(t *testing.T) {
 	}
 
 	finalResult := strings.Split(createLogString("", 0), "\n")
+
 	var (
 		flags  int
 		prefix string
@@ -116,6 +118,7 @@ func chkLogTestRemoveLogPrefixes(t *testing.T) {
 		if explain != "" {
 			explain += " | "
 		}
+
 		explain += s
 	}
 
@@ -133,36 +136,43 @@ func chkLogTestRemoveLogPrefixes(t *testing.T) {
 									prefix = ""
 								} else {
 									prefix = "PREFIX"
+
 									addExplanation("PREFIX")
 								}
 
 								if bMsgPrefix != 0 {
 									flags |= log.Lmsgprefix
+
 									addExplanation("Lmsgprefix")
 								}
 
 								if bShortFile != 0 {
 									flags |= log.Lshortfile
+
 									addExplanation("Lshortfile")
 								}
 
 								if bLongFile != 0 {
 									flags |= log.Llongfile
+
 									addExplanation("Llongfile")
 								}
 
 								if bms != 0 {
 									flags |= log.Lmicroseconds
+
 									addExplanation("Lmicroseconds")
 								}
 
 								if btm != 0 {
 									flags |= log.Ltime
+
 									addExplanation("Ltime")
 								}
 
 								if bdt != 0 {
 									flags |= log.Ldate
+
 									addExplanation("Ldate")
 								}
 

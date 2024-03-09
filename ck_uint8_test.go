@@ -73,7 +73,7 @@ func chkUint8TestBad(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Uint8",
-			chkOutCommonMsg("", "uint8"),
+			chkOutCommonMsg("", uint8TypeName),
 			g(markAsChg("2", "1", DiffGot)),
 			w(markAsChg("2", "1", DiffWant)),
 		),
@@ -93,7 +93,7 @@ func chkUint8TestBad1(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Uint8f",
-			chkOutCommonMsg("This message will be displayed first", "uint8"),
+			chkOutCommonMsg("This message will be displayed first", uint8TypeName),
 			g(markAsChg("2", "1", DiffGot)),
 			w(markAsChg("2", "1", DiffWant)),
 		),
@@ -113,7 +113,7 @@ func chkUint8TestBad2(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Uint8",
-			chkOutCommonMsg("This message will be displayed second", "uint8"),
+			chkOutCommonMsg("This message will be displayed second", uint8TypeName),
 			g(markAsChg("2", "1", DiffGot)),
 			w(markAsChg("2", "1", DiffWant)),
 		),
@@ -133,7 +133,7 @@ func chkUint8TestBad3(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Uint8f",
-			chkOutCommonMsg("This message will be displayed third", "uint8"),
+			chkOutCommonMsg("This message will be displayed third", uint8TypeName),
 			g(markAsChg("0", "1", DiffGot)),
 			w(markAsChg("0", "1", DiffWant)),
 		),
@@ -416,18 +416,20 @@ func chkUint8BoundedTestAll(t *testing.T) {
 	// Bad: Error displayed.
 	chk.Uint8Bounded(36, BoundedClosed, min, max)
 
-	const wntMsg = "out of bounds: [33,35] - { want | 33 <= want <= 35 }"
-	const fName = "Uint8Bounded"
+	const (
+		wntMsg = "out of bounds: [33,35] - { want | 33 <= want <= 35 }"
+		fName  = "Uint8Bounded"
+	)
 
 	chk.Release()
 	iT.check(t,
 		chkOutCapture("Nothing"),
 
-		chkOutNumericBounded(wntMsg, "30", fName, "uint8", ""),
-		chkOutNumericBounded(wntMsg, "31", fName, "uint8", "msg:31"),
-		chkOutNumericBoundedf(wntMsg, "32", fName, "uint8", "msg:32"),
+		chkOutNumericBounded(wntMsg, "30", fName, uint8TypeName, ""),
+		chkOutNumericBounded(wntMsg, "31", fName, uint8TypeName, "msg:31"),
+		chkOutNumericBoundedf(wntMsg, "32", fName, uint8TypeName, "msg:32"),
 
-		chkOutNumericBounded(wntMsg, "36", fName, "uint8", ""),
+		chkOutNumericBounded(wntMsg, "36", fName, uint8TypeName, ""),
 
 		chkOutRelease(),
 	)
@@ -454,16 +456,18 @@ func chkUint8UnboundedTestAll(t *testing.T) {
 	chk.Uint8Unbounded(64, UnboundedMinOpen, bound, "not ", "displayed")
 	chk.Uint8Unboundedf(65, UnboundedMinOpen, bound, "not %s", "displayed")
 
-	const wntMsg = "out of bounds: (62,MAX) - { want | want > 62 }"
-	const fName = "Uint8Unbounded"
+	const (
+		wntMsg = "out of bounds: (62,MAX) - { want | want > 62 }"
+		fName  = "Uint8Unbounded"
+	)
 
 	chk.Release()
 	iT.check(t,
 		chkOutCapture("Nothing"),
 
-		chkOutNumericUnbounded(wntMsg, "60", fName, "uint8", ""),
-		chkOutNumericUnbounded(wntMsg, "61", fName, "uint8", "msg:61"),
-		chkOutNumericUnboundedf(wntMsg, "62", fName, "uint8", "msg:62"),
+		chkOutNumericUnbounded(wntMsg, "60", fName, uint8TypeName, ""),
+		chkOutNumericUnbounded(wntMsg, "61", fName, uint8TypeName, "msg:61"),
+		chkOutNumericUnboundedf(wntMsg, "62", fName, uint8TypeName, "msg:62"),
 
 		chkOutRelease(),
 	)

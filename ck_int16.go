@@ -18,15 +18,18 @@
 
 package sztest
 
+const int16TypeName = "int16"
+
 // Int16f compares the wanted int16 against the gotten int16 invoking an
 // error should they not match.
 func (chk *Chk) Int16f(got, want int16, msgFmt string, msgArgs ...any) bool {
 	if got == want {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errChkf(got, want, "int16", msgFmt, msgArgs...,
+	return chk.errChkf(got, want, int16TypeName, msgFmt, msgArgs...,
 	)
 }
 
@@ -36,9 +39,10 @@ func (chk *Chk) Int16(got, want int16, msg ...any) bool {
 	if got == want {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errChk(got, want, "int16", msg...)
+	return chk.errChk(got, want, int16TypeName, msg...)
 }
 
 // Int16Slicef checks two int16 slices for equality.
@@ -47,16 +51,19 @@ func (chk *Chk) Int16Slicef(
 ) bool {
 	l := len(got)
 	equal := l == len(want)
+
 	for i := 0; equal && i < l; i++ {
 		equal = got[i] == want[i]
 	}
+
 	if equal {
 		return true
 	}
+
 	chk.t.Helper()
 
 	return errSlicef(chk,
-		got, want, "int16", defaultCmpFunc[int16], msgFmt, msgArgs...,
+		got, want, int16TypeName, defaultCmpFunc[int16], msgFmt, msgArgs...,
 	)
 }
 
@@ -64,15 +71,18 @@ func (chk *Chk) Int16Slicef(
 func (chk *Chk) Int16Slice(got, want []int16, msg ...any) bool {
 	l := len(got)
 	equal := l == len(want)
+
 	for i := 0; equal && i < l; i++ {
 		equal = got[i] == want[i]
 	}
+
 	if equal {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return errSlice(chk, got, want, "int16", defaultCmpFunc[int16], msg...)
+	return errSlice(chk, got, want, int16TypeName, defaultCmpFunc[int16], msg...)
 }
 
 //
@@ -84,28 +94,28 @@ func (chk *Chk) Int16Boundedf(
 	got int16, option BoundedOption, min, max int16,
 	msgFmt string, msgArgs ...any,
 ) bool {
-	const typeName = "int16"
 	inRange, want := inBoundedRange(got, option, min, max)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWntf(typeName, got, want, msgFmt, msgArgs...)
+	return chk.errGotWntf(int16TypeName, got, want, msgFmt, msgArgs...)
 }
 
 // Int16Bounded checks value is within specified bounded range.
 func (chk *Chk) Int16Bounded(
 	got int16, option BoundedOption, min, max int16, msg ...any,
 ) bool {
-	const typeName = "int16"
 	inRange, want := inBoundedRange(got, option, min, max)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWnt(typeName, got, want, msg...)
+	return chk.errGotWnt(int16TypeName, got, want, msg...)
 }
 
 // Int16Unboundedf checks value is within specified unbounded range.
@@ -113,26 +123,26 @@ func (chk *Chk) Int16Unboundedf(
 	got int16, option UnboundedOption, bound int16,
 	msgFmt string, msgArgs ...any,
 ) bool {
-	const typeName = "int16"
 	inRange, want := inUnboundedRange(got, option, bound)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWntf(typeName, got, want, msgFmt, msgArgs...)
+	return chk.errGotWntf(int16TypeName, got, want, msgFmt, msgArgs...)
 }
 
 // Int16Unbounded checks value is within specified unbounded range.
 func (chk *Chk) Int16Unbounded(
 	got int16, option UnboundedOption, bound int16, msg ...any,
 ) bool {
-	const typeName = "int16"
 	inRange, want := inUnboundedRange(got, option, bound)
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWnt(typeName, got, want, msg...)
+	return chk.errGotWnt(int16TypeName, got, want, msg...)
 }

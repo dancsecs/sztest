@@ -30,42 +30,51 @@ func testDiffMarkupPrerequisites(t *testing.T) {
 }
 
 func testSzTestInternalMarkup(t *testing.T) {
-	const area = "internal markup"
-	const msg = "<-- MSG -->"
+	const (
+		area = "internal markup"
+		msg  = "<-- MSG -->"
+	)
+
 	var got, wnt string
 
 	got = w(msg)
 	wnt = markWntOn + labelWant + ": " + markWntOff + msg
+
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
 
 	got = g(msg)
 	wnt = markGotOn + labelGot + ": " + markGotOff + msg
+
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
 
 	got = markAsIns(msg)
 	wnt = markInsOn + msg + markInsOff
+
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
 
 	got = markAsDel(msg)
 	wnt = markDelOn + msg + markDelOff
+
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
 
 	got = markAsChg(msg, strings.ToLower(msg), DiffGot)
 	wnt = markChgOn + msg + markChgOff
+
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
 
 	got = markAsChg(msg, strings.ToLower(msg), DiffWant)
 	wnt = markChgOn + strings.ToLower(msg) + markChgOff
+
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
@@ -74,37 +83,45 @@ func testSzTestInternalMarkup(t *testing.T) {
 	wnt = markDelOn + strings.ToLower(msg) + markDelOff +
 		markSepOn + "/" + markSepOff +
 		markInsOn + msg + markInsOff
+
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
 }
 
 func testSzTestMarkupForTerminal(t *testing.T) {
-	const area = "markup for terminal"
-	const tstStr1 = "ABC"
-	const tstStr2 = "DEF"
+	const (
+		area    = "markup for terminal"
+		tstStr1 = "ABC"
+		tstStr2 = "DEF"
+	)
+
 	var got, wnt string
 
 	got = resolveMarksForDisplay(markAsIns(tstStr1))
 	wnt = settingMarkInsOn + tstStr1 + settingMarkInsOff
+
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
 
 	got = resolveMarksForDisplay(markAsDel(tstStr1))
 	wnt = settingMarkDelOn + tstStr1 + settingMarkDelOff
+
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
 
 	got = resolveMarksForDisplay(markAsChg(tstStr1, tstStr2, DiffGot))
 	wnt = settingMarkChgOn + tstStr1 + settingMarkChgOff
+
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
 
 	got = resolveMarksForDisplay(markAsChg(tstStr1, tstStr2, DiffWant))
 	wnt = settingMarkChgOn + tstStr2 + settingMarkChgOff
+
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
@@ -114,6 +131,7 @@ func testSzTestMarkupForTerminal(t *testing.T) {
 		settingMarkDelOn + tstStr2 + settingMarkDelOff +
 		settingMarkSepOn + "/" + settingMarkSepOff +
 		settingMarkInsOn + tstStr1 + settingMarkInsOff
+
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
@@ -121,6 +139,7 @@ func testSzTestMarkupForTerminal(t *testing.T) {
 	got = resolveMarksForDisplay(markAsMsg(tstStr1))
 	wnt = "" +
 		settingMarkMsgOn + tstStr1 + settingMarkMsgOff
+
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
@@ -128,6 +147,7 @@ func testSzTestMarkupForTerminal(t *testing.T) {
 
 func testSzTestGotWant(t *testing.T) {
 	const area = "gotWnt"
+
 	var got, wnt string
 
 	got = gotWntDiff("ABC", "ADC", 1)

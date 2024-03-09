@@ -71,7 +71,7 @@ func chkByteTestBad(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Byte",
-			chkOutCommonMsg("", "byte"),
+			chkOutCommonMsg("", byteTypeName),
 			g(markAsChg("2", "1", DiffGot)),
 			w(markAsChg("2", "1", DiffWant)),
 		),
@@ -91,7 +91,7 @@ func chkByteTestBad1(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Bytef",
-			chkOutCommonMsg("This message will be displayed first", "byte"),
+			chkOutCommonMsg("This message will be displayed first", byteTypeName),
 			g(markAsChg("2", "1", DiffGot)),
 			w(markAsChg("2", "1", DiffWant)),
 		),
@@ -111,7 +111,7 @@ func chkByteTestBad2(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Byte",
-			chkOutCommonMsg("This message will be displayed second", "byte"),
+			chkOutCommonMsg("This message will be displayed second", byteTypeName),
 			g(markAsChg("2", "1", DiffGot)),
 			w(markAsChg("2", "1", DiffWant)),
 		),
@@ -131,7 +131,7 @@ func chkByteTestBad3(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Bytef",
-			chkOutCommonMsg("This message will be displayed third", "byte"),
+			chkOutCommonMsg("This message will be displayed third", byteTypeName),
 			g(markAsChg("0", "1", DiffGot)),
 			w(markAsChg("0", "1", DiffWant)),
 		),
@@ -414,18 +414,20 @@ func chkByteBoundedTestAll(t *testing.T) {
 	// Bad: Error displayed.
 	chk.ByteBounded(36, BoundedOpen, min, max)
 
-	const wntMsg = "out of bounds: (32,36) - { want | 32 < want < 36 }"
-	const fName = "ByteBounded"
+	const (
+		wntMsg = "out of bounds: (32,36) - { want | 32 < want < 36 }"
+		fName  = "ByteBounded"
+	)
 
 	chk.Release()
 	iT.check(t,
 		chkOutCapture("Nothing"),
 
-		chkOutNumericBounded(wntMsg, "30", fName, "byte", ""),
-		chkOutNumericBounded(wntMsg, "31", fName, "byte", "msg:31"),
-		chkOutNumericBoundedf(wntMsg, "32", fName, "byte", "msg:32"),
+		chkOutNumericBounded(wntMsg, "30", fName, byteTypeName, ""),
+		chkOutNumericBounded(wntMsg, "31", fName, byteTypeName, "msg:31"),
+		chkOutNumericBoundedf(wntMsg, "32", fName, byteTypeName, "msg:32"),
 
-		chkOutNumericBounded(wntMsg, "36", fName, "byte", ""),
+		chkOutNumericBounded(wntMsg, "36", fName, byteTypeName, ""),
 
 		chkOutRelease(),
 	)
@@ -452,16 +454,18 @@ func chkByteUnboundedTestAll(t *testing.T) {
 	chk.ByteUnbounded(130, UnboundedMinOpen, bound, "not ", "displayed")
 	chk.ByteUnboundedf(131, UnboundedMinOpen, bound, "not %s", "displayed")
 
-	const wntMsg = "out of bounds: (128,MAX) - { want | want > 128 }"
-	const fName = "ByteUnbounded"
+	const (
+		wntMsg = "out of bounds: (128,MAX) - { want | want > 128 }"
+		fName  = "ByteUnbounded"
+	)
 
 	chk.Release()
 	iT.check(t,
 		chkOutCapture("Nothing"),
 
-		chkOutNumericUnbounded(wntMsg, "126", fName, "byte", ""),
-		chkOutNumericUnbounded(wntMsg, "127", fName, "byte", "msg:127"),
-		chkOutNumericUnboundedf(wntMsg, "128", fName, "byte", "msg:128"),
+		chkOutNumericUnbounded(wntMsg, "126", fName, byteTypeName, ""),
+		chkOutNumericUnbounded(wntMsg, "127", fName, byteTypeName, "msg:127"),
+		chkOutNumericUnboundedf(wntMsg, "128", fName, byteTypeName, "msg:128"),
 
 		chkOutRelease(),
 	)

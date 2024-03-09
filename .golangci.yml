@@ -16,7 +16,6 @@ linters:
   disable:
     - dupl
     - lll
-    - wsl
 
     - deadcode # Deprecated
     - exhaustivestruct # Deprecated
@@ -50,7 +49,6 @@ issues:
         - testpackage
         - thelper
         - unparam
-        - wsl
 
 run:
   timeout: 5m

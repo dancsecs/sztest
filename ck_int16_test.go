@@ -73,7 +73,7 @@ func chkInt16TestBad(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Int16",
-			chkOutCommonMsg("", "int16"),
+			chkOutCommonMsg("", int16TypeName),
 			g(markAsChg("-2", "1", DiffGot)),
 			w(markAsChg("-2", "1", DiffWant)),
 		),
@@ -93,7 +93,7 @@ func chkInt16TestBad1(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Int16f",
-			chkOutCommonMsg("This message will be displayed first", "int16"),
+			chkOutCommonMsg("This message will be displayed first", int16TypeName),
 			g(markAsChg("2", "1", DiffGot)),
 			w(markAsChg("2", "1", DiffWant)),
 		),
@@ -113,7 +113,7 @@ func chkInt16TestBad2(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Int16",
-			chkOutCommonMsg("This message will be displayed second", "int16"),
+			chkOutCommonMsg("This message will be displayed second", int16TypeName),
 			g(markAsChg("-2", "1", DiffGot)),
 			w(markAsChg("-2", "1", DiffWant)),
 		),
@@ -133,7 +133,7 @@ func chkInt16TestBad3(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Int16f",
-			chkOutCommonMsg("This message will be displayed third", "int16"),
+			chkOutCommonMsg("This message will be displayed third", int16TypeName),
 			g(markAsChg("0", "-1", DiffGot)),
 			w(markAsChg("0", "-1", DiffWant)),
 		),
@@ -416,18 +416,20 @@ func chkInt16BoundedTestAll(t *testing.T) {
 	// Bad: Error displayed.
 	chk.Int16Bounded(36, BoundedClosed, min, max)
 
-	const wntMsg = "out of bounds: [33,35] - { want | 33 <= want <= 35 }"
-	const fName = "Int16Bounded"
+	const (
+		wntMsg = "out of bounds: [33,35] - { want | 33 <= want <= 35 }"
+		fName  = "Int16Bounded"
+	)
 
 	chk.Release()
 	iT.check(t,
 		chkOutCapture("Nothing"),
 
-		chkOutNumericBounded(wntMsg, "30", fName, "int16", ""),
-		chkOutNumericBounded(wntMsg, "31", fName, "int16", "msg:31"),
-		chkOutNumericBoundedf(wntMsg, "32", fName, "int16", "msg:32"),
+		chkOutNumericBounded(wntMsg, "30", fName, int16TypeName, ""),
+		chkOutNumericBounded(wntMsg, "31", fName, int16TypeName, "msg:31"),
+		chkOutNumericBoundedf(wntMsg, "32", fName, int16TypeName, "msg:32"),
 
-		chkOutNumericBounded(wntMsg, "36", fName, "int16", ""),
+		chkOutNumericBounded(wntMsg, "36", fName, int16TypeName, ""),
 
 		chkOutRelease(),
 	)
@@ -454,16 +456,18 @@ func chkInt16UnboundedTestAll(t *testing.T) {
 	chk.Int16Unbounded(64, UnboundedMinOpen, bound, "not ", "displayed")
 	chk.Int16Unboundedf(65, UnboundedMinOpen, bound, "not %s", "displayed")
 
-	const wntMsg = "out of bounds: (62,MAX) - { want | want > 62 }"
-	const fName = "Int16Unbounded"
+	const (
+		wntMsg = "out of bounds: (62,MAX) - { want | want > 62 }"
+		fName  = "Int16Unbounded"
+	)
 
 	chk.Release()
 	iT.check(t,
 		chkOutCapture("Nothing"),
 
-		chkOutNumericUnbounded(wntMsg, "60", fName, "int16", ""),
-		chkOutNumericUnbounded(wntMsg, "61", fName, "int16", "msg:61"),
-		chkOutNumericUnboundedf(wntMsg, "62", fName, "int16", "msg:62"),
+		chkOutNumericUnbounded(wntMsg, "60", fName, int16TypeName, ""),
+		chkOutNumericUnbounded(wntMsg, "61", fName, int16TypeName, "msg:61"),
+		chkOutNumericUnboundedf(wntMsg, "62", fName, int16TypeName, "msg:62"),
 
 		chkOutRelease(),
 	)

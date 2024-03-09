@@ -26,7 +26,12 @@ import (
 	"strings"
 )
 
-const errMsg = "error environment variable: %s (got: %s want: %s default: %v)"
+const (
+	errMsg = "error environment variable: %s (got: %s want: %s default: %v)"
+	base8  = 8
+	base10 = 10
+	bits64 = 64
+)
 
 const (
 	validFailFast     = "true | false"
@@ -47,6 +52,7 @@ func validateFailFast(rawSetting string) (bool, bool) {
 	case "FALSE":
 		return false, true
 	}
+
 	log.Printf(errMsg, EnvFailFast,
 		rawSetting,
 		validFailFast,
@@ -57,8 +63,6 @@ func validateFailFast(rawSetting string) (bool, bool) {
 }
 
 func valPerm(s, prefix string) (os.FileMode, bool) {
-	const base8 = 8
-	const bits64 = 64
 	if len(s) == 4 && strings.HasPrefix(s, prefix) {
 		v, err := strconv.ParseInt(s, base8, bits64)
 		if err == nil {
@@ -191,68 +195,90 @@ func validateMark(colors, envVarName, defaultColor string) (string, bool) {
 		// does not get called but default is set.
 		return "", true
 	}
+
 	splitOnWordANDRegExp := regexp.MustCompile(`_[A|a][N|n][D|d]_`)
+
 	for _, clrEntry := range splitOnWordANDRegExp.Split(colors, -1) {
 		uClrEntry := strings.ToUpper(strings.TrimSpace(clrEntry))
 		if uClrEntry == "" {
 			ok = false
+
 			log.Print("missing (empty) attribute")
 
 			break
 		}
+
 		clr, found = markFG[uClrEntry]
+
 		if found {
 			if foregroundColor != "" {
 				ok = false
+
 				log.Print("foreground color redefined")
 
 				break
 			}
+
 			foregroundColor = clr
 
 			continue
 		}
+
 		clr, found = markBG[uClrEntry]
+
 		if found {
 			if backgroundColor != "" {
 				ok = false
+
 				log.Print("background color redefined")
 
 				break
 			}
+
 			backgroundColor = clr
 
 			continue
 		}
+
 		sty, found = markStyles[uClrEntry]
+
 		if found {
 			if styles[sty] {
 				ok = false
+
 				log.Print("style redefined")
 
 				break
 			}
+
 			styles[sty] = true
+
 			if uClrEntry == "DEFAULT" {
 				isDefault = true
 			}
 
 			continue
 		}
+
 		if custom != "" {
 			ok = false
+
 			log.Print("custom mark redefined")
 
 			break
 		}
+
 		custom = clrEntry
 
 		continue
 	}
+
 	if ok && isDefault && foregroundColor+backgroundColor+custom != "" {
 		ok = false
+
 		log.Print("default style must be defined by itself")
 	}
+
 	if ok {
 		style := ""
 		for k := range styles {
@@ -261,6 +287,7 @@ func validateMark(colors, envVarName, defaultColor string) (string, bool) {
 
 		return foregroundColor + backgroundColor + style + custom, ok
 	}
+
 	log.Printf(errMsg, envVarName,
 		colors,
 		validColor,
@@ -271,8 +298,6 @@ func validateMark(colors, envVarName, defaultColor string) (string, bool) {
 }
 
 func validateMinRunString(rawSetting string) (int, bool) {
-	const base10 = 10
-	const bits64 = 64
 	minRun64, err := strconv.ParseInt(rawSetting, base10, bits64)
 	if err != nil || minRun64 < 1 || minRun64 > 5 {
 		log.Printf(errMsg, EnvDiffChars,
@@ -288,8 +313,6 @@ func validateMinRunString(rawSetting string) (int, bool) {
 }
 
 func validateMinRunSlice(rawSetting string) (int, bool) {
-	const base10 = 10
-	const bits64 = 64
 	minRun64, err := strconv.ParseInt(rawSetting, base10, bits64)
 	if err != nil || minRun64 < 1 || minRun64 > 5 {
 		log.Printf(errMsg, EnvDiffSlice,
@@ -305,9 +328,8 @@ func validateMinRunSlice(rawSetting string) (int, bool) {
 }
 
 func validateBufferSize(rawSetting string) (int, bool) {
-	const base10 = 10
-	const bits64 = 64
 	bufSize64, err := strconv.ParseInt(rawSetting, base10, bits64)
+
 	if err != nil || bufSize64 < 1000 {
 		log.Printf(errMsg, EnvBufferSize,
 			rawSetting,

@@ -55,9 +55,11 @@ func checkRun(
 	if gotOldIdx != wntOldIdx {
 		t.Error(errGotWnt("old", gotOldIdx, wntOldIdx))
 	}
+
 	if gotNewIdx != wntNewIdx {
 		t.Error(errGotWnt("new", gotNewIdx, wntNewIdx))
 	}
+
 	if gotCount != wntCount {
 		t.Error(errGotWnt("count", gotCount, wntCount))
 	}
@@ -135,6 +137,7 @@ func chkDiffString(
 	resolvedGot := resolveMarksForDisplay(
 		DiffString(tst.got, tst.wnt, DiffGot, tst.minRun),
 	)
+
 	got, err := freezeMarks(resolvedGot)
 	if err != nil {
 		t.Fatal(err)
@@ -153,6 +156,7 @@ func chkDiffString(
 	resolvedGot = resolveMarksForDisplay(
 		DiffString(tst.got, tst.wnt, DiffWant, tst.minRun),
 	)
+
 	got, err = freezeMarks(resolvedGot)
 	if err != nil {
 		t.Fatal(err)
@@ -171,6 +175,7 @@ func chkDiffString(
 	resolvedGot = resolveMarksForDisplay(
 		DiffString(tst.got, tst.wnt, DiffMerge, tst.minRun),
 	)
+
 	got, err = freezeMarks(resolvedGot)
 	if err != nil {
 		t.Fatal(err)
@@ -530,9 +535,12 @@ func stringify(v any) string {
 
 //nolint:cyclop // Ok.
 func chkDiffSlice(t *testing.T, tst *tstDiffSlice) {
-	var changed bool
-	var got []string
-	var wnt []string
+	var (
+		changed bool
+		got     []string
+		wnt     []string
+	)
+
 	t.Helper()
 
 	diffResult := DiffSlice(
@@ -549,14 +557,17 @@ func chkDiffSlice(t *testing.T, tst *tstDiffSlice) {
 			line = strings.TrimSpace(line)
 			if line != "" {
 				markedUpLine := resolveMarksForDisplay(line)
+
 				iMarkedUpLine, err := freezeMarks(markedUpLine)
 				if err != nil {
 					t.Fatal(err)
 				}
+
 				got = append(got, iMarkedUpLine)
 			}
 		}
 	}
+
 	for _, entry := range tst.expSlice {
 		for _, line := range strings.Split(entry, "\n") {
 			line = strings.TrimSpace(line)
@@ -565,14 +576,17 @@ func chkDiffSlice(t *testing.T, tst *tstDiffSlice) {
 			}
 		}
 	}
+
 	if changed != tst.expChanged {
 		t.Error(
 			"invalid error changed:  got: ", changed, "  wnt: ", tst.expChanged,
 		)
 	}
+
 	if len(got) != len(wnt) {
 		t.Error(errGotWnt("slice length", len(got), len(wnt)))
 	}
+
 	if strings.Join(got, "\n") != strings.Join(wnt, "\n") {
 		t.Error(
 			errGotWnt(
@@ -1011,8 +1025,11 @@ type tstCompareSlices struct {
 }
 
 func chkCompareSlices(t *testing.T, tst *tstCompareSlices) {
-	var got []string
-	var wnt []string
+	var (
+		got []string
+		wnt []string
+	)
+
 	t.Helper()
 
 	diffResult := CompareSlices(
@@ -1029,13 +1046,16 @@ func chkCompareSlices(t *testing.T, tst *tstCompareSlices) {
 		line = strings.TrimSpace(line)
 		if line != "" {
 			markedUpLine := resolveMarksForDisplay(line)
+
 			iMarkedUpLine, err := freezeMarks(markedUpLine)
 			if err != nil {
 				t.Fatal(err)
 			}
+
 			got = append(got, iMarkedUpLine)
 		}
 	}
+
 	for _, entry := range tst.expSlice {
 		for _, line := range strings.Split(entry, "\n") {
 			line = strings.TrimSpace(line)
@@ -1044,9 +1064,11 @@ func chkCompareSlices(t *testing.T, tst *tstCompareSlices) {
 			}
 		}
 	}
+
 	if len(got) != len(wnt) {
 		t.Error(errGotWnt("slice length", len(got), len(wnt)))
 	}
+
 	if strings.Join(got, "\n") != strings.Join(wnt, "\n") {
 		t.Error(
 			errGotWnt(
@@ -1106,8 +1128,11 @@ type tstCompareArrays struct {
 }
 
 func chkCompareArrays(t *testing.T, tst *tstCompareArrays) {
-	var got []string
-	var wnt []string
+	var (
+		got []string
+		wnt []string
+	)
+
 	t.Helper()
 
 	diffResult := CompareArrays(
@@ -1119,13 +1144,16 @@ func chkCompareArrays(t *testing.T, tst *tstCompareArrays) {
 		line = strings.TrimSpace(line)
 		if line != "" {
 			markedUpLine := resolveMarksForDisplay(line)
+
 			iMarkedUpLine, err := freezeMarks(markedUpLine)
 			if err != nil {
 				t.Fatal(err)
 			}
+
 			got = append(got, iMarkedUpLine)
 		}
 	}
+
 	for _, entry := range tst.expSlice {
 		for _, line := range strings.Split(entry, "\n") {
 			line = strings.TrimSpace(line)
@@ -1134,9 +1162,11 @@ func chkCompareArrays(t *testing.T, tst *tstCompareArrays) {
 			}
 		}
 	}
+
 	if len(got) != len(wnt) {
 		t.Error(errGotWnt("slice length", len(got), len(wnt)))
 	}
+
 	if strings.Join(got, "\n") != strings.Join(wnt, "\n") {
 		t.Error(
 			errGotWnt(

@@ -73,7 +73,7 @@ func chkRuneTestBad(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Rune",
-			chkOutCommonMsg("", "rune"),
+			chkOutCommonMsg("", runeTypeName),
 			g(markAsChg("-2", "1", DiffGot)),
 			w(markAsChg("-2", "1", DiffWant)),
 		),
@@ -93,7 +93,7 @@ func chkRuneTestBad1(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Runef",
-			chkOutCommonMsg("This message will be displayed first", "rune"),
+			chkOutCommonMsg("This message will be displayed first", runeTypeName),
 			g(markAsChg("2", "1", DiffGot)),
 			w(markAsChg("2", "1", DiffWant)),
 		),
@@ -113,7 +113,7 @@ func chkRuneTestBad2(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Rune",
-			chkOutCommonMsg("This message will be displayed second", "rune"),
+			chkOutCommonMsg("This message will be displayed second", runeTypeName),
 			g(markAsChg("-2", "1", DiffGot)),
 			w(markAsChg("-2", "1", DiffWant)),
 		),
@@ -133,7 +133,7 @@ func chkRuneTestBad3(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Runef",
-			chkOutCommonMsg("This message will be displayed third", "rune"),
+			chkOutCommonMsg("This message will be displayed third", runeTypeName),
 			g(markAsChg("0", "-1", DiffGot)),
 			w(markAsChg("0", "-1", DiffWant)),
 		),
@@ -416,18 +416,20 @@ func chkRuneBoundedTestAll(t *testing.T) {
 	// Bad: Error displayed.
 	chk.RuneBounded(36, BoundedClosed, min, max)
 
-	const wntMsg = "out of bounds: [33,35] - { want | 33 <= want <= 35 }"
-	const fName = "RuneBounded"
+	const (
+		wntMsg = "out of bounds: [33,35] - { want | 33 <= want <= 35 }"
+		fName  = "RuneBounded"
+	)
 
 	chk.Release()
 	iT.check(t,
 		chkOutCapture("Nothing"),
 
-		chkOutNumericBounded(wntMsg, "30", fName, "rune", ""),
-		chkOutNumericBounded(wntMsg, "31", fName, "rune", "msg:31"),
-		chkOutNumericBoundedf(wntMsg, "32", fName, "rune", "msg:32"),
+		chkOutNumericBounded(wntMsg, "30", fName, runeTypeName, ""),
+		chkOutNumericBounded(wntMsg, "31", fName, runeTypeName, "msg:31"),
+		chkOutNumericBoundedf(wntMsg, "32", fName, runeTypeName, "msg:32"),
 
-		chkOutNumericBounded(wntMsg, "36", fName, "rune", ""),
+		chkOutNumericBounded(wntMsg, "36", fName, runeTypeName, ""),
 
 		chkOutRelease(),
 	)
@@ -454,16 +456,18 @@ func chkRuneUnboundedTestAll(t *testing.T) {
 	chk.RuneUnbounded(64, UnboundedMinOpen, bound, "not ", "displayed")
 	chk.RuneUnboundedf(65, UnboundedMinOpen, bound, "not %s", "displayed")
 
-	const wntMsg = "out of bounds: (62,MAX) - { want | want > 62 }"
-	const fName = "RuneUnbounded"
+	const (
+		wntMsg = "out of bounds: (62,MAX) - { want | want > 62 }"
+		fName  = "RuneUnbounded"
+	)
 
 	chk.Release()
 	iT.check(t,
 		chkOutCapture("Nothing"),
 
-		chkOutNumericUnbounded(wntMsg, "60", fName, "rune", ""),
-		chkOutNumericUnbounded(wntMsg, "61", fName, "rune", "msg:61"),
-		chkOutNumericUnboundedf(wntMsg, "62", fName, "rune", "msg:62"),
+		chkOutNumericUnbounded(wntMsg, "60", fName, runeTypeName, ""),
+		chkOutNumericUnbounded(wntMsg, "61", fName, runeTypeName, "msg:61"),
+		chkOutNumericUnboundedf(wntMsg, "62", fName, runeTypeName, "msg:62"),
 
 		chkOutRelease(),
 	)

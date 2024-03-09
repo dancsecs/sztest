@@ -49,7 +49,9 @@ var errGotWnt tstMarkupFunc //nolint:gochecknoglobals // Ok.
 
 func saveThenSetupDefaultEnvironment() func() {
 	var restoreFunc func()
+
 	orig := make(map[string]string)
+
 	for _, e := range os.Environ() {
 		setting := strings.SplitN(e, "=", 2)
 		if len(setting) == 2 &&
@@ -63,6 +65,7 @@ func saveThenSetupDefaultEnvironment() func() {
 			}
 		}
 	}
+
 	restoreFunc = func() {
 		for k, v := range orig {
 			if err := os.Setenv(k, v); err != nil {
@@ -151,6 +154,7 @@ func errMarkupFuncNone(area string, got, wnt any) string {
 	cleanGot := fmt.Sprintf("%v", got)
 	cleanWnt := fmt.Sprintf("%v", wnt)
 	prefix := ""
+
 	if strings.Count(cleanGot, "\n") > 1 && strings.Count(cleanWnt, "\n") > 1 {
 		prefix = "\n"
 	}

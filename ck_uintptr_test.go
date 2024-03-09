@@ -70,7 +70,7 @@ func chkUintptrTestBad(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Uintptr",
-			chkOutCommonMsg("", "uintptr"),
+			chkOutCommonMsg("", uintptrTypeName),
 			g(markAsChg("2", "1", DiffGot)),
 			w(markAsChg("2", "1", DiffWant)),
 		),
@@ -90,7 +90,7 @@ func chkUintptrTestBad1(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Uintptrf",
-			chkOutCommonMsg("This message will be displayed first", "uintptr"),
+			chkOutCommonMsg("This message will be displayed first", uintptrTypeName),
 			g(markAsChg("2", "1", DiffGot)),
 			w(markAsChg("2", "1", DiffWant)),
 		),
@@ -110,7 +110,7 @@ func chkUintptrTestBad2(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Uintptr",
-			chkOutCommonMsg("This message will be displayed second", "uintptr"),
+			chkOutCommonMsg("This message will be displayed second", uintptrTypeName),
 			g(markAsChg("2", "1", DiffGot)),
 			w(markAsChg("2", "1", DiffWant)),
 		),
@@ -130,7 +130,7 @@ func chkUintptrTestBad3(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError(
 			"Uintptrf",
-			chkOutCommonMsg("This message will be displayed third", "uintptr"),
+			chkOutCommonMsg("This message will be displayed third", uintptrTypeName),
 			g(markAsChg("0", "1", DiffGot)),
 			w(markAsChg("0", "1", DiffWant)),
 		),

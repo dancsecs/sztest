@@ -42,6 +42,7 @@ func (chk *Chk) AddSub(expr, subStr string) {
 
 		return
 	}
+
 	chk.subs = append(chk.subs, substitution{
 		re:     re,
 		subStr: subStr,
@@ -54,6 +55,7 @@ func (chk *Chk) subStr(lines string) string {
 	beforeLines := ""
 	for beforeLines != lines {
 		beforeLines = lines
+
 		for _, re := range chk.subs {
 			lines = re.re.ReplaceAllString(lines, re.subStr)
 		}

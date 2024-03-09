@@ -18,15 +18,18 @@
 
 package sztest
 
+const byteTypeName = "byte"
+
 // Bytef compares the wanted byte against the gotten byte invoking an
 // error should they not match.
 func (chk *Chk) Bytef(got, want byte, msgFmt string, msgArgs ...any) bool {
 	if got == want {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errChkf(got, want, "byte", msgFmt, msgArgs...)
+	return chk.errChkf(got, want, byteTypeName, msgFmt, msgArgs...)
 }
 
 // Byte compares the wanted byte against the gotten byte invoking an
@@ -35,9 +38,10 @@ func (chk *Chk) Byte(got, want byte, msg ...any) bool {
 	if got == want {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errChk(got, want, "byte", msg...)
+	return chk.errChk(got, want, byteTypeName, msg...)
 }
 
 // ByteSlicef checks two byte slices for equality.
@@ -46,16 +50,19 @@ func (chk *Chk) ByteSlicef(
 ) bool {
 	l := len(got)
 	equal := l == len(want)
+
 	for i := 0; equal && i < l; i++ {
 		equal = got[i] == want[i]
 	}
+
 	if equal {
 		return true
 	}
+
 	chk.t.Helper()
 
 	return errSlicef(chk,
-		got, want, "byte", defaultCmpFunc[byte], msgFmt, msgArgs...,
+		got, want, byteTypeName, defaultCmpFunc[byte], msgFmt, msgArgs...,
 	)
 }
 
@@ -63,15 +70,18 @@ func (chk *Chk) ByteSlicef(
 func (chk *Chk) ByteSlice(got, want []byte, msg ...any) bool {
 	l := len(got)
 	equal := l == len(want)
+
 	for i := 0; equal && i < l; i++ {
 		equal = got[i] == want[i]
 	}
+
 	if equal {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return errSlice(chk, got, want, "byte", defaultCmpFunc[byte], msg...)
+	return errSlice(chk, got, want, byteTypeName, defaultCmpFunc[byte], msg...)
 }
 
 ////////////////////////////////////////////////////////////////
@@ -82,54 +92,58 @@ func (chk *Chk) ByteSlice(got, want []byte, msg ...any) bool {
 func (chk *Chk) ByteBoundedf(
 	got byte, option BoundedOption, min, max byte, msgFmt string, msgArgs ...any,
 ) bool {
-	const typeName = "byte"
 	inRange, want := inBoundedRange(got, option, min, max)
+
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWntf(typeName, got, want, msgFmt, msgArgs...)
+	return chk.errGotWntf(byteTypeName, got, want, msgFmt, msgArgs...)
 }
 
 // ByteBounded checks value is within specified bounded range.
 func (chk *Chk) ByteBounded(
 	got byte, option BoundedOption, min, max byte, msg ...any,
 ) bool {
-	const typeName = "byte"
 	inRange, want := inBoundedRange(got, option, min, max)
+
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWnt(typeName, got, want, msg...)
+	return chk.errGotWnt(byteTypeName, got, want, msg...)
 }
 
 // ByteUnboundedf checks value is within specified unbounded range.
 func (chk *Chk) ByteUnboundedf(
 	got byte, option UnboundedOption, bound byte, msgFmt string, msgArgs ...any,
 ) bool {
-	const typeName = "byte"
 	inRange, want := inUnboundedRange(got, option, bound)
+
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWntf(typeName, got, want, msgFmt, msgArgs...)
+	return chk.errGotWntf(byteTypeName, got, want, msgFmt, msgArgs...)
 }
 
 // ByteUnbounded checks value is within specified unbounded range.
 func (chk *Chk) ByteUnbounded(
 	got byte, option UnboundedOption, bound byte, msg ...any,
 ) bool {
-	const typeName = "byte"
 	inRange, want := inUnboundedRange(got, option, bound)
+
 	if inRange {
 		return true
 	}
+
 	chk.t.Helper()
 
-	return chk.errGotWnt(typeName, got, want, msg...)
+	return chk.errGotWnt(byteTypeName, got, want, msg...)
 }

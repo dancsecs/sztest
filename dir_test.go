@@ -271,6 +271,7 @@ func chkDirTestSetTmpDirExtendExisting(t *testing.T) {
 	}()
 
 	const defaultDirPerm = os.FileMode(0o0700)
+
 	fPath := filepath.Join(settingTmpDir, chk.Name())
 
 	if chk.NoErr(os.Mkdir(fPath, defaultDirPerm)) {
@@ -300,6 +301,7 @@ func chkDirTestCreateDirNotExist(t *testing.T) {
 	}()
 
 	settingTmpDir = "/DOES_NOT_EXIST/"
+
 	chk.CreateTmpDir()
 
 	chk.Release()

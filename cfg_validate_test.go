@@ -51,6 +51,7 @@ func testConfigValidate(t *testing.T) {
 
 func testConfigValidateFailFast(t *testing.T) {
 	buf := bytes.NewBuffer(make([]byte, 0, 1000))
+
 	log.SetOutput(buf)
 	defer log.SetOutput(os.Stderr)
 
@@ -60,6 +61,7 @@ func testConfigValidateFailFast(t *testing.T) {
 	if !ok {
 		t.Fatalf(invalidOkBool, jsonName, ok, true)
 	}
+
 	if !failFastValue {
 		t.Fatalf(invalidBool, jsonName, failFastValue, true)
 	}
@@ -68,6 +70,7 @@ func testConfigValidateFailFast(t *testing.T) {
 	if !ok {
 		t.Fatalf(invalidBool, jsonName, ok, true)
 	}
+
 	if failFastValue {
 		t.Fatalf(invalidBool, jsonName, failFastValue, false)
 	}
@@ -76,18 +79,22 @@ func testConfigValidateFailFast(t *testing.T) {
 	if ok {
 		t.Fatalf(invalidOkBool, jsonName, ok, false)
 	}
+
 	if failFastValue {
 		t.Fatalf(invalidBool, jsonName, failFastValue, false)
 	}
 
 	lines := strings.Split(buf.String(), "\n")
 	wLineLength := 2
+
 	if len(lines) != wLineLength || lines[wLineLength-1] != "" {
 		t.Fatalf(invalidCaptureLength, jsonName, len(lines), wLineLength)
 	}
+
 	wLine := fmt.Sprintf(
 		errMsg, EnvFailFast, "invalid", validFailFast, settingFailFast,
 	)
+
 	if !strings.Contains(lines[0], wLine) {
 		t.Fatalf(invalidString, jsonName, buf.String(), wLine)
 	}
@@ -95,6 +102,7 @@ func testConfigValidateFailFast(t *testing.T) {
 
 func testConfigValidatePermDir(t *testing.T) {
 	buf := bytes.NewBuffer(make([]byte, 0, 1000))
+
 	log.SetOutput(buf)
 	defer log.SetOutput(os.Stderr)
 
@@ -107,6 +115,7 @@ func testConfigValidatePermDir(t *testing.T) {
 			true,
 		)
 	}
+
 	if permDirValue != 0o0712 {
 		t.Fatalf(invalidPerm, jsonName,
 			permDirValue,
@@ -121,6 +130,7 @@ func testConfigValidatePermDir(t *testing.T) {
 			false,
 		)
 	}
+
 	if permDirValue != 0 {
 		t.Fatalf(invalidPerm, jsonName,
 			permDirValue,
@@ -145,6 +155,7 @@ func testConfigValidatePermDir(t *testing.T) {
 
 func testConfigValidatePermFile(t *testing.T) {
 	buf := bytes.NewBuffer(make([]byte, 0, 1000))
+
 	log.SetOutput(buf)
 	defer log.SetOutput(os.Stderr)
 
@@ -157,6 +168,7 @@ func testConfigValidatePermFile(t *testing.T) {
 			true,
 		)
 	}
+
 	if permFileValue != 0o0612 {
 		t.Fatalf(invalidPerm, jsonName,
 			permFileValue,
@@ -171,6 +183,7 @@ func testConfigValidatePermFile(t *testing.T) {
 			false,
 		)
 	}
+
 	if permFileValue != 0 {
 		t.Fatalf(invalidPerm, jsonName,
 			permFileValue,
@@ -195,6 +208,7 @@ func testConfigValidatePermFile(t *testing.T) {
 
 func testConfigValidatePermExe(t *testing.T) {
 	buf := bytes.NewBuffer(make([]byte, 0, 1000))
+
 	log.SetOutput(buf)
 	defer log.SetOutput(os.Stderr)
 
@@ -207,6 +221,7 @@ func testConfigValidatePermExe(t *testing.T) {
 			true,
 		)
 	}
+
 	if permExeValue != 0o0712 {
 		t.Fatalf(invalidPerm, jsonName,
 			permExeValue,
@@ -221,6 +236,7 @@ func testConfigValidatePermExe(t *testing.T) {
 			false,
 		)
 	}
+
 	if permExeValue != 0 {
 		t.Fatalf(invalidPerm, jsonName,
 			permExeValue,
@@ -246,6 +262,7 @@ func testConfigValidatePermExe(t *testing.T) {
 //nolint:cyclop // Ok.
 func testConfigValidateTmpDir(t *testing.T) {
 	buf := bytes.NewBuffer(make([]byte, 0, 1000))
+
 	log.SetOutput(buf)
 	defer log.SetOutput(os.Stderr)
 
@@ -265,6 +282,7 @@ func testConfigValidateTmpDir(t *testing.T) {
 			false,
 		)
 	}
+
 	if tmpDirValue != "" {
 		t.Fatalf(invalidString, jsonName,
 			tmpDirValue,
@@ -276,6 +294,7 @@ func testConfigValidateTmpDir(t *testing.T) {
 	if err != nil {
 		t.Fatalf("could not setup tmp dir test: " + err.Error())
 	}
+
 	defer func() {
 		_ = os.Remove(newTmpPath)
 	}()
@@ -287,6 +306,7 @@ func testConfigValidateTmpDir(t *testing.T) {
 			true,
 		)
 	}
+
 	if tmpDirValue != newTmpPath {
 		t.Fatalf(invalidString, jsonName,
 			tmpDirValue,
@@ -296,10 +316,12 @@ func testConfigValidateTmpDir(t *testing.T) {
 
 	// Not a directory.
 	badDir := filepath.Join(newTmpPath, "badTmpDir")
+
 	err = os.WriteFile(badDir, []byte{}, 0o0600)
 	if err != nil {
 		t.Fatal("could not create file to be bad tmp dir")
 	}
+
 	defer func() {
 		_ = os.Remove(badDir)
 	}()
@@ -311,6 +333,7 @@ func testConfigValidateTmpDir(t *testing.T) {
 			false,
 		)
 	}
+
 	if tmpDirValue != "" {
 		t.Fatalf(invalidString, jsonName,
 			tmpDirValue,
@@ -331,9 +354,11 @@ func testConfigValidateTmpDir(t *testing.T) {
 	if !strings.Contains(lines[0], wLine) {
 		t.Fatalf(invalidString, jsonName, buf.String(), wLine)
 	}
+
 	wLine = fmt.Sprintf(
 		errMsg, EnvTmpDir, badDir, validTmpDir, settingTmpDir,
 	)
+
 	if !strings.Contains(lines[1], wLine) {
 		t.Fatalf(invalidString, jsonName, buf.String(), wLine)
 	}
@@ -343,20 +368,25 @@ func testConfigValidateTmpDir(t *testing.T) {
 func testConfigValidateColor(t *testing.T) {
 	buf := bytes.NewBuffer(make([]byte, 0, 1000))
 	log.SetOutput(buf)
+
 	defer log.SetOutput(os.Stderr)
 
-	const jsonName = "color_"
-	const jsonChg = "chg"
-	const jsonNameChg = jsonName + jsonChg
+	const (
+		jsonName    = "color_"
+		jsonChg     = "chg"
+		jsonNameChg = jsonName + jsonChg
+	)
 
 	testColor := func(s, envVarName, def, exp string) {
 		t.Helper()
-		v, ok := validateMark(s, envVarName, def)
+
+		markValue, ok := validateMark(s, envVarName, def)
 		if !ok {
 			t.Fatalf(invalidOkBool, envVarName, ok, true)
 		}
-		if v != exp {
-			t.Fatalf(invalidString, envVarName, v, exp)
+
+		if markValue != exp {
+			t.Fatalf(invalidString, envVarName, markValue, exp)
 		}
 	}
 
@@ -407,6 +437,7 @@ func testConfigValidateColor(t *testing.T) {
 	if !ok {
 		t.Fatalf(invalidOkBool, EnvMarkChgOn, ok, true)
 	}
+
 	if markValue != "" {
 		t.Fatalf(invalidString, jsonNameChg, markValue, "")
 	}
@@ -415,6 +446,7 @@ func testConfigValidateColor(t *testing.T) {
 	if ok {
 		t.Fatalf(invalidOkBool, EnvMarkChgOn, ok, false)
 	}
+
 	if markValue != "" {
 		t.Fatalf(invalidString, jsonNameChg, markValue, "")
 	}
@@ -423,6 +455,7 @@ func testConfigValidateColor(t *testing.T) {
 	if ok {
 		t.Fatalf(invalidOkBool, EnvMarkChgOn, ok, true)
 	}
+
 	if markValue != "" {
 		t.Fatalf(invalidString, jsonNameChg, markValue, "")
 	}
@@ -431,6 +464,7 @@ func testConfigValidateColor(t *testing.T) {
 	if ok {
 		t.Fatalf(invalidOkBool, EnvMarkChgOn, ok, true)
 	}
+
 	if markValue != "" {
 		t.Fatalf(invalidString, jsonNameChg, markValue, "")
 	}
@@ -439,6 +473,7 @@ func testConfigValidateColor(t *testing.T) {
 	if ok {
 		t.Fatalf(invalidOkBool, EnvMarkChgOn, ok, true)
 	}
+
 	if markValue != "" {
 		t.Fatalf(invalidString, jsonNameChg, markValue, "")
 	}
@@ -447,6 +482,7 @@ func testConfigValidateColor(t *testing.T) {
 	if ok {
 		t.Fatalf(invalidOkBool, EnvMarkChgOn, ok, true)
 	}
+
 	if markValue != "" {
 		t.Fatalf(invalidString, EnvMarkChgOn, markValue, "")
 	}
@@ -455,6 +491,7 @@ func testConfigValidateColor(t *testing.T) {
 	if ok {
 		t.Fatalf(invalidOkBool, EnvMarkChgOn, ok, true)
 	}
+
 	if markValue != "" {
 		t.Fatalf(invalidString, EnvMarkChgOn, markValue, "")
 	}
@@ -543,6 +580,7 @@ func testConfigValidateColor(t *testing.T) {
 func testConfigValidateMinRunString(t *testing.T) {
 	buf := bytes.NewBuffer(make([]byte, 0, 1000))
 	log.SetOutput(buf)
+
 	defer log.SetOutput(os.Stderr)
 
 	const jsonName = "min_run_string"
@@ -551,6 +589,7 @@ func testConfigValidateMinRunString(t *testing.T) {
 	if ok {
 		t.Fatalf(invalidOkBool, jsonName, ok, false)
 	}
+
 	if runStringValue != 0 {
 		t.Fatalf(invalidInt, jsonName, runStringValue, 0)
 	}
@@ -559,6 +598,7 @@ func testConfigValidateMinRunString(t *testing.T) {
 	if ok {
 		t.Fatalf(invalidOkBool, jsonName, ok, false)
 	}
+
 	if runStringValue != 0 {
 		t.Fatalf(invalidInt, jsonName, runStringValue, 0)
 	}
@@ -567,6 +607,7 @@ func testConfigValidateMinRunString(t *testing.T) {
 	if !ok {
 		t.Fatalf(invalidOkBool, jsonName, ok, true)
 	}
+
 	if runStringValue != 1 {
 		t.Fatalf(invalidInt, jsonName, runStringValue, 1)
 	}
@@ -597,6 +638,7 @@ func testConfigValidateMinRunString(t *testing.T) {
 func testConfigValidateMinRunSlice(t *testing.T) {
 	buf := bytes.NewBuffer(make([]byte, 0, 1000))
 	log.SetOutput(buf)
+
 	defer log.SetOutput(os.Stderr)
 
 	const jsonName = "min_run_slice"
@@ -605,6 +647,7 @@ func testConfigValidateMinRunSlice(t *testing.T) {
 	if ok {
 		t.Fatalf(invalidOkBool, jsonName, ok, false)
 	}
+
 	if runSliceValue != 0 {
 		t.Fatalf(invalidInt, jsonName, runSliceValue, 0)
 	}
@@ -613,6 +656,7 @@ func testConfigValidateMinRunSlice(t *testing.T) {
 	if ok {
 		t.Fatalf(invalidOkBool, jsonName, ok, false)
 	}
+
 	if runSliceValue != 0 {
 		t.Fatalf(invalidInt, jsonName, runSliceValue, 0)
 	}
@@ -621,6 +665,7 @@ func testConfigValidateMinRunSlice(t *testing.T) {
 	if !ok {
 		t.Fatalf(invalidOkBool, jsonName, ok, true)
 	}
+
 	if runSliceValue != 5 {
 		t.Fatalf(invalidInt, jsonName, runSliceValue, 5)
 	}
@@ -650,6 +695,7 @@ func testConfigValidateMinRunSlice(t *testing.T) {
 func testConfigValidateBufferSize(t *testing.T) {
 	buf := bytes.NewBuffer(make([]byte, 0, 1000))
 	log.SetOutput(buf)
+
 	defer log.SetOutput(os.Stderr)
 
 	const jsonName = "output_buffer_size"
