@@ -239,6 +239,8 @@ func (chk *Chk) Name() string {
 }
 
 // T returns an interface to sztest object provided on creation.
+//
+//nolint:ireturn // By design.
 func (chk *Chk) T() testingT {
 	return chk.t
 }

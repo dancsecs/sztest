@@ -16,7 +16,6 @@ linters:
     - dupl
     - gocognit
     - gofumpt
-    - ireturn
     - lll
     - nlreturn
     - revive
