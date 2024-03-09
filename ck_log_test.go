@@ -75,7 +75,7 @@ func tstChkLogging(t *testing.T) {
 	t.Run("Slog", chkLogTestSlog)
 }
 
-//nolint:cyclop,gocognit // Ok.
+//nolint:cyclop,funlen,gocognit // Ok.
 func chkLogTestRemoveLogPrefixes(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)

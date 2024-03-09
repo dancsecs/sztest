@@ -128,6 +128,7 @@ type tstDiffString struct {
 	expDiffMrg string
 }
 
+//nolint:funlen // Ok.
 func chkDiffString(
 	t *testing.T,
 	tst *tstDiffString,
@@ -192,7 +193,7 @@ func chkDiffString(
 	}
 }
 
-//nolint:maintidx // Ok.
+//nolint:funlen,maintidx // Ok.
 func testSzTestDiffString(t *testing.T) {
 	chkDiffString(t, &tstDiffString{
 		got:        "ABC",
@@ -534,7 +535,7 @@ func stringify(v any) string {
 	return fmt.Sprintf("%v", v)
 }
 
-//nolint:cyclop // Ok.
+//nolint:cyclop,funlen // Ok.
 func chkDiffSlice(t *testing.T, tst *tstDiffSlice) {
 	t.Helper()
 
@@ -602,7 +603,7 @@ func chkDiffSlice(t *testing.T, tst *tstDiffSlice) {
 	}
 }
 
-//nolint:maintidx // Ok.
+//nolint:funlen,maintidx // Ok.
 func testSzTestDiffSlice(t *testing.T) {
 	chkDiffSlice(t, &tstDiffSlice{
 		got:        nil,

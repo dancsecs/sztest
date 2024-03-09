@@ -445,7 +445,7 @@ func testPrerequisiteCheckBad3(t *testing.T) {
 	}
 }
 
-//nolint:cyclop // Ok.
+//nolint:cyclop,funlen // Ok.
 func tstFreezeMarks(t *testing.T) {
 	const tstName = "testFreezeMarks"
 
@@ -747,6 +747,7 @@ func tstChkOutPush(t *testing.T) {
 	}
 }
 
+//nolint:funlen // Ok.
 func tstChkOutIsError(t *testing.T) {
 	const tstName = "tstChkOutIsErrorf"
 
@@ -858,6 +859,7 @@ func tstChkOutCommonMsg(t *testing.T) {
 	}
 }
 
+//nolint:funlen //Ok.
 func tstChkOutIsSliceError(t *testing.T) {
 	const tstName = "tstChkOutIsSliceError"
 

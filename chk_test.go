@@ -459,6 +459,7 @@ func chkTestChkIs(t *testing.T) {
 	)
 }
 
+//nolint:funlen // Ok.
 func chkTestChkIsSlice(t *testing.T) {
 	const area = "generic isSlice"
 
@@ -572,6 +573,7 @@ func tstBounded[V chkBoundedType](
 	return inRange
 }
 
+//nolint:funlen // Ok.
 func chkTestTstBoundedRangeOpen(t *testing.T) {
 	const area = "generic inBoundedRange open"
 
@@ -654,6 +656,7 @@ func chkTestTstBoundedRangeOpen(t *testing.T) {
 	)
 }
 
+//nolint:funlen // Ok.
 func chkTestTstBoundedRangeClosed(t *testing.T) {
 	const area = "generic inBoundedRange closed"
 
@@ -733,7 +736,7 @@ func chkTestTstBoundedRangeClosed(t *testing.T) {
 	)
 }
 
-//nolint:cyclop // Ok.
+//nolint:cyclop,funlen // Ok.
 func chkTestTstBoundedRangeOpenMinOrClosedMax(t *testing.T) {
 	const area = "generic inBoundedRange OpenMinOrClosedMax"
 
@@ -866,7 +869,7 @@ func chkTestTstBoundedRangeOpenMinOrClosedMax(t *testing.T) {
 	)
 }
 
-//nolint:cyclop // Ok.
+//nolint:cyclop,funlen // Ok.
 func chkTestTstBoundedRangeOpenMaxOrClosedMin(t *testing.T) {
 	const area = "generic inBoundedRange OpenMaxOrClosedMin"
 
@@ -1040,6 +1043,7 @@ func tstUnbounded[V chkBoundedType](
 	return inRange
 }
 
+//nolint:funlen // Ok.
 func chkTestTstUnboundedRangeOpen(t *testing.T) {
 	const area = "generic inUnboundedRange open"
 
@@ -1114,6 +1118,7 @@ func chkTestTstUnboundedRangeOpen(t *testing.T) {
 	)
 }
 
+//nolint:funlen // Ok.
 func chkTestTstUnboundedRangeClosed(t *testing.T) {
 	const area = "generic inUnboundedRange closed"
 

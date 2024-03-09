@@ -41,7 +41,6 @@ issues:
         - dupl
     - path: _test\.go  # Exclude on test files.
       linters:
-        - funlen
         - goconst
         - goerr113
         - paralleltest
