@@ -192,6 +192,7 @@ func chkDiffString(
 	}
 }
 
+//nolint:maintidx // Ok.
 func testSzTestDiffString(t *testing.T) {
 	chkDiffString(t, &tstDiffString{
 		got:        "ABC",
@@ -601,6 +602,7 @@ func chkDiffSlice(t *testing.T, tst *tstDiffSlice) {
 	}
 }
 
+//nolint:maintidx // Ok.
 func testSzTestDiffSlice(t *testing.T) {
 	chkDiffSlice(t, &tstDiffSlice{
 		got:        nil,

@@ -364,7 +364,7 @@ func testConfigValidateTmpDir(t *testing.T) {
 	}
 }
 
-//nolint:cyclop,gocyclo,gocognit // Ok.
+//nolint:cyclop,gocyclo,gocognit,maintidx // Ok.
 func testConfigValidateColor(t *testing.T) {
 	buf := bytes.NewBuffer(make([]byte, 0, 1000))
 	log.SetOutput(buf)
