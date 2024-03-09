@@ -47,9 +47,7 @@ issues:
         - gocyclo
         - goerr113
         - maintidx
-        - nolintlint
         - paralleltest
-        - stylecheck
         - testpackage
         - thelper
 
