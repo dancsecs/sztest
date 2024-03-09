@@ -385,6 +385,7 @@ func chkOutLnWnt(wLn, wStr string) string {
 		markAsDel(wStr)
 }
 
+//nolint:unparam // Parameter msg always gets "msg:32".
 func chkOutNumericBoundedf(
 	wantMsg, got, caller, dataType, msg string,
 ) string {

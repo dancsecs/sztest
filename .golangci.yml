@@ -52,7 +52,6 @@ issues:
         - stylecheck
         - testpackage
         - thelper
-        - unparam
 
 run:
   timeout: 5m
