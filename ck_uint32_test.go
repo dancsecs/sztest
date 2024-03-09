@@ -46,8 +46,8 @@ func tstChkUint32(t *testing.T) {
 }
 
 func chkUint32Test_Good(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Uint32(0, 0)
@@ -62,8 +62,8 @@ func chkUint32Test_Good(t *testing.T) {
 }
 
 func chkUint32Test_Bad(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Uint32(2, 1)
@@ -82,8 +82,8 @@ func chkUint32Test_Bad(t *testing.T) {
 }
 
 func chkUint32Test_Bad1(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Uint32f(2, 1, "This message will be displayed %s", "first")
@@ -102,8 +102,8 @@ func chkUint32Test_Bad1(t *testing.T) {
 }
 
 func chkUint32Test_Bad2(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Uint32(2, 1, "This message will be displayed ", "second")
@@ -122,8 +122,8 @@ func chkUint32Test_Bad2(t *testing.T) {
 }
 
 func chkUint32Test_Bad3(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Uint32f(0, 1, "This message will be displayed %s", "third")
@@ -142,8 +142,8 @@ func chkUint32Test_Bad3(t *testing.T) {
 }
 
 func chkUint32SliceTest_Good(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Uint32Slice(
@@ -172,8 +172,8 @@ func chkUint32SliceTest_Good(t *testing.T) {
 }
 
 func chkUint32SliceTest_BadMsg1(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Uint32Slicef(
@@ -196,8 +196,8 @@ func chkUint32SliceTest_BadMsg1(t *testing.T) {
 }
 
 func chkUint32SliceTest_BadMsg2(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Uint32Slice(
@@ -220,8 +220,8 @@ func chkUint32SliceTest_BadMsg2(t *testing.T) {
 }
 
 func chkUint32SliceTest_BadMsg3(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Uint32Slicef(
@@ -245,8 +245,8 @@ func chkUint32SliceTest_BadMsg3(t *testing.T) {
 }
 
 func chkUint32SliceTest_BadMsg4(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Uint32Slice(
@@ -270,8 +270,8 @@ func chkUint32SliceTest_BadMsg4(t *testing.T) {
 }
 
 func chkUint32SliceTest_BadMsg5(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Uint32Slicef(
@@ -296,8 +296,8 @@ func chkUint32SliceTest_BadMsg5(t *testing.T) {
 }
 
 func chkUint32SliceTest_BadMsg6(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Uint32Slice(
@@ -322,8 +322,8 @@ func chkUint32SliceTest_BadMsg6(t *testing.T) {
 }
 
 func chkUint32SliceTest_BadMsg7(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Uint32Slicef(
@@ -347,8 +347,8 @@ func chkUint32SliceTest_BadMsg7(t *testing.T) {
 }
 
 func chkUint32SliceTest_BadMsg8(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Uint32Slice(
@@ -372,8 +372,8 @@ func chkUint32SliceTest_BadMsg8(t *testing.T) {
 }
 
 func chkUint32SliceTest_BadMsg9(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Uint32Slice([]uint32{1, 3}, []uint32{1, 2})
@@ -396,8 +396,8 @@ func chkUint32SliceTest_BadMsg9(t *testing.T) {
 /////////////////////////////////////////////
 
 func chkUint32BoundedTest_All(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	min := uint32(33)
@@ -438,8 +438,8 @@ func chkUint32BoundedTest_All(t *testing.T) {
 /////////////////////////////////////////////
 
 func chkUint32UnboundedTest_All(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	bound := uint32(62)

@@ -68,7 +68,7 @@ func test_SzTesting_Prerequisites(t *testing.T) {
 
 func testPrerequisiteHelper(t *testing.T) {
 	const tstName = "testPrerequisiteHelper"
-	iT := iTst{}
+	iT := new(iTst)
 
 	iT.Helper()
 	iT.Helper()
@@ -85,7 +85,7 @@ func testPrerequisiteHelper(t *testing.T) {
 
 func testPrerequisiteName(t *testing.T) {
 	const tstName = "testPrerequisiteName"
-	iT := iTst{}
+	iT := new(iTst)
 
 	got := iT.Name()
 	wnt := testName
@@ -103,7 +103,7 @@ func testPrerequisiteName(t *testing.T) {
 
 func testPrerequisiteSkipNow(t *testing.T) {
 	const tstName = "testPrerequisiteSkipNow"
-	iT := iTst{}
+	iT := new(iTst)
 
 	iT.SkipNow()
 	iT.SkipNow()
@@ -120,7 +120,7 @@ func testPrerequisiteSkipNow(t *testing.T) {
 
 func testPrerequisiteFailNow(t *testing.T) {
 	const tstName = "testPrerequisiteFailNow"
-	iT := iTst{}
+	iT := new(iTst)
 
 	iT.FailNow()
 	iT.FailNow()
@@ -137,7 +137,7 @@ func testPrerequisiteFailNow(t *testing.T) {
 
 func testPrerequisiteError(t *testing.T) {
 	const tstName = "testPrerequisiteError"
-	iT := iTst{}
+	iT := new(iTst)
 
 	iT.Error("the error with no args")
 
@@ -157,7 +157,7 @@ func testPrerequisiteError(t *testing.T) {
 
 func testPrerequisiteErrorf(t *testing.T) {
 	const tstName = "testPrerequisiteErrorf"
-	iT := iTst{}
+	iT := new(iTst)
 
 	iT.Errorf("the error with no args")
 
@@ -177,7 +177,7 @@ func testPrerequisiteErrorf(t *testing.T) {
 
 func testPrerequisiteLogf(t *testing.T) {
 	const tstName = "testPrerequisiteLogf"
-	iT := iTst{}
+	iT := new(iTst)
 
 	iT.Logf("the msg with no args")
 
@@ -195,7 +195,7 @@ func testPrerequisiteLogf(t *testing.T) {
 
 func testPrerequisitePrepareSlice(t *testing.T) {
 	const tstName = "testPrerequisitePrepareSlice"
-	iT := iTst{}
+	iT := new(iTst)
 
 	got := strings.Join(
 		iT.prepareSlice(strings.TrimSpace,
@@ -239,8 +239,8 @@ func testPrerequisitePrepareSlice(t *testing.T) {
 
 func testPrerequisiteCheckGood(t *testing.T) {
 	const tstName = "testPrerequisiteCheckGood"
-	iT := iTst{}
-	iTCheck := iTst{}
+	iT := new(iTst)
+	iTCheck := new(iTst)
 
 	iT.output = "" +
 		"firstLine\n" +
@@ -254,7 +254,7 @@ func testPrerequisiteCheckGood(t *testing.T) {
 		"ninthLine\n" +
 		"tenthLine" +
 		""
-	iT.check(&iTCheck,
+	iT.check(iTCheck,
 		"",
 		"firstLine",
 		"\nsecondLine\nthirdLine",
@@ -277,8 +277,8 @@ func testPrerequisiteCheckGood(t *testing.T) {
 
 func testPrerequisiteCheckBad1(t *testing.T) {
 	const tstName = "testPrerequisiteCheckBad1"
-	iT := iTst{}
-	iTCheck := iTst{}
+	iT := new(iTst)
+	iTCheck := new(iTst)
 
 	iT.output = "" +
 		"firstLine\n" +
@@ -293,7 +293,7 @@ func testPrerequisiteCheckBad1(t *testing.T) {
 		"ninthLine\n" +
 		"tenthLine" +
 		""
-	iT.check(&iTCheck,
+	iT.check(iTCheck,
 		"",
 		"firstLine",
 		"\nsecondLine\nthirdLine",
@@ -334,8 +334,8 @@ func testPrerequisiteCheckBad1(t *testing.T) {
 
 func testPrerequisiteCheckBad2(t *testing.T) {
 	const tstName = "testPrerequisiteCheckBad2"
-	iT := iTst{}
-	iTCheck := iTst{}
+	iT := new(iTst)
+	iTCheck := new(iTst)
 
 	iT.output = "" +
 		"firstLine\n" +
@@ -349,7 +349,7 @@ func testPrerequisiteCheckBad2(t *testing.T) {
 		"ninthLine\n" +
 		"tenthLine" +
 		""
-	iT.check(&iTCheck,
+	iT.check(iTCheck,
 		"",
 		"firstLine",
 		"\nsecondLine\nthirdLine",
@@ -391,8 +391,8 @@ func testPrerequisiteCheckBad2(t *testing.T) {
 
 func testPrerequisiteCheckBad3(t *testing.T) {
 	const tstName = "testPrerequisiteCheckBad3"
-	iT := iTst{}
-	iTCheck := iTst{}
+	iT := new(iTst)
+	iTCheck := new(iTst)
 
 	// // Test for missing close mark.
 	// got, err = freezeMarks(settingMarkInsOn)
@@ -407,7 +407,7 @@ func testPrerequisiteCheckBad3(t *testing.T) {
 	// }
 
 	iT.output = settingMarkInsOn + "\n"
-	iT.check(&iTCheck,
+	iT.check(iTCheck,
 		settingMarkInsOn,
 	)
 
@@ -435,7 +435,7 @@ func testPrerequisiteCheckBad3(t *testing.T) {
 
 func tstFreezeMarks(t *testing.T) {
 	const tstName = "testFreezeMarks"
-	iT := iTst{}
+	iT := new(iTst)
 
 	s := "No markups in string so will remain unchanged"
 	got, err := freezeMarks(s)

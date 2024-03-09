@@ -50,8 +50,8 @@ func tstChkBool(t *testing.T) {
 }
 
 func chkBoolTest_Good(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Bool(false, false)
@@ -66,8 +66,8 @@ func chkBoolTest_Good(t *testing.T) {
 }
 
 func chkBoolTest_Bad(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Bool(false, true)
@@ -85,8 +85,8 @@ func chkBoolTest_Bad(t *testing.T) {
 }
 
 func chkBoolTest_BadWithMsg1(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Bool(false, true, "This message will be displayed first")
@@ -104,8 +104,8 @@ func chkBoolTest_BadWithMsg1(t *testing.T) {
 }
 
 func chkBoolTest_BadWithMsg2(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Bool(true, false, "This message will ", "be displayed second")
@@ -123,8 +123,8 @@ func chkBoolTest_BadWithMsg2(t *testing.T) {
 }
 
 func chkBoolTest_BadWithMsg3(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Bool(true, false, "This message will", " ", "be displayed third")
@@ -142,8 +142,8 @@ func chkBoolTest_BadWithMsg3(t *testing.T) {
 }
 
 func chkBoolTest_BadWithMsgFmt1(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Boolf(false, true, "This message will be displayed first")
@@ -161,8 +161,8 @@ func chkBoolTest_BadWithMsgFmt1(t *testing.T) {
 }
 
 func chkBoolTest_BadWithMsgFmt2(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Boolf(true, false, "This message will be displayed %s", "second")
@@ -180,8 +180,8 @@ func chkBoolTest_BadWithMsgFmt2(t *testing.T) {
 }
 
 func chkBoolTest_BadWithMsgFmt3(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Boolf(false, true, "This %s will be displayed %s", "message", "third")
@@ -199,8 +199,8 @@ func chkBoolTest_BadWithMsgFmt3(t *testing.T) {
 }
 
 func chkBoolSliceTest_Good(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.BoolSlice(
@@ -229,8 +229,8 @@ func chkBoolSliceTest_Good(t *testing.T) {
 }
 
 func chkBoolSliceTest_BadWithMessage1(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.BoolSlice(
@@ -253,8 +253,8 @@ func chkBoolSliceTest_BadWithMessage1(t *testing.T) {
 }
 
 func chkBoolSliceTest_BadWithMessage2(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.BoolSlicef(
@@ -277,8 +277,8 @@ func chkBoolSliceTest_BadWithMessage2(t *testing.T) {
 }
 
 func chkBoolSliceTest_BadWithMessage3(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.BoolSlice(
@@ -302,8 +302,8 @@ func chkBoolSliceTest_BadWithMessage3(t *testing.T) {
 }
 
 func chkBoolSliceTest_BadWithMessage4(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.BoolSlicef(
@@ -327,8 +327,8 @@ func chkBoolSliceTest_BadWithMessage4(t *testing.T) {
 }
 
 func chkBoolSliceTest_BadWithMessage5(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.BoolSlicef(
@@ -353,8 +353,8 @@ func chkBoolSliceTest_BadWithMessage5(t *testing.T) {
 }
 
 func chkBoolSliceTest_BadWithMessage6(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.BoolSlice(
@@ -379,8 +379,8 @@ func chkBoolSliceTest_BadWithMessage6(t *testing.T) {
 }
 
 func chkBoolSliceTest_BadWithMessage7(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.BoolSlicef(
@@ -404,8 +404,8 @@ func chkBoolSliceTest_BadWithMessage7(t *testing.T) {
 }
 
 func chkBoolSliceTest_BadWithMessage8(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.BoolSlice(
@@ -429,8 +429,8 @@ func chkBoolSliceTest_BadWithMessage8(t *testing.T) {
 }
 
 func chkBoolSliceTest_BadWithMessage9(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.BoolSlice([]bool{false, false}, []bool{false, true})
@@ -450,8 +450,8 @@ func chkBoolSliceTest_BadWithMessage9(t *testing.T) {
 }
 
 func chkBoolHelperTest_Good(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.False(false)
@@ -474,8 +474,8 @@ func chkBoolHelperTest_Good(t *testing.T) {
 }
 
 func chkBoolHelperTest_Bad1(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Truef(false, "This message will be displayed %s", "first")
@@ -493,8 +493,8 @@ func chkBoolHelperTest_Bad1(t *testing.T) {
 }
 
 func chkBoolHelperTest_Bad2(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Falsef(true, "This message will be displayed %s", "second")
@@ -512,8 +512,8 @@ func chkBoolHelperTest_Bad2(t *testing.T) {
 }
 
 func chkBoolHelperTest_Bad3(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.True(false, "This message will", " ", "be displayed third")
@@ -531,8 +531,8 @@ func chkBoolHelperTest_Bad3(t *testing.T) {
 }
 
 func chkBoolHelperTest_Bad4(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.False(true)

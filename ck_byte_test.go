@@ -44,8 +44,8 @@ func tstChkByte(t *testing.T) {
 }
 
 func chkByteTest_Good(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Byte(0, 0)
@@ -60,8 +60,8 @@ func chkByteTest_Good(t *testing.T) {
 }
 
 func chkByteTest_Bad(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Byte(2, 1)
@@ -80,8 +80,8 @@ func chkByteTest_Bad(t *testing.T) {
 }
 
 func chkByteTest_Bad1(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Bytef(2, 1, "This message will be displayed %s", "first")
@@ -100,8 +100,8 @@ func chkByteTest_Bad1(t *testing.T) {
 }
 
 func chkByteTest_Bad2(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Byte(2, 1, "This message will be displayed ", "second")
@@ -120,8 +120,8 @@ func chkByteTest_Bad2(t *testing.T) {
 }
 
 func chkByteTest_Bad3(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Bytef(0, 1, "This message will be displayed %s", "third")
@@ -140,8 +140,8 @@ func chkByteTest_Bad3(t *testing.T) {
 }
 
 func chkByteSliceTest_Good(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.ByteSlice(
@@ -170,8 +170,8 @@ func chkByteSliceTest_Good(t *testing.T) {
 }
 
 func chkByteSliceTest_BadMsg1(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.ByteSlicef(
@@ -194,8 +194,8 @@ func chkByteSliceTest_BadMsg1(t *testing.T) {
 }
 
 func chkByteSliceTest_BadMsg2(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.ByteSlice(
@@ -218,8 +218,8 @@ func chkByteSliceTest_BadMsg2(t *testing.T) {
 }
 
 func chkByteSliceTest_BadMsg3(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.ByteSlicef(
@@ -243,8 +243,8 @@ func chkByteSliceTest_BadMsg3(t *testing.T) {
 }
 
 func chkByteSliceTest_BadMsg4(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.ByteSlice(
@@ -268,8 +268,8 @@ func chkByteSliceTest_BadMsg4(t *testing.T) {
 }
 
 func chkByteSliceTest_BadMsg5(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.ByteSlicef(
@@ -294,8 +294,8 @@ func chkByteSliceTest_BadMsg5(t *testing.T) {
 }
 
 func chkByteSliceTest_BadMsg6(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.ByteSlice(
@@ -320,8 +320,8 @@ func chkByteSliceTest_BadMsg6(t *testing.T) {
 }
 
 func chkByteSliceTest_BadMsg7(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.ByteSlicef(
@@ -345,8 +345,8 @@ func chkByteSliceTest_BadMsg7(t *testing.T) {
 }
 
 func chkByteSliceTest_BadMsg8(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.ByteSlice(
@@ -370,8 +370,8 @@ func chkByteSliceTest_BadMsg8(t *testing.T) {
 }
 
 func chkByteSliceTest_BadMsg9(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.ByteSlice([]byte{1, 3}, []byte{1, 2})
@@ -394,8 +394,8 @@ func chkByteSliceTest_BadMsg9(t *testing.T) {
 /////////////////////////////////////////////
 
 func chkByteBoundedTest_All(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	min := byte(32)
@@ -436,8 +436,8 @@ func chkByteBoundedTest_All(t *testing.T) {
 /////////////////////////////////////////////
 
 func chkByteUnboundedTest_All(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	bound := byte(128)

@@ -27,8 +27,8 @@ func tstChkSubstitution(t *testing.T) {
 }
 
 func chkSubstitutionTest_All(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureLog(&iT)
+	iT := new(iTst)
+	chk := CaptureLog(iT)
 	iT.chk = chk
 
 	chk.AddSub(`[a-`, "gf")

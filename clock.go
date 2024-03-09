@@ -252,9 +252,10 @@ func newTstClock(startAt time.Time, inc []time.Duration) *tstClk {
 		inc = []time.Duration{time.Millisecond}
 	}
 	return &tstClk{
-		lastTS: startAt.Add(-inc[len(inc)-1]),
-		nextTS: startAt,
-		inc:    inc,
+		lastTS:    startAt.Add(-inc[len(inc)-1]),
+		nextTS:    startAt,
+		inc:       inc,
+		nextIndex: 0,
 	}
 }
 

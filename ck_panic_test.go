@@ -34,8 +34,8 @@ func tstChkPanic(t *testing.T) {
 }
 
 func chkPanicTest_Good(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Panic(
@@ -76,8 +76,8 @@ func chkPanicTest_Good(t *testing.T) {
 }
 
 func chkPanicTest_Bad(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Panic(
@@ -101,8 +101,8 @@ func chkPanicTest_Bad(t *testing.T) {
 }
 
 func chkPanicTest_Bad1(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Panicf(
@@ -127,8 +127,8 @@ func chkPanicTest_Bad1(t *testing.T) {
 }
 
 func chkPanicTest_Bad2(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Panic(
@@ -153,8 +153,8 @@ func chkPanicTest_Bad2(t *testing.T) {
 }
 
 func chkPanicTest_Bad3(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Panicf(
@@ -179,8 +179,8 @@ func chkPanicTest_Bad3(t *testing.T) {
 }
 
 func chkPanicTest_Bad4(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.NoPanic(
@@ -204,8 +204,8 @@ func chkPanicTest_Bad4(t *testing.T) {
 }
 
 func chkPanicTest_Bad5(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.NoPanicf(

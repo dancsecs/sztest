@@ -46,8 +46,8 @@ func tstChkDur(t *testing.T) {
 }
 
 func chkDurTest_Good(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Dur(time.Second, time.Second)
@@ -62,8 +62,8 @@ func chkDurTest_Good(t *testing.T) {
 }
 
 func chkDurTest_Bad(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Dur(time.Second*9, time.Second*7)
@@ -82,8 +82,8 @@ func chkDurTest_Bad(t *testing.T) {
 }
 
 func chkDurTest_Bad1(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Durf(
@@ -105,8 +105,8 @@ func chkDurTest_Bad1(t *testing.T) {
 }
 
 func chkDurTest_Bad2(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Dur(
@@ -130,8 +130,8 @@ func chkDurTest_Bad2(t *testing.T) {
 }
 
 func chkDurSliceTest_Good(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	dOne := time.Second * 2
@@ -164,8 +164,8 @@ func chkDurSliceTest_Good(t *testing.T) {
 }
 
 func chkDurSliceTest_BadMsg1(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	dTwo := time.Second * 3
@@ -190,8 +190,8 @@ func chkDurSliceTest_BadMsg1(t *testing.T) {
 }
 
 func chkDurSliceTest_BadMsg2(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	dOne := time.Second * 2
@@ -216,8 +216,8 @@ func chkDurSliceTest_BadMsg2(t *testing.T) {
 }
 
 func chkDurSliceTest_BadMsg3(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	dOne := time.Second * 2
@@ -244,8 +244,8 @@ func chkDurSliceTest_BadMsg3(t *testing.T) {
 }
 
 func chkDurSliceTest_BadMsg4(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	dOne := time.Second * 2
@@ -272,8 +272,8 @@ func chkDurSliceTest_BadMsg4(t *testing.T) {
 }
 
 func chkDurSliceTest_BadMsg5(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	dOne := time.Second * 2
@@ -301,8 +301,8 @@ func chkDurSliceTest_BadMsg5(t *testing.T) {
 }
 
 func chkDurSliceTest_BadMsg6(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	dOne := time.Second * 2
@@ -330,8 +330,8 @@ func chkDurSliceTest_BadMsg6(t *testing.T) {
 }
 
 func chkDurSliceTest_BadMsg7(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	dOne := time.Second * 2
@@ -358,8 +358,8 @@ func chkDurSliceTest_BadMsg7(t *testing.T) {
 }
 
 func chkDurSliceTest_BadMsg8(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	dOne := time.Second * 2
@@ -386,8 +386,8 @@ func chkDurSliceTest_BadMsg8(t *testing.T) {
 }
 
 func chkDurSliceTest_BadMsg9(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	dOne := time.Second * 2
@@ -413,8 +413,8 @@ func chkDurSliceTest_BadMsg9(t *testing.T) {
 /////////////////////////////////////////////
 
 func chkDurBoundedTest_All(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	min := time.Duration(33)
@@ -455,8 +455,8 @@ func chkDurBoundedTest_All(t *testing.T) {
 /////////////////////////////////////////////
 
 func chkDurUnboundedTest_All(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	bound := time.Duration(128)

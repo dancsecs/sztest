@@ -46,8 +46,8 @@ func tstChkInt64(t *testing.T) {
 }
 
 func chkInt64Test_Good(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Int64(0, 0)
@@ -62,8 +62,8 @@ func chkInt64Test_Good(t *testing.T) {
 }
 
 func chkInt64Test_Bad(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Int64(-2, 1)
@@ -82,8 +82,8 @@ func chkInt64Test_Bad(t *testing.T) {
 }
 
 func chkInt64Test_Bad1(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Int64f(2, 1, "This message will be displayed %s", "first")
@@ -102,8 +102,8 @@ func chkInt64Test_Bad1(t *testing.T) {
 }
 
 func chkInt64Test_Bad2(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Int64(-2, 1, "This message will be displayed ", "second")
@@ -122,8 +122,8 @@ func chkInt64Test_Bad2(t *testing.T) {
 }
 
 func chkInt64Test_Bad3(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Int64f(0, -1, "This message will be displayed %s", "third")
@@ -142,8 +142,8 @@ func chkInt64Test_Bad3(t *testing.T) {
 }
 
 func chkInt64SliceTest_Good(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Int64Slice(
@@ -172,8 +172,8 @@ func chkInt64SliceTest_Good(t *testing.T) {
 }
 
 func chkInt64SliceTest_BadMsg1(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Int64Slicef(
@@ -196,8 +196,8 @@ func chkInt64SliceTest_BadMsg1(t *testing.T) {
 }
 
 func chkInt64SliceTest_BadMsg2(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Int64Slice(
@@ -220,8 +220,8 @@ func chkInt64SliceTest_BadMsg2(t *testing.T) {
 }
 
 func chkInt64SliceTest_BadMsg3(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Int64Slicef(
@@ -245,8 +245,8 @@ func chkInt64SliceTest_BadMsg3(t *testing.T) {
 }
 
 func chkInt64SliceTest_BadMsg4(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Int64Slice(
@@ -270,8 +270,8 @@ func chkInt64SliceTest_BadMsg4(t *testing.T) {
 }
 
 func chkInt64SliceTest_BadMsg5(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Int64Slicef(
@@ -296,8 +296,8 @@ func chkInt64SliceTest_BadMsg5(t *testing.T) {
 }
 
 func chkInt64SliceTest_BadMsg6(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Int64Slice(
@@ -322,8 +322,8 @@ func chkInt64SliceTest_BadMsg6(t *testing.T) {
 }
 
 func chkInt64SliceTest_BadMsg7(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Int64Slicef(
@@ -347,8 +347,8 @@ func chkInt64SliceTest_BadMsg7(t *testing.T) {
 }
 
 func chkInt64SliceTest_BadMsg8(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Int64Slice(
@@ -372,8 +372,8 @@ func chkInt64SliceTest_BadMsg8(t *testing.T) {
 }
 
 func chkInt64SliceTest_BadMsg9(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Int64Slice([]int64{1, 3}, []int64{1, 2})
@@ -396,8 +396,8 @@ func chkInt64SliceTest_BadMsg9(t *testing.T) {
 /////////////////////////////////////////////
 
 func chkInt64BoundedTest_All(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	min := int64(33)
@@ -438,8 +438,8 @@ func chkInt64BoundedTest_All(t *testing.T) {
 /////////////////////////////////////////////
 
 func chkInt64UnboundedTest_All(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	bound := int64(62)

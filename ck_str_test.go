@@ -46,8 +46,8 @@ func tstChkString(t *testing.T) {
 }
 
 func chkStringTest_Good(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Str("", "")
@@ -66,8 +66,8 @@ func chkStringTest_Good(t *testing.T) {
 }
 
 func chkStringTest_Bad(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Str("Blank want", "")
@@ -86,8 +86,8 @@ func chkStringTest_Bad(t *testing.T) {
 }
 
 func chkStringTest_Bad1(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Strf("", "Blank got", "This message will be displayed %s", "first")
@@ -106,8 +106,8 @@ func chkStringTest_Bad1(t *testing.T) {
 }
 
 func chkStringTest_Bad2(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Str("Blank want", "", "This message will be displayed ", "second")
@@ -126,8 +126,8 @@ func chkStringTest_Bad2(t *testing.T) {
 }
 
 func chkStringTest_Bad3(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Strf("got", "want", "This message will be displayed %s", "third")
@@ -146,8 +146,8 @@ func chkStringTest_Bad3(t *testing.T) {
 }
 
 func chkStringSliceTest_Good(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.StrSlice(
@@ -176,8 +176,8 @@ func chkStringSliceTest_Good(t *testing.T) {
 }
 
 func chkStringSliceTest_BadMsg1(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.StrSlicef(
@@ -200,8 +200,8 @@ func chkStringSliceTest_BadMsg1(t *testing.T) {
 }
 
 func chkStringSliceTest_BadMsg2(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.StrSlice(
@@ -224,8 +224,8 @@ func chkStringSliceTest_BadMsg2(t *testing.T) {
 }
 
 func chkStringSliceTest_BadMsg3(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.StrSlicef(
@@ -249,8 +249,8 @@ func chkStringSliceTest_BadMsg3(t *testing.T) {
 }
 
 func chkStringSliceTest_BadMsg4(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.StrSlice(
@@ -274,8 +274,8 @@ func chkStringSliceTest_BadMsg4(t *testing.T) {
 }
 
 func chkStringSliceTest_BadMsg5(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.StrSlicef(
@@ -300,8 +300,8 @@ func chkStringSliceTest_BadMsg5(t *testing.T) {
 }
 
 func chkStringSliceTest_BadMsg6(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.StrSlice(
@@ -326,8 +326,8 @@ func chkStringSliceTest_BadMsg6(t *testing.T) {
 }
 
 func chkStringSliceTest_BadMsg7(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.StrSlicef(
@@ -351,8 +351,8 @@ func chkStringSliceTest_BadMsg7(t *testing.T) {
 }
 
 func chkStringSliceTest_BadMsg8(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.StrSlice(
@@ -376,8 +376,8 @@ func chkStringSliceTest_BadMsg8(t *testing.T) {
 }
 
 func chkStringSliceTest_BadMsg9(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.StrSlice([]string{"1", "3"}, []string{"1", "2"})
@@ -400,8 +400,8 @@ func chkStringSliceTest_BadMsg9(t *testing.T) {
 /////////////////////////////////////////////
 
 func chkStringBoundedTest_All(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	min := "33"
@@ -443,8 +443,8 @@ func chkStringBoundedTest_All(t *testing.T) {
 /////////////////////////////////////////////
 
 func chkStringUnboundedTest_All(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	bound := "62"

@@ -46,8 +46,8 @@ func tstChkInt(t *testing.T) {
 }
 
 func chkIntTest_Good(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Int(0, 0)
@@ -62,8 +62,8 @@ func chkIntTest_Good(t *testing.T) {
 }
 
 func chkIntTest_Bad(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Int(-2, 1)
@@ -82,8 +82,8 @@ func chkIntTest_Bad(t *testing.T) {
 }
 
 func chkIntTest_Bad1(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Intf(2, 1, "This message will be displayed %s", "first")
@@ -102,8 +102,8 @@ func chkIntTest_Bad1(t *testing.T) {
 }
 
 func chkIntTest_Bad2(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Int(-2, 1, "This message will be displayed ", "second")
@@ -122,8 +122,8 @@ func chkIntTest_Bad2(t *testing.T) {
 }
 
 func chkIntTest_Bad3(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Intf(0, -1, "This message will be displayed %s", "third")
@@ -142,8 +142,8 @@ func chkIntTest_Bad3(t *testing.T) {
 }
 
 func chkIntSliceTest_Good(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.IntSlice(
@@ -172,8 +172,8 @@ func chkIntSliceTest_Good(t *testing.T) {
 }
 
 func chkIntSliceTest_BadMsg1(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.IntSlicef(
@@ -196,8 +196,8 @@ func chkIntSliceTest_BadMsg1(t *testing.T) {
 }
 
 func chkIntSliceTest_BadMsg2(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.IntSlice(
@@ -220,8 +220,8 @@ func chkIntSliceTest_BadMsg2(t *testing.T) {
 }
 
 func chkIntSliceTest_BadMsg3(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.IntSlicef(
@@ -245,8 +245,8 @@ func chkIntSliceTest_BadMsg3(t *testing.T) {
 }
 
 func chkIntSliceTest_BadMsg4(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.IntSlice(
@@ -270,8 +270,8 @@ func chkIntSliceTest_BadMsg4(t *testing.T) {
 }
 
 func chkIntSliceTest_BadMsg5(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.IntSlicef(
@@ -296,8 +296,8 @@ func chkIntSliceTest_BadMsg5(t *testing.T) {
 }
 
 func chkIntSliceTest_BadMsg6(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.IntSlice(
@@ -322,8 +322,8 @@ func chkIntSliceTest_BadMsg6(t *testing.T) {
 }
 
 func chkIntSliceTest_BadMsg7(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.IntSlicef(
@@ -347,8 +347,8 @@ func chkIntSliceTest_BadMsg7(t *testing.T) {
 }
 
 func chkIntSliceTest_BadMsg8(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.IntSlice(
@@ -371,8 +371,8 @@ func chkIntSliceTest_BadMsg8(t *testing.T) {
 	)
 }
 func chkIntSliceTest_BadMsg9(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.IntSlice([]int{1, 3}, []int{1, 2})
@@ -395,8 +395,8 @@ func chkIntSliceTest_BadMsg9(t *testing.T) {
 /////////////////////////////////////////////
 
 func chkIntBoundedTest_All(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	min := int(33)
@@ -437,8 +437,8 @@ func chkIntBoundedTest_All(t *testing.T) {
 /////////////////////////////////////////////
 
 func chkIntUnboundedTest_All(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	bound := int(128)

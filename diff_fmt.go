@@ -44,6 +44,8 @@ func newDiffLnFmt(gLen, wLen int) *diffLnFmt {
 
 	return &diffLnFmt{
 		nbrWidth: maxWidth,
+		gOffset:  0,
+		wOffset:  0,
 	}
 }
 

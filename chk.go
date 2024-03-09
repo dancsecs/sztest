@@ -170,14 +170,13 @@ type Chk struct {
 
 func newChk(t testingT, option captureOption) *Chk {
 	t.Helper()
-	chk := &Chk{
-		t:       t,
-		rData:   make([]byte, 0),
-		rErrPos: -1,
-		wData:   make([]byte, 0),
-		wErrPos: -1,
-		clk:     newTstClock(time.Now(), []time.Duration{time.Millisecond}),
-	}
+	chk := new(Chk)
+	chk.t = t
+	chk.rData = make([]byte, 0)
+	chk.rErrPos = -1
+	chk.wData = make([]byte, 0)
+	chk.wErrPos = -1
+	chk.clk = newTstClock(time.Now(), []time.Duration{time.Millisecond})
 	chk.markupForDisplay = resolveMarksForDisplay
 
 	chk.setupLoggers(option)

@@ -201,8 +201,8 @@ func chkDirTest_SetTmpDirEmpty(t *testing.T) {
 }
 
 func chkDirTest_SetTmpDirNotExists(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	oldSettingTmpDir := settingTmpDir
@@ -223,8 +223,8 @@ func chkDirTest_SetTmpDirNotExists(t *testing.T) {
 }
 
 func chkDirTest_SetTmpDirNotDirectory(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	oldSettingTmpDir := settingTmpDir
@@ -290,8 +290,8 @@ func chkDirTest_SetTmpDirExtendExisting(t *testing.T) {
 }
 
 func chkDirTest_CreateDirNotExist(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	oldSettingTmpDir := settingTmpDir
@@ -315,8 +315,8 @@ func chkDirTest_CreateDirNotExist(t *testing.T) {
 }
 
 func chkDirTest_CreateTmpDirEmpty(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	dirName := chk.CreateTmpDir()
@@ -334,8 +334,8 @@ func chkDirTest_CreateTmpDirEmpty(t *testing.T) {
 }
 
 func chkDirTest_CreateTmpFileEmpty(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	_ = chk.CreateTmpDir()
@@ -363,8 +363,8 @@ func chkDirTest_CreateTmpFileEmpty(t *testing.T) {
 }
 
 func chkDirTest_CreateTmpFileEmptyKeepTmp(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.KeepTmpFiles()
@@ -399,8 +399,8 @@ func chkDirTest_CreateTmpFileEmptyKeepTmp(t *testing.T) {
 }
 
 func chkDirTest_CreateTmpFileInvalidDIrectory(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.tmpDirCreated = true
@@ -426,8 +426,8 @@ func chkDirTest_CreateTmpFileInvalidDIrectory(t *testing.T) {
 }
 
 func chkDirTest_CreateTmpUnixScriptEmpty(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	_ = chk.CreateTmpDir()
@@ -455,8 +455,8 @@ func chkDirTest_CreateTmpUnixScriptEmpty(t *testing.T) {
 }
 
 func chkDirTest_CreateTmpUnixScriptInvalid(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	fileName := chk.CreateTmpUnixScript([]string{"First Line invalid"})
@@ -481,8 +481,8 @@ func chkDirTest_CreateTmpUnixScriptInvalid(t *testing.T) {
 }
 
 func chkDirTest_CreateTmpUnixScriptNoLeading(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	fileName := chk.CreateTmpUnixScript(
@@ -523,8 +523,8 @@ func chkDirTest_CreateTmpUnixScriptNoLeading(t *testing.T) {
 }
 
 func chkDirTest_CreateTmpUnixScriptWithLeading(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	fileName := chk.CreateTmpUnixScript([]string{`
@@ -567,8 +567,8 @@ func chkDirTest_CreateTmpUnixScriptWithLeading(t *testing.T) {
 }
 
 func chkDirTest_CreateTmpSubDir(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	dir := chk.CreateTmpDir()

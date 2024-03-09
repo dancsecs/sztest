@@ -46,8 +46,8 @@ func tstChkRune(t *testing.T) {
 }
 
 func chkRuneTest_Good(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Rune(0, 0)
@@ -62,8 +62,8 @@ func chkRuneTest_Good(t *testing.T) {
 }
 
 func chkRuneTest_Bad(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Rune(-2, 1)
@@ -82,8 +82,8 @@ func chkRuneTest_Bad(t *testing.T) {
 }
 
 func chkRuneTest_Bad1(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Runef(2, 1, "This message will be displayed %s", "first")
@@ -102,8 +102,8 @@ func chkRuneTest_Bad1(t *testing.T) {
 }
 
 func chkRuneTest_Bad2(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Rune(-2, 1, "This message will be displayed ", "second")
@@ -122,8 +122,8 @@ func chkRuneTest_Bad2(t *testing.T) {
 }
 
 func chkRuneTest_Bad3(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Runef(0, -1, "This message will be displayed %s", "third")
@@ -142,8 +142,8 @@ func chkRuneTest_Bad3(t *testing.T) {
 }
 
 func chkRuneSliceTest_Good(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.RuneSlice(
@@ -172,8 +172,8 @@ func chkRuneSliceTest_Good(t *testing.T) {
 }
 
 func chkRuneSliceTest_BadMsg1(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.RuneSlicef(
@@ -196,8 +196,8 @@ func chkRuneSliceTest_BadMsg1(t *testing.T) {
 }
 
 func chkRuneSliceTest_BadMsg2(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.RuneSlice(
@@ -220,8 +220,8 @@ func chkRuneSliceTest_BadMsg2(t *testing.T) {
 }
 
 func chkRuneSliceTest_BadMsg3(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.RuneSlicef(
@@ -245,8 +245,8 @@ func chkRuneSliceTest_BadMsg3(t *testing.T) {
 }
 
 func chkRuneSliceTest_BadMsg4(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.RuneSlice(
@@ -270,8 +270,8 @@ func chkRuneSliceTest_BadMsg4(t *testing.T) {
 }
 
 func chkRuneSliceTest_BadMsg5(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.RuneSlicef(
@@ -296,8 +296,8 @@ func chkRuneSliceTest_BadMsg5(t *testing.T) {
 }
 
 func chkRuneSliceTest_BadMsg6(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.RuneSlice(
@@ -322,8 +322,8 @@ func chkRuneSliceTest_BadMsg6(t *testing.T) {
 }
 
 func chkRuneSliceTest_BadMsg7(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.RuneSlicef(
@@ -347,8 +347,8 @@ func chkRuneSliceTest_BadMsg7(t *testing.T) {
 }
 
 func chkRuneSliceTest_BadMsg8(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.RuneSlice(
@@ -372,8 +372,8 @@ func chkRuneSliceTest_BadMsg8(t *testing.T) {
 }
 
 func chkRuneSliceTest_BadMsg9(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.RuneSlice([]rune{1, 3}, []rune{1, 2})
@@ -396,8 +396,8 @@ func chkRuneSliceTest_BadMsg9(t *testing.T) {
 /////////////////////////////////////////////
 
 func chkRuneBoundedTest_All(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	min := rune(33)
@@ -438,8 +438,8 @@ func chkRuneBoundedTest_All(t *testing.T) {
 /////////////////////////////////////////////
 
 func chkRuneUnboundedTest_All(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	bound := rune(62)

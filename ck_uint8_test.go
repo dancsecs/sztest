@@ -46,8 +46,8 @@ func tstChkUint8(t *testing.T) {
 }
 
 func chkUint8Test_Good(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Uint8(0, 0)
@@ -62,8 +62,8 @@ func chkUint8Test_Good(t *testing.T) {
 }
 
 func chkUint8Test_Bad(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Uint8(2, 1)
@@ -82,8 +82,8 @@ func chkUint8Test_Bad(t *testing.T) {
 }
 
 func chkUint8Test_Bad1(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Uint8f(2, 1, "This message will be displayed %s", "first")
@@ -102,8 +102,8 @@ func chkUint8Test_Bad1(t *testing.T) {
 }
 
 func chkUint8Test_Bad2(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Uint8(2, 1, "This message will be displayed ", "second")
@@ -122,8 +122,8 @@ func chkUint8Test_Bad2(t *testing.T) {
 }
 
 func chkUint8Test_Bad3(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Uint8f(0, 1, "This message will be displayed %s", "third")
@@ -142,8 +142,8 @@ func chkUint8Test_Bad3(t *testing.T) {
 }
 
 func chkUint8SliceTest_Good(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Uint8Slice(
@@ -172,8 +172,8 @@ func chkUint8SliceTest_Good(t *testing.T) {
 }
 
 func chkUint8SliceTest_BadMsg1(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Uint8Slicef(
@@ -196,8 +196,8 @@ func chkUint8SliceTest_BadMsg1(t *testing.T) {
 }
 
 func chkUint8SliceTest_BadMsg2(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Uint8Slice(
@@ -220,8 +220,8 @@ func chkUint8SliceTest_BadMsg2(t *testing.T) {
 }
 
 func chkUint8SliceTest_BadMsg3(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Uint8Slicef(
@@ -245,8 +245,8 @@ func chkUint8SliceTest_BadMsg3(t *testing.T) {
 }
 
 func chkUint8SliceTest_BadMsg4(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Uint8Slice(
@@ -270,8 +270,8 @@ func chkUint8SliceTest_BadMsg4(t *testing.T) {
 }
 
 func chkUint8SliceTest_BadMsg5(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Uint8Slicef(
@@ -296,8 +296,8 @@ func chkUint8SliceTest_BadMsg5(t *testing.T) {
 }
 
 func chkUint8SliceTest_BadMsg6(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Uint8Slice(
@@ -322,8 +322,8 @@ func chkUint8SliceTest_BadMsg6(t *testing.T) {
 }
 
 func chkUint8SliceTest_BadMsg7(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Uint8Slicef(
@@ -347,8 +347,8 @@ func chkUint8SliceTest_BadMsg7(t *testing.T) {
 }
 
 func chkUint8SliceTest_BadMsg8(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Uint8Slice(
@@ -372,8 +372,8 @@ func chkUint8SliceTest_BadMsg8(t *testing.T) {
 }
 
 func chkUint8SliceTest_BadMsg9(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Uint8Slice([]uint8{1, 3}, []uint8{1, 2})
@@ -396,8 +396,8 @@ func chkUint8SliceTest_BadMsg9(t *testing.T) {
 /////////////////////////////////////////////
 
 func chkUint8BoundedTest_All(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	min := uint8(33)
@@ -438,8 +438,8 @@ func chkUint8BoundedTest_All(t *testing.T) {
 /////////////////////////////////////////////
 
 func chkUint8UnboundedTest_All(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	bound := uint8(62)

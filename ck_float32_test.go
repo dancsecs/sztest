@@ -46,8 +46,8 @@ func tstChkFloat32(t *testing.T) {
 }
 
 func chkFloat32Test_Good(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Float32(0.0, 0.0, 0.0)
@@ -66,8 +66,8 @@ func chkFloat32Test_Good(t *testing.T) {
 }
 
 func chkFloat32Test_Bad(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Float32(0, -0.01, 0.005)
@@ -86,8 +86,8 @@ func chkFloat32Test_Bad(t *testing.T) {
 }
 
 func chkFloat32Test_Bad1(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Float32f(0.02, 0.01, 0.005, "This message will be displayed %s", "first")
@@ -109,8 +109,8 @@ func chkFloat32Test_Bad1(t *testing.T) {
 }
 
 func chkFloat32Test_Bad2(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Float32f(
@@ -135,8 +135,8 @@ func chkFloat32Test_Bad2(t *testing.T) {
 }
 
 func chkFloat32Test_Bad3(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Float32(0, -0.01, 0.005, "This message will be displayed ", "third")
@@ -158,8 +158,8 @@ func chkFloat32Test_Bad3(t *testing.T) {
 }
 
 func chkFloat32SliceTest_Good(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Float32Slice(
@@ -196,8 +196,8 @@ func chkFloat32SliceTest_Good(t *testing.T) {
 }
 
 func chkFloat32SliceTest_BadMsg1(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Float32Slicef(
@@ -220,8 +220,8 @@ func chkFloat32SliceTest_BadMsg1(t *testing.T) {
 }
 
 func chkFloat32SliceTest_BadMsg2(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Float32Slice(
@@ -244,8 +244,8 @@ func chkFloat32SliceTest_BadMsg2(t *testing.T) {
 }
 
 func chkFloat32SliceTest_BadMsg3(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Float32Slicef(
@@ -269,8 +269,8 @@ func chkFloat32SliceTest_BadMsg3(t *testing.T) {
 }
 
 func chkFloat32SliceTest_BadMsg4(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Float32Slice(
@@ -294,8 +294,8 @@ func chkFloat32SliceTest_BadMsg4(t *testing.T) {
 }
 
 func chkFloat32SliceTest_BadMsg5(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Float32Slicef(
@@ -320,8 +320,8 @@ func chkFloat32SliceTest_BadMsg5(t *testing.T) {
 }
 
 func chkFloat32SliceTest_BadMsg6(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Float32Slice(
@@ -346,8 +346,8 @@ func chkFloat32SliceTest_BadMsg6(t *testing.T) {
 }
 
 func chkFloat32SliceTest_BadMsg7(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Float32Slicef(
@@ -371,8 +371,8 @@ func chkFloat32SliceTest_BadMsg7(t *testing.T) {
 }
 
 func chkFloat32SliceTest_BadMsg8(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Float32Slice(
@@ -396,8 +396,8 @@ func chkFloat32SliceTest_BadMsg8(t *testing.T) {
 }
 
 func chkFloat32SliceTest_BadMsg9(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Float32Slice([]float32{0.01, 0.03}, []float32{0.01, 0.02}, 0.005)
@@ -422,8 +422,8 @@ func chkFloat32SliceTest_BadMsg9(t *testing.T) {
 /////////////////////////////////////////////
 
 func chkFloat32BoundedTest_All(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	min := float32(33)
@@ -464,8 +464,8 @@ func chkFloat32BoundedTest_All(t *testing.T) {
 /////////////////////////////////////////////
 
 func chkFloat32UnboundedTest_All(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	bound := float32(128)

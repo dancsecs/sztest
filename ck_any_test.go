@@ -38,8 +38,8 @@ func (s *abcStruct) abcFunction() {
 }
 
 func chkAnyTest_Nil(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	var nilReference *abcStruct
@@ -79,8 +79,8 @@ func chkAnyTest_Nil(t *testing.T) {
 }
 
 func chkAnyTest_Nilf(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	var nilReference *abcStruct
@@ -120,8 +120,8 @@ func chkAnyTest_Nilf(t *testing.T) {
 }
 
 func chkAnyTest_NotNil(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	var nilReference *abcStruct
@@ -168,8 +168,8 @@ func chkAnyTest_NotNil(t *testing.T) {
 }
 
 func chkAnyTest_NotNilf(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	var nilReference *abcStruct

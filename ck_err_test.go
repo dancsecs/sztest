@@ -48,8 +48,8 @@ func tstChkErr(t *testing.T) {
 }
 
 func chkErrTest_Good(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Err(nil, "", "not ", "displayed")
@@ -73,8 +73,8 @@ func chkErrTest_Good(t *testing.T) {
 }
 
 func chkErrTest_Bad(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Err(
@@ -100,8 +100,8 @@ func chkErrTest_Bad(t *testing.T) {
 }
 
 func chkErrTest_Bad1(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Errf(
@@ -123,8 +123,8 @@ func chkErrTest_Bad1(t *testing.T) {
 }
 
 func chkErrTest_Bad2(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Errf(errors.New("error mismatch for \"<nil>\""),
@@ -146,8 +146,8 @@ func chkErrTest_Bad2(t *testing.T) {
 }
 
 func chkErrTest_Bad3(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Err(
@@ -169,8 +169,8 @@ func chkErrTest_Bad3(t *testing.T) {
 }
 
 func chkErrTest_NoErrBad1(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.NoErr(
@@ -192,8 +192,8 @@ func chkErrTest_NoErrBad1(t *testing.T) {
 }
 
 func chkErrTest_NoErrBad2(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.NoErrf(
@@ -216,8 +216,8 @@ func chkErrTest_NoErrBad2(t *testing.T) {
 }
 
 func chkErrSliceTest_Good(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	e1 := errors.New(s1)
@@ -267,8 +267,8 @@ func chkErrSliceTest_Good(t *testing.T) {
 }
 
 func chkErrSliceTest_BadMsg1(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.ErrSlicef(nil, []string{""}, "This message will be %s", "displayed")
@@ -286,8 +286,8 @@ func chkErrSliceTest_BadMsg1(t *testing.T) {
 }
 
 func chkErrSliceTest_BadMsg2(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.ErrSlice([]error{errors.New("x")}, nil, "This message will be displayed")
@@ -305,8 +305,8 @@ func chkErrSliceTest_BadMsg2(t *testing.T) {
 }
 
 func chkErrSliceTest_BadMsg3(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	e3 := errors.New(s3)
@@ -328,8 +328,8 @@ func chkErrSliceTest_BadMsg3(t *testing.T) {
 }
 
 func chkErrSliceTest_BadMsg4(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	e1 := errors.New(s1)

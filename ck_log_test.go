@@ -75,8 +75,8 @@ func tstChkLogging(t *testing.T) {
 }
 
 func chkLogTest__RemoveLogPrefixes(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	lastPrefix := log.Prefix()
@@ -188,8 +188,8 @@ func chkLogTest__RemoveLogPrefixes(t *testing.T) {
 // Nothing Captured Nothing written.
 
 func chkLogTest_WriteNoneCaptureNothing(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureNothing(&iT)
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
 	iT.chk = chk
 
 	chk.Stdout()
@@ -216,8 +216,8 @@ func chkLogTest_WriteNoneCaptureNothing(t *testing.T) {
 // Nothing Checked.
 
 func chkLogTest_LogLoggerNoCheckLogger(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureLog(&iT)
+	iT := new(iTst)
+	chk := CaptureLog(iT)
 	iT.chk = chk
 
 	chk.Release()
@@ -233,8 +233,8 @@ func chkLogTest_LogLoggerNoCheckLogger(t *testing.T) {
 }
 
 func chkLogTest_LogStdoutNoCheckStdout(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureStdout(&iT)
+	iT := new(iTst)
+	chk := CaptureStdout(iT)
 	iT.chk = chk
 
 	chk.Release()
@@ -250,8 +250,8 @@ func chkLogTest_LogStdoutNoCheckStdout(t *testing.T) {
 }
 
 func chkLogTest_LogStdoutNoCheckStderr(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureStderr(&iT)
+	iT := new(iTst)
+	chk := CaptureStderr(iT)
 	iT.chk = chk
 
 	chk.Release()
@@ -269,8 +269,8 @@ func chkLogTest_LogStdoutNoCheckStderr(t *testing.T) {
 // Nothing written.
 
 func chkLogTest_WriteNoneLogLogger(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureLog(&iT)
+	iT := new(iTst)
+	chk := CaptureLog(iT)
 	iT.chk = chk
 
 	chk.Stdout()
@@ -296,8 +296,8 @@ func chkLogTest_WriteNoneLogLogger(t *testing.T) {
 }
 
 func chkLogTest_WriteNoneLogStderr(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureStderr(&iT)
+	iT := new(iTst)
+	chk := CaptureStderr(iT)
 	iT.chk = chk
 
 	chk.Stdout()
@@ -325,8 +325,8 @@ func chkLogTest_WriteNoneLogStderr(t *testing.T) {
 }
 
 func chkLogTest_WriteNoneLogStdout(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureStdout(&iT)
+	iT := new(iTst)
+	chk := CaptureStdout(iT)
 	iT.chk = chk
 
 	chk.Stdout()
@@ -354,8 +354,8 @@ func chkLogTest_WriteNoneLogStdout(t *testing.T) {
 }
 
 func chkLogTest_WriteNoneLogLoggerAndStderr(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureLogAndStderr(&iT)
+	iT := new(iTst)
+	chk := CaptureLogAndStderr(iT)
 	iT.chk = chk
 
 	chk.Stdout()
@@ -384,8 +384,8 @@ func chkLogTest_WriteNoneLogLoggerAndStderr(t *testing.T) {
 }
 
 func chkLogTest_WriteNoneLogLoggerAndStdout(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureLogAndStdout(&iT)
+	iT := new(iTst)
+	chk := CaptureLogAndStdout(iT)
 	iT.chk = chk
 
 	chk.Stdout()
@@ -414,8 +414,8 @@ func chkLogTest_WriteNoneLogLoggerAndStdout(t *testing.T) {
 }
 
 func chkLogTest_WriteNoneLogStderrAndStdout(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureStderrAndStdout(&iT)
+	iT := new(iTst)
+	chk := CaptureStderrAndStdout(iT)
 	iT.chk = chk
 
 	chk.Stdout()
@@ -446,8 +446,8 @@ func chkLogTest_WriteNoneLogStderrAndStdout(t *testing.T) {
 }
 
 func chkLogTest_WriteNoneLogLoggerWithStderrChkStderr(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureLogWithStderr(&iT)
+	iT := new(iTst)
+	chk := CaptureLogWithStderr(iT)
 	iT.chk = chk
 
 	chk.Stdout()
@@ -469,8 +469,8 @@ func chkLogTest_WriteNoneLogLoggerWithStderrChkStderr(t *testing.T) {
 }
 
 func chkLogTest_WriteNoneLogLoggerWithStderrChkLog(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureLogWithStderr(&iT)
+	iT := new(iTst)
+	chk := CaptureLogWithStderr(iT)
 	iT.chk = chk
 
 	chk.Stdout()
@@ -492,8 +492,8 @@ func chkLogTest_WriteNoneLogLoggerWithStderrChkLog(t *testing.T) {
 }
 
 func chkLogTest_WriteNoneLogLoggerWithStderrChkBoth(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureLogWithStderr(&iT)
+	iT := new(iTst)
+	chk := CaptureLogWithStderr(iT)
 	iT.chk = chk
 
 	chk.Stdout()
@@ -519,8 +519,8 @@ func chkLogTest_WriteNoneLogLoggerWithStderrChkBoth(t *testing.T) {
 }
 
 func chkLogTest_WriteNoneLogLoggerAndStderrAndStdout(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureLogAndStderrAndStdout(&iT)
+	iT := new(iTst)
+	chk := CaptureLogAndStderrAndStdout(iT)
 	iT.chk = chk
 
 	chk.Stdout()
@@ -552,8 +552,8 @@ func chkLogTest_WriteNoneLogLoggerAndStderrAndStdout(t *testing.T) {
 }
 
 func chkLogTest_WriteNoneLogLoggerWithStderrAndStdoutChkStderr(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureLogWithStderrAndStdout(&iT)
+	iT := new(iTst)
+	chk := CaptureLogWithStderrAndStdout(iT)
 	iT.chk = chk
 
 	chk.Stdout()
@@ -578,8 +578,8 @@ func chkLogTest_WriteNoneLogLoggerWithStderrAndStdoutChkStderr(t *testing.T) {
 }
 
 func chkLogTest_WriteNoneLogLoggerWithStderrAndStdOutChkLog(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureLogWithStderrAndStdout(&iT)
+	iT := new(iTst)
+	chk := CaptureLogWithStderrAndStdout(iT)
 	iT.chk = chk
 
 	chk.Stdout()
@@ -604,8 +604,8 @@ func chkLogTest_WriteNoneLogLoggerWithStderrAndStdOutChkLog(t *testing.T) {
 }
 
 func chkLogTest_WriteNoneLogLoggerWithStderrAndStdOutChkBoth(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureLogWithStderrAndStdout(&iT)
+	iT := new(iTst)
+	chk := CaptureLogWithStderrAndStdout(iT)
 	iT.chk = chk
 
 	chk.Stdout()
@@ -634,8 +634,8 @@ func chkLogTest_WriteNoneLogLoggerWithStderrAndStdOutChkBoth(t *testing.T) {
 }
 
 func chkLogTest_CheckLogging_NotStdoutWithExpected(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureStdout(&iT)
+	iT := new(iTst)
+	chk := CaptureStdout(iT)
 	iT.chk = chk
 
 	chk.markupForDisplay = func(s string) string {
@@ -675,8 +675,8 @@ func chkLogTest_CheckLogging_NotStdoutWithExpected(t *testing.T) {
 }
 
 func chkLogTest_CheckLogging_NoLoggingWithExpected(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureLog(&iT)
+	iT := new(iTst)
+	chk := CaptureLog(iT)
 	iT.chk = chk
 
 	chk.markupForDisplay = func(s string) string {
@@ -714,8 +714,8 @@ func chkLogTest_CheckLogging_NoLoggingWithExpected(t *testing.T) {
 }
 
 func chkLogTest_CheckLogging_NotStderrWithExpected(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureStderr(&iT)
+	iT := new(iTst)
+	chk := CaptureStderr(iT)
 	iT.chk = chk
 
 	chk.markupForDisplay = func(s string) string {
@@ -755,8 +755,8 @@ func chkLogTest_CheckLogging_NotStderrWithExpected(t *testing.T) {
 }
 
 func chkLogTest_CheckLogging_StdoutMissing(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureStdout(&iT)
+	iT := new(iTst)
+	chk := CaptureStdout(iT)
 	iT.chk = chk
 
 	fmt.Print("Forced error message\n")
@@ -795,8 +795,8 @@ func chkLogTest_CheckLogging_StdoutMissing(t *testing.T) {
 }
 
 func chkLogTest_CheckLogging_LoggerMissing(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureLog(&iT)
+	iT := new(iTst)
+	chk := CaptureLog(iT)
 	iT.chk = chk
 
 	log.Print("Forced error message\n")
@@ -833,8 +833,8 @@ func chkLogTest_CheckLogging_LoggerMissing(t *testing.T) {
 }
 
 func chkLogTest_CheckLogging_StderrMissing(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureStderr(&iT)
+	iT := new(iTst)
+	chk := CaptureStderr(iT)
 	iT.chk = chk
 
 	fmt.Fprint(os.Stderr, "Forced error message\n")
@@ -875,8 +875,8 @@ func chkLogTest_CheckLogging_StderrMissing(t *testing.T) {
 func chkLogTest_WriteLogLoggerWithStderrAndStdoutWithCheckErrorBlockingCheck(
 	t *testing.T,
 ) {
-	iT := iTst{}
-	chk := CaptureLogWithStderr(&iT)
+	iT := new(iTst)
+	chk := CaptureLogWithStderr(iT)
 	iT.chk = chk
 
 	chk.Str("this", "that")
@@ -906,8 +906,8 @@ func chkLogTest_WriteLogLoggerWithStderrAndStdoutWithCheckErrorBlockingCheck(
 }
 
 func chkLogTest_ReleasePanicInteractionPanicInternal(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureLogWithStderr(&iT)
+	iT := new(iTst)
+	chk := CaptureLogWithStderr(iT)
 	iT.chk = chk
 
 	chk.Panic(
@@ -947,8 +947,8 @@ func chkLogTest_ReleasePanicInteractionPanicInternal(t *testing.T) {
 }
 
 func chkLogTest_LeadingAndTrainingSpaces(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureLogAndStderrAndStdout(&iT)
+	iT := new(iTst)
+	chk := CaptureLogAndStderrAndStdout(iT)
 	iT.chk = chk
 
 	fmt.Println("   stdout   ")
@@ -991,8 +991,8 @@ func chkLogTest_LeadingAndTrainingSpaces(t *testing.T) {
 }
 
 func chkLogTest_Slog(t *testing.T) {
-	iT := iTst{}
-	chk := CaptureLog(&iT)
+	iT := new(iTst)
+	chk := CaptureLog(iT)
 	iT.chk = chk
 
 	slog.Info("    logger     ")

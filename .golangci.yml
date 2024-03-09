@@ -14,7 +14,6 @@ linters:
   disable:
     - cyclop
     - dupl
-    - exhaustruct
     - gocognit
     - goconst
     - gofumpt
@@ -47,7 +46,6 @@ issues:
         - dupl
         - forbidigo
         - funlen
-        - exhaustruct
         - gocognit
         - goconst
         - gocyclo
