@@ -23,29 +23,29 @@ import (
 )
 
 func tstChkInt32(t *testing.T) {
-	t.Run("Good", chkInt32Test_Good)
+	t.Run("Good", chkInt32TestGood)
 
-	t.Run("Bad", chkInt32Test_Bad)
-	t.Run("BadMsg1", chkInt32Test_Bad1)
-	t.Run("BadMsg2", chkInt32Test_Bad2)
-	t.Run("BadMsg3", chkInt32Test_Bad3)
+	t.Run("Bad", chkInt32TestBad)
+	t.Run("BadMsg1", chkInt32TestBad1)
+	t.Run("BadMsg2", chkInt32TestBad2)
+	t.Run("BadMsg3", chkInt32TestBad3)
 
-	t.Run("Slice-Good", chkInt32SliceTest_Good)
-	t.Run("Slice-BadMsg1", chkInt32SliceTest_BadMsg1)
-	t.Run("Slice-BadMsg2", chkInt32SliceTest_BadMsg2)
-	t.Run("Slice-BadMsg3", chkInt32SliceTest_BadMsg3)
-	t.Run("Slice-BadMsg4", chkInt32SliceTest_BadMsg4)
-	t.Run("Slice-BadMsg5", chkInt32SliceTest_BadMsg5)
-	t.Run("Slice-BadMsg6", chkInt32SliceTest_BadMsg6)
-	t.Run("Slice-BadMsg7", chkInt32SliceTest_BadMsg7)
-	t.Run("Slice-BadMsg8", chkInt32SliceTest_BadMsg8)
-	t.Run("Slice-BadMsg9", chkInt32SliceTest_BadMsg9)
+	t.Run("Slice-Good", chkInt32SliceTestGood)
+	t.Run("Slice-BadMsg1", chkInt32SliceTestBadMsg1)
+	t.Run("Slice-BadMsg2", chkInt32SliceTestBadMsg2)
+	t.Run("Slice-BadMsg3", chkInt32SliceTestBadMsg3)
+	t.Run("Slice-BadMsg4", chkInt32SliceTestBadMsg4)
+	t.Run("Slice-BadMsg5", chkInt32SliceTestBadMsg5)
+	t.Run("Slice-BadMsg6", chkInt32SliceTestBadMsg6)
+	t.Run("Slice-BadMsg7", chkInt32SliceTestBadMsg7)
+	t.Run("Slice-BadMsg8", chkInt32SliceTestBadMsg8)
+	t.Run("Slice-BadMsg9", chkInt32SliceTestBadMsg9)
 
-	t.Run("Bounded", chkInt32BoundedTest_All)
-	t.Run("Unbounded", chkInt32UnboundedTest_All)
+	t.Run("Bounded", chkInt32BoundedTestAll)
+	t.Run("Unbounded", chkInt32UnboundedTestAll)
 }
 
-func chkInt32Test_Good(t *testing.T) {
+func chkInt32TestGood(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -61,7 +61,7 @@ func chkInt32Test_Good(t *testing.T) {
 	)
 }
 
-func chkInt32Test_Bad(t *testing.T) {
+func chkInt32TestBad(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -81,7 +81,7 @@ func chkInt32Test_Bad(t *testing.T) {
 	)
 }
 
-func chkInt32Test_Bad1(t *testing.T) {
+func chkInt32TestBad1(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -101,7 +101,7 @@ func chkInt32Test_Bad1(t *testing.T) {
 	)
 }
 
-func chkInt32Test_Bad2(t *testing.T) {
+func chkInt32TestBad2(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -121,7 +121,7 @@ func chkInt32Test_Bad2(t *testing.T) {
 	)
 }
 
-func chkInt32Test_Bad3(t *testing.T) {
+func chkInt32TestBad3(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -141,7 +141,7 @@ func chkInt32Test_Bad3(t *testing.T) {
 	)
 }
 
-func chkInt32SliceTest_Good(t *testing.T) {
+func chkInt32SliceTestGood(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -171,7 +171,7 @@ func chkInt32SliceTest_Good(t *testing.T) {
 	)
 }
 
-func chkInt32SliceTest_BadMsg1(t *testing.T) {
+func chkInt32SliceTestBadMsg1(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -195,7 +195,7 @@ func chkInt32SliceTest_BadMsg1(t *testing.T) {
 	)
 }
 
-func chkInt32SliceTest_BadMsg2(t *testing.T) {
+func chkInt32SliceTestBadMsg2(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -219,7 +219,7 @@ func chkInt32SliceTest_BadMsg2(t *testing.T) {
 	)
 }
 
-func chkInt32SliceTest_BadMsg3(t *testing.T) {
+func chkInt32SliceTestBadMsg3(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -244,7 +244,7 @@ func chkInt32SliceTest_BadMsg3(t *testing.T) {
 	)
 }
 
-func chkInt32SliceTest_BadMsg4(t *testing.T) {
+func chkInt32SliceTestBadMsg4(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -269,7 +269,7 @@ func chkInt32SliceTest_BadMsg4(t *testing.T) {
 	)
 }
 
-func chkInt32SliceTest_BadMsg5(t *testing.T) {
+func chkInt32SliceTestBadMsg5(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -295,7 +295,7 @@ func chkInt32SliceTest_BadMsg5(t *testing.T) {
 	)
 }
 
-func chkInt32SliceTest_BadMsg6(t *testing.T) {
+func chkInt32SliceTestBadMsg6(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -321,7 +321,7 @@ func chkInt32SliceTest_BadMsg6(t *testing.T) {
 	)
 }
 
-func chkInt32SliceTest_BadMsg7(t *testing.T) {
+func chkInt32SliceTestBadMsg7(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -346,7 +346,7 @@ func chkInt32SliceTest_BadMsg7(t *testing.T) {
 	)
 }
 
-func chkInt32SliceTest_BadMsg8(t *testing.T) {
+func chkInt32SliceTestBadMsg8(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -371,7 +371,7 @@ func chkInt32SliceTest_BadMsg8(t *testing.T) {
 	)
 }
 
-func chkInt32SliceTest_BadMsg9(t *testing.T) {
+func chkInt32SliceTestBadMsg9(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -395,7 +395,7 @@ func chkInt32SliceTest_BadMsg9(t *testing.T) {
 // Bounded
 /////////////////////////////////////////////
 
-func chkInt32BoundedTest_All(t *testing.T) {
+func chkInt32BoundedTestAll(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -423,11 +423,11 @@ func chkInt32BoundedTest_All(t *testing.T) {
 	iT.check(t,
 		chkOutCapture("Nothing"),
 
-		chkOutNumericBounded_(wntMsg, "30", fName, "int32", ""),
-		chkOutNumericBounded_(wntMsg, "31", fName, "int32", "msg:31"),
+		chkOutNumericBounded(wntMsg, "30", fName, "int32", ""),
+		chkOutNumericBounded(wntMsg, "31", fName, "int32", "msg:31"),
 		chkOutNumericBoundedf(wntMsg, "32", fName, "int32", "msg:32"),
 
-		chkOutNumericBounded_(wntMsg, "36", fName, "int32", ""),
+		chkOutNumericBounded(wntMsg, "36", fName, "int32", ""),
 
 		chkOutRelease(),
 	)
@@ -437,7 +437,7 @@ func chkInt32BoundedTest_All(t *testing.T) {
 // Unbounded
 /////////////////////////////////////////////
 
-func chkInt32UnboundedTest_All(t *testing.T) {
+func chkInt32UnboundedTestAll(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -461,8 +461,8 @@ func chkInt32UnboundedTest_All(t *testing.T) {
 	iT.check(t,
 		chkOutCapture("Nothing"),
 
-		chkOutNumericUnbounded_(wntMsg, "60", fName, "int32", ""),
-		chkOutNumericUnbounded_(wntMsg, "61", fName, "int32", "msg:61"),
+		chkOutNumericUnbounded(wntMsg, "60", fName, "int32", ""),
+		chkOutNumericUnbounded(wntMsg, "61", fName, "int32", "msg:61"),
 		chkOutNumericUnboundedf(wntMsg, "62", fName, "int32", "msg:62"),
 
 		chkOutRelease(),

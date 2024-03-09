@@ -23,17 +23,17 @@ import (
 )
 
 func tstChkPanic(t *testing.T) {
-	t.Run("Good", chkPanicTest_Good)
+	t.Run("Good", chkPanicTestGood)
 
-	t.Run("Bad", chkPanicTest_Bad)
-	t.Run("BadMsg1", chkPanicTest_Bad1)
-	t.Run("BadMsg2", chkPanicTest_Bad2)
-	t.Run("BadMsg3", chkPanicTest_Bad3)
-	t.Run("BadMsg3", chkPanicTest_Bad4)
-	t.Run("BadMsg3", chkPanicTest_Bad5)
+	t.Run("Bad", chkPanicTestBad)
+	t.Run("BadMsg1", chkPanicTestBad1)
+	t.Run("BadMsg2", chkPanicTestBad2)
+	t.Run("BadMsg3", chkPanicTestBad3)
+	t.Run("BadMsg3", chkPanicTestBad4)
+	t.Run("BadMsg3", chkPanicTestBad5)
 }
 
-func chkPanicTest_Good(t *testing.T) {
+func chkPanicTestGood(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -75,7 +75,7 @@ func chkPanicTest_Good(t *testing.T) {
 	)
 }
 
-func chkPanicTest_Bad(t *testing.T) {
+func chkPanicTestBad(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -100,7 +100,7 @@ func chkPanicTest_Bad(t *testing.T) {
 	)
 }
 
-func chkPanicTest_Bad1(t *testing.T) {
+func chkPanicTestBad1(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -126,7 +126,7 @@ func chkPanicTest_Bad1(t *testing.T) {
 	)
 }
 
-func chkPanicTest_Bad2(t *testing.T) {
+func chkPanicTestBad2(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -152,7 +152,7 @@ func chkPanicTest_Bad2(t *testing.T) {
 	)
 }
 
-func chkPanicTest_Bad3(t *testing.T) {
+func chkPanicTestBad3(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -178,7 +178,7 @@ func chkPanicTest_Bad3(t *testing.T) {
 	)
 }
 
-func chkPanicTest_Bad4(t *testing.T) {
+func chkPanicTestBad4(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -203,7 +203,7 @@ func chkPanicTest_Bad4(t *testing.T) {
 	)
 }
 
-func chkPanicTest_Bad5(t *testing.T) {
+func chkPanicTestBad5(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk

@@ -23,29 +23,29 @@ import (
 )
 
 func tstChkRune(t *testing.T) {
-	t.Run("Good", chkRuneTest_Good)
+	t.Run("Good", chkRuneTestGood)
 
-	t.Run("Bad", chkRuneTest_Bad)
-	t.Run("BadMsg1", chkRuneTest_Bad1)
-	t.Run("BadMsg2", chkRuneTest_Bad2)
-	t.Run("BadMsg3", chkRuneTest_Bad3)
+	t.Run("Bad", chkRuneTestBad)
+	t.Run("BadMsg1", chkRuneTestBad1)
+	t.Run("BadMsg2", chkRuneTestBad2)
+	t.Run("BadMsg3", chkRuneTestBad3)
 
-	t.Run("Slice-Good", chkRuneSliceTest_Good)
-	t.Run("Slice-BadMsg1", chkRuneSliceTest_BadMsg1)
-	t.Run("Slice-BadMsg2", chkRuneSliceTest_BadMsg2)
-	t.Run("Slice-BadMsg3", chkRuneSliceTest_BadMsg3)
-	t.Run("Slice-BadMsg4", chkRuneSliceTest_BadMsg4)
-	t.Run("Slice-BadMsg5", chkRuneSliceTest_BadMsg5)
-	t.Run("Slice-BadMsg6", chkRuneSliceTest_BadMsg6)
-	t.Run("Slice-BadMsg7", chkRuneSliceTest_BadMsg7)
-	t.Run("Slice-BadMsg8", chkRuneSliceTest_BadMsg8)
-	t.Run("Slice-BadMsg9", chkRuneSliceTest_BadMsg9)
+	t.Run("Slice-Good", chkRuneSliceTestGood)
+	t.Run("Slice-BadMsg1", chkRuneSliceTestBadMsg1)
+	t.Run("Slice-BadMsg2", chkRuneSliceTestBadMsg2)
+	t.Run("Slice-BadMsg3", chkRuneSliceTestBadMsg3)
+	t.Run("Slice-BadMsg4", chkRuneSliceTestBadMsg4)
+	t.Run("Slice-BadMsg5", chkRuneSliceTestBadMsg5)
+	t.Run("Slice-BadMsg6", chkRuneSliceTestBadMsg6)
+	t.Run("Slice-BadMsg7", chkRuneSliceTestBadMsg7)
+	t.Run("Slice-BadMsg8", chkRuneSliceTestBadMsg8)
+	t.Run("Slice-BadMsg9", chkRuneSliceTestBadMsg9)
 
-	t.Run("Bounded", chkRuneBoundedTest_All)
-	t.Run("Unbounded", chkRuneUnboundedTest_All)
+	t.Run("Bounded", chkRuneBoundedTestAll)
+	t.Run("Unbounded", chkRuneUnboundedTestAll)
 }
 
-func chkRuneTest_Good(t *testing.T) {
+func chkRuneTestGood(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -61,7 +61,7 @@ func chkRuneTest_Good(t *testing.T) {
 	)
 }
 
-func chkRuneTest_Bad(t *testing.T) {
+func chkRuneTestBad(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -81,7 +81,7 @@ func chkRuneTest_Bad(t *testing.T) {
 	)
 }
 
-func chkRuneTest_Bad1(t *testing.T) {
+func chkRuneTestBad1(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -101,7 +101,7 @@ func chkRuneTest_Bad1(t *testing.T) {
 	)
 }
 
-func chkRuneTest_Bad2(t *testing.T) {
+func chkRuneTestBad2(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -121,7 +121,7 @@ func chkRuneTest_Bad2(t *testing.T) {
 	)
 }
 
-func chkRuneTest_Bad3(t *testing.T) {
+func chkRuneTestBad3(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -141,7 +141,7 @@ func chkRuneTest_Bad3(t *testing.T) {
 	)
 }
 
-func chkRuneSliceTest_Good(t *testing.T) {
+func chkRuneSliceTestGood(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -171,7 +171,7 @@ func chkRuneSliceTest_Good(t *testing.T) {
 	)
 }
 
-func chkRuneSliceTest_BadMsg1(t *testing.T) {
+func chkRuneSliceTestBadMsg1(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -195,7 +195,7 @@ func chkRuneSliceTest_BadMsg1(t *testing.T) {
 	)
 }
 
-func chkRuneSliceTest_BadMsg2(t *testing.T) {
+func chkRuneSliceTestBadMsg2(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -219,7 +219,7 @@ func chkRuneSliceTest_BadMsg2(t *testing.T) {
 	)
 }
 
-func chkRuneSliceTest_BadMsg3(t *testing.T) {
+func chkRuneSliceTestBadMsg3(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -244,7 +244,7 @@ func chkRuneSliceTest_BadMsg3(t *testing.T) {
 	)
 }
 
-func chkRuneSliceTest_BadMsg4(t *testing.T) {
+func chkRuneSliceTestBadMsg4(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -269,7 +269,7 @@ func chkRuneSliceTest_BadMsg4(t *testing.T) {
 	)
 }
 
-func chkRuneSliceTest_BadMsg5(t *testing.T) {
+func chkRuneSliceTestBadMsg5(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -295,7 +295,7 @@ func chkRuneSliceTest_BadMsg5(t *testing.T) {
 	)
 }
 
-func chkRuneSliceTest_BadMsg6(t *testing.T) {
+func chkRuneSliceTestBadMsg6(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -321,7 +321,7 @@ func chkRuneSliceTest_BadMsg6(t *testing.T) {
 	)
 }
 
-func chkRuneSliceTest_BadMsg7(t *testing.T) {
+func chkRuneSliceTestBadMsg7(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -346,7 +346,7 @@ func chkRuneSliceTest_BadMsg7(t *testing.T) {
 	)
 }
 
-func chkRuneSliceTest_BadMsg8(t *testing.T) {
+func chkRuneSliceTestBadMsg8(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -371,7 +371,7 @@ func chkRuneSliceTest_BadMsg8(t *testing.T) {
 	)
 }
 
-func chkRuneSliceTest_BadMsg9(t *testing.T) {
+func chkRuneSliceTestBadMsg9(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -395,7 +395,7 @@ func chkRuneSliceTest_BadMsg9(t *testing.T) {
 // Bounded
 /////////////////////////////////////////////
 
-func chkRuneBoundedTest_All(t *testing.T) {
+func chkRuneBoundedTestAll(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -423,11 +423,11 @@ func chkRuneBoundedTest_All(t *testing.T) {
 	iT.check(t,
 		chkOutCapture("Nothing"),
 
-		chkOutNumericBounded_(wntMsg, "30", fName, "rune", ""),
-		chkOutNumericBounded_(wntMsg, "31", fName, "rune", "msg:31"),
+		chkOutNumericBounded(wntMsg, "30", fName, "rune", ""),
+		chkOutNumericBounded(wntMsg, "31", fName, "rune", "msg:31"),
 		chkOutNumericBoundedf(wntMsg, "32", fName, "rune", "msg:32"),
 
-		chkOutNumericBounded_(wntMsg, "36", fName, "rune", ""),
+		chkOutNumericBounded(wntMsg, "36", fName, "rune", ""),
 
 		chkOutRelease(),
 	)
@@ -437,7 +437,7 @@ func chkRuneBoundedTest_All(t *testing.T) {
 // Unbounded
 /////////////////////////////////////////////
 
-func chkRuneUnboundedTest_All(t *testing.T) {
+func chkRuneUnboundedTestAll(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -461,8 +461,8 @@ func chkRuneUnboundedTest_All(t *testing.T) {
 	iT.check(t,
 		chkOutCapture("Nothing"),
 
-		chkOutNumericUnbounded_(wntMsg, "60", fName, "rune", ""),
-		chkOutNumericUnbounded_(wntMsg, "61", fName, "rune", "msg:61"),
+		chkOutNumericUnbounded(wntMsg, "60", fName, "rune", ""),
+		chkOutNumericUnbounded(wntMsg, "61", fName, "rune", "msg:61"),
 		chkOutNumericUnboundedf(wntMsg, "62", fName, "rune", "msg:62"),
 
 		chkOutRelease(),

@@ -25,10 +25,10 @@ import (
 )
 
 func tstChkIoSeek(t *testing.T) {
-	t.Run("SeekError", chkIOSeekTest_SetSeekError)
+	t.Run("SeekError", chkIOSeekTestSetSeekError)
 }
 
-func chkIOSeekTest_SetSeekError(t *testing.T) {
+func chkIOSeekTestSetSeekError(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 

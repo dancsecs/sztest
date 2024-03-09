@@ -69,7 +69,7 @@ func CompareSlices[T chkType](
 	got, want []T,
 	minRunSlice, minRunString int,
 	cmp func(a, b T) bool,
-	stringify func(any) string,
+	_ func(any) string,
 ) string {
 	differencesFound := false
 

@@ -21,29 +21,29 @@ package sztest
 import "testing"
 
 func tstChkByte(t *testing.T) {
-	t.Run("Good", chkByteTest_Good)
+	t.Run("Good", chkByteTestGood)
 
-	t.Run("Bad", chkByteTest_Bad)
-	t.Run("BadMsg1", chkByteTest_Bad1)
-	t.Run("BadMsg2", chkByteTest_Bad2)
-	t.Run("BadMsg3", chkByteTest_Bad3)
+	t.Run("Bad", chkByteTestBad)
+	t.Run("BadMsg1", chkByteTestBad1)
+	t.Run("BadMsg2", chkByteTestBad2)
+	t.Run("BadMsg3", chkByteTestBad3)
 
-	t.Run("Slice-Good", chkByteSliceTest_Good)
-	t.Run("Slice-BadMsg1", chkByteSliceTest_BadMsg1)
-	t.Run("Slice-BadMsg2", chkByteSliceTest_BadMsg2)
-	t.Run("Slice-BadMsg3", chkByteSliceTest_BadMsg3)
-	t.Run("Slice-BadMsg4", chkByteSliceTest_BadMsg4)
-	t.Run("Slice-BadMsg5", chkByteSliceTest_BadMsg5)
-	t.Run("Slice-BadMsg6", chkByteSliceTest_BadMsg6)
-	t.Run("Slice-BadMsg7", chkByteSliceTest_BadMsg7)
-	t.Run("Slice-BadMsg8", chkByteSliceTest_BadMsg8)
-	t.Run("Slice-BadMsg9", chkByteSliceTest_BadMsg9)
+	t.Run("Slice-Good", chkByteSliceTestGood)
+	t.Run("Slice-BadMsg1", chkByteSliceTestBadMsg1)
+	t.Run("Slice-BadMsg2", chkByteSliceTestBadMsg2)
+	t.Run("Slice-BadMsg3", chkByteSliceTestBadMsg3)
+	t.Run("Slice-BadMsg4", chkByteSliceTestBadMsg4)
+	t.Run("Slice-BadMsg5", chkByteSliceTestBadMsg5)
+	t.Run("Slice-BadMsg6", chkByteSliceTestBadMsg6)
+	t.Run("Slice-BadMsg7", chkByteSliceTestBadMsg7)
+	t.Run("Slice-BadMsg8", chkByteSliceTestBadMsg8)
+	t.Run("Slice-BadMsg9", chkByteSliceTestBadMsg9)
 
-	t.Run("Bounded", chkByteBoundedTest_All)
-	t.Run("Unbounded", chkByteUnboundedTest_All)
+	t.Run("Bounded", chkByteBoundedTestAll)
+	t.Run("Unbounded", chkByteUnboundedTestAll)
 }
 
-func chkByteTest_Good(t *testing.T) {
+func chkByteTestGood(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -59,7 +59,7 @@ func chkByteTest_Good(t *testing.T) {
 	)
 }
 
-func chkByteTest_Bad(t *testing.T) {
+func chkByteTestBad(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -79,7 +79,7 @@ func chkByteTest_Bad(t *testing.T) {
 	)
 }
 
-func chkByteTest_Bad1(t *testing.T) {
+func chkByteTestBad1(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -99,7 +99,7 @@ func chkByteTest_Bad1(t *testing.T) {
 	)
 }
 
-func chkByteTest_Bad2(t *testing.T) {
+func chkByteTestBad2(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -119,7 +119,7 @@ func chkByteTest_Bad2(t *testing.T) {
 	)
 }
 
-func chkByteTest_Bad3(t *testing.T) {
+func chkByteTestBad3(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -139,7 +139,7 @@ func chkByteTest_Bad3(t *testing.T) {
 	)
 }
 
-func chkByteSliceTest_Good(t *testing.T) {
+func chkByteSliceTestGood(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -169,7 +169,7 @@ func chkByteSliceTest_Good(t *testing.T) {
 	)
 }
 
-func chkByteSliceTest_BadMsg1(t *testing.T) {
+func chkByteSliceTestBadMsg1(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -193,7 +193,7 @@ func chkByteSliceTest_BadMsg1(t *testing.T) {
 	)
 }
 
-func chkByteSliceTest_BadMsg2(t *testing.T) {
+func chkByteSliceTestBadMsg2(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -217,7 +217,7 @@ func chkByteSliceTest_BadMsg2(t *testing.T) {
 	)
 }
 
-func chkByteSliceTest_BadMsg3(t *testing.T) {
+func chkByteSliceTestBadMsg3(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -242,7 +242,7 @@ func chkByteSliceTest_BadMsg3(t *testing.T) {
 	)
 }
 
-func chkByteSliceTest_BadMsg4(t *testing.T) {
+func chkByteSliceTestBadMsg4(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -267,7 +267,7 @@ func chkByteSliceTest_BadMsg4(t *testing.T) {
 	)
 }
 
-func chkByteSliceTest_BadMsg5(t *testing.T) {
+func chkByteSliceTestBadMsg5(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -293,7 +293,7 @@ func chkByteSliceTest_BadMsg5(t *testing.T) {
 	)
 }
 
-func chkByteSliceTest_BadMsg6(t *testing.T) {
+func chkByteSliceTestBadMsg6(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -319,7 +319,7 @@ func chkByteSliceTest_BadMsg6(t *testing.T) {
 	)
 }
 
-func chkByteSliceTest_BadMsg7(t *testing.T) {
+func chkByteSliceTestBadMsg7(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -344,7 +344,7 @@ func chkByteSliceTest_BadMsg7(t *testing.T) {
 	)
 }
 
-func chkByteSliceTest_BadMsg8(t *testing.T) {
+func chkByteSliceTestBadMsg8(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -369,7 +369,7 @@ func chkByteSliceTest_BadMsg8(t *testing.T) {
 	)
 }
 
-func chkByteSliceTest_BadMsg9(t *testing.T) {
+func chkByteSliceTestBadMsg9(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -393,7 +393,7 @@ func chkByteSliceTest_BadMsg9(t *testing.T) {
 // Bounded
 /////////////////////////////////////////////
 
-func chkByteBoundedTest_All(t *testing.T) {
+func chkByteBoundedTestAll(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -421,11 +421,11 @@ func chkByteBoundedTest_All(t *testing.T) {
 	iT.check(t,
 		chkOutCapture("Nothing"),
 
-		chkOutNumericBounded_(wntMsg, "30", fName, "byte", ""),
-		chkOutNumericBounded_(wntMsg, "31", fName, "byte", "msg:31"),
+		chkOutNumericBounded(wntMsg, "30", fName, "byte", ""),
+		chkOutNumericBounded(wntMsg, "31", fName, "byte", "msg:31"),
 		chkOutNumericBoundedf(wntMsg, "32", fName, "byte", "msg:32"),
 
-		chkOutNumericBounded_(wntMsg, "36", fName, "byte", ""),
+		chkOutNumericBounded(wntMsg, "36", fName, "byte", ""),
 
 		chkOutRelease(),
 	)
@@ -435,7 +435,7 @@ func chkByteBoundedTest_All(t *testing.T) {
 // Unbounded
 /////////////////////////////////////////////
 
-func chkByteUnboundedTest_All(t *testing.T) {
+func chkByteUnboundedTestAll(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -459,8 +459,8 @@ func chkByteUnboundedTest_All(t *testing.T) {
 	iT.check(t,
 		chkOutCapture("Nothing"),
 
-		chkOutNumericUnbounded_(wntMsg, "126", fName, "byte", ""),
-		chkOutNumericUnbounded_(wntMsg, "127", fName, "byte", "msg:127"),
+		chkOutNumericUnbounded(wntMsg, "126", fName, "byte", ""),
+		chkOutNumericUnbounded(wntMsg, "127", fName, "byte", "msg:127"),
 		chkOutNumericUnboundedf(wntMsg, "128", fName, "byte", "msg:128"),
 
 		chkOutRelease(),

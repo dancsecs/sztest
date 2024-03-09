@@ -21,26 +21,26 @@ package sztest
 import "testing"
 
 func tstChkComplex64(t *testing.T) {
-	t.Run("Good", chkComplex128Test_Good)
+	t.Run("Good", chkComplex128TestGood)
 
-	t.Run("Bad", chkComplex128Test_Bad)
-	t.Run("BadMsg1", chkComplex128Test_Bad1)
-	t.Run("BadMsg2", chkComplex128Test_Bad2)
-	t.Run("BadMsg3", chkComplex128Test_Bad3)
+	t.Run("Bad", chkComplex128TestBad)
+	t.Run("BadMsg1", chkComplex128TestBad1)
+	t.Run("BadMsg2", chkComplex128TestBad2)
+	t.Run("BadMsg3", chkComplex128TestBad3)
 
-	t.Run("Slice-Good", chkComplex128SliceTest_Good)
-	t.Run("Slice-BadMsg1", chkComplex128SliceTest_BadMsg1)
-	t.Run("Slice-BadMsg2", chkComplex128SliceTest_BadMsg2)
-	t.Run("Slice-BadMsg3", chkComplex128SliceTest_BadMsg3)
-	t.Run("Slice-BadMsg4", chkComplex128SliceTest_BadMsg4)
-	t.Run("Slice-BadMsg5", chkComplex128SliceTest_BadMsg5)
-	t.Run("Slice-BadMsg6", chkComplex128SliceTest_BadMsg6)
-	t.Run("Slice-BadMsg7", chkComplex128SliceTest_BadMsg7)
-	t.Run("Slice-BadMsg8", chkComplex128SliceTest_BadMsg8)
-	t.Run("Slice-BadMsg9", chkComplex128SliceTest_BadMsg9)
+	t.Run("Slice-Good", chkComplex128SliceTestGood)
+	t.Run("Slice-BadMsg1", chkComplex128SliceTestBadMsg1)
+	t.Run("Slice-BadMsg2", chkComplex128SliceTestBadMsg2)
+	t.Run("Slice-BadMsg3", chkComplex128SliceTestBadMsg3)
+	t.Run("Slice-BadMsg4", chkComplex128SliceTestBadMsg4)
+	t.Run("Slice-BadMsg5", chkComplex128SliceTestBadMsg5)
+	t.Run("Slice-BadMsg6", chkComplex128SliceTestBadMsg6)
+	t.Run("Slice-BadMsg7", chkComplex128SliceTestBadMsg7)
+	t.Run("Slice-BadMsg8", chkComplex128SliceTestBadMsg8)
+	t.Run("Slice-BadMsg9", chkComplex128SliceTestBadMsg9)
 }
 
-func chkComplex128Test_Good(t *testing.T) {
+func chkComplex128TestGood(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -56,7 +56,7 @@ func chkComplex128Test_Good(t *testing.T) {
 	)
 }
 
-func chkComplex128Test_Bad(t *testing.T) {
+func chkComplex128TestBad(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -76,7 +76,7 @@ func chkComplex128Test_Bad(t *testing.T) {
 	)
 }
 
-func chkComplex128Test_Bad1(t *testing.T) {
+func chkComplex128TestBad1(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -96,7 +96,7 @@ func chkComplex128Test_Bad1(t *testing.T) {
 	)
 }
 
-func chkComplex128Test_Bad2(t *testing.T) {
+func chkComplex128TestBad2(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -116,7 +116,7 @@ func chkComplex128Test_Bad2(t *testing.T) {
 	)
 }
 
-func chkComplex128Test_Bad3(t *testing.T) {
+func chkComplex128TestBad3(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -136,7 +136,7 @@ func chkComplex128Test_Bad3(t *testing.T) {
 	)
 }
 
-func chkComplex128SliceTest_Good(t *testing.T) {
+func chkComplex128SliceTestGood(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -166,7 +166,7 @@ func chkComplex128SliceTest_Good(t *testing.T) {
 	)
 }
 
-func chkComplex128SliceTest_BadMsg1(t *testing.T) {
+func chkComplex128SliceTestBadMsg1(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -190,7 +190,7 @@ func chkComplex128SliceTest_BadMsg1(t *testing.T) {
 	)
 }
 
-func chkComplex128SliceTest_BadMsg2(t *testing.T) {
+func chkComplex128SliceTestBadMsg2(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -214,7 +214,7 @@ func chkComplex128SliceTest_BadMsg2(t *testing.T) {
 	)
 }
 
-func chkComplex128SliceTest_BadMsg3(t *testing.T) {
+func chkComplex128SliceTestBadMsg3(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -239,7 +239,7 @@ func chkComplex128SliceTest_BadMsg3(t *testing.T) {
 	)
 }
 
-func chkComplex128SliceTest_BadMsg4(t *testing.T) {
+func chkComplex128SliceTestBadMsg4(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -264,7 +264,7 @@ func chkComplex128SliceTest_BadMsg4(t *testing.T) {
 	)
 }
 
-func chkComplex128SliceTest_BadMsg5(t *testing.T) {
+func chkComplex128SliceTestBadMsg5(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -290,7 +290,7 @@ func chkComplex128SliceTest_BadMsg5(t *testing.T) {
 	)
 }
 
-func chkComplex128SliceTest_BadMsg6(t *testing.T) {
+func chkComplex128SliceTestBadMsg6(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -316,7 +316,7 @@ func chkComplex128SliceTest_BadMsg6(t *testing.T) {
 	)
 }
 
-func chkComplex128SliceTest_BadMsg7(t *testing.T) {
+func chkComplex128SliceTestBadMsg7(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -341,7 +341,7 @@ func chkComplex128SliceTest_BadMsg7(t *testing.T) {
 	)
 }
 
-func chkComplex128SliceTest_BadMsg8(t *testing.T) {
+func chkComplex128SliceTestBadMsg8(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -366,7 +366,7 @@ func chkComplex128SliceTest_BadMsg8(t *testing.T) {
 	)
 }
 
-func chkComplex128SliceTest_BadMsg9(t *testing.T) {
+func chkComplex128SliceTestBadMsg9(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk

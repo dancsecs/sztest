@@ -23,26 +23,26 @@ import (
 )
 
 func tstChkUintptr(t *testing.T) {
-	t.Run("Good", chkUintptrTest_Good)
+	t.Run("Good", chkUintptrTestGood)
 
-	t.Run("Bad", chkUintptrTest_Bad)
-	t.Run("BadMsg1", chkUintptrTest_Bad1)
-	t.Run("BadMsg2", chkUintptrTest_Bad2)
-	t.Run("BadMsg3", chkUintptrTest_Bad3)
+	t.Run("Bad", chkUintptrTestBad)
+	t.Run("BadMsg1", chkUintptrTestBad1)
+	t.Run("BadMsg2", chkUintptrTestBad2)
+	t.Run("BadMsg3", chkUintptrTestBad3)
 
-	t.Run("Slice-Good", chkUintptrSliceTest_Good)
-	t.Run("Slice-BadMsg1", chkUintptrSliceTest_BadMsg1)
-	t.Run("Slice-BadMsg2", chkUintptrSliceTest_BadMsg2)
-	t.Run("Slice-BadMsg3", chkUintptrSliceTest_BadMsg3)
-	t.Run("Slice-BadMsg4", chkUintptrSliceTest_BadMsg4)
-	t.Run("Slice-BadMsg5", chkUintptrSliceTest_BadMsg5)
-	t.Run("Slice-BadMsg6", chkUintptrSliceTest_BadMsg6)
-	t.Run("Slice-BadMsg7", chkUintptrSliceTest_BadMsg7)
-	t.Run("Slice-BadMsg8", chkUintptrSliceTest_BadMsg8)
-	t.Run("Slice-BadMsg9", chkUintptrSliceTest_BadMsg9)
+	t.Run("Slice-Good", chkUintptrSliceTestGood)
+	t.Run("Slice-BadMsg1", chkUintptrSliceTestBadMsg1)
+	t.Run("Slice-BadMsg2", chkUintptrSliceTestBadMsg2)
+	t.Run("Slice-BadMsg3", chkUintptrSliceTestBadMsg3)
+	t.Run("Slice-BadMsg4", chkUintptrSliceTestBadMsg4)
+	t.Run("Slice-BadMsg5", chkUintptrSliceTestBadMsg5)
+	t.Run("Slice-BadMsg6", chkUintptrSliceTestBadMsg6)
+	t.Run("Slice-BadMsg7", chkUintptrSliceTestBadMsg7)
+	t.Run("Slice-BadMsg8", chkUintptrSliceTestBadMsg8)
+	t.Run("Slice-BadMsg9", chkUintptrSliceTestBadMsg9)
 }
 
-func chkUintptrTest_Good(t *testing.T) {
+func chkUintptrTestGood(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -58,7 +58,7 @@ func chkUintptrTest_Good(t *testing.T) {
 	)
 }
 
-func chkUintptrTest_Bad(t *testing.T) {
+func chkUintptrTestBad(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -78,7 +78,7 @@ func chkUintptrTest_Bad(t *testing.T) {
 	)
 }
 
-func chkUintptrTest_Bad1(t *testing.T) {
+func chkUintptrTestBad1(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -98,7 +98,7 @@ func chkUintptrTest_Bad1(t *testing.T) {
 	)
 }
 
-func chkUintptrTest_Bad2(t *testing.T) {
+func chkUintptrTestBad2(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -118,7 +118,7 @@ func chkUintptrTest_Bad2(t *testing.T) {
 	)
 }
 
-func chkUintptrTest_Bad3(t *testing.T) {
+func chkUintptrTestBad3(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -138,7 +138,7 @@ func chkUintptrTest_Bad3(t *testing.T) {
 	)
 }
 
-func chkUintptrSliceTest_Good(t *testing.T) {
+func chkUintptrSliceTestGood(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -168,7 +168,7 @@ func chkUintptrSliceTest_Good(t *testing.T) {
 	)
 }
 
-func chkUintptrSliceTest_BadMsg1(t *testing.T) {
+func chkUintptrSliceTestBadMsg1(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -192,7 +192,7 @@ func chkUintptrSliceTest_BadMsg1(t *testing.T) {
 	)
 }
 
-func chkUintptrSliceTest_BadMsg2(t *testing.T) {
+func chkUintptrSliceTestBadMsg2(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -216,7 +216,7 @@ func chkUintptrSliceTest_BadMsg2(t *testing.T) {
 	)
 }
 
-func chkUintptrSliceTest_BadMsg3(t *testing.T) {
+func chkUintptrSliceTestBadMsg3(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -241,7 +241,7 @@ func chkUintptrSliceTest_BadMsg3(t *testing.T) {
 	)
 }
 
-func chkUintptrSliceTest_BadMsg4(t *testing.T) {
+func chkUintptrSliceTestBadMsg4(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -266,7 +266,7 @@ func chkUintptrSliceTest_BadMsg4(t *testing.T) {
 	)
 }
 
-func chkUintptrSliceTest_BadMsg5(t *testing.T) {
+func chkUintptrSliceTestBadMsg5(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -292,7 +292,7 @@ func chkUintptrSliceTest_BadMsg5(t *testing.T) {
 	)
 }
 
-func chkUintptrSliceTest_BadMsg6(t *testing.T) {
+func chkUintptrSliceTestBadMsg6(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -318,7 +318,7 @@ func chkUintptrSliceTest_BadMsg6(t *testing.T) {
 	)
 }
 
-func chkUintptrSliceTest_BadMsg7(t *testing.T) {
+func chkUintptrSliceTestBadMsg7(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -343,7 +343,7 @@ func chkUintptrSliceTest_BadMsg7(t *testing.T) {
 	)
 }
 
-func chkUintptrSliceTest_BadMsg8(t *testing.T) {
+func chkUintptrSliceTestBadMsg8(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -368,7 +368,7 @@ func chkUintptrSliceTest_BadMsg8(t *testing.T) {
 	)
 }
 
-func chkUintptrSliceTest_BadMsg9(t *testing.T) {
+func chkUintptrSliceTestBadMsg9(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk

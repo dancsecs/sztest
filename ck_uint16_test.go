@@ -23,29 +23,29 @@ import (
 )
 
 func tstChkUint16(t *testing.T) {
-	t.Run("Good", chkUint16Test_Good)
+	t.Run("Good", chkUint16TestGood)
 
-	t.Run("Bad", chkUint16Test_Bad)
-	t.Run("BadMsg1", chkUint16Test_Bad1)
-	t.Run("BadMsg2", chkUint16Test_Bad2)
-	t.Run("BadMsg3", chkUint16Test_Bad3)
+	t.Run("Bad", chkUint16TestBad)
+	t.Run("BadMsg1", chkUint16TestBad1)
+	t.Run("BadMsg2", chkUint16TestBad2)
+	t.Run("BadMsg3", chkUint16TestBad3)
 
-	t.Run("Slice-Good", chkUint16SliceTest_Good)
-	t.Run("Slice-BadMsg1", chkUint16SliceTest_BadMsg1)
-	t.Run("Slice-BadMsg2", chkUint16SliceTest_BadMsg2)
-	t.Run("Slice-BadMsg3", chkUint16SliceTest_BadMsg3)
-	t.Run("Slice-BadMsg4", chkUint16SliceTest_BadMsg4)
-	t.Run("Slice-BadMsg5", chkUint16SliceTest_BadMsg5)
-	t.Run("Slice-BadMsg6", chkUint16SliceTest_BadMsg6)
-	t.Run("Slice-BadMsg7", chkUint16SliceTest_BadMsg7)
-	t.Run("Slice-BadMsg8", chkUint16SliceTest_BadMsg8)
-	t.Run("Slice-BadMsg9", chkUint16SliceTest_BadMsg9)
+	t.Run("Slice-Good", chkUint16SliceTestGood)
+	t.Run("Slice-BadMsg1", chkUint16SliceTestBadMsg1)
+	t.Run("Slice-BadMsg2", chkUint16SliceTestBadMsg2)
+	t.Run("Slice-BadMsg3", chkUint16SliceTestBadMsg3)
+	t.Run("Slice-BadMsg4", chkUint16SliceTestBadMsg4)
+	t.Run("Slice-BadMsg5", chkUint16SliceTestBadMsg5)
+	t.Run("Slice-BadMsg6", chkUint16SliceTestBadMsg6)
+	t.Run("Slice-BadMsg7", chkUint16SliceTestBadMsg7)
+	t.Run("Slice-BadMsg8", chkUint16SliceTestBadMsg8)
+	t.Run("Slice-BadMsg9", chkUint16SliceTestBadMsg9)
 
-	t.Run("Bounded", chkUint16BoundedTest_All)
-	t.Run("Unbounded", chkUint16UnboundedTest_All)
+	t.Run("Bounded", chkUint16BoundedTestAll)
+	t.Run("Unbounded", chkUint16UnboundedTestAll)
 }
 
-func chkUint16Test_Good(t *testing.T) {
+func chkUint16TestGood(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -61,7 +61,7 @@ func chkUint16Test_Good(t *testing.T) {
 	)
 }
 
-func chkUint16Test_Bad(t *testing.T) {
+func chkUint16TestBad(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -81,7 +81,7 @@ func chkUint16Test_Bad(t *testing.T) {
 	)
 }
 
-func chkUint16Test_Bad1(t *testing.T) {
+func chkUint16TestBad1(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -101,7 +101,7 @@ func chkUint16Test_Bad1(t *testing.T) {
 	)
 }
 
-func chkUint16Test_Bad2(t *testing.T) {
+func chkUint16TestBad2(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -121,7 +121,7 @@ func chkUint16Test_Bad2(t *testing.T) {
 	)
 }
 
-func chkUint16Test_Bad3(t *testing.T) {
+func chkUint16TestBad3(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -141,7 +141,7 @@ func chkUint16Test_Bad3(t *testing.T) {
 	)
 }
 
-func chkUint16SliceTest_Good(t *testing.T) {
+func chkUint16SliceTestGood(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -171,7 +171,7 @@ func chkUint16SliceTest_Good(t *testing.T) {
 	)
 }
 
-func chkUint16SliceTest_BadMsg1(t *testing.T) {
+func chkUint16SliceTestBadMsg1(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -195,7 +195,7 @@ func chkUint16SliceTest_BadMsg1(t *testing.T) {
 	)
 }
 
-func chkUint16SliceTest_BadMsg2(t *testing.T) {
+func chkUint16SliceTestBadMsg2(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -219,7 +219,7 @@ func chkUint16SliceTest_BadMsg2(t *testing.T) {
 	)
 }
 
-func chkUint16SliceTest_BadMsg3(t *testing.T) {
+func chkUint16SliceTestBadMsg3(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -244,7 +244,7 @@ func chkUint16SliceTest_BadMsg3(t *testing.T) {
 	)
 }
 
-func chkUint16SliceTest_BadMsg4(t *testing.T) {
+func chkUint16SliceTestBadMsg4(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -269,7 +269,7 @@ func chkUint16SliceTest_BadMsg4(t *testing.T) {
 	)
 }
 
-func chkUint16SliceTest_BadMsg5(t *testing.T) {
+func chkUint16SliceTestBadMsg5(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -295,7 +295,7 @@ func chkUint16SliceTest_BadMsg5(t *testing.T) {
 	)
 }
 
-func chkUint16SliceTest_BadMsg6(t *testing.T) {
+func chkUint16SliceTestBadMsg6(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -321,7 +321,7 @@ func chkUint16SliceTest_BadMsg6(t *testing.T) {
 	)
 }
 
-func chkUint16SliceTest_BadMsg7(t *testing.T) {
+func chkUint16SliceTestBadMsg7(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -346,7 +346,7 @@ func chkUint16SliceTest_BadMsg7(t *testing.T) {
 	)
 }
 
-func chkUint16SliceTest_BadMsg8(t *testing.T) {
+func chkUint16SliceTestBadMsg8(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -371,7 +371,7 @@ func chkUint16SliceTest_BadMsg8(t *testing.T) {
 	)
 }
 
-func chkUint16SliceTest_BadMsg9(t *testing.T) {
+func chkUint16SliceTestBadMsg9(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -395,7 +395,7 @@ func chkUint16SliceTest_BadMsg9(t *testing.T) {
 // Bounded
 /////////////////////////////////////////////
 
-func chkUint16BoundedTest_All(t *testing.T) {
+func chkUint16BoundedTestAll(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -423,11 +423,11 @@ func chkUint16BoundedTest_All(t *testing.T) {
 	iT.check(t,
 		chkOutCapture("Nothing"),
 
-		chkOutNumericBounded_(wntMsg, "30", fName, "uint16", ""),
-		chkOutNumericBounded_(wntMsg, "31", fName, "uint16", "msg:31"),
+		chkOutNumericBounded(wntMsg, "30", fName, "uint16", ""),
+		chkOutNumericBounded(wntMsg, "31", fName, "uint16", "msg:31"),
 		chkOutNumericBoundedf(wntMsg, "32", fName, "uint16", "msg:32"),
 
-		chkOutNumericBounded_(wntMsg, "36", fName, "uint16", ""),
+		chkOutNumericBounded(wntMsg, "36", fName, "uint16", ""),
 
 		chkOutRelease(),
 	)
@@ -437,7 +437,7 @@ func chkUint16BoundedTest_All(t *testing.T) {
 // Unbounded
 /////////////////////////////////////////////
 
-func chkUint16UnboundedTest_All(t *testing.T) {
+func chkUint16UnboundedTestAll(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -461,8 +461,8 @@ func chkUint16UnboundedTest_All(t *testing.T) {
 	iT.check(t,
 		chkOutCapture("Nothing"),
 
-		chkOutNumericUnbounded_(wntMsg, "60", fName, "uint16", ""),
-		chkOutNumericUnbounded_(wntMsg, "61", fName, "uint16", "msg:61"),
+		chkOutNumericUnbounded(wntMsg, "60", fName, "uint16", ""),
+		chkOutNumericUnbounded(wntMsg, "61", fName, "uint16", "msg:61"),
 		chkOutNumericUnboundedf(wntMsg, "62", fName, "uint16", "msg:62"),
 
 		chkOutRelease(),

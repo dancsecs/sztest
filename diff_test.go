@@ -33,13 +33,13 @@ const (
 	minRun6 = 6
 )
 
-func test_Diff_Prerequisites(t *testing.T) {
-	t.Run("BestNextRunString", testSzTest_Diff_BestNextRunString)
-	t.Run("DiffString", testSzTest_DiffString)
-	t.Run("DiffSlice", testSzTest_DiffSlice)
-	t.Run("CompareSlice", testSzTest_CompareSlices)
-	t.Run("CompareSlicesWithPercent", testSzTest_CompareSlicesWithPercent)
-	t.Run("CompareArrays", testSzTest_CompareArrays)
+func testDiffPrerequisites(t *testing.T) {
+	t.Run("BestNextRunString", testSzTestDiffBestNextRunString)
+	t.Run("DiffString", testSzTestDiffString)
+	t.Run("DiffSlice", testSzTestDiffSlice)
+	t.Run("CompareSlice", testSzTestCompareSlices)
+	t.Run("CompareSlicesWithPercent", testSzTestCompareSlicesWithPercent)
+	t.Run("CompareArrays", testSzTestCompareArrays)
 }
 
 func checkRun(
@@ -63,7 +63,7 @@ func checkRun(
 	}
 }
 
-func testSzTest_Diff_BestNextRunString(t *testing.T) {
+func testSzTestDiffBestNextRunString(t *testing.T) {
 	s1 := "MNO"
 	s2 := "NOP"
 	// Forward.
@@ -187,7 +187,7 @@ func chkDiffString(
 	}
 }
 
-func testSzTest_DiffString(t *testing.T) {
+func testSzTestDiffString(t *testing.T) {
 	chkDiffString(t, &tstDiffString{
 		got:        "ABC",
 		wnt:        "BCD",
@@ -583,7 +583,7 @@ func chkDiffSlice(t *testing.T, td *tstDiffSlice) {
 	}
 }
 
-func testSzTest_DiffSlice(t *testing.T) {
+func testSzTestDiffSlice(t *testing.T) {
 	chkDiffSlice(t, &tstDiffSlice{
 		got:        nil,
 		wnt:        nil,
@@ -1057,7 +1057,7 @@ func chkCompareSlices(t *testing.T, td *tstCompareSlices) {
 	}
 }
 
-func testSzTest_CompareSlices(t *testing.T) {
+func testSzTestCompareSlices(t *testing.T) {
 	chkCompareSlices(t, &tstCompareSlices{
 		got:      strings.Split("ABC", ""),
 		wnt:      strings.Split("ABC", ""),
@@ -1077,7 +1077,7 @@ func testSzTest_CompareSlices(t *testing.T) {
 	})
 }
 
-func testSzTest_CompareSlicesWithPercent(t *testing.T) {
+func testSzTestCompareSlicesWithPercent(t *testing.T) {
 	chkCompareSlices(t, &tstCompareSlices{
 		got:      strings.Split("ABC", ""),
 		wnt:      strings.Split("ABC", ""),
@@ -1147,7 +1147,7 @@ func chkCompareArrays(t *testing.T, td *tstCompareArrays) {
 	}
 }
 
-func testSzTest_CompareArrays(t *testing.T) {
+func testSzTestCompareArrays(t *testing.T) {
 	chkCompareArrays(t, &tstCompareArrays{
 		got:      strings.Split("ABC", ""),
 		wnt:      strings.Split("ABC", ""),

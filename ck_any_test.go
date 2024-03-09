@@ -21,10 +21,10 @@ package sztest
 import "testing"
 
 func tstChkAny(t *testing.T) {
-	t.Run("Nil", chkAnyTest_Nil)
-	t.Run("Nilf", chkAnyTest_Nilf)
-	t.Run("NotNil", chkAnyTest_NotNil)
-	t.Run("NotNilf", chkAnyTest_NotNilf)
+	t.Run("Nil", chkAnyTestNil)
+	t.Run("Nilf", chkAnyTestNilf)
+	t.Run("NotNil", chkAnyTestNotNil)
+	t.Run("NotNilf", chkAnyTestNotNilf)
 }
 
 type abcInterface interface {
@@ -36,7 +36,7 @@ type abcStruct struct{}
 func (s *abcStruct) abcFunction() {
 }
 
-func chkAnyTest_Nil(t *testing.T) {
+func chkAnyTestNil(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -77,7 +77,7 @@ func chkAnyTest_Nil(t *testing.T) {
 	)
 }
 
-func chkAnyTest_Nilf(t *testing.T) {
+func chkAnyTestNilf(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -118,7 +118,7 @@ func chkAnyTest_Nilf(t *testing.T) {
 	)
 }
 
-func chkAnyTest_NotNil(t *testing.T) {
+func chkAnyTestNotNil(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -166,7 +166,7 @@ func chkAnyTest_NotNil(t *testing.T) {
 	)
 }
 
-func chkAnyTest_NotNilf(t *testing.T) {
+func chkAnyTestNotNilf(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk

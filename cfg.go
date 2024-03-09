@@ -24,7 +24,7 @@ import (
 
 //nolint:goCheckNoGlobals // Ok - initialized by init function.
 var (
-	defTmpDir         string = os.TempDir()
+	defTmpDir         = os.TempDir()
 	settingFailFast   bool
 	settingBufferSize int
 	settingPermDir    os.FileMode

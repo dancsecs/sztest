@@ -23,13 +23,13 @@ import (
 	"testing"
 )
 
-func test_DiffMarkup_Prerequisites(t *testing.T) {
-	t.Run("InternalMarkup", testSzTest_InternalMarkup)
-	t.Run("MarkupForTerminal", testSzTest_MarkupForTerminal)
-	t.Run("GotWant", testSzTest_GotWant)
+func testDiffMarkupPrerequisites(t *testing.T) {
+	t.Run("InternalMarkup", testSzTestInternalMarkup)
+	t.Run("MarkupForTerminal", testSzTestMarkupForTerminal)
+	t.Run("GotWant", testSzTestGotWant)
 }
 
-func testSzTest_InternalMarkup(t *testing.T) {
+func testSzTestInternalMarkup(t *testing.T) {
 	const area = "internal markup"
 	const msg = "<-- MSG -->"
 	var got, wnt string
@@ -79,7 +79,7 @@ func testSzTest_InternalMarkup(t *testing.T) {
 	}
 }
 
-func testSzTest_MarkupForTerminal(t *testing.T) {
+func testSzTestMarkupForTerminal(t *testing.T) {
 	const area = "markup for terminal"
 	const s1 = "ABC"
 	const s2 = "DEF"
@@ -126,7 +126,7 @@ func testSzTest_MarkupForTerminal(t *testing.T) {
 	}
 }
 
-func testSzTest_GotWant(t *testing.T) {
+func testSzTestGotWant(t *testing.T) {
 	const area = "gotWnt"
 	var got, wnt string
 

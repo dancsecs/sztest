@@ -26,36 +26,36 @@ import (
 )
 
 func tstChkDir(t *testing.T) {
-	t.Run("RemoveTestDir", chkDirTest_RemoveTestDir)
-	t.Run("RemoveTestFile", chkDirTest_RemoveTestFile)
-	t.Run("SetDirPerm", chkDirTest_SetDirPerm)
-	t.Run("SetFilePerm", chkDirTest_SetFilePerm)
-	t.Run("SetPermExe", chkDirTest_SetPermExe)
-	t.Run("SetTmpDirEmpty", chkDirTest_SetTmpDirEmpty)
-	t.Run("SetTmpDirNotExists", chkDirTest_SetTmpDirNotExists)
-	t.Run("SetTmpDirNotDirectory", chkDirTest_SetTmpDirNotDirectory)
-	t.Run("SetTmpDirExtendExisting", chkDirTest_SetTmpDirExtendExisting)
-	t.Run("CreateDirNotExist", chkDirTest_CreateDirNotExist)
-	t.Run("CreateTmpDirEmpty", chkDirTest_CreateTmpDirEmpty)
-	t.Run("CreateTmpFileEmpty", chkDirTest_CreateTmpFileEmpty)
-	t.Run("CreateTmpFileEmptyKeepTmp", chkDirTest_CreateTmpFileEmptyKeepTmp)
+	t.Run("RemoveTestDir", chkDirTestRemoveTestDir)
+	t.Run("RemoveTestFile", chkDirTestRemoveTestFile)
+	t.Run("SetDirPerm", chkDirTestSetDirPerm)
+	t.Run("SetFilePerm", chkDirTestSetFilePerm)
+	t.Run("SetPermExe", chkDirTestSetPermExe)
+	t.Run("SetTmpDirEmpty", chkDirTestSetTmpDirEmpty)
+	t.Run("SetTmpDirNotExists", chkDirTestSetTmpDirNotExists)
+	t.Run("SetTmpDirNotDirectory", chkDirTestSetTmpDirNotDirectory)
+	t.Run("SetTmpDirExtendExisting", chkDirTestSetTmpDirExtendExisting)
+	t.Run("CreateDirNotExist", chkDirTestCreateDirNotExist)
+	t.Run("CreateTmpDirEmpty", chkDirTestCreateTmpDirEmpty)
+	t.Run("CreateTmpFileEmpty", chkDirTestCreateTmpFileEmpty)
+	t.Run("CreateTmpFileEmptyKeepTmp", chkDirTestCreateTmpFileEmptyKeepTmp)
 	t.Run(
-		"CreateTmpFileInvalidDIrectory", chkDirTest_CreateTmpFileInvalidDIrectory,
+		"CreateTmpFileInvalidDIrectory", chkDirTestCreateTmpFileInvalidDIrectory,
 	)
-	t.Run("CreateTmpUnixScriptEmpty", chkDirTest_CreateTmpUnixScriptEmpty)
-	t.Run("CreateTmpUnixScriptInvalid", chkDirTest_CreateTmpUnixScriptInvalid)
+	t.Run("CreateTmpUnixScriptEmpty", chkDirTestCreateTmpUnixScriptEmpty)
+	t.Run("CreateTmpUnixScriptInvalid", chkDirTestCreateTmpUnixScriptInvalid)
 	t.Run(
-		"CreateTmpUnixScriptNoLeading", chkDirTest_CreateTmpUnixScriptNoLeading,
+		"CreateTmpUnixScriptNoLeading", chkDirTestCreateTmpUnixScriptNoLeading,
 	)
 	t.Run(
 		"CreateTmpUnixScriptWithLeading",
-		chkDirTest_CreateTmpUnixScriptWithLeading,
+		chkDirTestCreateTmpUnixScriptWithLeading,
 	)
-	t.Run("CreateTmpSubDir", chkDirTest_CreateTmpSubDir)
-	t.Run("CreateRealTmpDir", chkDirTest_CreateRealTmpDir)
+	t.Run("CreateTmpSubDir", chkDirTestCreateTmpSubDir)
+	t.Run("CreateRealTmpDir", chkDirTestCreateRealTmpDir)
 }
 
-func chkDirTest_RemoveTestDir(t *testing.T) {
+func chkDirTestRemoveTestDir(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -79,7 +79,7 @@ func chkDirTest_RemoveTestDir(t *testing.T) {
 	chk.NoErr(removeTestDir(tstDir))
 }
 
-func chkDirTest_RemoveTestFile(t *testing.T) {
+func chkDirTestRemoveTestFile(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -112,7 +112,7 @@ func chkDirTest_RemoveTestFile(t *testing.T) {
 	chk.NoErr(removeTestDir(tstDir))
 }
 
-func chkDirTest_SetDirPerm(t *testing.T) {
+func chkDirTestSetDirPerm(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -133,7 +133,7 @@ func chkDirTest_SetDirPerm(t *testing.T) {
 	)
 }
 
-func chkDirTest_SetFilePerm(t *testing.T) {
+func chkDirTestSetFilePerm(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -154,7 +154,7 @@ func chkDirTest_SetFilePerm(t *testing.T) {
 	)
 }
 
-func chkDirTest_SetPermExe(t *testing.T) {
+func chkDirTestSetPermExe(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -174,13 +174,13 @@ func chkDirTest_SetPermExe(t *testing.T) {
 	)
 }
 
-func chkDirTest_SetTmpDirEmpty(t *testing.T) {
+func chkDirTestSetTmpDirEmpty(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
 	oldSettingTmpDir := settingTmpDir
 
-	const DIR_TEST_VALUE = "TEMP_DIRECTORY"
+	const dirTestValue = "TEMP_DIRECTORY"
 	// Resets tmpDir back to default
 	chk.Str(
 		chk.SetTmpDir(""),
@@ -190,17 +190,17 @@ func chkDirTest_SetTmpDirEmpty(t *testing.T) {
 
 	// Set a test value
 
-	settingTmpDir = DIR_TEST_VALUE // actual directory does not exist
+	settingTmpDir = dirTestValue // actual directory does not exist
 
 	// Resets tmpDir back to default
 	chk.Str(
 		chk.SetTmpDir(""),
-		DIR_TEST_VALUE,
+		dirTestValue,
 	)
 	chk.Str(settingTmpDir, oldSettingTmpDir) // still the same
 }
 
-func chkDirTest_SetTmpDirNotExists(t *testing.T) {
+func chkDirTestSetTmpDirNotExists(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -222,7 +222,7 @@ func chkDirTest_SetTmpDirNotExists(t *testing.T) {
 	)
 }
 
-func chkDirTest_SetTmpDirNotDirectory(t *testing.T) {
+func chkDirTestSetTmpDirNotDirectory(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -261,7 +261,7 @@ func chkDirTest_SetTmpDirNotDirectory(t *testing.T) {
 	)
 }
 
-func chkDirTest_SetTmpDirExtendExisting(t *testing.T) {
+func chkDirTestSetTmpDirExtendExisting(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -289,7 +289,7 @@ func chkDirTest_SetTmpDirExtendExisting(t *testing.T) {
 	chk.Str(settingTmpDir, fPath) // extended
 }
 
-func chkDirTest_CreateDirNotExist(t *testing.T) {
+func chkDirTestCreateDirNotExist(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -314,7 +314,7 @@ func chkDirTest_CreateDirNotExist(t *testing.T) {
 	)
 }
 
-func chkDirTest_CreateTmpDirEmpty(t *testing.T) {
+func chkDirTestCreateTmpDirEmpty(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -333,7 +333,7 @@ func chkDirTest_CreateTmpDirEmpty(t *testing.T) {
 	)
 }
 
-func chkDirTest_CreateTmpFileEmpty(t *testing.T) {
+func chkDirTestCreateTmpFileEmpty(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -362,7 +362,7 @@ func chkDirTest_CreateTmpFileEmpty(t *testing.T) {
 	)
 }
 
-func chkDirTest_CreateTmpFileEmptyKeepTmp(t *testing.T) {
+func chkDirTestCreateTmpFileEmptyKeepTmp(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -398,7 +398,7 @@ func chkDirTest_CreateTmpFileEmptyKeepTmp(t *testing.T) {
 	)
 }
 
-func chkDirTest_CreateTmpFileInvalidDIrectory(t *testing.T) {
+func chkDirTestCreateTmpFileInvalidDIrectory(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -425,7 +425,7 @@ func chkDirTest_CreateTmpFileInvalidDIrectory(t *testing.T) {
 	)
 }
 
-func chkDirTest_CreateTmpUnixScriptEmpty(t *testing.T) {
+func chkDirTestCreateTmpUnixScriptEmpty(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -454,7 +454,7 @@ func chkDirTest_CreateTmpUnixScriptEmpty(t *testing.T) {
 	)
 }
 
-func chkDirTest_CreateTmpUnixScriptInvalid(t *testing.T) {
+func chkDirTestCreateTmpUnixScriptInvalid(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -480,7 +480,7 @@ func chkDirTest_CreateTmpUnixScriptInvalid(t *testing.T) {
 	)
 }
 
-func chkDirTest_CreateTmpUnixScriptNoLeading(t *testing.T) {
+func chkDirTestCreateTmpUnixScriptNoLeading(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -522,7 +522,7 @@ func chkDirTest_CreateTmpUnixScriptNoLeading(t *testing.T) {
 	)
 }
 
-func chkDirTest_CreateTmpUnixScriptWithLeading(t *testing.T) {
+func chkDirTestCreateTmpUnixScriptWithLeading(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -569,7 +569,7 @@ func chkDirTest_CreateTmpUnixScriptWithLeading(t *testing.T) {
 	)
 }
 
-func chkDirTest_CreateTmpSubDir(t *testing.T) {
+func chkDirTestCreateTmpSubDir(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -607,7 +607,7 @@ func chkDirTest_CreateTmpSubDir(t *testing.T) {
 	)
 }
 
-func chkDirTest_CreateRealTmpDir(t *testing.T) {
+func chkDirTestCreateRealTmpDir(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 

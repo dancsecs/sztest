@@ -22,17 +22,17 @@ import (
 	"testing"
 )
 
-func test_DiffFmt(t *testing.T) {
-	t.Run("FormatLineNumber1", testSzTest_DiffFmt_FmtLnNbr1)
-	t.Run("FormatLineNumber2", testSzTest_DiffFmt_FmtLnNbr2)
-	t.Run("FormatLineNumber5", testSzTest_DiffFmt_FmtLnNbr5)
-	t.Run("FormatSameLine", testSzTest_DiffFmt_FmtSameLine)
-	t.Run("FormatChangedLine", testSzTest_DiffFmt_FmtChangedLine)
-	t.Run("FormatJustGotLine", testSzTest_DiffFmt_FmtJustGotLine)
-	t.Run("FormatJustWntLine", testSzTest_DiffFmt_FmtJustWntLine)
+func testDiffFmt(t *testing.T) {
+	t.Run("FormatLineNumber1", testSzTestDiffFmtFmtLnNbr1)
+	t.Run("FormatLineNumber2", testSzTestDiffFmtFmtLnNbr2)
+	t.Run("FormatLineNumber5", testSzTestDiffFmtFmtLnNbr5)
+	t.Run("FormatSameLine", testSzTestDiffFmtFmtSameLine)
+	t.Run("FormatChangedLine", testSzTestDiffFmtFmtChangedLine)
+	t.Run("FormatJustGotLine", testSzTestDiffFmtFmtJustGotLine)
+	t.Run("FormatJustWntLine", testSzTestDiffFmtFmtJustWntLine)
 }
 
-func testSzTest_DiffFmt_FmtLnNbr1(t *testing.T) {
+func testSzTestDiffFmtFmtLnNbr1(t *testing.T) {
 	defaultFormat := newDiffLnFmt(0, 0)
 	dFmt := newDiffLnFmt(1, 0)
 
@@ -71,7 +71,7 @@ func testSzTest_DiffFmt_FmtLnNbr1(t *testing.T) {
 	}
 }
 
-func testSzTest_DiffFmt_FmtLnNbr2(t *testing.T) {
+func testSzTestDiffFmtFmtLnNbr2(t *testing.T) {
 	dFmt := newDiffLnFmt(0, 10)
 
 	got := dFmt.fmtLnNbr(-1)
@@ -105,7 +105,7 @@ func testSzTest_DiffFmt_FmtLnNbr2(t *testing.T) {
 	}
 }
 
-func testSzTest_DiffFmt_FmtLnNbr5(t *testing.T) {
+func testSzTestDiffFmtFmtLnNbr5(t *testing.T) {
 	dFmt := newDiffLnFmt(10000, 0)
 
 	got := dFmt.fmtLnNbr(-1)
@@ -139,7 +139,7 @@ func testSzTest_DiffFmt_FmtLnNbr5(t *testing.T) {
 	}
 }
 
-func testSzTest_DiffFmt_FmtSameLine(t *testing.T) {
+func testSzTestDiffFmtFmtSameLine(t *testing.T) {
 	dFmt := newDiffLnFmt(100, 0)
 
 	got := dFmt.same(0, 0, "the line")
@@ -169,7 +169,7 @@ func testSzTest_DiffFmt_FmtSameLine(t *testing.T) {
 	}
 }
 
-func testSzTest_DiffFmt_FmtChangedLine(t *testing.T) {
+func testSzTestDiffFmtFmtChangedLine(t *testing.T) {
 	dFmt := newDiffLnFmt(100, 0)
 
 	got := dFmt.changed(0, 0, "the line")
@@ -215,7 +215,7 @@ func testSzTest_DiffFmt_FmtChangedLine(t *testing.T) {
 	}
 }
 
-func testSzTest_DiffFmt_FmtJustGotLine(t *testing.T) {
+func testSzTestDiffFmtFmtJustGotLine(t *testing.T) {
 	dFmt := newDiffLnFmt(100, 0)
 
 	got := dFmt.justGot(0, "the line")
@@ -261,7 +261,7 @@ func testSzTest_DiffFmt_FmtJustGotLine(t *testing.T) {
 	}
 }
 
-func testSzTest_DiffFmt_FmtJustWntLine(t *testing.T) {
+func testSzTestDiffFmtFmtJustWntLine(t *testing.T) {
 	dFmt := newDiffLnFmt(100, 0)
 
 	got := dFmt.justWnt(0, "the line")

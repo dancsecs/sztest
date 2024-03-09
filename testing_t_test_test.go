@@ -31,7 +31,7 @@ temporarily renamed testingT_test_a permitted coverage information to be
 collected.
 */
 
-func test_SzTesting_Prerequisites(t *testing.T) {
+func testSzTestingPrerequisites(t *testing.T) {
 	t.Run("Helper", testPrerequisiteHelper)
 	t.Run("Logf", testPrerequisiteLogf)
 	t.Run("Error", testPrerequisiteError)
@@ -951,7 +951,7 @@ func tstChkOutIsSliceError(t *testing.T) {
 func tstChkOutNumericBoundedBad(t *testing.T) {
 	const tstName = "tstChkOutNumericBoundedBad"
 
-	got := chkOutNumericBounded_(
+	got := chkOutNumericBounded(
 		"wantMessage", "got", "", "dataType", "message",
 	)
 	wnt := "" +
@@ -968,7 +968,7 @@ func tstChkOutNumericBoundedBad(t *testing.T) {
 		t.Error(errGotWnt(tstName, got, wnt))
 	}
 
-	got = chkOutNumericBounded_(
+	got = chkOutNumericBounded(
 		"wantMessage", "got", "functionName", "dataType", "message",
 	)
 	wnt = "" +
@@ -990,7 +990,7 @@ func tstChkOutNumericBoundedBad(t *testing.T) {
 func tstChkOutNumericUnboundedBad(t *testing.T) {
 	const tstName = "tstChkOutNumericUnboundedBad"
 
-	got := chkOutNumericUnbounded_(
+	got := chkOutNumericUnbounded(
 		"wantMessage", "got", "", "dataType", "message",
 	)
 	wnt := "" +
@@ -1007,7 +1007,7 @@ func tstChkOutNumericUnboundedBad(t *testing.T) {
 		t.Error(errGotWnt(tstName, got, wnt))
 	}
 
-	got = chkOutNumericUnbounded_(
+	got = chkOutNumericUnbounded(
 		"wantMessage", "got", "functionName", "dataType", "message",
 	)
 	wnt = "" +
@@ -1029,7 +1029,7 @@ func tstChkOutNumericUnboundedBad(t *testing.T) {
 func tstChkOutStringBoundedBad(t *testing.T) {
 	const tstName = "tstChkOutStringBoundedBad"
 
-	got := chkOutStringBounded_(
+	got := chkOutStringBounded(
 		"wantMessage", "got", "", "dataType", "message",
 	)
 	wnt := "" +
@@ -1046,7 +1046,7 @@ func tstChkOutStringBoundedBad(t *testing.T) {
 		t.Error(errGotWnt(tstName, got, wnt))
 	}
 
-	got = chkOutStringBounded_(
+	got = chkOutStringBounded(
 		"wantMessage", "got", "functionName", "dataType", "message",
 	)
 	wnt = "" +
@@ -1068,7 +1068,7 @@ func tstChkOutStringBoundedBad(t *testing.T) {
 func tstChkOutStringUnboundedBad(t *testing.T) {
 	const tstName = "tstChkOutStringUnboundedBad"
 
-	got := chkOutStrUnbounded_(
+	got := chkOutStrUnbounded(
 		"wantMessage", "got", "", "dataType", "message",
 	)
 	wnt := "" +
@@ -1085,7 +1085,7 @@ func tstChkOutStringUnboundedBad(t *testing.T) {
 		t.Error(errGotWnt(tstName, got, wnt))
 	}
 
-	got = chkOutStrUnbounded_(
+	got = chkOutStrUnbounded(
 		"wantMessage", "got", "functionName", "dataType", "message",
 	)
 	wnt = "" +

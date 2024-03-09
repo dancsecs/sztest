@@ -81,19 +81,19 @@ func TestSzTest(t *testing.T) {
 	defer resEnv()
 
 	// Test configuration overrides.
-	t.Run("Config Validate", test_config_validate)
-	t.Run("Config Init", test_config_init)
+	t.Run("Config Validate", testConfigValidate)
+	t.Run("Config Init", testConfigInit)
 
 	// Test underlying markup first to assist in subsequent testing.
-	t.Run("DiffMarkup", test_DiffMarkup_Prerequisites)
-	t.Run("DiffFmt", test_DiffFmt)
-	t.Run("Diff", test_Diff_Prerequisites)
+	t.Run("DiffMarkup", testDiffMarkupPrerequisites)
+	t.Run("DiffFmt", testDiffFmt)
+	t.Run("Diff", testDiffPrerequisites)
 
 	// Update to default markup processing that has been tested above.
 	errGotWnt = errMarkupFuncDefault
 
 	// Test the replacement interface for Google's testing.T object.
-	t.Run("TestingInterface", test_SzTesting_Prerequisites)
+	t.Run("TestingInterface", testSzTestingPrerequisites)
 
 	// Test core and generic chk methods to enable use in further testing.
 	t.Run("chkCore", tstChkCore)

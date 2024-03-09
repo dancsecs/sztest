@@ -17,7 +17,6 @@ linters:
     - gocognit
     - lll
     - nlreturn
-    - revive
     - varnamelen
     - wsl
 
@@ -52,7 +51,6 @@ issues:
         - nlreturn
         - nolintlint
         - paralleltest
-        - revive
         - stylecheck
         - testpackage
         - thelper

@@ -37,19 +37,19 @@ const (
 	invalidCaptureLength = "unexpected %s log output length: got: %d  want: %d"
 )
 
-func test_config_validate(t *testing.T) {
-	t.Run("FailFast", testConfig_ValidateFailFast)
-	t.Run("PermDir", testConfig_ValidatePermDir)
-	t.Run("PermFile", testConfig_ValidatePermFile)
-	t.Run("PermExe", testConfig_ValidatePermExe)
-	t.Run("TmpDir", testConfig_ValidateTmpDir)
-	t.Run("Color", testConfig_ValidateColor)
-	t.Run("MinRunString", testConfig_ValidateMinRunString)
-	t.Run("MinRunSlice", testConfig_ValidateMinRunSlice)
-	t.Run("BufferSize", testConfig_ValidateBufferSize)
+func testConfigValidate(t *testing.T) {
+	t.Run("FailFast", testConfigValidateFailFast)
+	t.Run("PermDir", testConfigValidatePermDir)
+	t.Run("PermFile", testConfigValidatePermFile)
+	t.Run("PermExe", testConfigValidatePermExe)
+	t.Run("TmpDir", testConfigValidateTmpDir)
+	t.Run("Color", testConfigValidateColor)
+	t.Run("MinRunString", testConfigValidateMinRunString)
+	t.Run("MinRunSlice", testConfigValidateMinRunSlice)
+	t.Run("BufferSize", testConfigValidateBufferSize)
 }
 
-func testConfig_ValidateFailFast(t *testing.T) {
+func testConfigValidateFailFast(t *testing.T) {
 	buf := bytes.NewBuffer(make([]byte, 0, 1000))
 	log.SetOutput(buf)
 	defer log.SetOutput(os.Stderr)
@@ -93,7 +93,7 @@ func testConfig_ValidateFailFast(t *testing.T) {
 	}
 }
 
-func testConfig_ValidatePermDir(t *testing.T) {
+func testConfigValidatePermDir(t *testing.T) {
 	buf := bytes.NewBuffer(make([]byte, 0, 1000))
 	log.SetOutput(buf)
 	defer log.SetOutput(os.Stderr)
@@ -143,7 +143,7 @@ func testConfig_ValidatePermDir(t *testing.T) {
 	}
 }
 
-func testConfig_ValidatePermFile(t *testing.T) {
+func testConfigValidatePermFile(t *testing.T) {
 	buf := bytes.NewBuffer(make([]byte, 0, 1000))
 	log.SetOutput(buf)
 	defer log.SetOutput(os.Stderr)
@@ -193,7 +193,7 @@ func testConfig_ValidatePermFile(t *testing.T) {
 	}
 }
 
-func testConfig_ValidatePermExe(t *testing.T) {
+func testConfigValidatePermExe(t *testing.T) {
 	buf := bytes.NewBuffer(make([]byte, 0, 1000))
 	log.SetOutput(buf)
 	defer log.SetOutput(os.Stderr)
@@ -243,7 +243,7 @@ func testConfig_ValidatePermExe(t *testing.T) {
 	}
 }
 
-func testConfig_ValidateTmpDir(t *testing.T) {
+func testConfigValidateTmpDir(t *testing.T) {
 	buf := bytes.NewBuffer(make([]byte, 0, 1000))
 	log.SetOutput(buf)
 	defer log.SetOutput(os.Stderr)
@@ -338,7 +338,7 @@ func testConfig_ValidateTmpDir(t *testing.T) {
 	}
 }
 
-func testConfig_ValidateColor(t *testing.T) {
+func testConfigValidateColor(t *testing.T) {
 	buf := bytes.NewBuffer(make([]byte, 0, 1000))
 	log.SetOutput(buf)
 	defer log.SetOutput(os.Stderr)
@@ -537,7 +537,7 @@ func testConfig_ValidateColor(t *testing.T) {
 	}
 }
 
-func testConfig_ValidateMinRunString(t *testing.T) {
+func testConfigValidateMinRunString(t *testing.T) {
 	buf := bytes.NewBuffer(make([]byte, 0, 1000))
 	log.SetOutput(buf)
 	defer log.SetOutput(os.Stderr)
@@ -590,7 +590,7 @@ func testConfig_ValidateMinRunString(t *testing.T) {
 	}
 }
 
-func testConfig_ValidateMinRunSlice(t *testing.T) {
+func testConfigValidateMinRunSlice(t *testing.T) {
 	buf := bytes.NewBuffer(make([]byte, 0, 1000))
 	log.SetOutput(buf)
 	defer log.SetOutput(os.Stderr)
@@ -643,7 +643,7 @@ func testConfig_ValidateMinRunSlice(t *testing.T) {
 	}
 }
 
-func testConfig_ValidateBufferSize(t *testing.T) {
+func testConfigValidateBufferSize(t *testing.T) {
 	buf := bytes.NewBuffer(make([]byte, 0, 1000))
 	log.SetOutput(buf)
 	defer log.SetOutput(os.Stderr)

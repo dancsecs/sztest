@@ -200,13 +200,10 @@ func (chk *Chk) ClockNextFmtCusC() string {
 
 // ClockTick returns i'th time returned.
 func (chk *Chk) ClockTick(i int) time.Time {
-	var t time.Time
 	if i < 0 || i >= len(chk.clkTicks) {
 		log.Panicf("unknown tick index: %d", i)
-	} else {
-		t = chk.clkTicks[i]
 	}
-	return t
+	return chk.clkTicks[i]
 }
 
 // ClockSet set the current test time and optionally sets the increments if

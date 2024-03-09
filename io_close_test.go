@@ -24,10 +24,10 @@ import (
 )
 
 func tstChkIoClose(t *testing.T) {
-	t.Run("SeekError", chkCloseTest_SetCloseError)
+	t.Run("SeekError", chkCloseTestSetCloseError)
 }
 
-func chkCloseTest_SetCloseError(t *testing.T) {
+func chkCloseTestSetCloseError(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 

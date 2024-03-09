@@ -25,9 +25,9 @@ import (
 	"testing"
 )
 
-func test_config_init(t *testing.T) {
-	t.Run("Defaults", testCfgInit_AllDefaults)
-	t.Run("Overrides", testCfgInit_AllOverrides)
+func testConfigInit(t *testing.T) {
+	t.Run("Defaults", testCfgInitAllDefaults)
+	t.Run("Overrides", testCfgInitAllOverrides)
 }
 
 /*
@@ -210,7 +210,7 @@ func setupSysEnvVarTest(tmpDir string) error {
 }
 
 //nolint:gocyclo // Ok.
-func testCfgInit_AllDefaults(t *testing.T) {
+func testCfgInitAllDefaults(t *testing.T) {
 	const errMsg = "unexpected default for %s: Got: %v Wnt: %v"
 
 	savedEnvVars := clearAndCaptureAll()
@@ -329,7 +329,7 @@ func testCfgInit_AllDefaults(t *testing.T) {
 }
 
 //nolint:gocyclo // Ok.
-func testCfgInit_AllOverrides(t *testing.T) {
+func testCfgInitAllOverrides(t *testing.T) {
 	const errMsg = "unexpected override for %s: Got: %v Wnt: %v"
 
 	savedEnvVars := clearAndCaptureAll()

@@ -29,18 +29,18 @@ var (
 )
 
 func tstChkErrLast(t *testing.T) {
-	t.Run("ErrLast1", chkErrLastTest_1)
-	t.Run("ErrLast2", chkErrLastTest_2)
+	t.Run("ErrLast1", chkErrLastTest1)
+	t.Run("ErrLast2", chkErrLastTest2)
 
-	t.Run("Slice-Good", chkErrSliceTest_Good)
-	t.Run("Slice-BadMsg1", chkErrSliceTest_BadMsg1)
-	t.Run("Slice-BadMsg2", chkErrSliceTest_BadMsg2)
-	t.Run("Slice-BadMsg3", chkErrSliceTest_BadMsg3)
-	t.Run("Slice-BadMsg4", chkErrSliceTest_BadMsg4)
-	t.Run("NilError", chkErrLastTest_NilError)
+	t.Run("Slice-Good", chkErrSliceTestGood)
+	t.Run("Slice-BadMsg1", chkErrSliceTestBadMsg1)
+	t.Run("Slice-BadMsg2", chkErrSliceTestBadMsg2)
+	t.Run("Slice-BadMsg3", chkErrSliceTestBadMsg3)
+	t.Run("Slice-BadMsg4", chkErrSliceTestBadMsg4)
+	t.Run("NilError", chkErrLastTestNilError)
 }
 
-func chkErrLastTest_1(t *testing.T) {
+func chkErrLastTest1(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -79,7 +79,7 @@ func chkErrLastTest_1(t *testing.T) {
 	)
 }
 
-func chkErrLastTest_2(t *testing.T) {
+func chkErrLastTest2(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -135,7 +135,7 @@ func chkErrLastTest_2(t *testing.T) {
 	)
 }
 
-func chkErrLastTest_NilError(t *testing.T) {
+func chkErrLastTestNilError(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 

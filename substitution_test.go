@@ -23,10 +23,10 @@ import (
 )
 
 func tstChkSubstitution(t *testing.T) {
-	t.Run("All", chkSubstitutionTest_All)
+	t.Run("All", chkSubstitutionTestAll)
 }
 
-func chkSubstitutionTest_All(t *testing.T) {
+func chkSubstitutionTestAll(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureLog(iT)
 	iT.chk = chk

@@ -25,53 +25,53 @@ import (
 )
 
 func tstChkCore(t *testing.T) {
-	t.Run("CaptureNothing", chkTest_CaptureNothing)
-	t.Run("Logf", chkTest_Logf)
-	t.Run("ErrorPassthrough", chkTest_ErrorPassthrough)
-	t.Run("ErrorfPassthrough", chkTest_ErrorfPassthrough)
-	t.Run("FatalPassthrough", chkTest_FatalPassthrough)
-	t.Run("NamePassthrough", chkTest_NamePassthrough)
-	t.Run("T", chkTest_T)
-	t.Run("KeepTmpFilesSet", chkTest_KeepTmpFileSet)
-	t.Run("FailFast", chkTest_FailFast)
-	t.Run("PushPreReleaseFunc", chkTest_PushPreReleaseFunc)
-	t.Run("PushPostReleaseFunc", chkTest_PushPostReleaseFunc)
-	t.Run("PushPostReleaseFuncWithError", chkTest_PushPostReleaseFuncWithError)
-	t.Run("ReleaseWithUnexpectedPanic", chkTest_ReleaseWithUnexpectedPanic)
+	t.Run("CaptureNothing", chkTestCaptureNothing)
+	t.Run("Logf", chkTestLogf)
+	t.Run("ErrorPassthrough", chkTestErrorPassthrough)
+	t.Run("ErrorfPassthrough", chkTestErrorfPassthrough)
+	t.Run("FatalPassthrough", chkTestFatalPassthrough)
+	t.Run("NamePassthrough", chkTestNamePassthrough)
+	t.Run("T", chkTestT)
+	t.Run("KeepTmpFilesSet", chkTestKeepTmpFileSet)
+	t.Run("FailFast", chkTestFailFast)
+	t.Run("PushPreReleaseFunc", chkTestPushPreReleaseFunc)
+	t.Run("PushPostReleaseFunc", chkTestPushPostReleaseFunc)
+	t.Run("PushPostReleaseFuncWithError", chkTestPushPostReleaseFuncWithError)
+	t.Run("ReleaseWithUnexpectedPanic", chkTestReleaseWithUnexpectedPanic)
 }
 
 func tstChkGeneric(t *testing.T) {
-	t.Run("Is", chkTest_ChkIs)
-	t.Run("IsSlice", chkTest_ChkIsSlice)
+	t.Run("Is", chkTestChkIs)
+	t.Run("IsSlice", chkTestChkIsSlice)
 	t.Run(
 		"InBoundedRangeUnknownBoundedOption",
-		chkTest_InBoundedRangeUnknownBoundedOption,
+		chkTestInBoundedRangeUnknownBoundedOption,
 	)
-	t.Run("InBoundedRange_Open", chkTest_TstBoundedRange_Open)
-	t.Run("InBoundedRange_Closed", chkTest_TstBoundedRange_Closed)
+	t.Run("InBoundedRange_Open", chkTestTstBoundedRangeOpen)
+	t.Run("InBoundedRange_Closed", chkTestTstBoundedRangeClosed)
 	t.Run(
 		"InBoundedRange_OpenMinOrClosedMax",
-		chkTest_TstBoundedRange_OpenMinOrClosedMax,
+		chkTestTstBoundedRangeOpenMinOrClosedMax,
 	)
 	t.Run(
 		"InBoundedRange_OpenMaxOrClosedMin",
-		chkTest_TstBoundedRange_OpenMaxOrClosedMin,
+		chkTestTstBoundedRangeOpenMaxOrClosedMin,
 	)
 	t.Run(
 		"InUnboundedRangeUnknownBoundedOption",
-		chkTest_InUnboundedRangeUnknownBoundedOption,
+		chkTestInUnboundedRangeUnknownBoundedOption,
 	)
-	t.Run("InUnboundedRange_Open", chkTest_TstUnboundedRange_Open)
-	t.Run("InUnboundedRange_Closed", chkTest_TstUnboundedRange_Closed)
-	//  t.Run("InBoundedNumeric", chkTest_TstBoundedNumeric)
-	//  t.Run("InUnboundedNumeric", chkTest_GenericInUnboundedNumeric)
+	t.Run("InUnboundedRange_Open", chkTestTstUnboundedRangeOpen)
+	t.Run("InUnboundedRange_Closed", chkTestTstUnboundedRangeClosed)
+	//  t.Run("InBoundedNumeric", chkTestTstBoundedNumeric)
+	//  t.Run("InUnboundedNumeric", chkTestGenericInUnboundedNumeric)
 }
 
 // Simply exercises the create Chk processes and the "to be deferred" Release
 // function.  This pattern of using the iTst object will be used whenever
 // actions taken against &iTst (or &testing.T) need to be confirmed by
 // checking the log in the iT.check function.
-func chkTest_CaptureNothing(t *testing.T) {
+func chkTestCaptureNothing(t *testing.T) {
 	// Create a stand in object to intercept operations made against t.
 	iT := new(iTst)
 
@@ -101,7 +101,7 @@ func chkTest_CaptureNothing(t *testing.T) {
 	)
 }
 
-func chkTest_Logf(t *testing.T) {
+func chkTestLogf(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -118,7 +118,7 @@ func chkTest_Logf(t *testing.T) {
 	)
 }
 
-func chkTest_ErrorPassthrough(t *testing.T) {
+func chkTestErrorPassthrough(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -136,7 +136,7 @@ func chkTest_ErrorPassthrough(t *testing.T) {
 	)
 }
 
-func chkTest_ErrorfPassthrough(t *testing.T) {
+func chkTestErrorfPassthrough(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -154,7 +154,7 @@ func chkTest_ErrorfPassthrough(t *testing.T) {
 	)
 }
 
-func chkTest_FatalPassthrough(t *testing.T) {
+func chkTestFatalPassthrough(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -172,7 +172,7 @@ func chkTest_FatalPassthrough(t *testing.T) {
 	)
 }
 
-func chkTest_NamePassthrough(t *testing.T) {
+func chkTestNamePassthrough(t *testing.T) {
 	const area = "name passthrough"
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
@@ -190,7 +190,7 @@ func chkTest_NamePassthrough(t *testing.T) {
 	)
 }
 
-func chkTest_T(t *testing.T) {
+func chkTestT(t *testing.T) {
 	const area = "T value"
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
@@ -209,12 +209,12 @@ func chkTest_T(t *testing.T) {
 	chk.Release()
 	iT.check(t,
 		chkOutCapture("Nothing"),
-		tstOutHelper("chkTest_T"), // Helper output.
+		tstOutHelper("chkTestT"), // Helper output.
 		chkOutRelease(),
 	)
 }
 
-func chkTest_KeepTmpFileSet(t *testing.T) {
+func chkTestKeepTmpFileSet(t *testing.T) {
 	const area = "KeepTmpFiles"
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
@@ -236,7 +236,7 @@ func chkTest_KeepTmpFileSet(t *testing.T) {
 	)
 }
 
-func chkTest_FailFast(t *testing.T) {
+func chkTestFailFast(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -266,7 +266,7 @@ func chkTest_FailFast(t *testing.T) {
 	)
 }
 
-func chkTest_PushPreReleaseFunc(t *testing.T) {
+func chkTestPushPreReleaseFunc(t *testing.T) {
 	const area = "push pre release func"
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
@@ -312,7 +312,7 @@ func chkTest_PushPreReleaseFunc(t *testing.T) {
 	)
 }
 
-func chkTest_PushPostReleaseFunc(t *testing.T) {
+func chkTestPushPostReleaseFunc(t *testing.T) {
 	const area = "push post Release func"
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
@@ -355,7 +355,7 @@ func chkTest_PushPostReleaseFunc(t *testing.T) {
 	)
 }
 
-func chkTest_PushPostReleaseFuncWithError(t *testing.T) {
+func chkTestPushPostReleaseFuncWithError(t *testing.T) {
 	const area = "push post release with error"
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
@@ -404,7 +404,7 @@ func chkTest_PushPostReleaseFuncWithError(t *testing.T) {
 //  TEST generic functions
 //////////////////////////////////////////////////////////////////////////
 
-func chkTest_ChkIs(t *testing.T) {
+func chkTestChkIs(t *testing.T) {
 	const area = "generic is"
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
@@ -441,7 +441,7 @@ func chkTest_ChkIs(t *testing.T) {
 	)
 }
 
-func chkTest_ChkIsSlice(t *testing.T) {
+func chkTestChkIsSlice(t *testing.T) {
 	const area = "generic isSlice"
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
@@ -516,7 +516,7 @@ func chkTest_ChkIsSlice(t *testing.T) {
 //  TEST inBoundedRange
 //////////////////////////////////////////////////////////////////////////
 
-func chkTest_InBoundedRangeUnknownBoundedOption(t *testing.T) {
+func chkTestInBoundedRangeUnknownBoundedOption(t *testing.T) {
 	const area = "generic inBounded unknown option"
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
@@ -547,7 +547,7 @@ func tstBounded[V chkBoundedType](
 	return inRange
 }
 
-func chkTest_TstBoundedRange_Open(t *testing.T) {
+func chkTestTstBoundedRangeOpen(t *testing.T) {
 	const area = "generic inBoundedRange open"
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
@@ -613,7 +613,7 @@ func chkTest_TstBoundedRange_Open(t *testing.T) {
 	)
 }
 
-func chkTest_TstBoundedRange_Closed(t *testing.T) {
+func chkTestTstBoundedRangeClosed(t *testing.T) {
 	const area = "generic inBoundedRange closed"
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
@@ -678,7 +678,7 @@ func chkTest_TstBoundedRange_Closed(t *testing.T) {
 	)
 }
 
-func chkTest_TstBoundedRange_OpenMinOrClosedMax(t *testing.T) {
+func chkTestTstBoundedRangeOpenMinOrClosedMax(t *testing.T) {
 	const area = "generic inBoundedRange OpenMinOrClosedMax"
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
@@ -781,7 +781,7 @@ func chkTest_TstBoundedRange_OpenMinOrClosedMax(t *testing.T) {
 	)
 }
 
-func chkTest_TstBoundedRange_OpenMaxOrClosedMin(t *testing.T) {
+func chkTestTstBoundedRangeOpenMaxOrClosedMin(t *testing.T) {
 	const area = "generic inBoundedRange OpenMaxOrClosedMin"
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
@@ -889,7 +889,7 @@ func chkTest_TstBoundedRange_OpenMaxOrClosedMin(t *testing.T) {
 //  TEST inUnboundedRange
 //////////////////////////////////////////////////////////////////////////
 
-func chkTest_InUnboundedRangeUnknownBoundedOption(t *testing.T) {
+func chkTestInUnboundedRangeUnknownBoundedOption(t *testing.T) {
 	const area = "generic inUnboundedRange unknown option"
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
@@ -921,7 +921,7 @@ func tstUnbounded[V chkBoundedType](
 	return inRange
 }
 
-func chkTest_TstUnboundedRange_Open(t *testing.T) {
+func chkTestTstUnboundedRangeOpen(t *testing.T) {
 	const area = "generic inUnboundedRange open"
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
@@ -982,7 +982,7 @@ func chkTest_TstUnboundedRange_Open(t *testing.T) {
 	)
 }
 
-func chkTest_TstUnboundedRange_Closed(t *testing.T) {
+func chkTestTstUnboundedRangeClosed(t *testing.T) {
 	const area = "generic inUnboundedRange closed"
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
@@ -1040,7 +1040,7 @@ func chkTest_TstUnboundedRange_Closed(t *testing.T) {
 	)
 }
 
-func runChkTest_ReleaseWithUnexpectedPanic(_ *testing.T) {
+func runChkTestReleaseWithUnexpectedPanic(_ *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -1048,13 +1048,13 @@ func runChkTest_ReleaseWithUnexpectedPanic(_ *testing.T) {
 	panic("abc")
 }
 
-func chkTest_ReleaseWithUnexpectedPanic(t *testing.T) {
+func chkTestReleaseWithUnexpectedPanic(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
 	chk.Panic(
 		func() {
-			runChkTest_ReleaseWithUnexpectedPanic(t)
+			runChkTestReleaseWithUnexpectedPanic(t)
 		},
 		"abc",
 	)

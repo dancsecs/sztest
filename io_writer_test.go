@@ -24,17 +24,17 @@ import (
 )
 
 func tstChkIoWriter(t *testing.T) {
-	t.Run("IOWriterNoError1", chkIoWriterTest_IOWriterNoError1)
-	t.Run("IOWriterError1", chkIoWriterTest_IOWriterError1)
-	t.Run("IOWriterError2", chkIoWriterTest_IOWriterError2)
-	t.Run("IOWriterError3", chkIoWriterTest_IOWriterError3)
-	t.Run("IOWriterError4", chkIoWriterTest_IOWriterError4)
-	t.Run("IOWriterError5", chkIoWriterTest_IOWriterError5)
-	t.Run("IOWriterError6", chkIoWriterTest_IOWriterError6)
-	t.Run("SetWriteError", chkIoWriterTest_SetWriteError)
+	t.Run("IOWriterNoError1", chkIoWriterTestIOWriterNoError1)
+	t.Run("IOWriterError1", chkIoWriterTestIOWriterError1)
+	t.Run("IOWriterError2", chkIoWriterTestIOWriterError2)
+	t.Run("IOWriterError3", chkIoWriterTestIOWriterError3)
+	t.Run("IOWriterError4", chkIoWriterTestIOWriterError4)
+	t.Run("IOWriterError5", chkIoWriterTestIOWriterError5)
+	t.Run("IOWriterError6", chkIoWriterTestIOWriterError6)
+	t.Run("SetWriteError", chkIoWriterTestSetWriteError)
 }
 
-func chkIoWriterTest_IOWriterNoError1(t *testing.T) {
+func chkIoWriterTestIOWriterNoError1(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -60,7 +60,7 @@ func chkIoWriterTest_IOWriterNoError1(t *testing.T) {
 	)
 }
 
-func chkIoWriterTest_IOWriterError1(t *testing.T) {
+func chkIoWriterTestIOWriterError1(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -78,7 +78,7 @@ func chkIoWriterTest_IOWriterError1(t *testing.T) {
 	)
 }
 
-func chkIoWriterTest_IOWriterError2(t *testing.T) {
+func chkIoWriterTestIOWriterError2(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -96,7 +96,7 @@ func chkIoWriterTest_IOWriterError2(t *testing.T) {
 	)
 }
 
-func chkIoWriterTest_IOWriterError3(t *testing.T) {
+func chkIoWriterTestIOWriterError3(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -114,7 +114,7 @@ func chkIoWriterTest_IOWriterError3(t *testing.T) {
 	)
 }
 
-func chkIoWriterTest_IOWriterError4(t *testing.T) {
+func chkIoWriterTestIOWriterError4(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -132,7 +132,7 @@ func chkIoWriterTest_IOWriterError4(t *testing.T) {
 	)
 }
 
-func chkIoWriterTest_IOWriterError5(t *testing.T) {
+func chkIoWriterTestIOWriterError5(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -155,7 +155,7 @@ func chkIoWriterTest_IOWriterError5(t *testing.T) {
 	)
 }
 
-func chkIoWriterTest_IOWriterError6(t *testing.T) {
+func chkIoWriterTestIOWriterError6(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -178,7 +178,7 @@ func chkIoWriterTest_IOWriterError6(t *testing.T) {
 	)
 }
 
-func chkIoWriterTest_SetWriteError(t *testing.T) {
+func chkIoWriterTestSetWriteError(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 

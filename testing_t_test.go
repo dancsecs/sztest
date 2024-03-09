@@ -356,10 +356,10 @@ func chkOutLnWnt(wLn, wStr string) string {
 func chkOutNumericBoundedf(
 	wantMsg, got, caller, dataType, msg string,
 ) string {
-	return chkOutNumericBounded_(wantMsg, got, caller+"f", dataType, msg)
+	return chkOutNumericBounded(wantMsg, got, caller+"f", dataType, msg)
 }
 
-func chkOutNumericBounded_(
+func chkOutNumericBounded(
 	wantMsg, got, caller, dataType, msg string,
 ) string {
 	s := ""
@@ -384,12 +384,12 @@ func chkOutNumericBounded_(
 func chkOutNumericUnboundedf(
 	wantMsg, got, caller, dataType, msg string,
 ) string {
-	return chkOutNumericUnbounded_(
+	return chkOutNumericUnbounded(
 		wantMsg, got, caller+"f", dataType, msg,
 	)
 }
 
-func chkOutNumericUnbounded_(
+func chkOutNumericUnbounded(
 	wantMsg, got, caller, dataType, msg string,
 ) string {
 	s := ""
@@ -412,10 +412,10 @@ func chkOutNumericUnbounded_(
 }
 
 func chkOutStringBoundedf(wantMsg, got, caller, dataType, msg string) string {
-	return chkOutStringBounded_(wantMsg, got, caller+"f", dataType, msg)
+	return chkOutStringBounded(wantMsg, got, caller+"f", dataType, msg)
 }
 
-func chkOutStringBounded_(wantMsg, got, caller, dataType, msg string) string {
+func chkOutStringBounded(wantMsg, got, caller, dataType, msg string) string {
 	s := ""
 	var isFormatted bool
 	if caller != "" {
@@ -436,10 +436,10 @@ func chkOutStringBounded_(wantMsg, got, caller, dataType, msg string) string {
 }
 
 func chkOutStrUnboundedf(wantMsg, got, caller, dataType, msg string) string {
-	return chkOutStrUnbounded_(wantMsg, got, caller+"f", dataType, msg)
+	return chkOutStrUnbounded(wantMsg, got, caller+"f", dataType, msg)
 }
 
-func chkOutStrUnbounded_(wantMsg, got, caller, dataType, msg string) string {
+func chkOutStrUnbounded(wantMsg, got, caller, dataType, msg string) string {
 	s := ""
 	var isFormatted bool
 	if caller != "" {
@@ -541,9 +541,8 @@ func findNextMark(s, expectedClose string,
 				markOpen,
 				markOpenInternal,
 				markOpenExpectedInternal
-		} else {
-			return markCloseIndex, markClose, markCloseInternal, ""
 		}
+		return markCloseIndex, markClose, markCloseInternal, ""
 	}
 	return -1, "", "", ""
 }

@@ -24,19 +24,19 @@ import (
 )
 
 func tstChkClock(t *testing.T) {
-	t.Run("defaultIncrement", chkClock_DefaultIncrement)
-	t.Run("useCurrentTime", chkClock_CurrentTime)
-	t.Run("useInvalidTick", chkClock_InvalidTick)
-	t.Run("lastFormat", chkClock_CLockLastFormat)
-	t.Run("nextFormat", chkClock_CLockNextFormat)
-	t.Run("useCase1", chkClock_UseCase1)
-	t.Run("useCase2", chkClock_UseCase2)
-	t.Run("useCase3", chkClock_UseCase3)
-	t.Run("subs", chkClock_Subs)
-	t.Run("offset", chkClock_Offset)
+	t.Run("defaultIncrement", chkClockDefaultIncrement)
+	t.Run("useCurrentTime", chkClockCurrentTime)
+	t.Run("useInvalidTick", chkClockInvalidTick)
+	t.Run("lastFormat", chkClockCLockLastFormat)
+	t.Run("nextFormat", chkClockCLockNextFormat)
+	t.Run("useCase1", chkClockUseCase1)
+	t.Run("useCase2", chkClockUseCase2)
+	t.Run("useCase3", chkClockUseCase3)
+	t.Run("subs", chkClockSubs)
+	t.Run("offset", chkClockOffset)
 }
 
-func chkClock_DefaultIncrement(t *testing.T) {
+func chkClockDefaultIncrement(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -44,7 +44,7 @@ func chkClock_DefaultIncrement(t *testing.T) {
 	chk.DurSlice(c.inc, []time.Duration{time.Millisecond})
 }
 
-func chkClock_CurrentTime(t *testing.T) {
+func chkClockCurrentTime(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -57,7 +57,7 @@ func chkClock_CurrentTime(t *testing.T) {
 	chk.False(ts0.Equal(ts1))
 }
 
-func chkClock_InvalidTick(t *testing.T) {
+func chkClockInvalidTick(t *testing.T) {
 	chk := CaptureLog(t)
 	defer chk.Release()
 
@@ -89,7 +89,7 @@ func chkClock_InvalidTick(t *testing.T) {
 	)
 }
 
-func chkClock_CLockLastFormat(t *testing.T) {
+func chkClockCLockLastFormat(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -110,7 +110,7 @@ func chkClock_CLockLastFormat(t *testing.T) {
 	chk.Str(chk.ClockLastFmtCusC(), tm.Format(time.ANSIC))
 }
 
-func chkClock_CLockNextFormat(t *testing.T) {
+func chkClockCLockNextFormat(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -129,7 +129,7 @@ func chkClock_CLockNextFormat(t *testing.T) {
 	chk.Str(chk.ClockNextFmtCusC(), chk.ClockLastFmtCusC())
 }
 
-func chkClock_UseCase1(t *testing.T) {
+func chkClockUseCase1(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -182,7 +182,7 @@ func chkClock_UseCase1(t *testing.T) {
 	chk.True(tsAfter.Before(ts1))
 }
 
-func chkClock_UseCase2(t *testing.T) {
+func chkClockUseCase2(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -201,7 +201,7 @@ func chkClock_UseCase2(t *testing.T) {
 	chk.Dur(t4.Sub(t3), time.Millisecond*10)
 }
 
-func chkClock_UseCase3(t *testing.T) {
+func chkClockUseCase3(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -213,7 +213,7 @@ func chkClock_UseCase3(t *testing.T) {
 	chk.Dur(t2.Sub(t1), time.Millisecond)
 }
 
-func chkClock_Subs(t *testing.T) {
+func chkClockSubs(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -247,7 +247,7 @@ func chkClock_Subs(t *testing.T) {
 	chk.Str(chk.ClockNext().Format(ts), "{{clkNano6}}")
 }
 
-func chkClock_Offset(t *testing.T) {
+func chkClockOffset(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 

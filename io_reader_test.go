@@ -27,16 +27,16 @@ import (
 )
 
 func tstChkIoReader(t *testing.T) {
-	t.Run("IOReaderNoError1", chkIoReaderTest_IOReaderNoError1)
-	t.Run("IOReaderNoError2", chkIoReaderTest_IOReaderNoError2)
-	t.Run("IOReaderError1", chkIoReader_IOReaderError1)
-	t.Run("IOReaderError2", chkIoReader_IOReaderError2)
-	t.Run("IOReaderError3", chkIoReader_IOReaderError3)
-	t.Run("SetReadError", chkIOReader_SetReadError)
-	t.Run("SetStdinData", chkIOReader_SetStdinData)
+	t.Run("IOReaderNoError1", chkIoReaderTestIOReaderNoError1)
+	t.Run("IOReaderNoError2", chkIoReaderTestIOReaderNoError2)
+	t.Run("IOReaderError1", chkIoReaderIOReaderError1)
+	t.Run("IOReaderError2", chkIoReaderIOReaderError2)
+	t.Run("IOReaderError3", chkIoReaderIOReaderError3)
+	t.Run("SetReadError", chkIOReaderSetReadError)
+	t.Run("SetStdinData", chkIOReaderSetStdinData)
 }
 
-func chkIoReaderTest_IOReaderNoError1(t *testing.T) {
+func chkIoReaderTestIOReaderNoError1(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -64,7 +64,7 @@ func chkIoReaderTest_IOReaderNoError1(t *testing.T) {
 	)
 }
 
-func chkIoReaderTest_IOReaderNoError2(t *testing.T) {
+func chkIoReaderTestIOReaderNoError2(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -92,7 +92,7 @@ func chkIoReaderTest_IOReaderNoError2(t *testing.T) {
 	)
 }
 
-func chkIoReader_IOReaderError1(t *testing.T) {
+func chkIoReaderIOReaderError1(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -127,7 +127,7 @@ func chkIoReader_IOReaderError1(t *testing.T) {
 	)
 }
 
-func chkIoReader_IOReaderError2(t *testing.T) {
+func chkIoReaderIOReaderError2(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -145,7 +145,7 @@ func chkIoReader_IOReaderError2(t *testing.T) {
 	)
 }
 
-func chkIoReader_IOReaderError3(t *testing.T) {
+func chkIoReaderIOReaderError3(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -177,7 +177,7 @@ func chkIoReader_IOReaderError3(t *testing.T) {
 	)
 }
 
-func chkIOReader_SetReadError(t *testing.T) {
+func chkIOReaderSetReadError(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -192,7 +192,7 @@ func chkIOReader_SetReadError(t *testing.T) {
 	chk.Err(err, "the read error")
 }
 
-func chkIOReader_SetStdinData(t *testing.T) {
+func chkIOReaderSetStdinData(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 

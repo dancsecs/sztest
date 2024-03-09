@@ -16,7 +16,6 @@
    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-//nolint:gochecknoglobals // Ok.
 package sztest
 
 import (
@@ -113,6 +112,7 @@ func validateTmpDir(s string) (string, bool) {
 	return s, true
 }
 
+//nolint:gochecknoglobals // Ok.
 var markStyles = map[string]string{
 	"DEFAULT":   clrOff,
 	"BOLD":      clrBold,
@@ -122,6 +122,7 @@ var markStyles = map[string]string{
 	"STRIKEOUT": clrStrikeout,
 }
 
+//nolint:gochecknoglobals // Ok.
 var markFG = map[string]string{
 	"BLACK":      clrBlack,
 	"HI-BLACK":   clrHiBlack,
@@ -141,6 +142,7 @@ var markFG = map[string]string{
 	"HI-WHITE":   clrHiWhite,
 }
 
+//nolint:gochecknoglobals // Ok.
 var markBG = map[string]string{
 	"BK-BLACK":      clrBkBlack,
 	"BK-HI-BLACK":   clrBkHiBlack,
@@ -196,10 +198,9 @@ func validateMark(colors, envVarName, defaultColor string) (string, bool) {
 				ok = false
 				log.Print("foreground color redefined")
 				break
-			} else {
-				foregroundColor = clr
-				continue
 			}
+			foregroundColor = clr
+			continue
 		}
 		clr, found = markBG[uC]
 		if found {
@@ -207,10 +208,9 @@ func validateMark(colors, envVarName, defaultColor string) (string, bool) {
 				ok = false
 				log.Print("background color redefined")
 				break
-			} else {
-				backgroundColor = clr
-				continue
 			}
+			backgroundColor = clr
+			continue
 		}
 		sty, found = markStyles[uC]
 		if found {
@@ -218,22 +218,20 @@ func validateMark(colors, envVarName, defaultColor string) (string, bool) {
 				ok = false
 				log.Print("style redefined")
 				break
-			} else {
-				styles[sty] = true
-				if uC == "DEFAULT" {
-					isDefault = true
-				}
-				continue
 			}
+			styles[sty] = true
+			if uC == "DEFAULT" {
+				isDefault = true
+			}
+			continue
 		}
 		if custom != "" {
 			ok = false
 			log.Print("custom mark redefined")
 			break
-		} else {
-			custom = c
-			continue
 		}
+		custom = c
+		continue
 	}
 	if ok && isDefault && foregroundColor+backgroundColor+custom != "" {
 		ok = false

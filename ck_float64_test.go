@@ -23,29 +23,29 @@ import (
 )
 
 func tstChkFloat64(t *testing.T) {
-	t.Run("Good", chkFloat64Test_Good)
+	t.Run("Good", chkFloat64TestGood)
 
-	t.Run("Bad", chkFloat64Test_Bad)
-	t.Run("BadMsg1", chkFloat64Test_Bad1)
-	t.Run("BadMsg2", chkFloat64Test_Bad2)
-	t.Run("BadMsg3", chkFloat64Test_Bad3)
+	t.Run("Bad", chkFloat64TestBad)
+	t.Run("BadMsg1", chkFloat64TestBad1)
+	t.Run("BadMsg2", chkFloat64TestBad2)
+	t.Run("BadMsg3", chkFloat64TestBad3)
 
-	t.Run("Slice-Good", chkFloat64SliceTest_Good)
-	t.Run("Slice-BadMsg1", chkFloat64SliceTest_BadMsg1)
-	t.Run("Slice-BadMsg2", chkFloat64SliceTest_BadMsg2)
-	t.Run("Slice-BadMsg3", chkFloat64SliceTest_BadMsg3)
-	t.Run("Slice-BadMsg4", chkFloat64SliceTest_BadMsg4)
-	t.Run("Slice-BadMsg5", chkFloat64SliceTest_BadMsg5)
-	t.Run("Slice-BadMsg6", chkFloat64SliceTest_BadMsg6)
-	t.Run("Slice-BadMsg7", chkFloat64SliceTest_BadMsg7)
-	t.Run("Slice-BadMsg8", chkFloat64SliceTest_BadMsg8)
-	t.Run("Slice-BadMsg9", chkFloat64SliceTest_BadMsg9)
+	t.Run("Slice-Good", chkFloat64SliceTestGood)
+	t.Run("Slice-BadMsg1", chkFloat64SliceTestBadMsg1)
+	t.Run("Slice-BadMsg2", chkFloat64SliceTestBadMsg2)
+	t.Run("Slice-BadMsg3", chkFloat64SliceTestBadMsg3)
+	t.Run("Slice-BadMsg4", chkFloat64SliceTestBadMsg4)
+	t.Run("Slice-BadMsg5", chkFloat64SliceTestBadMsg5)
+	t.Run("Slice-BadMsg6", chkFloat64SliceTestBadMsg6)
+	t.Run("Slice-BadMsg7", chkFloat64SliceTestBadMsg7)
+	t.Run("Slice-BadMsg8", chkFloat64SliceTestBadMsg8)
+	t.Run("Slice-BadMsg9", chkFloat64SliceTestBadMsg9)
 
-	t.Run("Bounded", chkFloat64BoundedTest_All)
-	t.Run("Unbounded", chkFloat64UnboundedTest_All)
+	t.Run("Bounded", chkFloat64BoundedTestAll)
+	t.Run("Unbounded", chkFloat64UnboundedTestAll)
 }
 
-func chkFloat64Test_Good(t *testing.T) {
+func chkFloat64TestGood(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -65,7 +65,7 @@ func chkFloat64Test_Good(t *testing.T) {
 	)
 }
 
-func chkFloat64Test_Bad(t *testing.T) {
+func chkFloat64TestBad(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -85,7 +85,7 @@ func chkFloat64Test_Bad(t *testing.T) {
 	)
 }
 
-func chkFloat64Test_Bad1(t *testing.T) {
+func chkFloat64TestBad1(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -108,7 +108,7 @@ func chkFloat64Test_Bad1(t *testing.T) {
 	)
 }
 
-func chkFloat64Test_Bad2(t *testing.T) {
+func chkFloat64TestBad2(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -134,7 +134,7 @@ func chkFloat64Test_Bad2(t *testing.T) {
 	)
 }
 
-func chkFloat64Test_Bad3(t *testing.T) {
+func chkFloat64TestBad3(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -157,7 +157,7 @@ func chkFloat64Test_Bad3(t *testing.T) {
 	)
 }
 
-func chkFloat64SliceTest_Good(t *testing.T) {
+func chkFloat64SliceTestGood(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -195,7 +195,7 @@ func chkFloat64SliceTest_Good(t *testing.T) {
 	)
 }
 
-func chkFloat64SliceTest_BadMsg1(t *testing.T) {
+func chkFloat64SliceTestBadMsg1(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -219,7 +219,7 @@ func chkFloat64SliceTest_BadMsg1(t *testing.T) {
 	)
 }
 
-func chkFloat64SliceTest_BadMsg2(t *testing.T) {
+func chkFloat64SliceTestBadMsg2(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -243,7 +243,7 @@ func chkFloat64SliceTest_BadMsg2(t *testing.T) {
 	)
 }
 
-func chkFloat64SliceTest_BadMsg3(t *testing.T) {
+func chkFloat64SliceTestBadMsg3(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -268,7 +268,7 @@ func chkFloat64SliceTest_BadMsg3(t *testing.T) {
 	)
 }
 
-func chkFloat64SliceTest_BadMsg4(t *testing.T) {
+func chkFloat64SliceTestBadMsg4(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -293,7 +293,7 @@ func chkFloat64SliceTest_BadMsg4(t *testing.T) {
 	)
 }
 
-func chkFloat64SliceTest_BadMsg5(t *testing.T) {
+func chkFloat64SliceTestBadMsg5(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -319,7 +319,7 @@ func chkFloat64SliceTest_BadMsg5(t *testing.T) {
 	)
 }
 
-func chkFloat64SliceTest_BadMsg6(t *testing.T) {
+func chkFloat64SliceTestBadMsg6(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -345,7 +345,7 @@ func chkFloat64SliceTest_BadMsg6(t *testing.T) {
 	)
 }
 
-func chkFloat64SliceTest_BadMsg7(t *testing.T) {
+func chkFloat64SliceTestBadMsg7(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -370,7 +370,7 @@ func chkFloat64SliceTest_BadMsg7(t *testing.T) {
 	)
 }
 
-func chkFloat64SliceTest_BadMsg8(t *testing.T) {
+func chkFloat64SliceTestBadMsg8(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -395,7 +395,7 @@ func chkFloat64SliceTest_BadMsg8(t *testing.T) {
 	)
 }
 
-func chkFloat64SliceTest_BadMsg9(t *testing.T) {
+func chkFloat64SliceTestBadMsg9(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -421,7 +421,7 @@ func chkFloat64SliceTest_BadMsg9(t *testing.T) {
 // Bounded
 /////////////////////////////////////////////
 
-func chkFloat64BoundedTest_All(t *testing.T) {
+func chkFloat64BoundedTestAll(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -449,11 +449,11 @@ func chkFloat64BoundedTest_All(t *testing.T) {
 	iT.check(t,
 		chkOutCapture("Nothing"),
 
-		chkOutNumericBounded_(wntMsg, "30", fName, "float64", ""),
-		chkOutNumericBounded_(wntMsg, "31", fName, "float64", "msg:31"),
+		chkOutNumericBounded(wntMsg, "30", fName, "float64", ""),
+		chkOutNumericBounded(wntMsg, "31", fName, "float64", "msg:31"),
 		chkOutNumericBoundedf(wntMsg, "32", fName, "float64", "msg:32"),
 
-		chkOutNumericBounded_(wntMsg, "36", fName, "float64", ""),
+		chkOutNumericBounded(wntMsg, "36", fName, "float64", ""),
 
 		chkOutRelease(),
 	)
@@ -463,7 +463,7 @@ func chkFloat64BoundedTest_All(t *testing.T) {
 // Unbounded
 /////////////////////////////////////////////
 
-func chkFloat64UnboundedTest_All(t *testing.T) {
+func chkFloat64UnboundedTestAll(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -487,8 +487,8 @@ func chkFloat64UnboundedTest_All(t *testing.T) {
 	iT.check(t,
 		chkOutCapture("Nothing"),
 
-		chkOutNumericUnbounded_(wntMsg, "125", fName, "float64", ""),
-		chkOutNumericUnbounded_(wntMsg, "126", fName, "float64", "msg:126"),
+		chkOutNumericUnbounded(wntMsg, "125", fName, "float64", ""),
+		chkOutNumericUnbounded(wntMsg, "126", fName, "float64", "msg:126"),
 		chkOutNumericUnboundedf(wntMsg, "127", fName, "float64", "msg:127"),
 
 		chkOutRelease(),

@@ -26,16 +26,16 @@ import (
 )
 
 func tstChkArgsAndFlags(t *testing.T) {
-	t.Run("SetupEmpty", chkArgsAndFlagsTest_SetupEmpty)
-	t.Run("SetupOneArg", chkArgsAndFlagsTest_SetupOneArg)
-	t.Run("GoodParseDefault", chkArgsAndFlagsTest_GoodParseDefault)
-	t.Run("GoodParse", chkArgsAndFlagsTest_GoodParse)
-	t.Run("GoodParseExtraArguments", chkArgsAndFlagsTest_GoodParseExtraArguments)
-	t.Run("BadParseInteger", chkArgsAndFlagsTest_BadParseInteger)
-	t.Run("CaptureFlagUsage", chkArgsAndFlagsTest_CaptureFlagUsage)
+	t.Run("SetupEmpty", chkArgsAndFlagsTestSetupEmpty)
+	t.Run("SetupOneArg", chkArgsAndFlagsTestSetupOneArg)
+	t.Run("GoodParseDefault", chkArgsAndFlagsTestGoodParseDefault)
+	t.Run("GoodParse", chkArgsAndFlagsTestGoodParse)
+	t.Run("GoodParseExtraArguments", chkArgsAndFlagsTestGoodParseExtraArguments)
+	t.Run("BadParseInteger", chkArgsAndFlagsTestBadParseInteger)
+	t.Run("CaptureFlagUsage", chkArgsAndFlagsTestCaptureFlagUsage)
 }
 
-func chkArgsAndFlagsTest_SetupEmpty(t *testing.T) {
+func chkArgsAndFlagsTestSetupEmpty(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -52,7 +52,7 @@ func chkArgsAndFlagsTest_SetupEmpty(t *testing.T) {
 	chk.StrSlice(os.Args, []string{"unspecifiedProgram"})
 }
 
-func chkArgsAndFlagsTest_SetupOneArg(t *testing.T) {
+func chkArgsAndFlagsTestSetupOneArg(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -72,7 +72,7 @@ func chkArgsAndFlagsTest_SetupOneArg(t *testing.T) {
 	chk.StrSlice(os.Args, args)
 }
 
-func chkArgsAndFlagsTest_GoodParseDefault(t *testing.T) {
+func chkArgsAndFlagsTestGoodParseDefault(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -101,7 +101,7 @@ func chkArgsAndFlagsTest_GoodParseDefault(t *testing.T) {
 	chk.Int(flag.NArg(), 0)
 }
 
-func chkArgsAndFlagsTest_GoodParse(t *testing.T) {
+func chkArgsAndFlagsTestGoodParse(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -132,7 +132,7 @@ func chkArgsAndFlagsTest_GoodParse(t *testing.T) {
 	chk.Int(flag.NArg(), 0)
 }
 
-func chkArgsAndFlagsTest_GoodParseExtraArguments(t *testing.T) {
+func chkArgsAndFlagsTestGoodParseExtraArguments(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
@@ -165,7 +165,7 @@ func chkArgsAndFlagsTest_GoodParseExtraArguments(t *testing.T) {
 	chk.Str(flag.Arg(0), "extra Arg")
 }
 
-func chkArgsAndFlagsTest_BadParseInteger(t *testing.T) {
+func chkArgsAndFlagsTestBadParseInteger(t *testing.T) {
 	chk := CaptureStderr(t)
 	defer chk.Release()
 
@@ -206,7 +206,7 @@ func chkArgsAndFlagsTest_BadParseInteger(t *testing.T) {
 	)
 }
 
-func chkArgsAndFlagsTest_CaptureFlagUsage(t *testing.T) {
+func chkArgsAndFlagsTestCaptureFlagUsage(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 

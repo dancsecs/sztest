@@ -27,7 +27,7 @@ func (chk *Chk) SetSeekError(pos int64, err error) {
 
 // Seek implements the interface to simulate a Seek operation returning an
 // error if provided.
-func (chk *Chk) Seek(pos int64, whence int) (int64, error) {
+func (chk *Chk) Seek(_ int64, _ int) (int64, error) {
 	seekPos := chk.ioSeekErrPos
 	seekErr := chk.ioSeekErr
 	if chk.ioSeekErrSet {
