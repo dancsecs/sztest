@@ -44,7 +44,6 @@ issues:
         - forbidigo
         - funlen
         - goconst
-        - gocyclo
         - goerr113
         - maintidx
         - paralleltest
