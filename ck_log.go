@@ -347,7 +347,8 @@ func CaptureStderrAndStdout(t testingT) *Chk {
 
 func (chk *Chk) prepareSlice(
 	processFunc func(string) string,
-	rawLines ...string) []string {
+	rawLines ...string,
+) []string {
 	var lines []string
 	for _, rl := range rawLines {
 		for _, l := range strings.Split(rl, "\n") {

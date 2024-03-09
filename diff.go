@@ -41,7 +41,7 @@ func defaultCmpFunc[T chkType](got, want T) bool {
 // CompareArrays returns "" an empty string if there are no differences
 // otherwise it returns a string outlining the differences.
 func CompareArrays[T chkType](got, wnt []T) string {
-	var differencesFound = false
+	differencesFound := false
 
 	ret := "" +
 		strings.Join(
@@ -71,7 +71,7 @@ func CompareSlices[T chkType](
 	cmp func(a, b T) bool,
 	stringify func(any) string,
 ) string {
-	var differencesFound = false
+	differencesFound := false
 
 	ret := "" +
 		strings.Join(

@@ -69,7 +69,7 @@ func chkDirTest_RemoveTestDir(t *testing.T) {
 
 	fileName := filepath.Join(tstDir, "fileNotDir")
 
-	chk.NoErr(os.WriteFile(fileName, []byte{}, 0600))
+	chk.NoErr(os.WriteFile(fileName, []byte{}, 0o0600))
 
 	chk.Err(
 		removeTestDir(fileName),
@@ -101,7 +101,7 @@ func chkDirTest_RemoveTestFile(t *testing.T) {
 	// no error if file is not there
 	chk.NoErr(removeTestFile(fileName))
 
-	chk.NoErr(os.WriteFile(fileName, []byte{}, 0600))
+	chk.NoErr(os.WriteFile(fileName, []byte{}, 0o0600))
 
 	chk.NoErr(
 		removeTestFile(fileName),
@@ -116,7 +116,7 @@ func chkDirTest_SetDirPerm(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
-	newPerm := os.FileMode(0777)
+	newPerm := os.FileMode(0o0777)
 
 	oldSettingPermDir := settingPermDir
 
@@ -137,7 +137,7 @@ func chkDirTest_SetFilePerm(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
-	newPerm := os.FileMode(0777)
+	newPerm := os.FileMode(0o0777)
 
 	oldSettingPermFile := settingPermFile
 
@@ -158,7 +158,7 @@ func chkDirTest_SetPermExe(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
-	newPerm := os.FileMode(0777)
+	newPerm := os.FileMode(0o0777)
 
 	olsSettingPermExe := settingPermExe
 	chk.Int(
@@ -233,9 +233,9 @@ func chkDirTest_SetTmpDirNotDirectory(t *testing.T) {
 
 	rootDir, _ := filepath.Split(fName)
 
-	chk.NoErr(os.MkdirAll(rootDir, 0700))
+	chk.NoErr(os.MkdirAll(rootDir, 0o0700))
 
-	if chk.NoErr(os.WriteFile(fName, []byte{}, 0600)) {
+	if chk.NoErr(os.WriteFile(fName, []byte{}, 0o0600)) {
 		chk.PushPreReleaseFunc(
 			func() error {
 				return os.Remove(fName) //nolint:wrapcheck // Ok.
@@ -270,7 +270,7 @@ func chkDirTest_SetTmpDirExtendExisting(t *testing.T) {
 		settingTmpDir = oldSettingTmpDir
 	}()
 
-	const defaultDirPerm = os.FileMode(0700)
+	const defaultDirPerm = os.FileMode(0o0700)
 	fPath := filepath.Join(settingTmpDir, chk.Name())
 
 	if chk.NoErr(os.Mkdir(fPath, defaultDirPerm)) {
@@ -527,12 +527,15 @@ func chkDirTest_CreateTmpUnixScriptWithLeading(t *testing.T) {
 	chk := CaptureNothing(iT)
 	iT.chk = chk
 
-	fileName := chk.CreateTmpUnixScript([]string{`
+	fileName := chk.CreateTmpUnixScript(
+		[]string{
+			`
 		#!/bin/bash
 
 		echo "Hello, world!"
 		`,
-	})
+		},
+	)
 
 	chk.Str(
 		fileName,

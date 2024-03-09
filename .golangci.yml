@@ -15,7 +15,6 @@ linters:
     - cyclop
     - dupl
     - gocognit
-    - gofumpt
     - lll
     - nlreturn
     - revive
@@ -48,7 +47,6 @@ issues:
         - goconst
         - gocyclo
         - goerr113
-        - gofumpt
         - lll
         - maintidx
         - nlreturn

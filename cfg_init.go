@@ -51,9 +51,9 @@ const (
 const (
 	defFailFast   = true
 	defBufferSize = 10_000
-	defPermDir    = os.FileMode(0700)
-	defPermFile   = os.FileMode(0600)
-	defPermExe    = os.FileMode(0700)
+	defPermDir    = os.FileMode(0o0700)
+	defPermFile   = os.FileMode(0o0600)
+	defPermExe    = os.FileMode(0o0700)
 	defDiffChars  = 3
 	defDiffSlice  = 1
 	defMarkWntOn  = clrCyan

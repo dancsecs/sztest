@@ -77,7 +77,7 @@ func chkArgsAndFlagsTest_GoodParseDefault(t *testing.T) {
 	defer chk.Release()
 
 	var strValue string
-	var main = func() {
+	main := func() {
 		flag.StringVar(&strValue, "strValue", "defaultStrValue",
 			"usage of default string value",
 		)
@@ -106,7 +106,7 @@ func chkArgsAndFlagsTest_GoodParse(t *testing.T) {
 	defer chk.Release()
 
 	var strValue string
-	var main = func() {
+	main := func() {
 		flag.StringVar(&strValue, "s", "defaultStrValue",
 			"usage of default string value",
 		)
@@ -137,7 +137,7 @@ func chkArgsAndFlagsTest_GoodParseExtraArguments(t *testing.T) {
 	defer chk.Release()
 
 	var strValue string
-	var main = func() {
+	main := func() {
 		flag.StringVar(&strValue, "s", "defaultStrValue",
 			"usage of default string value",
 		)
@@ -170,7 +170,7 @@ func chkArgsAndFlagsTest_BadParseInteger(t *testing.T) {
 	defer chk.Release()
 
 	var intValue int
-	var main = func() {
+	main := func() {
 		flag.IntVar(&intValue, "n", 10,
 			"usage of default int value",
 		)

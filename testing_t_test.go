@@ -570,8 +570,9 @@ func freezeMarks(source string) (string, error) {
 	iCloseMarkExpected := ""
 	newS := ""
 	for {
-		i, eNextMark, iNextMark, iNextCloseMark :=
-			findNextMark(source, iCloseMarkExpected)
+		i, eNextMark, iNextMark, iNextCloseMark := findNextMark(
+			source, iCloseMarkExpected,
+		)
 
 		// If no more marks are present then we are done.  Either return the
 		// translated string with the all marks reversed or an error if we are

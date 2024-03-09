@@ -353,19 +353,19 @@ func testCfgInit_AllOverrides(t *testing.T) {
 		t.Fatalf(errMsg, EnvFailFast, settingFailFast, false)
 	}
 
-	if settingPermDir != 0701 ||
-		SettingPermDir() != 0701 {
-		t.Fatalf(errMsg, EnvPermDir, settingPermDir, 0701)
+	if settingPermDir != 0o0701 ||
+		SettingPermDir() != 0o0701 {
+		t.Fatalf(errMsg, EnvPermDir, settingPermDir, 0o0701)
 	}
 
-	if settingPermFile != 0601 ||
-		SettingPermFile() != 0601 {
-		t.Fatalf(errMsg, EnvPermFile, settingPermFile, 0601)
+	if settingPermFile != 0o0601 ||
+		SettingPermFile() != 0o0601 {
+		t.Fatalf(errMsg, EnvPermFile, settingPermFile, 0o0601)
 	}
 
-	if settingPermExe != 0711 ||
-		SettingPermExe() != 0711 {
-		t.Fatalf(errMsg, EnvPermExe, settingPermExe, 0711)
+	if settingPermExe != 0o0711 ||
+		SettingPermExe() != 0o0711 {
+		t.Fatalf(errMsg, EnvPermExe, settingPermExe, 0o0711)
 	}
 
 	if settingTmpDir != userHomeDir ||

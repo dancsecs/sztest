@@ -224,7 +224,6 @@ func (chk *Chk) CreateTmpSubDir(d ...string) string {
 	pathElements = append(pathElements, d...)
 	fullPath := filepath.Join(pathElements...)
 	err := os.MkdirAll(fullPath, settingPermDir)
-
 	if err != nil {
 		chk.t.Helper()
 		chk.Error("createTmpSubDir cause: ", err)

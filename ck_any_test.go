@@ -31,8 +31,7 @@ type abcInterface interface {
 	abcFunction()
 }
 
-type abcStruct struct {
-}
+type abcStruct struct{}
 
 func (s *abcStruct) abcFunction() {
 }

@@ -107,10 +107,10 @@ func testConfig_ValidatePermDir(t *testing.T) {
 			true,
 		)
 	}
-	if v != 0712 {
+	if v != 0o0712 {
 		t.Fatalf(invalidPerm, jsonName,
 			v,
-			0712,
+			0o0712,
 		)
 	}
 
@@ -157,10 +157,10 @@ func testConfig_ValidatePermFile(t *testing.T) {
 			true,
 		)
 	}
-	if v != 0612 {
+	if v != 0o0612 {
 		t.Fatalf(invalidPerm, jsonName,
 			v,
-			0612,
+			0o0612,
 		)
 	}
 
@@ -207,10 +207,10 @@ func testConfig_ValidatePermExe(t *testing.T) {
 			true,
 		)
 	}
-	if v != 0712 {
+	if v != 0o0712 {
 		t.Fatalf(invalidPerm, jsonName,
 			v,
-			0712,
+			0o0712,
 		)
 	}
 
@@ -271,7 +271,7 @@ func testConfig_ValidateTmpDir(t *testing.T) {
 		)
 	}
 
-	err = os.Mkdir(newTmpPath, 0700)
+	err = os.Mkdir(newTmpPath, 0o0700)
 	if err != nil {
 		t.Fatalf("could not setup tmp dir test: " + err.Error())
 	}
@@ -295,7 +295,7 @@ func testConfig_ValidateTmpDir(t *testing.T) {
 
 	// Not a directory.
 	badDir := filepath.Join(newTmpPath, "badTmpDir")
-	err = os.WriteFile(badDir, []byte{}, 0600)
+	err = os.WriteFile(badDir, []byte{}, 0o0600)
 	if err != nil {
 		t.Fatal("could not create file to be bad tmp dir")
 	}

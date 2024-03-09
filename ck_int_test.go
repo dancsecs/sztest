@@ -370,6 +370,7 @@ func chkIntSliceTest_BadMsg8(t *testing.T) {
 		chkOutRelease(),
 	)
 }
+
 func chkIntSliceTest_BadMsg9(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
