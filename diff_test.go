@@ -536,13 +536,13 @@ func stringify(v any) string {
 
 //nolint:cyclop // Ok.
 func chkDiffSlice(t *testing.T, tst *tstDiffSlice) {
+	t.Helper()
+
 	var (
 		changed bool
 		got     []string
 		wnt     []string
 	)
-
-	t.Helper()
 
 	diffResult := DiffSlice(
 		tst.got, tst.wnt,
@@ -1030,12 +1030,12 @@ type tstCompareSlices struct {
 }
 
 func chkCompareSlices(t *testing.T, tst *tstCompareSlices) {
+	t.Helper()
+
 	var (
 		got []string
 		wnt []string
 	)
-
-	t.Helper()
 
 	diffResult := CompareSlices(
 		"[[Test Title]]",
@@ -1133,12 +1133,12 @@ type tstCompareArrays struct {
 }
 
 func chkCompareArrays(t *testing.T, tst *tstCompareArrays) {
+	t.Helper()
+
 	var (
 		got []string
 		wnt []string
 	)
-
-	t.Helper()
 
 	diffResult := CompareArrays(
 		tst.got,

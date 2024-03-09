@@ -46,7 +46,6 @@ issues:
         - goerr113
         - paralleltest
         - testpackage
-        - thelper
 
 run:
   timeout: 5m
