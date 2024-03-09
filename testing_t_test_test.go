@@ -433,6 +433,7 @@ func testPrerequisiteCheckBad3(t *testing.T) {
 	}
 }
 
+//nolint:cyclop // Ok.
 func tstFreezeMarks(t *testing.T) {
 	const tstName = "testFreezeMarks"
 	iT := new(iTst)

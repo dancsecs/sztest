@@ -498,6 +498,8 @@ const (
 )
 
 // findNextMark searches the string for all known marks.
+//
+//nolint:cyclop // Ok.
 func findNextMark(data, expectedClose string,
 ) (int, string, string, string) {
 	if data == "" {

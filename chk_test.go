@@ -685,6 +685,7 @@ func chkTestTstBoundedRangeClosed(t *testing.T) {
 	)
 }
 
+//nolint:cyclop // Ok.
 func chkTestTstBoundedRangeOpenMinOrClosedMax(t *testing.T) {
 	const area = "generic inBoundedRange OpenMinOrClosedMax"
 	iT := new(iTst)
@@ -788,6 +789,7 @@ func chkTestTstBoundedRangeOpenMinOrClosedMax(t *testing.T) {
 	)
 }
 
+//nolint:cyclop // Ok.
 func chkTestTstBoundedRangeOpenMaxOrClosedMin(t *testing.T) {
 	const area = "generic inBoundedRange OpenMaxOrClosedMin"
 	iT := new(iTst)

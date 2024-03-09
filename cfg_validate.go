@@ -169,7 +169,7 @@ var markBG = map[string]string{
 	"BK-HI-WHITE":   clrBkHiWhite,
 }
 
-//nolint:funlen // ok
+//nolint:funlen,cyclop // ok
 func validateMark(colors, envVarName, defaultColor string) (string, bool) {
 	var (
 		found bool

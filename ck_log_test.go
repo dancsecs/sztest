@@ -74,6 +74,7 @@ func tstChkLogging(t *testing.T) {
 	t.Run("Slog", chkLogTestSlog)
 }
 
+//nolint:cyclop // Ok.
 func chkLogTestRemoveLogPrefixes(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)

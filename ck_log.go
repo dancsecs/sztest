@@ -42,6 +42,7 @@ const (
 //nolint:goCheckNoGlobals // Caches log.Flag() and log.Prefix() regexps.
 var logPrefixRegexpCache = make(map[string]*regexp.Regexp)
 
+//nolint:cyclop // Ok.
 func (chk *Chk) setupLoggers(option captureOption) {
 	if option == captureStdout ||
 		option == captureStderrAndStdout ||

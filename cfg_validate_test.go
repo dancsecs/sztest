@@ -243,6 +243,7 @@ func testConfigValidatePermExe(t *testing.T) {
 	}
 }
 
+//nolint:cyclop // Ok.
 func testConfigValidateTmpDir(t *testing.T) {
 	buf := bytes.NewBuffer(make([]byte, 0, 1000))
 	log.SetOutput(buf)
@@ -338,6 +339,7 @@ func testConfigValidateTmpDir(t *testing.T) {
 	}
 }
 
+//nolint:cyclop // Ok.
 func testConfigValidateColor(t *testing.T) {
 	buf := bytes.NewBuffer(make([]byte, 0, 1000))
 	log.SetOutput(buf)
@@ -537,6 +539,7 @@ func testConfigValidateColor(t *testing.T) {
 	}
 }
 
+//nolint:cyclop // Ok.
 func testConfigValidateMinRunString(t *testing.T) {
 	buf := bytes.NewBuffer(make([]byte, 0, 1000))
 	log.SetOutput(buf)
@@ -590,6 +593,7 @@ func testConfigValidateMinRunString(t *testing.T) {
 	}
 }
 
+//nolint:cyclop // Ok.
 func testConfigValidateMinRunSlice(t *testing.T) {
 	buf := bytes.NewBuffer(make([]byte, 0, 1000))
 	log.SetOutput(buf)

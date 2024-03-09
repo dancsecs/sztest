@@ -14,7 +14,6 @@ linters-settings:
 linters:
   enable-all: true
   disable:
-    - cyclop
     - dupl
     - gocognit
     - lll
@@ -38,7 +37,6 @@ issues:
   exclude-rules:
     - path: _test\.go  # Exclude on test files.
       linters:
-        - cyclop
         - dupl
         - forbidigo
         - funlen

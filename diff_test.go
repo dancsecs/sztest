@@ -528,6 +528,7 @@ func stringify(v any) string {
 	return fmt.Sprintf("%v", v)
 }
 
+//nolint:cyclop // Ok.
 func chkDiffSlice(t *testing.T, tst *tstDiffSlice) {
 	var changed bool
 	var got []string

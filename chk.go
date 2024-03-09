@@ -506,6 +506,7 @@ const (
 	UnboundedMaxClosed
 )
 
+//nolint:cyclop // Ok.
 func inBoundedRange[V chkBoundedType](
 	got V, option BoundedOption, min, max V,
 ) (bool, string) {

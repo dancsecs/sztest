@@ -117,6 +117,7 @@ func restoreAll(envVars []*sysEnvVar) {
 	initAll()
 }
 
+//nolint:cyclop // Ok.
 func setupSysEnvVarTest(tmpDir string) error {
 	const errMsg = "could not set: %s: %v"
 	var err error
@@ -211,7 +212,7 @@ func setupSysEnvVarTest(tmpDir string) error {
 	return nil
 }
 
-//nolint:gocyclo // Ok.
+//nolint:cyclop,gocyclo // Ok.
 func testCfgInitAllDefaults(t *testing.T) {
 	const errMsg = "unexpected default for %s: Got: %v Wnt: %v"
 
@@ -330,7 +331,7 @@ func testCfgInitAllDefaults(t *testing.T) {
 	}
 }
 
-//nolint:gocyclo // Ok.
+//nolint:cyclop,gocyclo // Ok.
 func testCfgInitAllOverrides(t *testing.T) {
 	const errMsg = "unexpected override for %s: Got: %v Wnt: %v"
 
