@@ -46,17 +46,17 @@ func chkErrLastTest_1(t *testing.T) {
 
 	chk.Err(
 		chk.LastErr(),
-		ErrInvalidLastErrArg.Error(),
+		ErrInvalidLastArg.Error(),
 	)
 
 	chk.Err(
 		chk.LastErr(1),
-		ErrInvalidLastErrArg.Error(),
+		ErrInvalidLastArg.Error(),
 	)
 
 	chk.Err(
 		chk.LastErr(1, 2),
-		ErrInvalidLastErrArg.Error(),
+		ErrInvalidLastArg.Error(),
 	)
 
 	chk.Err(
@@ -75,7 +75,7 @@ func chkErrLastTest_1(t *testing.T) {
 	)
 	chk.Err(
 		chk.LastErr(1, err1, err2, 2),
-		ErrInvalidLastErrArg.Error(),
+		ErrInvalidLastArg.Error(),
 	)
 }
 
@@ -110,15 +110,15 @@ func chkErrLastTest_2(t *testing.T) {
 
 	chk.Err(
 		chk.LastErr(fBad1()),
-		ErrInvalidLastErrArg.Error(),
+		ErrInvalidLastArg.Error(),
 	)
 	chk.Err(
 		chk.LastErr(fBad2()),
-		ErrInvalidLastErrArg.Error(),
+		ErrInvalidLastArg.Error(),
 	)
 	chk.Err(
 		chk.LastErr(fBad3()),
-		ErrInvalidLastErrArg.Error(),
+		ErrInvalidLastArg.Error(),
 	)
 
 	chk.Err(

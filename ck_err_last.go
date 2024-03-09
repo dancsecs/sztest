@@ -26,13 +26,13 @@ func (*Chk) LastErr(p ...any) error {
 	var lastErr error
 	var ok bool
 	if len(p) == 0 {
-		err = ErrInvalidLastErrArg
+		err = ErrInvalidLastArg
 	}
 	if err == nil {
 		lastErr, ok = p[len(p)-1].(error)
 		if !ok {
 			if p[len(p)-1] != nil {
-				err = ErrInvalidLastErrArg
+				err = ErrInvalidLastArg
 			}
 		}
 	}
