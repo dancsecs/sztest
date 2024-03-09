@@ -203,7 +203,7 @@ func (chk *Chk) copyStderr() error {
 // before (*Chk).Release() is invoked.
 func CaptureStdout(t testingT) *Chk {
 	t.Helper()
-	return new(t, captureStdout)
+	return newChk(t, captureStdout)
 }
 
 // CaptureLog returns a new *sztest.Chk reference
@@ -218,7 +218,7 @@ func CaptureStdout(t testingT) *Chk {
 // before (*Chk).Release() is invoked.
 func CaptureLog(t testingT) *Chk {
 	t.Helper()
-	return new(t, captureLog)
+	return newChk(t, captureLog)
 }
 
 // CaptureLogAndStdout returns a new *sztest.Chk reference
@@ -235,7 +235,7 @@ func CaptureLog(t testingT) *Chk {
 // before (*Chk).Release() is invoked.
 func CaptureLogAndStdout(t testingT) *Chk {
 	t.Helper()
-	return new(t, captureLogAndStdout)
+	return newChk(t, captureLogAndStdout)
 }
 
 // CaptureLogAndStderr returns a new *sztest.Chk reference
@@ -252,7 +252,7 @@ func CaptureLogAndStdout(t testingT) *Chk {
 // before (*Chk).Release() is invoked.
 func CaptureLogAndStderr(t testingT) *Chk {
 	t.Helper()
-	return new(t, captureLogAndStderr)
+	return newChk(t, captureLogAndStderr)
 }
 
 // CaptureLogAndStderrAndStdout returns a new *sztest.Chk reference
@@ -271,7 +271,7 @@ func CaptureLogAndStderr(t testingT) *Chk {
 // before (*Chk).Release() is invoked.
 func CaptureLogAndStderrAndStdout(t testingT) *Chk {
 	t.Helper()
-	return new(t, captureLogAndStderrAndStdout)
+	return newChk(t, captureLogAndStderrAndStdout)
 }
 
 // CaptureLogWithStderr returns a new *sztest.Chk reference
@@ -288,7 +288,7 @@ func CaptureLogAndStderrAndStdout(t testingT) *Chk {
 // before (*Chk).Release() is invoked.
 func CaptureLogWithStderr(t testingT) *Chk {
 	t.Helper()
-	return new(t, captureLogWithStderr)
+	return newChk(t, captureLogWithStderr)
 }
 
 // CaptureLogWithStderrAndStdout returns a new *sztest.Chk reference
@@ -310,7 +310,7 @@ func CaptureLogWithStderr(t testingT) *Chk {
 // before (*Chk).Release() is invoked.
 func CaptureLogWithStderrAndStdout(t testingT) *Chk {
 	t.Helper()
-	return new(t, captureLogWithStderrAndStdout)
+	return newChk(t, captureLogWithStderrAndStdout)
 }
 
 // CaptureStderr returns a new *sztest.Chk reference
@@ -325,7 +325,7 @@ func CaptureLogWithStderrAndStdout(t testingT) *Chk {
 // before (*Chk).Release() is invoked.
 func CaptureStderr(t testingT) *Chk {
 	t.Helper()
-	return new(t, captureStderr)
+	return newChk(t, captureStderr)
 }
 
 // CaptureStderrAndStdout returns a new *sztest.Chk reference
@@ -342,7 +342,7 @@ func CaptureStderr(t testingT) *Chk {
 // before (*Chk).Release() is invoked.
 func CaptureStderrAndStdout(t testingT) *Chk {
 	t.Helper()
-	return new(t, captureStderrAndStdout)
+	return newChk(t, captureStderrAndStdout)
 }
 
 func (chk *Chk) prepareSlice(

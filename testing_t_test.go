@@ -174,7 +174,7 @@ func chkOutHelper(funcName string) string {
 func chkOutCapture(area string) string {
 	return "" +
 		tstOutHelper("Capture"+area) +
-		tstOutHelper("new")
+		tstOutHelper("newChk")
 }
 
 func chkOutRelease() string {

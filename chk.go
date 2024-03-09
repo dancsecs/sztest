@@ -168,7 +168,7 @@ type Chk struct {
 	clkTicks []time.Time
 }
 
-func new(t testingT, option captureOption) *Chk {
+func newChk(t testingT, option captureOption) *Chk {
 	t.Helper()
 	chk := &Chk{
 		t:       t,
@@ -188,7 +188,7 @@ func new(t testingT, option captureOption) *Chk {
 // standard io being captured.
 func CaptureNothing(t testingT) *Chk {
 	t.Helper()
-	return new(t, captureNothing)
+	return newChk(t, captureNothing)
 }
 
 // FailFast sets the action takin after an error is discovered.

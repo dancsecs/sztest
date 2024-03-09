@@ -545,7 +545,7 @@ func tstChkOutCapture(t *testing.T) {
 	// Check for iTst invocations.
 	wnt := "" +
 		"Helper: CaptureDataType\n" +
-		"Helper: new\n" +
+		"Helper: newChk\n" +
 		""
 	if got != wnt {
 		t.Error(errGotWnt(tstName, got, wnt))

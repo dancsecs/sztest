@@ -24,7 +24,6 @@ linters:
     - lll
     - nlreturn
     - nonamedreturns
-    - predeclared
     - revive
     - varnamelen
     - wastedassign
