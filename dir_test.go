@@ -238,7 +238,7 @@ func chkDirTest_SetTmpDirNotDirectory(t *testing.T) {
 	if chk.NoErr(os.WriteFile(fName, []byte{}, 0600)) {
 		chk.PushPreReleaseFunc(
 			func() error {
-				return os.Remove(fName)
+				return os.Remove(fName) //nolint:wrapcheck // Ok.
 			},
 		)
 	}
@@ -276,7 +276,7 @@ func chkDirTest_SetTmpDirExtendExisting(t *testing.T) {
 	if chk.NoErr(os.Mkdir(fPath, defaultDirPerm)) {
 		chk.PushPreReleaseFunc(
 			func() error {
-				return os.RemoveAll(fPath)
+				return os.RemoveAll(fPath) //nolint:wrapcheck // Ok.
 			},
 		)
 	}

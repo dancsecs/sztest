@@ -103,7 +103,7 @@ func (chk *Chk) setupStderrLogger(includeLog bool) {
 			log.SetOutput(chk.logOrig)
 			log.SetFlags(chk.logOrigLogFlags)
 		}
-		return err
+		return err //nolint:wrapcheck // Ok
 	})
 }
 
@@ -151,7 +151,7 @@ func (chk *Chk) setupStdoutLogger() {
 		}
 		t := os.Stdout
 		os.Stdout = chk.outOrig
-		return t.Close()
+		return t.Close() //nolint:wrapcheck // Ok.
 	})
 }
 
@@ -170,7 +170,7 @@ func (chk *Chk) copyStdout() error {
 		}()
 		os.Stdout = w
 	}
-	return err
+	return err //nolint:wrapcheck // Ok.
 }
 
 func (chk *Chk) copyStderr() error {
@@ -188,7 +188,7 @@ func (chk *Chk) copyStderr() error {
 		}()
 		os.Stderr = w
 	}
-	return err
+	return err //nolint:wrapcheck // Ok.
 }
 
 // CaptureStdout returns a new *sztest.Chk reference

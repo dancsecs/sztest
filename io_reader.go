@@ -99,7 +99,7 @@ func (chk *Chk) SetStdinData(d ...string) {
 			if err == nil {
 				err = r.Close()
 			}
-			return err
+			return err //nolint:wrapcheck // Ok.
 		})
 
 		chk.NoErr(err)

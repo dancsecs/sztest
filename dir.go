@@ -88,7 +88,7 @@ func removeTestDir(dir string) error {
 	if err == nil {
 		err = os.RemoveAll(dir)
 	}
-	return err
+	return err //nolint:wrapcheck // Ok.
 }
 
 func removeTestFile(path string) error {
@@ -105,7 +105,7 @@ func removeTestFile(path string) error {
 	if err == nil {
 		err = os.Remove(path)
 	}
-	return err
+	return err //nolint:wrapcheck // Ok.
 }
 
 func (chk *Chk) createFile(path string, data []byte, perm os.FileMode) string {

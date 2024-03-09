@@ -32,7 +32,6 @@ linters:
     - revive
     - varnamelen
     - wastedassign
-    - wrapcheck
     - wsl
 
     - deadcode # Deprecated
@@ -76,7 +75,6 @@ issues:
         - stylecheck
         - testpackage
         - thelper
-        - wrapcheck
         - unparam
         - varnamelen
         - wastedassign
