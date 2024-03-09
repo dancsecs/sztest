@@ -14,7 +14,6 @@ linters-settings:
 linters:
   enable-all: true
   disable:
-    - dupl
     - lll
 
     - deadcode # Deprecated
@@ -33,9 +32,17 @@ issues:
   max-issues-per-linter: 0
   max-same-issues: 0
   exclude-rules:
-    - path: _test\.go  # Exclude on test files.
+    - path: ck_.+\.go  # Exclude on type check methods.
       linters:
         - dupl
+    - path: cfg_validate_test\.go 
+      linters:
+        - dupl
+    - path: chk_test\.go 
+      linters:
+        - dupl
+    - path: _test\.go  # Exclude on test files.
+      linters:
         - forbidigo
         - funlen
         - goconst
