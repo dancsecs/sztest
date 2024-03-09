@@ -26,7 +26,6 @@ linters:
     - nonamedreturns
     - revive
     - varnamelen
-    - wastedassign
     - wsl
 
     - deadcode # Deprecated
@@ -69,7 +68,6 @@ issues:
         - thelper
         - unparam
         - varnamelen
-        - wastedassign
         - wsl
 
 run:

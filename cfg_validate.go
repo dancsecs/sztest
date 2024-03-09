@@ -161,15 +161,18 @@ var markBG = map[string]string{
 
 //nolint:funlen // ok
 func validateMark(colors, envVarName, defaultColor string) (string, bool) {
+	var (
+		found bool
+		clr   string
+		sty   string
+	)
+
 	ok := true
-	found := false
 	isDefault := false
 	foregroundColor := ""
 	backgroundColor := ""
 	custom := ""
 	styles := make(map[string]bool)
-	clr := ""
-	sty := ""
 
 	colors = strings.TrimSpace(colors)
 	if colors == "" {

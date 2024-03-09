@@ -322,8 +322,7 @@ func errMsgHeader(typeName string, msgArgs ...any) string {
 }
 
 func errMsgHeaderf(typeName, msgFmt string, msgArgs ...any) string {
-	msg := ""
-	msg = fmt.Sprintf(msgFmt, msgArgs...)
+	msg := fmt.Sprintf(msgFmt, msgArgs...)
 	if msg != "" {
 		msg = ":\n" + markMsgOn + msg + markMsgOff
 	}
@@ -398,6 +397,8 @@ func errSlice[V chkType](
 	got, want []V, typeName string, cmp func(a, b V) bool, msg ...any,
 ) bool {
 	chk.t.Helper()
+	var errMsg string
+
 	d1 := false
 	gDiff := DiffSlice(
 		got,
@@ -408,7 +409,6 @@ func errSlice[V chkType](
 		settingDiffChars,
 		cmp,
 	)
-	errMsg := ""
 	if d1 {
 		errMsg = fmt.Sprint("Length Got: ", len(got), " Wnt: ", len(want))
 	} else {
@@ -428,6 +428,8 @@ func errSlicef[V chkType](
 	msgFmt string, msgArgs ...any,
 ) bool {
 	chk.t.Helper()
+	var errMsg string
+
 	d1 := false
 	gDiff := DiffSlice(
 		got,
@@ -438,7 +440,6 @@ func errSlicef[V chkType](
 		settingDiffChars,
 		cmp,
 	)
-	errMsg := ""
 	if d1 {
 		errMsg = fmt.Sprint("Length Got: ", len(got), " Wnt: ", len(want))
 	} else {

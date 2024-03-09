@@ -104,8 +104,10 @@ func chkLogTest__RemoveLogPrefixes(t *testing.T) {
 	}
 
 	finalResult := strings.Split(createLogString("", 0), "\n")
-	f := 0
-	p := ""
+	var (
+		f int
+		p string
+	)
 
 	explain := ""
 
