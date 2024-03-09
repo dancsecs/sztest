@@ -35,5 +35,6 @@ func (chk *Chk) Seek(_ int64, _ int) (int64, error) {
 		chk.ioSeekErr = nil
 		chk.ioSeekErrSet = false
 	}
+
 	return seekPos, seekErr
 }

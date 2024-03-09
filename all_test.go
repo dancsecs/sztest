@@ -70,6 +70,7 @@ func saveThenSetupDefaultEnvironment() func() {
 			}
 		}
 	}
+
 	return restoreFunc
 }
 
@@ -153,6 +154,7 @@ func errMarkupFuncNone(area string, got, wnt any) string {
 	if strings.Count(g, "\n") > 1 && strings.Count(w, "\n") > 1 {
 		h = "\n"
 	}
+
 	return commonMsgPrefix + area + "\n" +
 		"GOT: " + h + g + "\n" +
 		"WNT: " + h + w

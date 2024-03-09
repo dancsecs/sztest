@@ -25,6 +25,7 @@ func (chk *Chk) Intf(got, want int, msgFmt string, msgArgs ...any) bool {
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errChkf(got, want, "int", msgFmt, msgArgs...)
 }
 
@@ -35,6 +36,7 @@ func (chk *Chk) Int(got, want int, msg ...any) bool {
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errChk(got, want, "int", msg...)
 }
 
@@ -51,6 +53,7 @@ func (chk *Chk) IntSlicef(
 		return true
 	}
 	chk.t.Helper()
+
 	return errSlicef(chk,
 		got, want, "int", defaultCmpFunc[int], msgFmt, msgArgs...,
 	)
@@ -67,6 +70,7 @@ func (chk *Chk) IntSlice(got, want []int, msg ...any) bool {
 		return true
 	}
 	chk.t.Helper()
+
 	return errSlice(chk, got, want, "int", defaultCmpFunc[int], msg...)
 }
 
@@ -84,6 +88,7 @@ func (chk *Chk) IntBoundedf(
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errGotWntf(typeName, got, want, msgFmt, msgArgs...)
 }
 
@@ -97,6 +102,7 @@ func (chk *Chk) IntBounded(
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errGotWnt(typeName, got, want, msg...)
 }
 
@@ -110,6 +116,7 @@ func (chk *Chk) IntUnboundedf(
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errGotWntf(typeName, got, want, msgFmt, msgArgs...)
 }
 
@@ -123,5 +130,6 @@ func (chk *Chk) IntUnbounded(
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errGotWnt(typeName, got, want, msg...)
 }

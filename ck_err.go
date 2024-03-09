@@ -29,6 +29,7 @@ func (chk *Chk) errPrepareWant(want string) string {
 	if want == "" {
 		return nilStr
 	}
+
 	return chk.isStringify(want)
 }
 
@@ -40,6 +41,7 @@ func (chk *Chk) errPrepareWantSlice(want []string) []string {
 	for i, s := range want {
 		r[i] = chk.errPrepareWant(s)
 	}
+
 	return r
 }
 
@@ -51,6 +53,7 @@ func (chk *Chk) errPrepareGot(got error) string {
 	if errMsg == "" {
 		return BlankErrorMessage
 	}
+
 	return chk.isStringify(errMsg)
 }
 
@@ -62,6 +65,7 @@ func (chk *Chk) errPrepareGotSlice(got []error) []string {
 	for i, err := range got {
 		r[i] = chk.errPrepareGot(err)
 	}
+
 	return r
 }
 
@@ -71,6 +75,7 @@ func (chk *Chk) NoErrf(got error, msgFmt string, msgArgs ...any) bool {
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errChkf(chk.errPrepareGot(got), nilStr, "err", msgFmt, msgArgs...)
 }
 
@@ -80,6 +85,7 @@ func (chk *Chk) NoErr(got error, msg ...any) bool {
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errChk(chk.errPrepareGot(got), nilStr, "err", msg...)
 }
 
@@ -92,6 +98,7 @@ func (chk *Chk) Errf(
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errChkf(
 		chk.errPrepareGot(got),
 		chk.errPrepareWant(want),
@@ -107,6 +114,7 @@ func (chk *Chk) Err(got error, want string, msg ...any) bool {
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errChk(
 		chk.errPrepareGot(got), chk.errPrepareWant(want), "err", msg...,
 	)
@@ -126,6 +134,7 @@ func (chk *Chk) ErrSlicef(
 		return true
 	}
 	chk.t.Helper()
+
 	return errSlicef(
 		chk, chk.errPrepareGotSlice(got), chk.errPrepareWantSlice(want), "err",
 		defaultCmpFunc[string], msgFmt, msgArgs...,
@@ -146,6 +155,7 @@ func (chk *Chk) ErrSlice(
 		return true
 	}
 	chk.t.Helper()
+
 	return errSlice(chk,
 		chk.errPrepareGotSlice(got), chk.errPrepareWantSlice(want), "err",
 		defaultCmpFunc[string], msg...,

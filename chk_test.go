@@ -278,12 +278,14 @@ func chkTestPushPreReleaseFunc(t *testing.T) {
 	chk.PushPreReleaseFunc(func() error {
 		iT.output += "First Pushed A\n"
 		f1 = true
+
 		return nil
 	})
 
 	chk.PushPreReleaseFunc(func() error {
 		iT.output += "Second Pushed A\n"
 		f2 = true
+
 		return nil
 	})
 
@@ -324,12 +326,14 @@ func chkTestPushPostReleaseFunc(t *testing.T) {
 	chk.PushPostReleaseFunc(func() error {
 		iT.output += "First Pushed\n"
 		f1 = true
+
 		return nil
 	})
 
 	chk.PushPostReleaseFunc(func() error {
 		iT.output += "Second Pushed\n"
 		f2 = true
+
 		return nil
 	})
 
@@ -367,12 +371,14 @@ func chkTestPushPostReleaseFuncWithError(t *testing.T) {
 	chk.PushPostReleaseFunc(func() error {
 		iT.output += "First Pushed\n"
 		f1 = true
+
 		return nil
 	})
 
 	chk.PushPostReleaseFunc(func() error {
 		iT.output += "Second Pushed\n"
 		f2 = true
+
 		return errors.New("Second release forced error")
 	})
 
@@ -544,6 +550,7 @@ func tstBounded[V chkBoundedType](
 ) bool {
 	inRange, want := inBoundedRange(got, o, min, max)
 	*wantAccumulator += want
+
 	return inRange
 }
 
@@ -918,6 +925,7 @@ func tstUnbounded[V chkBoundedType](
 	if want != "" {
 		*wantAccumulator += want
 	}
+
 	return inRange
 }
 

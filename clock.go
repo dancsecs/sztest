@@ -160,6 +160,7 @@ func (chk *Chk) ClockNext() time.Time {
 			chk.AddSub("{{clkCusC"+idx+"}}", t.Format(chk.clkCusC))
 		}
 	}
+
 	return t
 }
 
@@ -203,6 +204,7 @@ func (chk *Chk) ClockTick(i int) time.Time {
 	if i < 0 || i >= len(chk.clkTicks) {
 		log.Panicf("unknown tick index: %d", i)
 	}
+
 	return chk.clkTicks[i]
 }
 
@@ -215,6 +217,7 @@ func (chk *Chk) ClockSet(t time.Time, inc ...time.Duration) func() {
 		inc = chk.clk.inc
 	}
 	chk.clk = newTstClock(t, inc)
+
 	return func() {
 		chk.clk = savedClk
 	}
@@ -225,6 +228,7 @@ func (chk *Chk) ClockSet(t time.Time, inc ...time.Duration) func() {
 // the clk back to its state when this function was called.
 func (chk *Chk) ClockOffsetDay(dayOffset int, inc ...time.Duration) func() {
 	t := chk.clk.lastTS
+
 	return chk.ClockSet(t.AddDate(0, 0, dayOffset), inc...)
 }
 
@@ -234,6 +238,7 @@ func (chk *Chk) ClockOffsetDay(dayOffset int, inc ...time.Duration) func() {
 // returned.
 func (chk *Chk) ClockOffset(d time.Duration) func() {
 	t := chk.clk.nextTS
+
 	return chk.ClockSet(t.Add(d))
 }
 
@@ -248,6 +253,7 @@ func newTstClock(startAt time.Time, inc []time.Duration) *tstClk {
 	if len(inc) < 1 {
 		inc = []time.Duration{time.Millisecond}
 	}
+
 	return &tstClk{
 		lastTS:    startAt.Add(-inc[len(inc)-1]),
 		nextTS:    startAt,
@@ -263,5 +269,6 @@ func (clk *tstClk) next() time.Time {
 	}
 	clk.nextTS = clk.nextTS.Add(clk.inc[clk.nextIndex])
 	clk.nextIndex++
+
 	return clk.lastTS
 }

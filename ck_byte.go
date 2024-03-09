@@ -25,6 +25,7 @@ func (chk *Chk) Bytef(got, want byte, msgFmt string, msgArgs ...any) bool {
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errChkf(got, want, "byte", msgFmt, msgArgs...)
 }
 
@@ -35,6 +36,7 @@ func (chk *Chk) Byte(got, want byte, msg ...any) bool {
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errChk(got, want, "byte", msg...)
 }
 
@@ -51,6 +53,7 @@ func (chk *Chk) ByteSlicef(
 		return true
 	}
 	chk.t.Helper()
+
 	return errSlicef(chk,
 		got, want, "byte", defaultCmpFunc[byte], msgFmt, msgArgs...,
 	)
@@ -67,6 +70,7 @@ func (chk *Chk) ByteSlice(got, want []byte, msg ...any) bool {
 		return true
 	}
 	chk.t.Helper()
+
 	return errSlice(chk, got, want, "byte", defaultCmpFunc[byte], msg...)
 }
 
@@ -84,6 +88,7 @@ func (chk *Chk) ByteBoundedf(
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errGotWntf(typeName, got, want, msgFmt, msgArgs...)
 }
 
@@ -97,6 +102,7 @@ func (chk *Chk) ByteBounded(
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errGotWnt(typeName, got, want, msg...)
 }
 
@@ -110,6 +116,7 @@ func (chk *Chk) ByteUnboundedf(
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errGotWntf(typeName, got, want, msgFmt, msgArgs...)
 }
 
@@ -123,5 +130,6 @@ func (chk *Chk) ByteUnbounded(
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errGotWnt(typeName, got, want, msg...)
 }

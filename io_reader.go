@@ -61,6 +61,7 @@ func (chk *Chk) Read(b []byte) (int, error) {
 		chk.ioReadErrPos = 0
 		chk.ioReadErr = nil
 		chk.ioReadErrSet = false
+
 		return readPos, readErr
 	}
 	if chk.rErr != nil && (chk.rErrPos <= 0 || chk.rLeft <= 0) {
@@ -68,6 +69,7 @@ func (chk *Chk) Read(b []byte) (int, error) {
 	}
 	if chk.rLeft <= 0 {
 		chk.rErr = ErrReadPastEndOfData
+
 		return 0, io.EOF
 	}
 
@@ -83,6 +85,7 @@ func (chk *Chk) Read(b []byte) (int, error) {
 			break
 		}
 	}
+
 	return i, nil
 }
 
@@ -99,6 +102,7 @@ func (chk *Chk) SetStdinData(d ...string) {
 			if err == nil {
 				err = r.Close()
 			}
+
 			return err //nolint:wrapcheck // Ok.
 		})
 

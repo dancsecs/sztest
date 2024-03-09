@@ -32,5 +32,6 @@ func (chk *Chk) Close() error {
 		chk.ioCloseErr = nil
 		chk.ioCloseErrSet = false
 	}
+
 	return closeErr
 }

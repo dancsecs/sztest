@@ -27,6 +27,7 @@ func (chk *Chk) Complex128f(
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errChkf(got, want, "complex128", msgFmt, msgArgs...)
 }
 
@@ -37,6 +38,7 @@ func (chk *Chk) Complex128(got, want complex128, msg ...any) bool {
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errChk(got, want, "complex128", msg...)
 }
 
@@ -53,6 +55,7 @@ func (chk *Chk) Complex128Slicef(
 		return true
 	}
 	chk.t.Helper()
+
 	return errSlicef(chk,
 		got, want, "complex128", defaultCmpFunc[complex128],
 		msgFmt, msgArgs...,
@@ -72,6 +75,7 @@ func (chk *Chk) Complex128Slice(
 		return true
 	}
 	chk.t.Helper()
+
 	return errSlice(chk,
 		got, want, "complex128", defaultCmpFunc[complex128], msg...,
 	)

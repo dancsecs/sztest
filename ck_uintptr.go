@@ -27,6 +27,7 @@ func (chk *Chk) Uintptrf(
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errChkf(got, want, "uintptr", msgFmt, msgArgs...)
 }
 
@@ -37,6 +38,7 @@ func (chk *Chk) Uintptr(got, want uintptr, msg ...any) bool {
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errChk(got, want, "uintptr", msg...)
 }
 
@@ -53,6 +55,7 @@ func (chk *Chk) UintptrSlicef(
 		return true
 	}
 	chk.t.Helper()
+
 	return errSlicef(chk,
 		got, want, "uintptr", defaultCmpFunc[uintptr],
 		msgFmt, msgArgs...,
@@ -70,5 +73,6 @@ func (chk *Chk) UintptrSlice(got, want []uintptr, msg ...any) bool {
 		return true
 	}
 	chk.t.Helper()
+
 	return errSlice(chk, got, want, "uintptr", defaultCmpFunc[uintptr], msg...)
 }

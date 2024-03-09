@@ -47,6 +47,7 @@ type sysEnvVar struct {
 
 func capture(id string) *sysEnvVar {
 	v, ok := os.LookupEnv(id)
+
 	return &sysEnvVar{
 		id:       id,
 		v:        v,
@@ -101,6 +102,7 @@ func clearAndCaptureAll() []*sysEnvVar {
 		e.clear()
 	}
 	initAll()
+
 	return envVars
 }
 

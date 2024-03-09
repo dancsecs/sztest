@@ -32,6 +32,7 @@ func (chk *Chk) Nilf(got any, msgFmt string, msgArgs ...any) bool {
 	chk.Error(
 		errMsgHeader("not nil interface", fmt.Sprintf(msgFmt, msgArgs...)),
 	)
+
 	return false
 }
 
@@ -44,6 +45,7 @@ func (chk *Chk) Nil(got any, msg ...any) bool {
 	chk.Error(
 		errMsgHeader("not nil interface", msg...),
 	)
+
 	return false
 }
 
@@ -56,6 +58,7 @@ func (chk *Chk) NotNilf(got any, msgFmt string, msgArgs ...any) bool {
 	chk.Error(
 		errMsgHeader("nil interface", fmt.Sprintf(msgFmt, msgArgs...)),
 	)
+
 	return false
 }
 
@@ -66,5 +69,6 @@ func (chk *Chk) NotNil(got any, msg ...any) bool {
 	}
 	chk.t.Helper()
 	chk.Error(errMsgHeader("nil interface", msg...))
+
 	return false
 }

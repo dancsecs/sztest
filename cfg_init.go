@@ -169,6 +169,7 @@ func initTmpDir() {
 		cleanValue, passed := validateTmpDir(v)
 		if passed {
 			settingTmpDir = cleanValue
+
 			return
 		}
 	}

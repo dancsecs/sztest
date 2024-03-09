@@ -37,10 +37,12 @@ func (chk *Chk) SetupArgsAndFlags(args []string) *flag.FlagSet {
 	chk.PushPreReleaseFunc(func() error {
 		os.Args = savedOsArgs
 		flag.CommandLine = savedFlagCmdLine
+
 		return nil
 	})
 	os.Args = args
 	flag.CommandLine = flag.NewFlagSet(args[0], flag.PanicOnError)
+
 	return flag.CommandLine
 }
 
@@ -55,5 +57,6 @@ func (*Chk) CaptureFlagUsage(f *flag.FlagSet) string {
 	f.SetOutput(&buf)
 
 	f.Usage()
+
 	return buf.String()
 }

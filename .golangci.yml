@@ -16,7 +16,6 @@ linters:
     - dupl
     - gocognit
     - lll
-    - nlreturn
     - varnamelen
     - wsl
 
@@ -48,7 +47,6 @@ issues:
         - goerr113
         - lll
         - maintidx
-        - nlreturn
         - nolintlint
         - paralleltest
         - stylecheck

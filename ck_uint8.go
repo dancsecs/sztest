@@ -25,6 +25,7 @@ func (chk *Chk) Uint8f(got, want uint8, msgFmt string, msgArgs ...any) bool {
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errChkf(got, want, "uint8", msgFmt, msgArgs...)
 }
 
@@ -35,6 +36,7 @@ func (chk *Chk) Uint8(got, want uint8, msg ...any) bool {
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errChk(got, want, "uint8", msg...)
 }
 
@@ -52,6 +54,7 @@ func (chk *Chk) Uint8Slicef(
 	}
 
 	chk.t.Helper()
+
 	return errSlicef(chk,
 		got, want, "uint8", defaultCmpFunc[uint8], msgFmt, msgArgs...,
 	)
@@ -68,6 +71,7 @@ func (chk *Chk) Uint8Slice(got, want []uint8, msg ...any) bool {
 		return true
 	}
 	chk.t.Helper()
+
 	return errSlice(chk, got, want, "uint8", defaultCmpFunc[uint8], msg...)
 }
 
@@ -86,6 +90,7 @@ func (chk *Chk) Uint8Boundedf(
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errGotWntf(typeName, got, want, msgFmt, msgArgs...)
 }
 
@@ -99,6 +104,7 @@ func (chk *Chk) Uint8Bounded(
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errGotWnt(typeName, got, want, msg...)
 }
 
@@ -113,6 +119,7 @@ func (chk *Chk) Uint8Unboundedf(
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errGotWntf(typeName, got, want, msgFmt, msgArgs...)
 }
 
@@ -126,5 +133,6 @@ func (chk *Chk) Uint8Unbounded(
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errGotWnt(typeName, got, want, msg...)
 }

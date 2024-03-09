@@ -79,6 +79,7 @@ func (t *iTst) getCallerName() string {
 		}
 	}
 	const pkgPrefix = `github.com/dancsecs/sztest.`
+
 	return strings.TrimPrefix(calledFrom, pkgPrefix)
 }
 
@@ -96,6 +97,7 @@ func (*iTst) prepareSlice(
 			}
 		}
 	}
+
 	return lines
 }
 
@@ -108,6 +110,7 @@ func (t *iTst) check(tt testingT, rawLines ...string) {
 				tt.Error(err.Error())
 				tt.FailNow()
 			}
+
 			return prepareWantString(s)
 		},
 		rawLines...,
@@ -121,6 +124,7 @@ func (t *iTst) check(tt testingT, rawLines ...string) {
 				tt.Error(err.Error())
 				tt.FailNow()
 			}
+
 			return s
 		},
 		t.output,
@@ -194,6 +198,7 @@ func chkOutErrorNoFail(msg ...string) string {
 	if m != "" {
 		m += "\n"
 	}
+
 	return "" +
 		tstOutHelper(caller) +
 		tstOutError(caller) +
@@ -207,6 +212,7 @@ func chkOutErrorfNoFail(msg ...string) string {
 	if m != "" {
 		m += "\n"
 	}
+
 	return "" +
 		tstOutHelper(caller) +
 		tstOutError(caller) +
@@ -216,6 +222,7 @@ func chkOutErrorfNoFail(msg ...string) string {
 
 func chkOutError(msg ...string) string {
 	const caller = "(*Chk).Error"
+
 	return "" +
 		chkOutErrorNoFail(msg...) +
 		tstOutFailNow(caller) +
@@ -224,6 +231,7 @@ func chkOutError(msg ...string) string {
 
 func chkOutErrorf(msg ...string) string {
 	const caller = "(*Chk).Errorf"
+
 	return "" +
 		chkOutErrorfNoFail(msg...) +
 		tstOutFailNow(caller) +
@@ -232,6 +240,7 @@ func chkOutErrorf(msg ...string) string {
 
 func chkOutFatalf(msg string) string {
 	const caller = "(*Chk).Fatalf"
+
 	return "" +
 		tstOutHelper(caller) +
 		tstOutError(caller) +
@@ -244,6 +253,7 @@ func chkOutPush(pos, subFunc string) string {
 	if subFunc != "" {
 		subFunc = "." + subFunc
 	}
+
 	return tstOutHelper("(*Chk).Push" + pos + "ReleaseFunc" + subFunc)
 }
 
@@ -265,6 +275,7 @@ func chkOutIsError(caller, msg string, additionLines ...string) string {
 		s += tstOutHelper("(*Chk).errChk")
 	}
 	s += chkOutError(append([]string{msg}, additionLines...)...)
+
 	return s
 }
 
@@ -274,6 +285,7 @@ func chkOutCommonMsg(msg, dataType string) string {
 	} else {
 		msg = commonMsgPrefix + dataType + ":\n" + markMsgOn + msg + markMsgOff
 	}
+
 	return msg + ":"
 }
 
@@ -312,6 +324,7 @@ func chkOutIsSliceError(
 		s += tstOutHelper("errSlice[...]")
 	}
 	s += chkOutError(lines...)
+
 	return s
 }
 
@@ -328,6 +341,7 @@ func chkOutLnChanged(gLn, wLn, gStr string, wStr ...string) string {
 			" " +
 			markAsChg(gStr, wStr[0], DiffMerge)
 	}
+
 	return "" +
 		markAsChg(gLn, "", DiffGot) +
 		":" +
@@ -373,6 +387,7 @@ func chkOutNumericBounded(
 	} else {
 		s += tstOutHelper("(*Chk).errGotWnt")
 	}
+
 	return s +
 		chkOutError(
 			chkOutCommonMsg(msg, dataType),
@@ -403,6 +418,7 @@ func chkOutNumericUnbounded(
 	} else {
 		s += tstOutHelper("(*Chk).errGotWnt")
 	}
+
 	return s +
 		chkOutError(
 			chkOutCommonMsg(msg, dataType),
@@ -427,6 +443,7 @@ func chkOutStringBounded(wantMsg, got, caller, dataType, msg string) string {
 	} else {
 		s += tstOutHelper("(*Chk).errGotWnt")
 	}
+
 	return s +
 		chkOutError(
 			chkOutCommonMsg(msg, dataType),
@@ -451,6 +468,7 @@ func chkOutStrUnbounded(wantMsg, got, caller, dataType, msg string) string {
 	} else {
 		s += tstOutHelper("(*Chk).errGotWnt")
 	}
+
 	return s +
 		chkOutError(
 			chkOutCommonMsg(msg, dataType),
@@ -542,8 +560,10 @@ func findNextMark(s, expectedClose string,
 				markOpenInternal,
 				markOpenExpectedInternal
 		}
+
 		return markCloseIndex, markClose, markCloseInternal, ""
 	}
+
 	return -1, "", "", ""
 }
 
@@ -562,6 +582,7 @@ func translateToTestSymbols(s string) string {
 	s = strings.ReplaceAll(s, markGotOff, internalTestMarkGotOff)
 	s = strings.ReplaceAll(s, markMsgOn, internalTestMarkMsgOn)
 	s = strings.ReplaceAll(s, markMsgOff, internalTestMarkMsgOff)
+
 	return s
 }
 
@@ -584,6 +605,7 @@ func freezeMarks(source string) (string, error) {
 					source,
 				)
 			}
+
 			return translateToTestSymbols(newS + source), nil
 		}
 

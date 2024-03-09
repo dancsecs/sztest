@@ -26,6 +26,7 @@ func (chk *Chk) strPrepareSlice(s []string) []string {
 	for i, v := range s {
 		r[i] = chk.isStringify(v)
 	}
+
 	return r
 }
 
@@ -36,6 +37,7 @@ func (chk *Chk) Strf(got, want string, msgFmt string, msgArgs ...any) bool {
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errChkf(got, want, "string", msgFmt, msgArgs...)
 }
 
@@ -46,6 +48,7 @@ func (chk *Chk) Str(got, want string, msg ...any) bool {
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errChk(got, want, "string", msg...)
 }
 
@@ -62,6 +65,7 @@ func (chk *Chk) StrSlicef(
 		return true
 	}
 	chk.t.Helper()
+
 	return errSlicef(chk,
 		got, want, "string", defaultCmpFunc[string],
 		msgFmt, msgArgs...,
@@ -79,6 +83,7 @@ func (chk *Chk) StrSlice(got, want []string, msg ...any) bool {
 		return true
 	}
 	chk.t.Helper()
+
 	return errSlice(
 		chk, chk.strPrepareSlice(got), chk.strPrepareSlice(want),
 		"string", defaultCmpFunc[string], msg...,
@@ -104,6 +109,7 @@ func (chk *Chk) StrBoundedf(
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errGotWntf(typeName, got, want, msgFmt, msgArgs...)
 }
 
@@ -121,6 +127,7 @@ func (chk *Chk) StrBounded(
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errGotWnt(typeName, got, want, msg...)
 }
 
@@ -138,6 +145,7 @@ func (chk *Chk) StrUnboundedf(
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errGotWntf(typeName, got, want, msgFmt, msgArgs...)
 }
 
@@ -154,5 +162,6 @@ func (chk *Chk) StrUnbounded(
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errGotWnt(typeName, got, want, msg...)
 }

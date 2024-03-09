@@ -60,6 +60,7 @@ func CompareArrays[T chkType](got, wnt []T) string {
 	if !differencesFound {
 		ret = ""
 	}
+
 	return ret
 }
 
@@ -98,8 +99,10 @@ func CompareSlices[T chkType](
 			"want (", len(want), " lines)",
 			"\n",
 		) + ret
+
 		return ret
 	}
+
 	return ""
 }
 
@@ -129,6 +132,7 @@ func DiffSlice[T chkType](
 		for lnNbr, s := range gotSlice {
 			r = append(r, dFmt.same(lnNbr, lnNbr, s))
 		}
+
 		return r
 	}
 	if lenGotSlice == 0 {
@@ -136,6 +140,7 @@ func DiffSlice[T chkType](
 			r = append(r, dFmt.justWnt(lnNbr, s))
 		}
 		*changed = true
+
 		return r
 	}
 	if lenWntSlice == 0 {
@@ -143,6 +148,7 @@ func DiffSlice[T chkType](
 			r = append(r, dFmt.justGot(lnNbr, s))
 		}
 		*changed = true
+
 		return r
 	}
 
@@ -199,6 +205,7 @@ func DiffSlice[T chkType](
 				)
 			}
 		}
+
 		return r
 	}
 	// Return a composition of the largest matching segment prefixed
@@ -241,6 +248,7 @@ func DiffSlice[T chkType](
 		minRunString,
 		cmp,
 	)...)
+
 	return r
 }
 
@@ -342,6 +350,7 @@ func calculateScores[V chkType](
 			}
 		}
 	}
+
 	return scores
 }
 
@@ -361,13 +370,16 @@ func bestNextRun[V chkType](
 			if m1.gotStart == m2.gotStart {
 				return m1.wntStart <= m2.wntStart
 			}
+
 			return m1.gotStart <= m2.gotStart
 		}
+
 		return m1.length >= m2.length
 	})
 
 	if len(scores) == 0 {
 		return 0, 0, 0
 	}
+
 	return scores[0].gotStart, scores[0].wntStart, scores[0].length
 }

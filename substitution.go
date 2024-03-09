@@ -39,6 +39,7 @@ func (chk *Chk) AddSub(expr, subStr string) {
 	if err != nil {
 		chk.t.Helper()
 		chk.Fatalf(err.Error())
+
 		return
 	}
 	chk.subs = append(chk.subs, substitution{
@@ -57,5 +58,6 @@ func (chk *Chk) subStr(s string) string {
 			s = re.re.ReplaceAllString(s, re.subStr)
 		}
 	}
+
 	return s
 }

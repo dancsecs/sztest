@@ -26,6 +26,7 @@ func float32TypeString(t float32) string {
 	if t == 0.0 {
 		return "float32"
 	}
+
 	return "float32(+/- " +
 		strconv.FormatFloat(float64(t), 'g', -1, 64) +
 		")"
@@ -40,6 +41,7 @@ func (chk *Chk) Float32f(
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errChkf(
 		got, want, float32TypeString(tolerance), msgFmt, msgArgs...,
 	)
@@ -54,6 +56,7 @@ func (chk *Chk) Float32(
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errChk(
 		got, want, float32TypeString(tolerance),
 		msg...,
@@ -74,6 +77,7 @@ func (chk *Chk) Float32Slicef(
 		return true
 	}
 	chk.t.Helper()
+
 	return errSlicef(chk,
 		got, want, float32TypeString(tolerance),
 		func(a, b float32) bool {
@@ -97,6 +101,7 @@ func (chk *Chk) Float32Slice(
 		return true
 	}
 	chk.t.Helper()
+
 	return errSlice(chk,
 		got, want, float32TypeString(tolerance),
 		func(a, b float32) bool {
@@ -119,6 +124,7 @@ func IsFloat32Similar(a, b, t float32) bool {
 	case a > b:
 		return (a - b) <= t
 	}
+
 	return true // a == b
 }
 
@@ -137,6 +143,7 @@ func (chk *Chk) Float32Boundedf(
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errGotWntf(typeName, got, want, msgFmt, msgArgs...)
 }
 
@@ -150,6 +157,7 @@ func (chk *Chk) Float32Bounded(
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errGotWnt(typeName, got, want, msg...)
 }
 
@@ -164,6 +172,7 @@ func (chk *Chk) Float32Unboundedf(
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errGotWntf(typeName, got, want, msgFmt, msgArgs...)
 }
 
@@ -177,5 +186,6 @@ func (chk *Chk) Float32Unbounded(
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errGotWnt(typeName, got, want, msg...)
 }

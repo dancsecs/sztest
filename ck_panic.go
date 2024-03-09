@@ -36,6 +36,7 @@ func (chk *Chk) runPanicTest(f func()) (panicMessage string) {
 	}()
 	chk.runningPanicFunction = true
 	f()
+
 	return
 }
 
@@ -49,6 +50,7 @@ func (chk *Chk) NoPanicf(gotF func(), msgFmt string, msgArgs ...any) bool {
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errChkf(pm, "", "panic", msgFmt, msgArgs...)
 }
 
@@ -62,6 +64,7 @@ func (chk *Chk) NoPanic(gotF func(), msg ...any) bool {
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errChk(pm, "", "panic", msg...)
 }
 
@@ -78,6 +81,7 @@ func (chk *Chk) Panicf(
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errChkf(pm, want, "panic", msgFmt, msgArgs...)
 }
 
@@ -92,5 +96,6 @@ func (chk *Chk) Panic(gotF func(), want string, msg ...any) bool {
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errChk(pm, want, "panic", msg...)
 }

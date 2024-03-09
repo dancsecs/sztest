@@ -26,6 +26,7 @@ func (chk *Chk) Truef(got bool, msgFmt string, msgArgs ...any) bool {
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errChkf(got, true, "bool", msgFmt, msgArgs...)
 }
 
@@ -35,6 +36,7 @@ func (chk *Chk) True(got bool, msg ...any) bool {
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errChk(got, true, "bool", msg...)
 }
 
@@ -44,6 +46,7 @@ func (chk *Chk) Falsef(got bool, msgFmt string, msgArgs ...any) bool {
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errChkf(got, false, "bool", msgFmt, msgArgs...)
 }
 
@@ -53,6 +56,7 @@ func (chk *Chk) False(got bool, msg ...any) bool {
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errChk(got, false, "bool", msg...)
 }
 
@@ -63,6 +67,7 @@ func (chk *Chk) Boolf(got, want bool, msgFmt string, msgArgs ...any) bool {
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errChkf(got, want, "bool", msgFmt, msgArgs...)
 }
 
@@ -73,6 +78,7 @@ func (chk *Chk) Bool(got, want bool, msg ...any) bool {
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errChk(got, want, "bool", msg...)
 }
 
@@ -89,6 +95,7 @@ func (chk *Chk) BoolSlicef(
 		return true
 	}
 	chk.t.Helper()
+
 	return errSlicef(chk,
 		got, want, "bool", defaultCmpFunc[bool], msgFmt, msgArgs...,
 	)
@@ -105,5 +112,6 @@ func (chk *Chk) BoolSlice(got, want []bool, msg ...any) bool {
 		return true
 	}
 	chk.t.Helper()
+
 	return errSlice(chk, got, want, "bool", defaultCmpFunc[bool], msg...)
 }

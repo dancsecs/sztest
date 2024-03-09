@@ -47,6 +47,7 @@ func (chk *Chk) Write(b []byte) (int, error) {
 		chk.ioWriteErrPos = 0
 		chk.ioWriteErr = nil
 		chk.ioWriteErrSet = false
+
 		return writePos, writeErr
 	}
 	count := 0
@@ -58,11 +59,13 @@ func (chk *Chk) Write(b []byte) (int, error) {
 			if chk.wErr == nil {
 				return count, ErrForcedOutOfSpace
 			}
+
 			return count, chk.wErr
 		}
 		chk.wData = append(chk.wData, nb)
 		chk.wErrPos--
 		count++
 	}
+
 	return count, nil
 }

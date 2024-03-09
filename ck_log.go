@@ -103,6 +103,7 @@ func (chk *Chk) setupStderrLogger(includeLog bool) {
 			log.SetOutput(chk.logOrig)
 			log.SetFlags(chk.logOrigLogFlags)
 		}
+
 		return err //nolint:wrapcheck // Ok
 	})
 }
@@ -128,6 +129,7 @@ func (chk *Chk) setupLogLogger() {
 		}
 		log.SetOutput(chk.logOrig)
 		log.SetFlags(chk.logOrigLogFlags)
+
 		return nil
 	})
 }
@@ -151,6 +153,7 @@ func (chk *Chk) setupStdoutLogger() {
 		}
 		t := os.Stdout
 		os.Stdout = chk.outOrig
+
 		return t.Close() //nolint:wrapcheck // Ok.
 	})
 }
@@ -170,6 +173,7 @@ func (chk *Chk) copyStdout() error {
 		}()
 		os.Stdout = w
 	}
+
 	return err //nolint:wrapcheck // Ok.
 }
 
@@ -188,6 +192,7 @@ func (chk *Chk) copyStderr() error {
 		}()
 		os.Stderr = w
 	}
+
 	return err //nolint:wrapcheck // Ok.
 }
 
@@ -203,6 +208,7 @@ func (chk *Chk) copyStderr() error {
 // before (*Chk).Release() is invoked.
 func CaptureStdout(t testingT) *Chk {
 	t.Helper()
+
 	return newChk(t, captureStdout)
 }
 
@@ -218,6 +224,7 @@ func CaptureStdout(t testingT) *Chk {
 // before (*Chk).Release() is invoked.
 func CaptureLog(t testingT) *Chk {
 	t.Helper()
+
 	return newChk(t, captureLog)
 }
 
@@ -235,6 +242,7 @@ func CaptureLog(t testingT) *Chk {
 // before (*Chk).Release() is invoked.
 func CaptureLogAndStdout(t testingT) *Chk {
 	t.Helper()
+
 	return newChk(t, captureLogAndStdout)
 }
 
@@ -252,6 +260,7 @@ func CaptureLogAndStdout(t testingT) *Chk {
 // before (*Chk).Release() is invoked.
 func CaptureLogAndStderr(t testingT) *Chk {
 	t.Helper()
+
 	return newChk(t, captureLogAndStderr)
 }
 
@@ -271,6 +280,7 @@ func CaptureLogAndStderr(t testingT) *Chk {
 // before (*Chk).Release() is invoked.
 func CaptureLogAndStderrAndStdout(t testingT) *Chk {
 	t.Helper()
+
 	return newChk(t, captureLogAndStderrAndStdout)
 }
 
@@ -288,6 +298,7 @@ func CaptureLogAndStderrAndStdout(t testingT) *Chk {
 // before (*Chk).Release() is invoked.
 func CaptureLogWithStderr(t testingT) *Chk {
 	t.Helper()
+
 	return newChk(t, captureLogWithStderr)
 }
 
@@ -310,6 +321,7 @@ func CaptureLogWithStderr(t testingT) *Chk {
 // before (*Chk).Release() is invoked.
 func CaptureLogWithStderrAndStdout(t testingT) *Chk {
 	t.Helper()
+
 	return newChk(t, captureLogWithStderrAndStdout)
 }
 
@@ -325,6 +337,7 @@ func CaptureLogWithStderrAndStdout(t testingT) *Chk {
 // before (*Chk).Release() is invoked.
 func CaptureStderr(t testingT) *Chk {
 	t.Helper()
+
 	return newChk(t, captureStderr)
 }
 
@@ -342,6 +355,7 @@ func CaptureStderr(t testingT) *Chk {
 // before (*Chk).Release() is invoked.
 func CaptureStderrAndStdout(t testingT) *Chk {
 	t.Helper()
+
 	return newChk(t, captureStderrAndStdout)
 }
 
@@ -366,6 +380,7 @@ func (chk *Chk) prepareSlice(
 	for lastPos > firstPos && lines[lastPos-1] == "" {
 		lastPos--
 	}
+
 	return lines[firstPos:lastPos]
 }
 
@@ -378,6 +393,7 @@ func prepareWantString(s string) string {
 	if strings.HasSuffix(s, `\s`) {
 		s = s[:len(s)-2] + " "
 	}
+
 	return s
 }
 
@@ -404,8 +420,10 @@ func (chk *Chk) compareLog(
 	)
 	if ret != "" {
 		chk.Error(ret)
+
 		return true
 	}
+
 	return false
 }
 
@@ -430,6 +448,7 @@ func buildLogPrefixRegexpStr(prefix string, flags int) string {
 	if prefix != "" && (flags&log.Lmsgprefix != 0) {
 		re += prefix
 	}
+
 	return re
 }
 
@@ -449,6 +468,7 @@ func removeLogPrefixes(l string) string {
 		clearLogPrefix = regexp.MustCompile(re)
 		logPrefixRegexpCache[cacheKey] = clearLogPrefix
 	}
+
 	return clearLogPrefix.ReplaceAllString(l, "")
 }
 
@@ -458,6 +478,7 @@ func (chk *Chk) Log(wantLines ...string) bool {
 
 	if !chk.logOn && !(chk.errOn && chk.errIncLog) {
 		chk.Error("invalid log.Writer check without information being captured")
+
 		return true
 	}
 
@@ -491,6 +512,7 @@ func (chk *Chk) Stderr(wantLines ...string) bool {
 
 	if !(chk.errOn) {
 		chk.Error("invalid os.Stderr check without information being captured")
+
 		return true
 	}
 
@@ -525,6 +547,7 @@ func (chk *Chk) Stdout(wantLines ...string) bool {
 
 	if !(chk.outOn) {
 		chk.Error("invalid os.Stdout check without information being captured")
+
 		return true
 	}
 

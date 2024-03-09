@@ -39,5 +39,6 @@ func (*Chk) LastErr(p ...any) error {
 	if err == nil {
 		return lastErr
 	}
+
 	return err
 }

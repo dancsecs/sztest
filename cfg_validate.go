@@ -52,6 +52,7 @@ func validateFailFast(s string) (bool, bool) {
 		validFailFast,
 		defFailFast,
 	)
+
 	return false, false
 }
 
@@ -64,6 +65,7 @@ func valPerm(s, prefix string) (os.FileMode, bool) {
 			return os.FileMode(v), true
 		}
 	}
+
 	return 0, false
 }
 
@@ -76,6 +78,7 @@ func validatePermDir(s string) (os.FileMode, bool) {
 			settingPermDir,
 		)
 	}
+
 	return p, ok
 }
 
@@ -88,6 +91,7 @@ func validatePermFile(s string) (os.FileMode, bool) {
 			settingPermFile,
 		)
 	}
+
 	return p, ok
 }
 
@@ -100,6 +104,7 @@ func validatePermExe(s string) (os.FileMode, bool) {
 			settingPermExe,
 		)
 	}
+
 	return p, ok
 }
 
@@ -107,8 +112,10 @@ func validateTmpDir(s string) (string, bool) {
 	stat, err := os.Stat(s)
 	if err != nil || !stat.IsDir() {
 		log.Printf(errMsg, EnvTmpDir, s, validTmpDir, settingTmpDir)
+
 		return "", false
 	}
+
 	return s, true
 }
 
@@ -190,6 +197,7 @@ func validateMark(colors, envVarName, defaultColor string) (string, bool) {
 		if uC == "" {
 			ok = false
 			log.Print("missing (empty) attribute")
+
 			break
 		}
 		clr, found = markFG[uC]
@@ -197,9 +205,11 @@ func validateMark(colors, envVarName, defaultColor string) (string, bool) {
 			if foregroundColor != "" {
 				ok = false
 				log.Print("foreground color redefined")
+
 				break
 			}
 			foregroundColor = clr
+
 			continue
 		}
 		clr, found = markBG[uC]
@@ -207,9 +217,11 @@ func validateMark(colors, envVarName, defaultColor string) (string, bool) {
 			if backgroundColor != "" {
 				ok = false
 				log.Print("background color redefined")
+
 				break
 			}
 			backgroundColor = clr
+
 			continue
 		}
 		sty, found = markStyles[uC]
@@ -217,20 +229,24 @@ func validateMark(colors, envVarName, defaultColor string) (string, bool) {
 			if styles[sty] {
 				ok = false
 				log.Print("style redefined")
+
 				break
 			}
 			styles[sty] = true
 			if uC == "DEFAULT" {
 				isDefault = true
 			}
+
 			continue
 		}
 		if custom != "" {
 			ok = false
 			log.Print("custom mark redefined")
+
 			break
 		}
 		custom = c
+
 		continue
 	}
 	if ok && isDefault && foregroundColor+backgroundColor+custom != "" {
@@ -242,6 +258,7 @@ func validateMark(colors, envVarName, defaultColor string) (string, bool) {
 		for k := range styles {
 			style += k
 		}
+
 		return foregroundColor + backgroundColor + style + custom, ok
 	}
 	log.Printf(errMsg, envVarName,
@@ -249,6 +266,7 @@ func validateMark(colors, envVarName, defaultColor string) (string, bool) {
 		validColor,
 		defaultColor,
 	)
+
 	return "", false
 }
 
@@ -262,8 +280,10 @@ func validateMinRunString(s string) (int, bool) {
 			validMinRunString,
 			defDiffChars,
 		)
+
 		return 0, false
 	}
+
 	return int(n), true
 }
 
@@ -277,8 +297,10 @@ func validateMinRunSlice(s string) (int, bool) {
 			"1 <= x <= 5",
 			defDiffSlice,
 		)
+
 		return 0, false
 	}
+
 	return int(n), true
 }
 
@@ -292,7 +314,9 @@ func validateBufferSize(s string) (int, bool) {
 			validBufferSize,
 			defBufferSize,
 		)
+
 		return 0, false
 	}
+
 	return int(n), true
 }

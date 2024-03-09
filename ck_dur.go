@@ -31,6 +31,7 @@ func (chk *Chk) Durf(
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errChkf(got, want, "time.Duration", msgFmt, msgArgs...)
 }
 
@@ -41,6 +42,7 @@ func (chk *Chk) Dur(got, want time.Duration, msg ...any) bool {
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errChk(got, want, "time.Duration", msg...)
 }
 
@@ -57,6 +59,7 @@ func (chk *Chk) DurSlicef(
 		return true
 	}
 	chk.t.Helper()
+
 	return errSlicef(chk,
 		got, want, "time.Duration", defaultCmpFunc[time.Duration],
 		msgFmt, msgArgs...,
@@ -74,6 +77,7 @@ func (chk *Chk) DurSlice(got, want []time.Duration, msg ...any) bool {
 		return true
 	}
 	chk.t.Helper()
+
 	return errSlice(chk,
 		got, want, "time.Duration", defaultCmpFunc[time.Duration], msg...,
 	)
@@ -94,6 +98,7 @@ func (chk *Chk) DurBoundedf(
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errGotWntf(typeName, got, want, msgFmt, msgArgs...)
 }
 
@@ -107,6 +112,7 @@ func (chk *Chk) DurBounded(
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errGotWnt(typeName, got, want, msg...)
 }
 
@@ -121,6 +127,7 @@ func (chk *Chk) DurUnboundedf(
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errGotWntf(typeName, got, want, msgFmt, msgArgs...)
 }
 
@@ -134,5 +141,6 @@ func (chk *Chk) DurUnbounded(
 		return true
 	}
 	chk.t.Helper()
+
 	return chk.errGotWnt(typeName, got, want, msg...)
 }

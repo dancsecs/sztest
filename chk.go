@@ -182,6 +182,7 @@ func newChk(t testingT, option captureOption) *Chk {
 	chk.markupForDisplay = resolveMarksForDisplay
 
 	chk.setupLoggers(option)
+
 	return chk
 }
 
@@ -189,6 +190,7 @@ func newChk(t testingT, option captureOption) *Chk {
 // standard io being captured.
 func CaptureNothing(t testingT) *Chk {
 	t.Helper()
+
 	return newChk(t, captureNothing)
 }
 
@@ -196,6 +198,7 @@ func CaptureNothing(t testingT) *Chk {
 func (chk *Chk) FailFast(failFast bool) bool {
 	oldSetting := settingFailFast
 	settingFailFast = failFast
+
 	return oldSetting
 }
 
@@ -258,8 +261,10 @@ func (chk *Chk) PushPreReleaseFunc(newFunc func() error) {
 	if chk.releaseFunc == nil {
 		chk.releaseFunc = func() error {
 			chk.t.Helper()
+
 			return newFunc()
 		}
+
 		return
 	}
 	prevFunc := chk.releaseFunc
@@ -269,6 +274,7 @@ func (chk *Chk) PushPreReleaseFunc(newFunc func() error) {
 		if err == nil {
 			err = prevFunc()
 		}
+
 		return err
 	}
 }
@@ -280,8 +286,10 @@ func (chk *Chk) PushPostReleaseFunc(newFunc func() error) {
 	if chk.releaseFunc == nil {
 		chk.releaseFunc = func() error {
 			chk.t.Helper()
+
 			return newFunc()
 		}
+
 		return
 	}
 	prevFunc := chk.releaseFunc
@@ -291,6 +299,7 @@ func (chk *Chk) PushPostReleaseFunc(newFunc func() error) {
 		if err == nil {
 			err = newFunc()
 		}
+
 		return err
 	}
 }
@@ -321,6 +330,7 @@ func errMsgHeader(typeName string, msgArgs ...any) string {
 			msg = ":\n" + markMsgOn + msg + markMsgOff
 		}
 	}
+
 	return commonMsgPrefix + typeName + msg + ":\n"
 }
 
@@ -329,6 +339,7 @@ func errMsgHeaderf(typeName, msgFmt string, msgArgs ...any) string {
 	if msg != "" {
 		msg = ":\n" + markMsgOn + msg + markMsgOff
 	}
+
 	return commonMsgPrefix + typeName + msg + ":\n"
 }
 
@@ -339,6 +350,7 @@ func (chk *Chk) errGotWnt(typeName string, got, wnt any, msg ...any) bool {
 	chk.Error(
 		errMsgHeader(typeName, msg...) + gotWnt(gotf, wntf),
 	)
+
 	return false
 }
 
@@ -351,6 +363,7 @@ func (chk *Chk) errGotWntf(
 	chk.Error(
 		errMsgHeaderf(typeName, msgFmt, msgArgs...) + gotWnt(gotf, wntf),
 	)
+
 	return false
 }
 
@@ -361,6 +374,7 @@ func (chk *Chk) isStringify(value any) string {
 	s = s[1 : len(s)-1]                  // trim "%q" added quotemarks
 	s = strings.ReplaceAll(s, `\"`, `"`) // reverse "%q" action on quotes
 	s = strings.ReplaceAll(s, `\\`, `\`) // reverse "%q" action on backslashes
+
 	return s
 }
 
@@ -376,6 +390,7 @@ func (chk *Chk) errChk(
 		errMsgHeader(typeName, msg...) +
 			gotWntDiff(gStr, wStr, settingDiffChars),
 	)
+
 	return false
 }
 
@@ -392,6 +407,7 @@ func (chk *Chk) errChkf(
 		errMsgHeaderf(typeName, msgFmt, msgArgs...) +
 			gotWntDiff(gStr, wStr, settingDiffChars),
 	)
+
 	return false
 }
 
@@ -422,6 +438,7 @@ func errSlice[V chkType](
 			errMsg +
 			" [\n" + strings.Join(gDiff, "\n") + "\n]",
 	)
+
 	return false
 }
 
@@ -453,6 +470,7 @@ func errSlicef[V chkType](
 			errMsg +
 			" [\n" + strings.Join(gDiff, "\n") + "\n]",
 	)
+
 	return false
 }
 
@@ -515,11 +533,13 @@ func inBoundedRange[V chkBoundedType](
 		inRange = min <= got && got < max
 		want = "[" + v + "," + v + ") - { want | " + v + " <= want < " + v + " }"
 	default:
+
 		return false, fmt.Sprint("unknown bounded option ", option)
 	}
 	if inRange {
 		return true, ""
 	}
+
 	return false, fmt.Sprintf("out of bounds: "+want, min, max, min, max)
 }
 
@@ -550,10 +570,12 @@ func inUnboundedRange[V chkBoundedType](
 		inRange = got <= bound
 		want = "(MIN," + v + "] - { want | want <= " + v + " }"
 	default:
+
 		return false, fmt.Sprint("unknown unbounded option ", option)
 	}
 	if inRange {
 		return true, ""
 	}
+
 	return false, fmt.Sprintf("out of bounds: "+want, bound, bound)
 }

@@ -32,6 +32,7 @@ import (
 func (chk *Chk) SetPermDir(p os.FileMode) os.FileMode {
 	lastPerm := settingPermDir
 	settingPermDir = p
+
 	return lastPerm
 }
 
@@ -40,6 +41,7 @@ func (chk *Chk) SetPermDir(p os.FileMode) os.FileMode {
 func (chk *Chk) SetPermFile(p os.FileMode) os.FileMode {
 	lastPerm := settingPermFile
 	settingPermFile = p
+
 	return lastPerm
 }
 
@@ -48,6 +50,7 @@ func (chk *Chk) SetPermFile(p os.FileMode) os.FileMode {
 func (chk *Chk) SetPermExe(p os.FileMode) os.FileMode {
 	lastPerm := settingPermExe
 	settingPermExe = p
+
 	return lastPerm
 }
 
@@ -71,6 +74,7 @@ func (chk *Chk) SetTmpDir(d string) string {
 	} else {
 		settingTmpDir = d
 	}
+
 	return lastTmpDir
 }
 
@@ -88,6 +92,7 @@ func removeTestDir(dir string) error {
 	if err == nil {
 		err = os.RemoveAll(dir)
 	}
+
 	return err //nolint:wrapcheck // Ok.
 }
 
@@ -105,6 +110,7 @@ func removeTestFile(path string) error {
 	if err == nil {
 		err = os.Remove(path)
 	}
+
 	return err //nolint:wrapcheck // Ok.
 }
 
@@ -128,6 +134,7 @@ func (chk *Chk) createFile(path string, data []byte, perm os.FileMode) string {
 				if chk.faultCount == 0 && !chk.keepTmpFiles {
 					return removeTestFile(fName)
 				}
+
 				return nil
 			})
 		}
@@ -135,6 +142,7 @@ func (chk *Chk) createFile(path string, data []byte, perm os.FileMode) string {
 	if err != nil {
 		chk.Error("createFile cause: ", err)
 	}
+
 	return fName
 }
 
@@ -143,6 +151,7 @@ func (chk *Chk) createFile(path string, data []byte, perm os.FileMode) string {
 func (chk *Chk) CreateTmpFile(data []byte) string {
 	chk.t.Helper()
 	chk.CreateTmpDir()
+
 	return chk.CreateTmpFileIn(filepath.Join(settingTmpDir, chk.Name()), data)
 }
 
@@ -150,6 +159,7 @@ func (chk *Chk) CreateTmpFile(data []byte) string {
 func (chk *Chk) CreateTmpFileIn(path string, data []byte) string {
 	chk.t.Helper()
 	chk.CreateTmpDir()
+
 	return chk.createFile(
 		path,
 		data,
@@ -162,6 +172,7 @@ func (chk *Chk) CreateTmpFileIn(path string, data []byte) string {
 func (chk *Chk) CreateTmpUnixScript(lines []string) string {
 	chk.t.Helper()
 	chk.CreateTmpDir()
+
 	return chk.CreateTmpUnixScriptIn(
 		filepath.Join(settingTmpDir, chk.Name()),
 		lines,
@@ -191,6 +202,7 @@ func (chk *Chk) CreateTmpUnixScriptIn(path string, lines []string) string {
 							"invalid unix script:  " +
 								"first line must start with '#!/' after optional whitespace",
 						)
+
 						return ""
 					}
 					if len(ccl) < len(cl) {
@@ -207,6 +219,7 @@ func (chk *Chk) CreateTmpUnixScriptIn(path string, lines []string) string {
 			}
 		}
 	}
+
 	return chk.createFile(
 		path,
 		[]byte(cleanScript),
@@ -228,6 +241,7 @@ func (chk *Chk) CreateTmpSubDir(d ...string) string {
 		chk.t.Helper()
 		chk.Error("createTmpSubDir cause: ", err)
 	}
+
 	return fullPath
 }
 
@@ -246,6 +260,7 @@ func (chk *Chk) CreateTmpDir() string {
 					if chk.faultCount == 0 && !chk.keepTmpFiles {
 						return removeTestDir(path)
 					}
+
 					return nil
 				})
 			}
@@ -255,5 +270,6 @@ func (chk *Chk) CreateTmpDir() string {
 		chk.Error("createTmpDir cause: ", err)
 	}
 	chk.tmpDirCreated = true
+
 	return path
 }

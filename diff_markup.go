@@ -93,6 +93,7 @@ func resolveMarksForDisplay(r string) string {
 	r = strings.ReplaceAll(r, markGotOff, settingMarkGotOff)
 	r = strings.ReplaceAll(r, markMsgOn, settingMarkMsgOn)
 	r = strings.ReplaceAll(r, markMsgOff, settingMarkMsgOff)
+
 	return r
 }
 
@@ -101,6 +102,7 @@ func gotWnt(got, wnt string) string {
 	if strings.Count(got, "\n")+strings.Count(wnt, "\n") > 0 {
 		h = "\n"
 	}
+
 	return fmt.Sprint(
 		g(h+got),
 		"\n",

@@ -61,6 +61,7 @@ func (lnFmt *diffLnFmt) fmtLnNbr(n int) string {
 	if n < 0 {
 		return strings.Repeat("-", lnFmt.nbrWidth)
 	}
+
 	return fmt.Sprintf("%*.*d", lnFmt.nbrWidth, lnFmt.nbrWidth, n)
 }
 
