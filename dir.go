@@ -123,27 +123,46 @@ func removeTestFile(path string) error {
 	return err //nolint:wrapcheck // Ok.
 }
 
-func (chk *Chk) createFile(path string, data []byte, perm os.FileMode) string {
+func (chk *Chk) setupPath(tmpDir, dir, fName string) (string, string) {
+	if !filepath.IsAbs(dir) {
+		dir = filepath.Join(tmpDir, dir)
+	}
+
+	if fName == "" {
+		id := chk.nextTmpID
+		chk.nextTmpID++
+		fName = fmt.Sprint("tmpFile", id, ".tmp")
+	}
+
+	return dir, fName
+}
+
+func (chk *Chk) createFile(
+	dir, fName string,
+	data []byte,
+	perm os.FileMode,
+) string {
 	chk.t.Helper()
-	id := chk.nextTmpID
-	chk.nextTmpID++
-	fName := filepath.Join(path, fmt.Sprint("tmpFile", id, ".tmp"))
 
-	pathStat, err := os.Stat(path)
-	if err != nil || !pathStat.IsDir() {
-		err = fmt.Errorf("%w: %q", ErrInvalidDirectory, path)
+	tmpDir := chk.CreateTmpDir()
+	dir, fName = chk.setupPath(tmpDir, dir, fName)
+
+	dirStat, err := os.Stat(dir)
+	if err != nil || !dirStat.IsDir() {
+		err = fmt.Errorf("%w: %q", ErrInvalidDirectory, dir)
+	}
+
+	path := filepath.Join(dir, fName)
+	if err == nil {
+		err = removeTestFile(path)
 	}
 
 	if err == nil {
-		err = removeTestFile(fName)
-	}
-
-	if err == nil {
-		err = os.WriteFile(fName, data, perm)
+		err = os.WriteFile(path, data, perm)
 		if err == nil {
 			chk.PushPreReleaseFunc(func() error {
 				if chk.faultCount == 0 && !chk.keepTmpFiles {
-					return removeTestFile(fName)
+					return removeTestFile(path)
 				}
 
 				return nil
@@ -155,25 +174,31 @@ func (chk *Chk) createFile(path string, data []byte, perm os.FileMode) string {
 		chk.Error("createFile cause: ", err)
 	}
 
-	return fName
+	return path
 }
 
 // CreateTmpFile removes and creates the named directory with the provided
 // permissions.
 func (chk *Chk) CreateTmpFile(data []byte) string {
 	chk.t.Helper()
-	chk.CreateTmpDir()
 
-	return chk.CreateTmpFileIn(filepath.Join(settingTmpDir, chk.Name()), data)
+	return chk.CreateTmpFileIn("", data)
 }
 
-// CreateTmpFileIn removes and creates the named file in the provided path.
+// CreateTmpFileIn removes and creates a tmp file in the provided path.
 func (chk *Chk) CreateTmpFileIn(path string, data []byte) string {
 	chk.t.Helper()
-	chk.CreateTmpDir()
+
+	return chk.CreateTmpFileAs(path, "", data)
+}
+
+// CreateTmpFileAs removes and creates the named file in the provided path.
+func (chk *Chk) CreateTmpFileAs(path, fName string, data []byte) string {
+	chk.t.Helper()
 
 	return chk.createFile(
 		path,
+		fName,
 		data,
 		settingPermFile,
 	)
@@ -186,14 +211,29 @@ func (chk *Chk) CreateTmpUnixScript(lines []string) string {
 	chk.CreateTmpDir()
 
 	return chk.CreateTmpUnixScriptIn(
-		filepath.Join(settingTmpDir, chk.Name()),
+		"",
 		lines,
 	)
 }
 
-// CreateTmpUnixScriptIn removes and creates the named directory with the
+// CreateTmpUnixScriptIn removes and creates the generated script name with the
 // provided permissions.
 func (chk *Chk) CreateTmpUnixScriptIn(path string, lines []string) string {
+	chk.t.Helper()
+
+	return chk.CreateTmpUnixScriptAs(
+		path,
+		"",
+		lines,
+	)
+}
+
+// CreateTmpUnixScriptAs removes and creates the named script with the
+// provided permissions.
+func (chk *Chk) CreateTmpUnixScriptAs(
+	path, fName string,
+	lines []string,
+) string {
 	chk.t.Helper()
 
 	// Strips away any leading blank lines and leading spaces on the first line
@@ -238,6 +278,7 @@ func (chk *Chk) CreateTmpUnixScriptIn(path string, lines []string) string {
 
 	return chk.createFile(
 		path,
+		fName,
 		[]byte(cleanScript),
 		settingPermExe,
 	)

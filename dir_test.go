@@ -358,6 +358,7 @@ func chkDirTestCreateTmpFileEmpty(t *testing.T) {
 		chkOutPush("Pre", ""),
 		chkOutHelper("CreateTmpFile"),
 		chkOutHelper("CreateTmpFileIn"),
+		chkOutHelper("CreateTmpFileAs"),
 		chkOutHelper("createFile"),
 		chkOutPush("Pre", ""),
 		chkOutRelease(),
@@ -394,6 +395,7 @@ func chkDirTestCreateTmpFileEmptyKeepTmp(t *testing.T) {
 		chkOutPush("Pre", ""),
 		chkOutHelper("CreateTmpFile"),
 		chkOutHelper("CreateTmpFileIn"),
+		chkOutHelper("CreateTmpFileAs"),
 		chkOutHelper("createFile"),
 		chkOutPush("Pre", ""),
 		chkOutRelease(),
@@ -420,6 +422,7 @@ func chkDirTestCreateTmpFileInvalidDIrectory(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutHelper("CreateTmpFile"),
 		chkOutHelper("CreateTmpFileIn"),
+		chkOutHelper("CreateTmpFileAs"),
 		chkOutHelper("createFile"),
 		chkOutError(
 			"createFile cause: "+ErrInvalidDirectory.Error()+
@@ -450,6 +453,7 @@ func chkDirTestCreateTmpUnixScriptEmpty(t *testing.T) {
 		chkOutPush("Pre", ""),
 		chkOutHelper("CreateTmpUnixScript"),
 		chkOutHelper("CreateTmpUnixScriptIn"),
+		chkOutHelper("CreateTmpUnixScriptAs"),
 		chkOutHelper("createFile"),
 		chkOutPush("Pre", ""),
 		chkOutRelease(),
@@ -475,6 +479,7 @@ func chkDirTestCreateTmpUnixScriptInvalid(t *testing.T) {
 		chkOutHelper("CreateTmpDir"),
 		chkOutPush("Pre", ""),
 		chkOutHelper("CreateTmpUnixScriptIn"),
+		chkOutHelper("CreateTmpUnixScriptAs"),
 		chkOutError(
 			"invalid unix script:  first line must start "+
 				"with '#!/' after optional whitespace",
@@ -518,6 +523,7 @@ func chkDirTestCreateTmpUnixScriptNoLeading(t *testing.T) {
 		chkOutHelper("CreateTmpDir"),
 		chkOutPush("Pre", ""),
 		chkOutHelper("CreateTmpUnixScriptIn"),
+		chkOutHelper("CreateTmpUnixScriptAs"),
 		chkOutHelper("createFile"),
 		chkOutPush("Pre", ""),
 		chkOutRelease(),
@@ -565,6 +571,7 @@ func chkDirTestCreateTmpUnixScriptWithLeading(t *testing.T) {
 		chkOutHelper("CreateTmpDir"),
 		chkOutPush("Pre", ""),
 		chkOutHelper("CreateTmpUnixScriptIn"),
+		chkOutHelper("CreateTmpUnixScriptAs"),
 		chkOutHelper("createFile"),
 		chkOutPush("Pre", ""),
 		chkOutRelease(),

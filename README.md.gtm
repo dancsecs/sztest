@@ -456,7 +456,7 @@ and identified with:
 
 directly (or indirectly by one of these helper functions)
 
-<!--- gotomd::dcls::./Chk.CreateTmpFile Chk.CreateTmpFileIn Chk.CreateTmpUnixScript Chk.CreateTmpUnixScriptIn Chk.CreateTmpSubDir -->
+<!--- gotomd::dcls::./Chk.CreateTmpFile Chk.CreateTmpFileIn Chk.CreateTmpFileAs Chk.CreateTmpUnixScript Chk.CreateTmpUnixScriptIn Chk.CreateTmpUnixScriptAs Chk.CreateTmpSubDir -->
 
 which all return the path constructed by creating a new sub directory in the
 default temp directory.

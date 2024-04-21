@@ -608,15 +608,17 @@ func (chk *Chk) CreateTmpDir() string
 
 directly (or indirectly by one of these helper functions)
 
-<!--- gotomd::Bgn::dcls::./Chk.CreateTmpFile Chk.CreateTmpFileIn Chk.CreateTmpUnixScript Chk.CreateTmpUnixScriptIn Chk.CreateTmpSubDir -->
+<!--- gotomd::Bgn::dcls::./Chk.CreateTmpFile Chk.CreateTmpFileIn Chk.CreateTmpFileAs Chk.CreateTmpUnixScript Chk.CreateTmpUnixScriptIn Chk.CreateTmpUnixScriptAs Chk.CreateTmpSubDir -->
 ```go
 func (chk *Chk) CreateTmpFile(data []byte) string
 func (chk *Chk) CreateTmpFileIn(path string, data []byte) string
+func (chk *Chk) CreateTmpFileAs(path, fName string, data []byte) string
 func (chk *Chk) CreateTmpUnixScript(lines []string) string
 func (chk *Chk) CreateTmpUnixScriptIn(path string, lines []string) string
+func (chk *Chk) CreateTmpUnixScriptAs(path, fName string, lines []string) string
 func (chk *Chk) CreateTmpSubDir(subDirs ...string) string
 ```
-<!--- gotomd::End::dcls::./Chk.CreateTmpFile Chk.CreateTmpFileIn Chk.CreateTmpUnixScript Chk.CreateTmpUnixScriptIn Chk.CreateTmpSubDir -->
+<!--- gotomd::End::dcls::./Chk.CreateTmpFile Chk.CreateTmpFileIn Chk.CreateTmpFileAs Chk.CreateTmpUnixScript Chk.CreateTmpUnixScriptIn Chk.CreateTmpUnixScriptAs Chk.CreateTmpSubDir -->
 
 which all return the path constructed by creating a new sub directory in the
 default temp directory.
