@@ -111,6 +111,7 @@ func TestSzTest(t *testing.T) {
 	t.Run("chkSubstitution", tstChkSubstitution)
 
 	t.Run("chkDir", tstChkDir)
+	t.Run("chkEnv", tstChkEnv)
 	t.Run("chkIoClose", tstChkIoClose)
 	t.Run("chkIoReader", tstChkIoReader)
 	t.Run("chkIoWriter", tstChkIoWriter)

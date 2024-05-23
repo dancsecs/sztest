@@ -85,6 +85,7 @@ dependencies.
   - [Example: Single Good Flag](examples/arguments_and_flags/README.md#example-arguments-and-flags-single-good-flag)
   - [Example: Invalid Flag](examples/arguments_and_flags/README.md#example-arguments-and-flags-invalid-flag)
   - [Example: Invalid Integer](examples/arguments_and_flags/README.md#example-arguments-and-flags-invalid-integer)
+- [Environment Variables](#environment-variables)
 - [Temporary directories, files, scripts](#temporary-directories-files-scripts)
   - [Example: Temporary Directory](examples/temporary_dir_file_script/README.md#example-temporary-directory)
   - [Example: Temporary File](examples/temporary_dir_file_script/README.md#example-temporary-file)
@@ -580,6 +581,21 @@ new *default flag set* is set to ```panicOnError```.
 - [Example: Single Good Flag](examples/arguments_and_flags/README.md#example-arguments-and-flags-single-good-flag)
 - [Example: Invalid Flag](examples/arguments_and_flags/README.md#example-arguments-and-flags-invalid-flag)
 - [Example: Invalid Integer](examples/arguments_and_flags/README.md#example-arguments-and-flags-invalid-integer)
+
+[Contents](#contents)
+
+## Environment Variables
+
+System environment variables mat be set or deleted using the following:
+
+<!--- gotomd::Bgn::dcls::./Chk.SetEnv Chk.DelEnv -->
+```go
+func (chk *Chk) SetEnv(name, value string)
+func (chk *Chk) DelEnv(name string)
+```
+<!--- gotomd::End::dcls::./Chk.SetEnv Chk.DelEnv -->
+
+Original values are restores when the ```chk.Release()``` method is called.
 
 [Contents](#contents)
 
