@@ -19,6 +19,7 @@
 package sztest
 
 import (
+	"math"
 	"testing"
 )
 
@@ -57,6 +58,10 @@ func chkFloat32TestGood(t *testing.T) {
 	chk.Float32(0.02, 0.01, 0.1)
 	chk.Float32(0.02, 0.01, 0.1, "not ", "displayed")
 	chk.Float32f(0.02, 0.01, 0.1, "not %s", "displayed")
+
+	chk.Float32f(float32(math.NaN()), float32(math.NaN()),
+		0, "not %s", "displayed",
+	)
 
 	chk.Release()
 	iT.check(t,

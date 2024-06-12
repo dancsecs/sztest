@@ -118,10 +118,10 @@ func DiffSlice[T chkType](
 	minRunString int,
 	cmp func(a, b T) bool,
 ) []string {
-	var result []string
-
 	lenGotSlice := len(gotSlice)
 	lenWntSlice := len(wntSlice)
+	result := make([]string, 0, lenGotSlice+lenWntSlice)
+
 	same := lenGotSlice == lenWntSlice
 
 	for i := 0; i < lenGotSlice && same; i++ {
@@ -170,7 +170,7 @@ func DiffSlice[T chkType](
 
 		switch {
 		case lenGotSlice < lenWntSlice:
-			for i := 0; i < lenGotSlice; i++ {
+			for i := range lenGotSlice {
 				result = append(
 					result,
 					dFmt.changed(i, i,
@@ -187,7 +187,7 @@ func DiffSlice[T chkType](
 				result = append(result, dFmt.justWnt(i, wntSlice[i]))
 			}
 		case lenGotSlice > lenWntSlice:
-			for i := 0; i < lenWntSlice; i++ {
+			for i := range lenWntSlice {
 				result = append(
 					result,
 					dFmt.changed(i, i,
@@ -204,7 +204,7 @@ func DiffSlice[T chkType](
 				result = append(result, dFmt.justGot(i, gotSlice[i]))
 			}
 		default: // lengths are equal
-			for i := 0; i < lenGotSlice; i++ {
+			for i := range lenGotSlice {
 				result = append(
 					result,
 					dFmt.changed(i, i,
@@ -238,7 +238,7 @@ func DiffSlice[T chkType](
 	)...)
 
 	// Add unchanged lines
-	for i := 0; i < numLines; i++ {
+	for i := range numLines {
 		result = append(
 			result,
 			dFmt.same(i+gotIdx, i+wntInd, gotSlice[i+gotIdx]),

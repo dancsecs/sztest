@@ -30,11 +30,11 @@ func (chk *Chk) SetEnv(name, value string) {
 	currentValue, found := os.LookupEnv(name)
 	if found {
 		reverseFunc = func() error {
-			return os.Setenv(name, currentValue) //nolint:wrapcheck // Ok.
+			return os.Setenv(name, currentValue)
 		}
 	} else {
 		reverseFunc = func() error {
-			return os.Unsetenv(name) //nolint:wrapcheck // Ok.
+			return os.Unsetenv(name)
 		}
 	}
 
@@ -50,7 +50,7 @@ func (chk *Chk) DelEnv(name string) {
 	currentValue, found := os.LookupEnv(name)
 	if found {
 		reverseFunc := func() error {
-			return os.Setenv(name, currentValue) //nolint:wrapcheck // Ok.
+			return os.Setenv(name, currentValue)
 		}
 		chk.PushPostReleaseFunc(reverseFunc)
 	}

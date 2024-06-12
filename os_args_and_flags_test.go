@@ -220,7 +220,7 @@ func chkArgsAndFlagsTestCaptureFlagUsage(t *testing.T) {
 
 	c := chk.SetupArgsAndFlags([]string{"progname"})
 	c.Usage = func() {
-		fmt.Fprint(c.Output(), "usage message")
+		_, _ = fmt.Fprint(c.Output(), "usage message")
 	}
 	chk.Str(
 		chk.CaptureFlagUsage(c),

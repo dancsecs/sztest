@@ -123,13 +123,13 @@ func chkLogTestRemoveLogPrefixes(t *testing.T) {
 		explain += s
 	}
 
-	for bPrefix := 0; bPrefix < 2; bPrefix++ {
-		for bMsgPrefix := 0; bMsgPrefix < 2; bMsgPrefix++ {
-			for bShortFile := 0; bShortFile < 2; bShortFile++ {
-				for bLongFile := 0; bLongFile < 2; bLongFile++ {
-					for bms := 0; bms < 2; bms++ {
-						for btm := 0; btm < 2; btm++ {
-							for bdt := 0; bdt < 2; bdt++ {
+	for bPrefix := range 2 {
+		for bMsgPrefix := range 2 {
+			for bShortFile := range 2 {
+				for bLongFile := range 2 {
+					for bms := range 2 {
+						for btm := range 2 {
+							for bdt := range 2 {
 								flags = 0
 								explain = ""
 
@@ -194,6 +194,7 @@ func chkLogTestRemoveLogPrefixes(t *testing.T) {
 			}
 		}
 	}
+
 	iT.check(t,
 		chkOutCapture("Nothing"),
 	)

@@ -19,6 +19,7 @@
 package sztest
 
 import (
+	"math"
 	"strconv"
 )
 
@@ -123,9 +124,14 @@ func (chk *Chk) Float64Slice(
 // IsFloat64Similar compares two floats to see if they match within the
 // specified tolerance.
 func IsFloat64Similar(num1, num2, tolerance float64) bool {
+	if math.IsNaN(num1) && math.IsNaN(num2) {
+		return true
+	}
+
 	if tolerance == 0.0 {
 		return num1 == num2
 	}
+
 	// Are a and b within tolerance t
 	switch {
 	case num1 < num2:

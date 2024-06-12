@@ -169,7 +169,7 @@ func (chk *Chk) setupStdoutLogger() {
 		t := os.Stdout
 		os.Stdout = chk.outOrig
 
-		return t.Close() //nolint:wrapcheck // Ok.
+		return t.Close()
 	})
 }
 

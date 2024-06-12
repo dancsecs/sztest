@@ -119,6 +119,7 @@ func (chk *Chk) SetStdinData(lines ...string) {
 
 		os.Stdin = rPipe
 
-		fmt.Fprint(wPipe, strings.Join(lines, ""))
+		_, err = fmt.Fprint(wPipe, strings.Join(lines, ""))
+		chk.NoErr(err)
 	}
 }
