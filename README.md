@@ -567,11 +567,12 @@ func (chk *Chk) SetIOWriterError(n int, err error)
 In order to test main default argument processing, test args and a clean flag
 environment are implemented with:
 
-<!--- gotomd::Bgn::dcls::./Chk.SetupArgsAndFlags -->
+<!--- gotomd::Bgn::dcls::./Chk.SetupArgsAndFlags Chk.SetArgs -->
 ```go
 func (chk *Chk) SetupArgsAndFlags(args []string) *flag.FlagSet
+func (chk *Chk) SetArgs(args ...string)
 ```
-<!--- gotomd::End::dcls::./Chk.SetupArgsAndFlags -->
+<!--- gotomd::End::dcls::./Chk.SetupArgsAndFlags Chk.SetArgs -->
 
 where both ```os.Args``` and ```flags.CommandLine``` are saved and replaced
 with the provided ```args``` and a ```NewFlagSet``` respectively.  Original

@@ -49,6 +49,14 @@ func (chk *Chk) SetupArgsAndFlags(args []string) *flag.FlagSet {
 	return flag.CommandLine
 }
 
+// SetArgs invokes the current arguments in os.Args and
+// flag.CommandLine.  Package variable os.Args is set to the provided arguments
+// and a new flag set is assigned to flag.CommandLine and is ready to use.
+// Original values are restores with the chk object is released.
+func (chk *Chk) SetArgs(args ...string) {
+	chk.SetupArgsAndFlags(args)
+}
+
 // CaptureFlagUsage is a convenience function that captures the output
 // of the provided *flag.FlagSet.
 func (*Chk) CaptureFlagUsage(flagSet *flag.FlagSet) string {

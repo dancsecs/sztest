@@ -70,7 +70,7 @@ func chkArgsAndFlagsTestSetupOneArg(t *testing.T) {
 	args := []string{
 		"progName",
 	}
-	chk.SetupArgsAndFlags(args)
+	chk.SetArgs(args...)
 
 	chk.Str(flag.CommandLine.Name(), args[0])
 	chk.StrSlice(os.Args, args)
@@ -92,7 +92,7 @@ func chkArgsAndFlagsTestGoodParseDefault(t *testing.T) {
 	args := []string{
 		"progName",
 	}
-	chk.SetupArgsAndFlags(args)
+	chk.SetArgs(args...)
 
 	chk.Str(strValue, "")
 
@@ -124,7 +124,7 @@ func chkArgsAndFlagsTestGoodParse(t *testing.T) {
 		"-s",
 		"str from arg",
 	}
-	chk.SetupArgsAndFlags(args)
+	chk.SetArgs(args...)
 
 	chk.Str(strValue, "")
 
