@@ -60,15 +60,15 @@ func Test_ArgsAndFlags_SingleGoodFlag(t *testing.T) {
 go test -v -cover ./valid_flag
 ```
 
-$\small{\texttt{===\unicode{160}RUN\unicode{160}\unicode{160}\unicode{160}Test&#x332;ArgsAndFlags&#x332;SingleGoodFlag}}$
+$\small{\texttt{===&#xa0;RUN&#xa0;&#xa0;&#xa0;Test&#x332;ArgsAndFlags&#x332;SingleGoodFlag}}$
 <br>
-$\small{\texttt{---\unicode{160}PASS:\unicode{160}Test&#x332;ArgsAndFlags&#x332;SingleGoodFlag\unicode{160}(0.0s)}}$
+$\small{\texttt{---&#xa0;PASS:&#xa0;Test&#x332;ArgsAndFlags&#x332;SingleGoodFlag&#xa0;(0.0s)}}$
 <br>
 $\small{\texttt{PASS}}$
 <br>
-$\small{\texttt{coverage:\unicode{160}[no\unicode{160}statements]}}$
+$\small{\texttt{coverage:&#xa0;[no&#xa0;statements]}}$
 <br>
-$\small{\texttt{ok\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}github.com/dancsecs/sztest/examples/arguments&#x332;and&#x332;flags/valid&#x332;flag\unicode{160}\unicode{160}\unicode{160}\unicode{160}coverage:\unicode{160}[no\unicode{160}statements]}}$
+$\small{\texttt{ok&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;github.com/dancsecs/sztest/examples/arguments&#x332;and&#x332;flags/valid&#x332;flag&#xa0;&#xa0;&#xa0;&#xa0;coverage:&#xa0;[no&#xa0;statements]}}$
 <br>
 <!--- gotomd::End::tst::./valid_flag/package -->
 
@@ -135,15 +135,15 @@ func Test_ArgsAndFlags_InvalidFlag(t *testing.T) {
 go test -v -cover ./invalid_flag
 ```
 
-$\small{\texttt{===\unicode{160}RUN\unicode{160}\unicode{160}\unicode{160}Test&#x332;ArgsAndFlags&#x332;InvalidFlag}}$
+$\small{\texttt{===&#xa0;RUN&#xa0;&#xa0;&#xa0;Test&#x332;ArgsAndFlags&#x332;InvalidFlag}}$
 <br>
-$\small{\texttt{---\unicode{160}PASS:\unicode{160}Test&#x332;ArgsAndFlags&#x332;InvalidFlag\unicode{160}(0.0s)}}$
+$\small{\texttt{---&#xa0;PASS:&#xa0;Test&#x332;ArgsAndFlags&#x332;InvalidFlag&#xa0;(0.0s)}}$
 <br>
 $\small{\texttt{PASS}}$
 <br>
-$\small{\texttt{coverage:\unicode{160}[no\unicode{160}statements]}}$
+$\small{\texttt{coverage:&#xa0;[no&#xa0;statements]}}$
 <br>
-$\small{\texttt{ok\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}github.com/dancsecs/sztest/examples/arguments&#x332;and&#x332;flags/invalid&#x332;flag\unicode{160}\unicode{160}\unicode{160}\unicode{160}coverage:\unicode{160}[no\unicode{160}statements]}}$
+$\small{\texttt{ok&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;github.com/dancsecs/sztest/examples/arguments&#x332;and&#x332;flags/invalid&#x332;flag&#xa0;&#xa0;&#xa0;&#xa0;coverage:&#xa0;[no&#xa0;statements]}}$
 <br>
 <!--- gotomd::End::tst::./invalid_flag/package -->
 
@@ -204,15 +204,15 @@ func Test_ArgsAndFlags_InvalidInteger(t *testing.T) {
 go test -v -cover ./invalid_integer
 ```
 
-$\small{\texttt{===\unicode{160}RUN\unicode{160}\unicode{160}\unicode{160}Test&#x332;ArgsAndFlags&#x332;InvalidInteger}}$
+$\small{\texttt{===&#xa0;RUN&#xa0;&#xa0;&#xa0;Test&#x332;ArgsAndFlags&#x332;InvalidInteger}}$
 <br>
-$\small{\texttt{---\unicode{160}PASS:\unicode{160}Test&#x332;ArgsAndFlags&#x332;InvalidInteger\unicode{160}(0.0s)}}$
+$\small{\texttt{---&#xa0;PASS:&#xa0;Test&#x332;ArgsAndFlags&#x332;InvalidInteger&#xa0;(0.0s)}}$
 <br>
 $\small{\texttt{PASS}}$
 <br>
-$\small{\texttt{coverage:\unicode{160}[no\unicode{160}statements]}}$
+$\small{\texttt{coverage:&#xa0;[no&#xa0;statements]}}$
 <br>
-$\small{\texttt{ok\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}github.com/dancsecs/sztest/examples/arguments&#x332;and&#x332;flags/invalid&#x332;integer\unicode{160}\unicode{160}\unicode{160}\unicode{160}coverage:\unicode{160}[no\unicode{160}statements]}}$
+$\small{\texttt{ok&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;github.com/dancsecs/sztest/examples/arguments&#x332;and&#x332;flags/invalid&#x332;integer&#xa0;&#xa0;&#xa0;&#xa0;coverage:&#xa0;[no&#xa0;statements]}}$
 <br>
 <!--- gotomd::End::tst::./invalid_integer/package -->
 

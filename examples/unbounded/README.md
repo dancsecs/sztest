@@ -54,25 +54,25 @@ func Test_Fail_BoundedFloat64WithNoMessage(t *testing.T) {
 go test -v -cover ./float64_with_no_message
 ```
 
-$\small{\texttt{===\unicode{160}RUN\unicode{160}\unicode{160}\unicode{160}Test&#x332;PASS&#x332;BoundedFloat64WithNoMessage}}$
+$\small{\texttt{===&#xa0;RUN&#xa0;&#xa0;&#xa0;Test&#x332;PASS&#x332;BoundedFloat64WithNoMessage}}$
 <br>
-$\small{\texttt{---\unicode{160}PASS:\unicode{160}Test&#x332;PASS&#x332;BoundedFloat64WithNoMessage\unicode{160}(0.0s)}}$
+$\small{\texttt{---&#xa0;PASS:&#xa0;Test&#x332;PASS&#x332;BoundedFloat64WithNoMessage&#xa0;(0.0s)}}$
 <br>
-$\small{\texttt{===\unicode{160}RUN\unicode{160}\unicode{160}\unicode{160}Test&#x332;Fail&#x332;BoundedFloat64WithNoMessage}}$
+$\small{\texttt{===&#xa0;RUN&#xa0;&#xa0;&#xa0;Test&#x332;Fail&#x332;BoundedFloat64WithNoMessage}}$
 <br>
-$\small{\texttt{\unicode{160}\unicode{160}\unicode{160}\unicode{160}example&#x332;test.go:29:\unicode{160}unexpected\unicode{160}float64:}}$
+$\small{\texttt{&#xa0;&#xa0;&#xa0;&#xa0;example&#x332;test.go:29:&#xa0;unexpected&#xa0;float64:}}$
 <br>
-$\small{\texttt{\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}\color{magenta}GOT:\unicode{160}\color{default}0.6172835}}$
+$\small{\texttt{&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;\color{magenta}GOT:&#xa0;\color{default}0.6172835}}$
 <br>
-$\small{\texttt{\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}\color{cyan}WNT:\unicode{160}\color{default}out\unicode{160}of\unicode{160}bounds:\unicode{160}(2,MAX)\unicode{160}-\unicode{160}{\unicode{160}want\unicode{160}|\unicode{160}want\unicode{160}>\unicode{160}2\unicode{160}}}}$
+$\small{\texttt{&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;\color{cyan}WNT:&#xa0;\color{default}out&#xa0;of&#xa0;bounds:&#xa0;(2,MAX)&#xa0;-&#xa0;{&#xa0;want&#xa0;|&#xa0;want&#xa0;>&#xa0;2&#xa0;}}}$
 <br>
-$\small{\texttt{---\unicode{160}FAIL:\unicode{160}Test&#x332;Fail&#x332;BoundedFloat64WithNoMessage\unicode{160}(0.0s)}}$
+$\small{\texttt{---&#xa0;FAIL:&#xa0;Test&#x332;Fail&#x332;BoundedFloat64WithNoMessage&#xa0;(0.0s)}}$
 <br>
 $\small{\texttt{FAIL}}$
 <br>
-$\small{\texttt{coverage:\unicode{160}[no\unicode{160}statements]}}$
+$\small{\texttt{coverage:&#xa0;[no&#xa0;statements]}}$
 <br>
-$\small{\texttt{FAIL\unicode{160}github.com/dancsecs/sztest/examples/unbounded/float64&#x332;with&#x332;no&#x332;message\unicode{160}0.0s}}$
+$\small{\texttt{FAIL&#xa0;github.com/dancsecs/sztest/examples/unbounded/float64&#x332;with&#x332;no&#x332;message&#xa0;0.0s}}$
 <br>
 $\small{\texttt{FAIL}}$
 <br>

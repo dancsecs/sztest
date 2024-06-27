@@ -46,15 +46,15 @@ func Test_PASS_TemporaryDirectory(t *testing.T) {
 go test -v -cover ./temporary_directory
 ```
 
-$\small{\texttt{===\unicode{160}RUN\unicode{160}\unicode{160}\unicode{160}Test&#x332;PASS&#x332;TemporaryDirectory}}$
+$\small{\texttt{===&#xa0;RUN&#xa0;&#xa0;&#xa0;Test&#x332;PASS&#x332;TemporaryDirectory}}$
 <br>
-$\small{\texttt{---\unicode{160}PASS:\unicode{160}Test&#x332;PASS&#x332;TemporaryDirectory\unicode{160}(0.0s)}}$
+$\small{\texttt{---&#xa0;PASS:&#xa0;Test&#x332;PASS&#x332;TemporaryDirectory&#xa0;(0.0s)}}$
 <br>
 $\small{\texttt{PASS}}$
 <br>
-$\small{\texttt{coverage:\unicode{160}[no\unicode{160}statements]}}$
+$\small{\texttt{coverage:&#xa0;[no&#xa0;statements]}}$
 <br>
-$\small{\texttt{ok\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}github.com/dancsecs/sztest/examples/temporary&#x332;dir&#x332;file&#x332;script/temporary&#x332;directory\unicode{160}\unicode{160}\unicode{160}\unicode{160}coverage:\unicode{160}[no\unicode{160}statements]}}$
+$\small{\texttt{ok&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;github.com/dancsecs/sztest/examples/temporary&#x332;dir&#x332;file&#x332;script/temporary&#x332;directory&#xa0;&#xa0;&#xa0;&#xa0;coverage:&#xa0;[no&#xa0;statements]}}$
 <br>
 <!--- gotomd::End::tst::./temporary_directory/package -->
 
@@ -101,15 +101,15 @@ func Test_PASS_TemporaryFile(t *testing.T) {
 go test -v -cover ./temporary_file
 ```
 
-$\small{\texttt{===\unicode{160}RUN\unicode{160}\unicode{160}\unicode{160}Test&#x332;PASS&#x332;TemporaryFile}}$
+$\small{\texttt{===&#xa0;RUN&#xa0;&#xa0;&#xa0;Test&#x332;PASS&#x332;TemporaryFile}}$
 <br>
-$\small{\texttt{---\unicode{160}PASS:\unicode{160}Test&#x332;PASS&#x332;TemporaryFile\unicode{160}(0.0s)}}$
+$\small{\texttt{---&#xa0;PASS:&#xa0;Test&#x332;PASS&#x332;TemporaryFile&#xa0;(0.0s)}}$
 <br>
 $\small{\texttt{PASS}}$
 <br>
-$\small{\texttt{coverage:\unicode{160}[no\unicode{160}statements]}}$
+$\small{\texttt{coverage:&#xa0;[no&#xa0;statements]}}$
 <br>
-$\small{\texttt{ok\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}github.com/dancsecs/sztest/examples/temporary&#x332;dir&#x332;file&#x332;script/temporary&#x332;file\unicode{160}\unicode{160}\unicode{160}\unicode{160}coverage:\unicode{160}[no\unicode{160}statements]}}$
+$\small{\texttt{ok&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;github.com/dancsecs/sztest/examples/temporary&#x332;dir&#x332;file&#x332;script/temporary&#x332;file&#xa0;&#xa0;&#xa0;&#xa0;coverage:&#xa0;[no&#xa0;statements]}}$
 <br>
 <!--- gotomd::End::tst::./temporary_file/package -->
 
@@ -158,15 +158,15 @@ func Test_PASS_TemporaryUnixScript(t *testing.T) {
 go test -v -cover ./temporary_unix_script
 ```
 
-$\small{\texttt{===\unicode{160}RUN\unicode{160}\unicode{160}\unicode{160}Test&#x332;PASS&#x332;TemporaryUnixScript}}$
+$\small{\texttt{===&#xa0;RUN&#xa0;&#xa0;&#xa0;Test&#x332;PASS&#x332;TemporaryUnixScript}}$
 <br>
-$\small{\texttt{---\unicode{160}PASS:\unicode{160}Test&#x332;PASS&#x332;TemporaryUnixScript\unicode{160}(0.0s)}}$
+$\small{\texttt{---&#xa0;PASS:&#xa0;Test&#x332;PASS&#x332;TemporaryUnixScript&#xa0;(0.0s)}}$
 <br>
 $\small{\texttt{PASS}}$
 <br>
-$\small{\texttt{coverage:\unicode{160}[no\unicode{160}statements]}}$
+$\small{\texttt{coverage:&#xa0;[no&#xa0;statements]}}$
 <br>
-$\small{\texttt{ok\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}github.com/dancsecs/sztest/examples/temporary&#x332;dir&#x332;file&#x332;script/temporary&#x332;unix&#x332;script\unicode{160}\unicode{160}\unicode{160}\unicode{160}coverage:\unicode{160}[no\unicode{160}statements]}}$
+$\small{\texttt{ok&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;github.com/dancsecs/sztest/examples/temporary&#x332;dir&#x332;file&#x332;script/temporary&#x332;unix&#x332;script&#xa0;&#xa0;&#xa0;&#xa0;coverage:&#xa0;[no&#xa0;statements]}}$
 <br>
 <!--- gotomd::End::tst::./temporary_unix_script/package -->
 
@@ -250,15 +250,15 @@ func Test_PASS_TemporaryDirectoryTree(t *testing.T) {
 go test -v -cover ./temporary_directory_tree
 ```
 
-$\small{\texttt{===\unicode{160}RUN\unicode{160}\unicode{160}\unicode{160}Test&#x332;PASS&#x332;TemporaryDirectoryTree}}$
+$\small{\texttt{===&#xa0;RUN&#xa0;&#xa0;&#xa0;Test&#x332;PASS&#x332;TemporaryDirectoryTree}}$
 <br>
-$\small{\texttt{---\unicode{160}PASS:\unicode{160}Test&#x332;PASS&#x332;TemporaryDirectoryTree\unicode{160}(0.0s)}}$
+$\small{\texttt{---&#xa0;PASS:&#xa0;Test&#x332;PASS&#x332;TemporaryDirectoryTree&#xa0;(0.0s)}}$
 <br>
 $\small{\texttt{PASS}}$
 <br>
-$\small{\texttt{coverage:\unicode{160}[no\unicode{160}statements]}}$
+$\small{\texttt{coverage:&#xa0;[no&#xa0;statements]}}$
 <br>
-$\small{\texttt{ok\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}github.com/dancsecs/sztest/examples/temporary&#x332;dir&#x332;file&#x332;script/temporary&#x332;directory&#x332;tree\unicode{160}\unicode{160}\unicode{160}\unicode{160}coverage:\unicode{160}[no\unicode{160}statements]}}$
+$\small{\texttt{ok&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;github.com/dancsecs/sztest/examples/temporary&#x332;dir&#x332;file&#x332;script/temporary&#x332;directory&#x332;tree&#xa0;&#xa0;&#xa0;&#xa0;coverage:&#xa0;[no&#xa0;statements]}}$
 <br>
 <!--- gotomd::End::tst::./temporary_directory_tree/package -->
 

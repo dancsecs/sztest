@@ -127,15 +127,15 @@ func Test_IoInterface_ReadError(t *testing.T) {
 go test -v -cover ./read_error
 ```
 
-$\small{\texttt{===\unicode{160}RUN\unicode{160}\unicode{160}\unicode{160}Test&#x332;IoInterface&#x332;ReadError}}$
+$\small{\texttt{===&#xa0;RUN&#xa0;&#xa0;&#xa0;Test&#x332;IoInterface&#x332;ReadError}}$
 <br>
-$\small{\texttt{---\unicode{160}PASS:\unicode{160}Test&#x332;IoInterface&#x332;ReadError\unicode{160}(0.0s)}}$
+$\small{\texttt{---&#xa0;PASS:&#xa0;Test&#x332;IoInterface&#x332;ReadError&#xa0;(0.0s)}}$
 <br>
 $\small{\texttt{PASS}}$
 <br>
-$\small{\texttt{coverage:\unicode{160}100.0&#xFE6A;\unicode{160}of\unicode{160}statements}}$
+$\small{\texttt{coverage:&#xa0;100.0&#xFE6A;&#xa0;of&#xa0;statements}}$
 <br>
-$\small{\texttt{ok\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}github.com/dancsecs/sztest/examples/io&#x332;interface/read&#x332;error\unicode{160}\unicode{160}\unicode{160}\unicode{160}coverage:\unicode{160}100.0&#xFE6A;\unicode{160}of\unicode{160}statements}}$
+$\small{\texttt{ok&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;github.com/dancsecs/sztest/examples/io&#x332;interface/read&#x332;error&#xa0;&#xa0;&#xa0;&#xa0;coverage:&#xa0;100.0&#xFE6A;&#xa0;of&#xa0;statements}}$
 <br>
 <!--- gotomd::End::tst::./read_error/package -->
 
@@ -211,15 +211,15 @@ func Test_IoInterface_ReadError(t *testing.T) {
 go test -v -cover ./write_error
 ```
 
-$\small{\texttt{===\unicode{160}RUN\unicode{160}\unicode{160}\unicode{160}Test&#x332;IoInterface&#x332;ReadError}}$
+$\small{\texttt{===&#xa0;RUN&#xa0;&#xa0;&#xa0;Test&#x332;IoInterface&#x332;ReadError}}$
 <br>
-$\small{\texttt{---\unicode{160}PASS:\unicode{160}Test&#x332;IoInterface&#x332;ReadError\unicode{160}(0.0s)}}$
+$\small{\texttt{---&#xa0;PASS:&#xa0;Test&#x332;IoInterface&#x332;ReadError&#xa0;(0.0s)}}$
 <br>
 $\small{\texttt{PASS}}$
 <br>
-$\small{\texttt{coverage:\unicode{160}100.0&#xFE6A;\unicode{160}of\unicode{160}statements}}$
+$\small{\texttt{coverage:&#xa0;100.0&#xFE6A;&#xa0;of&#xa0;statements}}$
 <br>
-$\small{\texttt{ok\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}github.com/dancsecs/sztest/examples/io&#x332;interface/write&#x332;error\unicode{160}\unicode{160}\unicode{160}\unicode{160}coverage:\unicode{160}100.0&#xFE6A;\unicode{160}of\unicode{160}statements}}$
+$\small{\texttt{ok&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;github.com/dancsecs/sztest/examples/io&#x332;interface/write&#x332;error&#xa0;&#xa0;&#xa0;&#xa0;coverage:&#xa0;100.0&#xFE6A;&#xa0;of&#xa0;statements}}$
 <br>
 <!--- gotomd::End::tst::./write_error/package -->
 
@@ -282,15 +282,15 @@ func Test_IoInterface_ReadError(t *testing.T) {
 go test -v -cover ./read_seek_error
 ```
 
-$\small{\texttt{===\unicode{160}RUN\unicode{160}\unicode{160}\unicode{160}Test&#x332;IoInterface&#x332;ReadError}}$
+$\small{\texttt{===&#xa0;RUN&#xa0;&#xa0;&#xa0;Test&#x332;IoInterface&#x332;ReadError}}$
 <br>
-$\small{\texttt{---\unicode{160}PASS:\unicode{160}Test&#x332;IoInterface&#x332;ReadError\unicode{160}(0.0s)}}$
+$\small{\texttt{---&#xa0;PASS:&#xa0;Test&#x332;IoInterface&#x332;ReadError&#xa0;(0.0s)}}$
 <br>
 $\small{\texttt{PASS}}$
 <br>
-$\small{\texttt{coverage:\unicode{160}100.0&#xFE6A;\unicode{160}of\unicode{160}statements}}$
+$\small{\texttt{coverage:&#xa0;100.0&#xFE6A;&#xa0;of&#xa0;statements}}$
 <br>
-$\small{\texttt{ok\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}github.com/dancsecs/sztest/examples/io&#x332;interface/read&#x332;seek&#x332;error\unicode{160}\unicode{160}\unicode{160}\unicode{160}coverage:\unicode{160}100.0&#xFE6A;\unicode{160}of\unicode{160}statements}}$
+$\small{\texttt{ok&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;github.com/dancsecs/sztest/examples/io&#x332;interface/read&#x332;seek&#x332;error&#xa0;&#xa0;&#xa0;&#xa0;coverage:&#xa0;100.0&#xFE6A;&#xa0;of&#xa0;statements}}$
 <br>
 <!--- gotomd::End::tst::./read_seek_error/package -->
 
@@ -353,15 +353,15 @@ func Test_IoInterface_ReadError(t *testing.T) {
 go test -v -cover ./write_seek_error
 ```
 
-$\small{\texttt{===\unicode{160}RUN\unicode{160}\unicode{160}\unicode{160}Test&#x332;IoInterface&#x332;ReadError}}$
+$\small{\texttt{===&#xa0;RUN&#xa0;&#xa0;&#xa0;Test&#x332;IoInterface&#x332;ReadError}}$
 <br>
-$\small{\texttt{---\unicode{160}PASS:\unicode{160}Test&#x332;IoInterface&#x332;ReadError\unicode{160}(0.0s)}}$
+$\small{\texttt{---&#xa0;PASS:&#xa0;Test&#x332;IoInterface&#x332;ReadError&#xa0;(0.0s)}}$
 <br>
 $\small{\texttt{PASS}}$
 <br>
-$\small{\texttt{coverage:\unicode{160}100.0&#xFE6A;\unicode{160}of\unicode{160}statements}}$
+$\small{\texttt{coverage:&#xa0;100.0&#xFE6A;&#xa0;of&#xa0;statements}}$
 <br>
-$\small{\texttt{ok\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}github.com/dancsecs/sztest/examples/io&#x332;interface/write&#x332;seek&#x332;error\unicode{160}\unicode{160}\unicode{160}\unicode{160}coverage:\unicode{160}100.0&#xFE6A;\unicode{160}of\unicode{160}statements}}$
+$\small{\texttt{ok&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;github.com/dancsecs/sztest/examples/io&#x332;interface/write&#x332;seek&#x332;error&#xa0;&#xa0;&#xa0;&#xa0;coverage:&#xa0;100.0&#xFE6A;&#xa0;of&#xa0;statements}}$
 <br>
 <!--- gotomd::End::tst::./write_seek_error/package -->
 
@@ -422,15 +422,15 @@ func Test_IoInterface_ReadError(t *testing.T) {
 go test -v -cover ./close_error
 ```
 
-$\small{\texttt{===\unicode{160}RUN\unicode{160}\unicode{160}\unicode{160}Test&#x332;IoInterface&#x332;ReadError}}$
+$\small{\texttt{===&#xa0;RUN&#xa0;&#xa0;&#xa0;Test&#x332;IoInterface&#x332;ReadError}}$
 <br>
-$\small{\texttt{---\unicode{160}PASS:\unicode{160}Test&#x332;IoInterface&#x332;ReadError\unicode{160}(0.0s)}}$
+$\small{\texttt{---&#xa0;PASS:&#xa0;Test&#x332;IoInterface&#x332;ReadError&#xa0;(0.0s)}}$
 <br>
 $\small{\texttt{PASS}}$
 <br>
-$\small{\texttt{coverage:\unicode{160}100.0&#xFE6A;\unicode{160}of\unicode{160}statements}}$
+$\small{\texttt{coverage:&#xa0;100.0&#xFE6A;&#xa0;of&#xa0;statements}}$
 <br>
-$\small{\texttt{ok\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}\unicode{160}github.com/dancsecs/sztest/examples/io&#x332;interface/close&#x332;error\unicode{160}\unicode{160}\unicode{160}\unicode{160}coverage:\unicode{160}100.0&#xFE6A;\unicode{160}of\unicode{160}statements}}$
+$\small{\texttt{ok&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;github.com/dancsecs/sztest/examples/io&#x332;interface/close&#x332;error&#xa0;&#xa0;&#xa0;&#xa0;coverage:&#xa0;100.0&#xFE6A;&#xa0;of&#xa0;statements}}$
 <br>
 <!--- gotomd::End::tst::./close_error/package -->
 
