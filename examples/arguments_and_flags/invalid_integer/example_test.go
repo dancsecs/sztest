@@ -19,12 +19,11 @@ func Test_ArgsAndFlags_InvalidInteger(t *testing.T) {
 	chk := sztest.CaptureStderr(t)
 	defer chk.Release()
 
-	args := []string{
+	chk.SetArgs(
 		"program/name",
 		"-n",
 		"thisIsNotAnInteger",
-	}
-	chk.SetupArgsAndFlags(args)
+	)
 
 	chk.Panic(
 		main,

@@ -42,12 +42,11 @@ func Test_ArgsAndFlags_SingleGoodFlag(t *testing.T) {
     chk := sztest.CaptureNothing(t)
     defer chk.Release()
 
-    args := []string{
+    chk.SetArgs(
         "program/name",
         "-s",
         "str from arg",
-    }
-    chk.SetupArgsAndFlags(args)
+    )
 
     main()
 
@@ -108,12 +107,11 @@ func Test_ArgsAndFlags_InvalidFlag(t *testing.T) {
     chk := sztest.CaptureStderr(t)
     defer chk.Release()
 
-    args := []string{
+    chk.SetArgs(
         "program/name",
         "-x",
         "str from arg",
-    }
-    chk.SetupArgsAndFlags(args)
+    )
 
     chk.Panic(
         main,
@@ -180,12 +178,11 @@ func Test_ArgsAndFlags_InvalidInteger(t *testing.T) {
     chk := sztest.CaptureStderr(t)
     defer chk.Release()
 
-    args := []string{
+    chk.SetArgs(
         "program/name",
         "-n",
         "thisIsNotAnInteger",
-    }
-    chk.SetupArgsAndFlags(args)
+    )
 
     chk.Panic(
         main,

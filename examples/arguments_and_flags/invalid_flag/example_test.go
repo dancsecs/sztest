@@ -23,12 +23,11 @@ func Test_ArgsAndFlags_InvalidFlag(t *testing.T) {
 	chk := sztest.CaptureStderr(t)
 	defer chk.Release()
 
-	args := []string{
+	chk.SetArgs(
 		"program/name",
 		"-x",
 		"str from arg",
-	}
-	chk.SetupArgsAndFlags(args)
+	)
 
 	chk.Panic(
 		main,

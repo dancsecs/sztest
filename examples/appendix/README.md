@@ -319,34 +319,34 @@ func Test_PASS_Main_No_Args(t *testing.T) {
     defer chk.Release()
 
     log.Println("Testing missing angle")
-    chk.SetupArgsAndFlags([]string{"progname"})
+    chk.SetArgs("progname")
     chk.Panic(
         main,
         "angle required",
     )
 
     log.Println("Testing invalid angle")
-    chk.SetupArgsAndFlags([]string{"progname", "notANumber"})
+    chk.SetArgs("progname", "notANumber")
     chk.Panic(
         main,
         "invalid angle: notANumber",
     )
 
     fmt.Println("Testing angle 0 no flags")
-    chk.SetupArgsAndFlags([]string{"progname", "0"})
+    chk.SetArgs("progname", "0")
     chk.NoPanic(main)
 
     fmt.Println("Testing angle 0 with verbose flag")
-    chk.SetupArgsAndFlags([]string{"progname", "-v", "0"})
+    chk.SetArgs("progname", "-v", "0")
     chk.NoPanic(main)
 
     twoPi := strconv.FormatFloat(math.Pi*2, 'f', -1, 64)
     fmt.Println("Testing angle 2Pi with radian flag")
-    chk.SetupArgsAndFlags([]string{"progname", "-r", twoPi})
+    chk.SetArgs("progname", "-r", twoPi)
     chk.NoPanic(main)
 
     fmt.Println("Testing angle 2Pi with radian and verbose flag")
-    chk.SetupArgsAndFlags([]string{"progname", "-v", "-r", twoPi})
+    chk.SetArgs("progname", "-v", "-r", twoPi)
     chk.NoPanic(main)
 
     chk.Stdout(
@@ -382,34 +382,34 @@ func Test_FAIL_Main_No_Args(t *testing.T) {
     chk.FailFast(false) // Do not terminate function on first error.
 
     log.Println("Testing missing angle")
-    chk.SetupArgsAndFlags([]string{"progname"})
+    chk.SetArgs("progname")
     chk.Panic(
         main,
         "angle is required",
     )
 
     log.Println("Testing invalid angle")
-    chk.SetupArgsAndFlags([]string{"progname", "notANumber"})
+    chk.SetArgs("progname", "notANumber")
     chk.Panic(
         main,
         "invalid angle: not A Number",
     )
 
     fmt.Println("Testing angle 0 no flags")
-    chk.SetupArgsAndFlags([]string{"progname", "0"})
+    chk.SetArgs("progname", "0")
     chk.NoPanic(main)
 
     fmt.Println("Testing angle 0 with verbose flag")
-    chk.SetupArgsAndFlags([]string{"progname", "-v", "0"})
+    chk.SetArgs("progname", "-v", "0")
     chk.NoPanic(main)
 
     twoPi := strconv.FormatFloat(math.Pi*2, 'f', -1, 64)
     fmt.Println("Testing angle 2Pi with radian flag")
-    chk.SetupArgsAndFlags([]string{"progname", "-r", twoPi})
+    chk.SetArgs("progname", "-r", twoPi)
     chk.NoPanic(main)
 
     fmt.Println("Testing angle 2Pi with radian and verbose flag")
-    chk.SetupArgsAndFlags([]string{"progname", "-v", "-r", twoPi})
+    chk.SetArgs("progname", "-v", "-r", twoPi)
     chk.NoPanic(main)
 
     chk.Stdout(

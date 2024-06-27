@@ -49,7 +49,7 @@ func chkArgsAndFlagsTestSetupEmpty(t *testing.T) {
 		flag.CommandLine = origFlagCmdLine
 	}()
 
-	chk.SetupArgsAndFlags([]string{})
+	chk.SetArgs("")
 
 	chk.Str(flag.CommandLine.Name(), "unspecifiedProgram")
 	chk.StrSlice(os.Args, []string{"unspecifiedProgram"})
@@ -67,13 +67,10 @@ func chkArgsAndFlagsTestSetupOneArg(t *testing.T) {
 		flag.CommandLine = origFlagCmdLine
 	}()
 
-	args := []string{
-		"progName",
-	}
-	chk.SetArgs(args...)
+	chk.SetArgs("progName")
 
-	chk.Str(flag.CommandLine.Name(), args[0])
-	chk.StrSlice(os.Args, args)
+	chk.Str(flag.CommandLine.Name(), "progName")
+	chk.StrSlice(os.Args, []string{"progName"})
 }
 
 func chkArgsAndFlagsTestGoodParseDefault(t *testing.T) {
@@ -89,10 +86,7 @@ func chkArgsAndFlagsTestGoodParseDefault(t *testing.T) {
 		flag.Parse()
 	}
 
-	args := []string{
-		"progName",
-	}
-	chk.SetArgs(args...)
+	chk.SetArgs("progName")
 
 	chk.Str(strValue, "")
 
@@ -100,8 +94,8 @@ func chkArgsAndFlagsTestGoodParseDefault(t *testing.T) {
 
 	chk.Str(strValue, "defaultStrValue")
 
-	chk.Str(flag.CommandLine.Name(), args[0])
-	chk.StrSlice(os.Args, args)
+	chk.Str(flag.CommandLine.Name(), "progName")
+	chk.StrSlice(os.Args, []string{"progName"})
 
 	chk.Int(flag.NArg(), 0)
 }
@@ -119,12 +113,11 @@ func chkArgsAndFlagsTestGoodParse(t *testing.T) {
 		flag.Parse()
 	}
 
-	args := []string{
+	chk.SetArgs(
 		"progName",
 		"-s",
 		"str from arg",
-	}
-	chk.SetArgs(args...)
+	)
 
 	chk.Str(strValue, "")
 
@@ -132,8 +125,8 @@ func chkArgsAndFlagsTestGoodParse(t *testing.T) {
 
 	chk.Str(strValue, "str from arg")
 
-	chk.Str(flag.CommandLine.Name(), args[0])
-	chk.StrSlice(os.Args, args)
+	chk.Str(flag.CommandLine.Name(), "progName")
+	chk.StrSlice(os.Args, []string{"progName", "-s", "str from arg"})
 
 	chk.Int(flag.NArg(), 0)
 }
@@ -151,13 +144,12 @@ func chkArgsAndFlagsTestGoodParseExtraArguments(t *testing.T) {
 		flag.Parse()
 	}
 
-	args := []string{
+	chk.SetArgs(
 		"progName",
 		"-s",
 		"str from arg",
 		"extra Arg",
-	}
-	chk.SetupArgsAndFlags(args)
+	)
 
 	chk.Str(strValue, "")
 
@@ -165,8 +157,11 @@ func chkArgsAndFlagsTestGoodParseExtraArguments(t *testing.T) {
 
 	chk.Str(strValue, "str from arg")
 
-	chk.Str(flag.CommandLine.Name(), args[0])
-	chk.StrSlice(os.Args, args)
+	chk.Str(flag.CommandLine.Name(), "progName")
+	chk.StrSlice(
+		os.Args,
+		[]string{"progName", "-s", "str from arg", "extra Arg"},
+	)
 
 	chk.Int(flag.NArg(), 1)
 	chk.Str(flag.Arg(0), "extra Arg")
@@ -185,12 +180,11 @@ func chkArgsAndFlagsTestBadParseInteger(t *testing.T) {
 		flag.Parse()
 	}
 
-	args := []string{
+	chk.SetArgs(
 		"progName",
 		"-n",
 		"NotANumber",
-	}
-	chk.SetupArgsAndFlags(args)
+	)
 
 	chk.Int(intValue, 0)
 
@@ -201,8 +195,8 @@ func chkArgsAndFlagsTestBadParseInteger(t *testing.T) {
 
 	chk.Int(intValue, 0)
 
-	chk.Str(flag.CommandLine.Name(), args[0])
-	chk.StrSlice(os.Args, args)
+	chk.Str(flag.CommandLine.Name(), "progName")
+	chk.StrSlice(os.Args, []string{"progName", "-n", "NotANumber"})
 
 	chk.Int(flag.NArg(), 0)
 
@@ -218,12 +212,15 @@ func chkArgsAndFlagsTestCaptureFlagUsage(t *testing.T) {
 	chk := CaptureNothing(t)
 	defer chk.Release()
 
-	c := chk.SetupArgsAndFlags([]string{"progname"})
-	c.Usage = func() {
-		_, _ = fmt.Fprint(c.Output(), "usage message")
+	chk.SetArgs("progname")
+
+	cmdLine := flag.CommandLine
+
+	cmdLine.Usage = func() {
+		_, _ = fmt.Fprint(cmdLine.Output(), "usage message")
 	}
 	chk.Str(
-		chk.CaptureFlagUsage(c),
+		chk.CaptureFlagUsage(cmdLine),
 		"usage message",
 	)
 }

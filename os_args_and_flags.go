@@ -24,13 +24,13 @@ import (
 	"strings"
 )
 
-// SetupArgsAndFlags saves the current arguments in os.Args and
+// SetArgs invokes the current arguments in os.Args and
 // flag.CommandLine.  Package variable os.Args is set to the provided arguments
 // and a new flag set is assigned to flag.CommandLine and is ready to use.
 // Original values are restores with the chk object is released.
-func (chk *Chk) SetupArgsAndFlags(args []string) *flag.FlagSet {
-	if len(args) < 1 {
-		args = []string{"unspecifiedProgram"}
+func (chk *Chk) SetArgs(progName string, args ...string) {
+	if progName == "" {
+		progName = "unspecifiedProgram"
 	}
 
 	savedOsArgs := os.Args
@@ -43,18 +43,10 @@ func (chk *Chk) SetupArgsAndFlags(args []string) *flag.FlagSet {
 		return nil
 	})
 
-	os.Args = args
-	flag.CommandLine = flag.NewFlagSet(args[0], flag.PanicOnError)
+	fullArgs := append([]string{progName}, args...)
 
-	return flag.CommandLine
-}
-
-// SetArgs invokes the current arguments in os.Args and
-// flag.CommandLine.  Package variable os.Args is set to the provided arguments
-// and a new flag set is assigned to flag.CommandLine and is ready to use.
-// Original values are restores with the chk object is released.
-func (chk *Chk) SetArgs(args ...string) {
-	chk.SetupArgsAndFlags(args)
+	os.Args = fullArgs
+	flag.CommandLine = flag.NewFlagSet(progName, flag.PanicOnError)
 }
 
 // CaptureFlagUsage is a convenience function that captures the output

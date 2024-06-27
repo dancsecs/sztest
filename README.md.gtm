@@ -427,7 +427,7 @@ byte is written.  This is setup with:
 In order to test main default argument processing, test args and a clean flag
 environment are implemented with:
 
-<!--- gotomd::dcls::./Chk.SetupArgsAndFlags Chk.SetArgs -->
+<!--- gotomd::dcls::./Chk.SetArgs -->
 
 where both ```os.Args``` and ```flags.CommandLine``` are saved and replaced
 with the provided ```args``` and a ```NewFlagSet``` respectively.  Original

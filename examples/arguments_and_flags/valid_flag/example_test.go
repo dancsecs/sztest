@@ -24,12 +24,11 @@ func Test_ArgsAndFlags_SingleGoodFlag(t *testing.T) {
 	chk := sztest.CaptureNothing(t)
 	defer chk.Release()
 
-	args := []string{
+	chk.SetArgs(
 		"program/name",
 		"-s",
 		"str from arg",
-	}
-	chk.SetupArgsAndFlags(args)
+	)
 
 	main()
 
