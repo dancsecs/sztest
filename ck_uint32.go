@@ -95,10 +95,10 @@ func (chk *Chk) Uint32Slice(got, want []uint32, msg ...any) bool {
 
 // Uint32Boundedf checks value is within specified bounded range.
 func (chk *Chk) Uint32Boundedf(
-	got uint32, option BoundedOption, min, max uint32,
+	got uint32, option BoundedOption, minV, maxV uint32,
 	msgFmt string, msgArgs ...any,
 ) bool {
-	inRange, want := inBoundedRange(got, option, min, max)
+	inRange, want := inBoundedRange(got, option, minV, maxV)
 	if inRange {
 		return true
 	}
@@ -110,9 +110,9 @@ func (chk *Chk) Uint32Boundedf(
 
 // Uint32Bounded checks value is within specified bounded range.
 func (chk *Chk) Uint32Bounded(
-	got uint32, option BoundedOption, min, max uint32, msg ...any,
+	got uint32, option BoundedOption, minV, maxV uint32, msg ...any,
 ) bool {
-	inRange, want := inBoundedRange(got, option, min, max)
+	inRange, want := inBoundedRange(got, option, minV, maxV)
 	if inRange {
 		return true
 	}

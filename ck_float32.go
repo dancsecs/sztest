@@ -150,10 +150,10 @@ func IsFloat32Similar(num1, num2, tolerance float32) bool {
 
 // Float32Boundedf checks value is within specified bounded range.
 func (chk *Chk) Float32Boundedf(
-	got float32, option BoundedOption, min, max float32,
+	got float32, option BoundedOption, minV, maxV float32,
 	msgFmt string, msgArgs ...any,
 ) bool {
-	inRange, want := inBoundedRange(got, option, min, max)
+	inRange, want := inBoundedRange(got, option, minV, maxV)
 	if inRange {
 		return true
 	}
@@ -165,9 +165,9 @@ func (chk *Chk) Float32Boundedf(
 
 // Float32Bounded checks value is within specified bounded range.
 func (chk *Chk) Float32Bounded(
-	got float32, option BoundedOption, min, max float32, msg ...any,
+	got float32, option BoundedOption, minV, maxV float32, msg ...any,
 ) bool {
-	inRange, want := inBoundedRange(got, option, min, max)
+	inRange, want := inBoundedRange(got, option, minV, maxV)
 	if inRange {
 		return true
 	}

@@ -413,21 +413,21 @@ func chkStringBoundedTestAll(t *testing.T) {
 	chk := CaptureNothing(iT)
 	iT.chk = chk
 
-	min := "33"
-	max := "35"
+	minV := "33"
+	maxV := "35"
 
 	// Bad: Error displayed.
-	chk.StrBounded("30", BoundedClosed, min, max)
-	chk.StrBounded("31", BoundedClosed, min, max, "msg:", "31")
-	chk.StrBoundedf("32", BoundedClosed, min, max, "msg:%d", 32)
+	chk.StrBounded("30", BoundedClosed, minV, maxV)
+	chk.StrBounded("31", BoundedClosed, minV, maxV, "msg:", "31")
+	chk.StrBoundedf("32", BoundedClosed, minV, maxV, "msg:%d", 32)
 
 	// Good:  No error displayed.
-	chk.StrBounded("33", BoundedClosed, min, max)
-	chk.StrBounded("34", BoundedClosed, min, max, "not ", "displayed")
-	chk.StrBoundedf("35", BoundedClosed, min, max, "not %s", "displayed")
+	chk.StrBounded("33", BoundedClosed, minV, maxV)
+	chk.StrBounded("34", BoundedClosed, minV, maxV, "not ", "displayed")
+	chk.StrBoundedf("35", BoundedClosed, minV, maxV, "not %s", "displayed")
 
 	// Bad: Error displayed.
-	chk.StrBounded("36", BoundedClosed, min, max)
+	chk.StrBounded("36", BoundedClosed, minV, maxV)
 
 	const (
 		wntMsg = "out of bounds: [\"33\",\"35\"] - " +

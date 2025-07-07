@@ -48,12 +48,13 @@ func chkIoReaderTestIOReaderNoError1(t *testing.T) {
 	)
 
 	got := ""
-	s := bufio.NewScanner(chk)
+	scanTxt := bufio.NewScanner(chk)
 
-	for s.Scan() {
-		got += s.Text() + "\n"
+	for scanTxt.Scan() {
+		got += scanTxt.Text() + "\n"
 	}
-	chk.NoErr(s.Err())
+
+	chk.NoErr(scanTxt.Err())
 
 	chk.Str(
 		got,
@@ -78,12 +79,13 @@ func chkIoReaderTestIOReaderNoError2(t *testing.T) {
 	)
 
 	got := ""
-	s := bufio.NewScanner(chk)
+	scanTxt := bufio.NewScanner(chk)
 
-	for s.Scan() {
-		got += s.Text() + "\n"
+	for scanTxt.Scan() {
+		got += scanTxt.Text() + "\n"
 	}
-	chk.NoErr(s.Err())
+
+	chk.NoErr(scanTxt.Err())
 
 	chk.Str(
 		got,
@@ -108,12 +110,13 @@ func chkIoReaderIOReaderError1(t *testing.T) {
 	)
 
 	got := ""
-	s := bufio.NewScanner(chk)
+	scanTxt := bufio.NewScanner(chk)
 
-	for s.Scan() {
-		got += s.Text() + "\n"
+	for scanTxt.Scan() {
+		got += scanTxt.Text() + "\n"
 	}
-	chk.NoErr(s.Err())
+
+	chk.NoErr(scanTxt.Err())
 
 	_, err := chk.Read(make([]byte, 10))
 	chk.Err(
@@ -168,6 +171,7 @@ func chkIoReaderIOReaderError3(t *testing.T) {
 	for scanner.Scan() {
 		got += scanner.Text() + "\n"
 	}
+
 	chk.Err(
 		scanner.Err(),
 		"This error after 55 characters",

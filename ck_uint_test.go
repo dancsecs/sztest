@@ -409,21 +409,21 @@ func chkUintBoundedTestAll(t *testing.T) {
 	chk := CaptureNothing(iT)
 	iT.chk = chk
 
-	min := uint(33)
-	max := uint(35)
+	minV := uint(33)
+	maxV := uint(35)
 
 	// Bad: Error displayed.
-	chk.UintBounded(30, BoundedClosed, min, max)
-	chk.UintBounded(31, BoundedClosed, min, max, "msg:", "31")
-	chk.UintBoundedf(32, BoundedClosed, min, max, "msg:%d", 32)
+	chk.UintBounded(30, BoundedClosed, minV, maxV)
+	chk.UintBounded(31, BoundedClosed, minV, maxV, "msg:", "31")
+	chk.UintBoundedf(32, BoundedClosed, minV, maxV, "msg:%d", 32)
 
 	// Good:  No error displayed.
-	chk.UintBounded(33, BoundedClosed, min, max)
-	chk.UintBounded(34, BoundedClosed, min, max, "not ", "displayed")
-	chk.UintBoundedf(35, BoundedClosed, min, max, "not %s", "displayed")
+	chk.UintBounded(33, BoundedClosed, minV, maxV)
+	chk.UintBounded(34, BoundedClosed, minV, maxV, "not ", "displayed")
+	chk.UintBoundedf(35, BoundedClosed, minV, maxV, "not %s", "displayed")
 
 	// Bad: Error displayed.
-	chk.UintBounded(36, BoundedClosed, min, max)
+	chk.UintBounded(36, BoundedClosed, minV, maxV)
 
 	const (
 		wntMsg = "out of bounds: [33,35] - { want | 33 <= want <= 35 }"

@@ -93,10 +93,10 @@ func (chk *Chk) Int16Slice(got, want []int16, msg ...any) bool {
 
 // Int16Boundedf checks value is within specified bounded range.
 func (chk *Chk) Int16Boundedf(
-	got int16, option BoundedOption, min, max int16,
+	got int16, option BoundedOption, minV, maxV int16,
 	msgFmt string, msgArgs ...any,
 ) bool {
-	inRange, want := inBoundedRange(got, option, min, max)
+	inRange, want := inBoundedRange(got, option, minV, maxV)
 	if inRange {
 		return true
 	}
@@ -108,9 +108,9 @@ func (chk *Chk) Int16Boundedf(
 
 // Int16Bounded checks value is within specified bounded range.
 func (chk *Chk) Int16Bounded(
-	got int16, option BoundedOption, min, max int16, msg ...any,
+	got int16, option BoundedOption, minV, maxV int16, msg ...any,
 ) bool {
-	inRange, want := inBoundedRange(got, option, min, max)
+	inRange, want := inBoundedRange(got, option, minV, maxV)
 	if inRange {
 		return true
 	}

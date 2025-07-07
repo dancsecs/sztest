@@ -389,7 +389,7 @@ func (chk *Chk) isStringify(rawStr any) string {
 	str := fmt.Sprintf("%v", rawStr)
 	str = chk.subStr(str)
 	str = fmt.Sprintf("%q", str)
-	str = str[1 : len(str)-1]                // trim "%q" added quotemarks
+	str = str[1 : len(str)-1]                // trim "%q" added quote marks
 	str = strings.ReplaceAll(str, `\"`, `"`) // reverse "%q" on quotes
 	str = strings.ReplaceAll(str, `\\`, `\`) // reverse "%q" on backslashes
 
@@ -536,7 +536,7 @@ const (
 
 //nolint:cyclop // Ok.
 func inBoundedRange[V chkBoundedType](
-	got V, option BoundedOption, min, max V,
+	got V, option BoundedOption, minV, maxV V,
 ) (bool, string) {
 	var (
 		inRange bool
@@ -557,28 +557,28 @@ func inBoundedRange[V chkBoundedType](
 	switch option {
 	case BoundedOpen:
 		// IntervalBoundedOpen (a,b) = { x | a < x < b }
-		inRange = min < got && got < max
+		inRange = minV < got && got < maxV
 		want = "" +
 			"(" + vFmt + "," + vFmt + ")" +
 			definitionSeparator +
 			wntLabel + vFmt + " < want < " + vFmt + " }"
 	case BoundedClosed:
 		// IntervalBoundedClosed [a,b] = { x | a <= x <= b }
-		inRange = min <= got && got <= max
+		inRange = minV <= got && got <= maxV
 		want = "" +
 			"[" + vFmt + "," + vFmt + "]" +
 			definitionSeparator +
 			wntLabel + vFmt + " <= want <= " + vFmt + " }"
 	case BoundedMinOpen, BoundedMaxClosed:
 		// IntervalBoundedLeftOpen (a,b] = { x | a < x ≦ b }
-		inRange = min < got && got <= max
+		inRange = minV < got && got <= maxV
 		want = "" +
 			"(" + vFmt + "," + vFmt + "]" +
 			definitionSeparator +
 			wntLabel + vFmt + " < want <= " + vFmt + " }"
 	case BoundedMaxOpen, BoundedMinClosed:
 		// IntervalBoundedRightOpen [a,b) = { x | a ≦ x < b }
-		inRange = min <= got && got < max
+		inRange = minV <= got && got < maxV
 		want = "" +
 			"[" + vFmt + "," + vFmt + ")" +
 			definitionSeparator +
@@ -591,7 +591,7 @@ func inBoundedRange[V chkBoundedType](
 		return true, ""
 	}
 
-	return false, fmt.Sprintf("out of bounds: "+want, min, max, min, max)
+	return false, fmt.Sprintf("out of bounds: "+want, minV, maxV, minV, maxV)
 }
 
 func inUnboundedRange[V chkBoundedType](

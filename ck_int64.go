@@ -92,10 +92,10 @@ func (chk *Chk) Int64Slice(got, want []int64, msg ...any) bool {
 
 // Int64Boundedf checks value is within specified bounded range.
 func (chk *Chk) Int64Boundedf(
-	got int64, option BoundedOption, min, max int64,
+	got int64, option BoundedOption, minV, maxV int64,
 	msgFmt string, msgArgs ...any,
 ) bool {
-	inRange, want := inBoundedRange(got, option, min, max)
+	inRange, want := inBoundedRange(got, option, minV, maxV)
 	if inRange {
 		return true
 	}
@@ -107,9 +107,9 @@ func (chk *Chk) Int64Boundedf(
 
 // Int64Bounded checks value is within specified bounded range.
 func (chk *Chk) Int64Bounded(
-	got int64, option BoundedOption, min, max int64, msg ...any,
+	got int64, option BoundedOption, minV, maxV int64, msg ...any,
 ) bool {
-	inRange, want := inBoundedRange(got, option, min, max)
+	inRange, want := inBoundedRange(got, option, minV, maxV)
 	if inRange {
 		return true
 	}

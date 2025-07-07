@@ -41,7 +41,7 @@ func tstChkDir(t *testing.T) {
 	t.Run("CreateTmpFileEmptyKeepTmp", chkDirTestCreateTmpFileEmptyKeepTmp)
 	t.Run(
 		"CreateTmpFileInvalidDIrectory",
-		chkDirTestCreateTmpFileInvalidDIrectory,
+		chkDirTestCreateTmpFileInvalidDirectory,
 	)
 	t.Run("CreateTmpUnixScriptEmpty", chkDirTestCreateTmpUnixScriptEmpty)
 	t.Run("CreateTmpUnixScriptInvalid", chkDirTestCreateTmpUnixScriptInvalid)
@@ -404,7 +404,7 @@ func chkDirTestCreateTmpFileEmptyKeepTmp(t *testing.T) {
 	)
 }
 
-func chkDirTestCreateTmpFileInvalidDIrectory(t *testing.T) {
+func chkDirTestCreateTmpFileInvalidDirectory(t *testing.T) {
 	iT := new(iTst)
 	chk := CaptureNothing(iT)
 	iT.chk = chk
@@ -611,7 +611,7 @@ func chkDirTestCreateTmpSubDir(t *testing.T) {
 		chkOutPush("Pre", ""),
 		chkOutHelper("CreateTmpSubDir"),
 		chkOutError(
-			"createTmpSubDir caused: mkdir /here: read-only file system",
+			"createTmpSubDir caused: mkdir /here: permission denied",
 		),
 		chkOutRelease(),
 		chkOutPush("Pre", "func1"),

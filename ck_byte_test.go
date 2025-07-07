@@ -407,21 +407,21 @@ func chkByteBoundedTestAll(t *testing.T) {
 	chk := CaptureNothing(iT)
 	iT.chk = chk
 
-	min := byte(32)
-	max := byte(36)
+	minV := byte(32)
+	maxV := byte(36)
 
 	// Bad: Error displayed.
-	chk.ByteBounded(30, BoundedOpen, min, max)
-	chk.ByteBounded(31, BoundedOpen, min, max, "msg:", "31")
-	chk.ByteBoundedf(32, BoundedOpen, min, max, "msg:%d", 32)
+	chk.ByteBounded(30, BoundedOpen, minV, maxV)
+	chk.ByteBounded(31, BoundedOpen, minV, maxV, "msg:", "31")
+	chk.ByteBoundedf(32, BoundedOpen, minV, maxV, "msg:%d", 32)
 
 	// Good:  No error displayed.
-	chk.ByteBounded(33, BoundedOpen, min, max)
-	chk.ByteBounded(34, BoundedOpen, min, max, "not ", "displayed")
-	chk.ByteBoundedf(35, BoundedOpen, min, max, "not %s", "displayed")
+	chk.ByteBounded(33, BoundedOpen, minV, maxV)
+	chk.ByteBounded(34, BoundedOpen, minV, maxV, "not ", "displayed")
+	chk.ByteBoundedf(35, BoundedOpen, minV, maxV, "not %s", "displayed")
 
 	// Bad: Error displayed.
-	chk.ByteBounded(36, BoundedOpen, min, max)
+	chk.ByteBounded(36, BoundedOpen, minV, maxV)
 
 	const (
 		wntMsg = "out of bounds: (32,36) - { want | 32 < want < 36 }"

@@ -92,10 +92,10 @@ func (chk *Chk) UintSlice(got, want []uint, msg ...any) bool {
 func (chk *Chk) UintBoundedf(
 	got uint,
 	option BoundedOption,
-	min, max uint,
+	minV, maxV uint,
 	msgFmt string, msgArgs ...any,
 ) bool {
-	inRange, want := inBoundedRange(got, option, min, max)
+	inRange, want := inBoundedRange(got, option, minV, maxV)
 	if inRange {
 		return true
 	}
@@ -107,9 +107,9 @@ func (chk *Chk) UintBoundedf(
 
 // UintBounded checks value is within specified bounded range.
 func (chk *Chk) UintBounded(
-	got uint, option BoundedOption, min, max uint, msg ...any,
+	got uint, option BoundedOption, minV, maxV uint, msg ...any,
 ) bool {
-	inRange, want := inBoundedRange(got, option, min, max)
+	inRange, want := inBoundedRange(got, option, minV, maxV)
 	if inRange {
 		return true
 	}

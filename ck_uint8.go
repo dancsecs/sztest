@@ -92,10 +92,10 @@ func (chk *Chk) Uint8Slice(got, want []uint8, msg ...any) bool {
 
 // Uint8Boundedf checks value is within specified bounded range.
 func (chk *Chk) Uint8Boundedf(
-	got uint8, option BoundedOption, min, max uint8,
+	got uint8, option BoundedOption, minV, maxV uint8,
 	msgFmt string, msgArgs ...any,
 ) bool {
-	inRange, want := inBoundedRange(got, option, min, max)
+	inRange, want := inBoundedRange(got, option, minV, maxV)
 	if inRange {
 		return true
 	}
@@ -107,9 +107,9 @@ func (chk *Chk) Uint8Boundedf(
 
 // Uint8Bounded checks value is within specified bounded range.
 func (chk *Chk) Uint8Bounded(
-	got uint8, option BoundedOption, min, max uint8, msg ...any,
+	got uint8, option BoundedOption, minV, maxV uint8, msg ...any,
 ) bool {
-	inRange, want := inBoundedRange(got, option, min, max)
+	inRange, want := inBoundedRange(got, option, minV, maxV)
 	if inRange {
 		return true
 	}

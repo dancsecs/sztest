@@ -108,14 +108,14 @@ func (chk *Chk) StrSlice(got, want []string, msg ...any) bool {
 
 // StrBoundedf checks value is within specified bounded range.
 func (chk *Chk) StrBoundedf(
-	got string, option BoundedOption, min, max string,
+	got string, option BoundedOption, minV, maxV string,
 	msgFmt string, msgArgs ...any,
 ) bool {
 	got = chk.isStringify(got)
-	min = chk.isStringify(min)
-	max = chk.isStringify(max)
+	minV = chk.isStringify(minV)
+	maxV = chk.isStringify(maxV)
 
-	inRange, want := inBoundedRange(got, option, min, max)
+	inRange, want := inBoundedRange(got, option, minV, maxV)
 	if inRange {
 		return true
 	}
@@ -127,13 +127,13 @@ func (chk *Chk) StrBoundedf(
 
 // StrBounded checks value is within specified bounded range.
 func (chk *Chk) StrBounded(
-	got string, option BoundedOption, min, max string, msg ...any,
+	got string, option BoundedOption, minV, maxV string, msg ...any,
 ) bool {
 	got = chk.isStringify(got)
-	min = chk.isStringify(min)
-	max = chk.isStringify(max)
+	minV = chk.isStringify(minV)
+	maxV = chk.isStringify(maxV)
 
-	inRange, want := inBoundedRange(got, option, min, max)
+	inRange, want := inBoundedRange(got, option, minV, maxV)
 	if inRange {
 		return true
 	}

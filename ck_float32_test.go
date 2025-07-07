@@ -434,21 +434,21 @@ func chkFloat32BoundedTestAll(t *testing.T) {
 	chk := CaptureNothing(iT)
 	iT.chk = chk
 
-	min := float32(33)
-	max := float32(35)
+	minV := float32(33)
+	maxV := float32(35)
 
 	// Bad: Error displayed.
-	chk.Float32Bounded(30, BoundedClosed, min, max)
-	chk.Float32Bounded(31, BoundedClosed, min, max, "msg:", "31")
-	chk.Float32Boundedf(32, BoundedClosed, min, max, "msg:%d", 32)
+	chk.Float32Bounded(30, BoundedClosed, minV, maxV)
+	chk.Float32Bounded(31, BoundedClosed, minV, maxV, "msg:", "31")
+	chk.Float32Boundedf(32, BoundedClosed, minV, maxV, "msg:%d", 32)
 
 	// Good:  No error displayed.
-	chk.Float32Bounded(33, BoundedClosed, min, max)
-	chk.Float32Bounded(34, BoundedClosed, min, max, "not ", "displayed")
-	chk.Float32Boundedf(35, BoundedClosed, min, max, "not %s", "displayed")
+	chk.Float32Bounded(33, BoundedClosed, minV, maxV)
+	chk.Float32Bounded(34, BoundedClosed, minV, maxV, "not ", "displayed")
+	chk.Float32Boundedf(35, BoundedClosed, minV, maxV, "not %s", "displayed")
 
 	// Bad: Error displayed.
-	chk.Float32Bounded(36, BoundedClosed, min, max)
+	chk.Float32Bounded(36, BoundedClosed, minV, maxV)
 
 	const (
 		wntMsg = "out of bounds: [33,35] - { want | 33 <= want <= 35 }"

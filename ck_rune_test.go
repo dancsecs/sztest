@@ -409,21 +409,21 @@ func chkRuneBoundedTestAll(t *testing.T) {
 	chk := CaptureNothing(iT)
 	iT.chk = chk
 
-	min := rune(33)
-	max := rune(35)
+	minV := rune(33)
+	maxV := rune(35)
 
 	// Bad: Error displayed.
-	chk.RuneBounded(30, BoundedClosed, min, max)
-	chk.RuneBounded(31, BoundedClosed, min, max, "msg:", "31")
-	chk.RuneBoundedf(32, BoundedClosed, min, max, "msg:%d", 32)
+	chk.RuneBounded(30, BoundedClosed, minV, maxV)
+	chk.RuneBounded(31, BoundedClosed, minV, maxV, "msg:", "31")
+	chk.RuneBoundedf(32, BoundedClosed, minV, maxV, "msg:%d", 32)
 
 	// Good:  No error displayed.
-	chk.RuneBounded(33, BoundedClosed, min, max)
-	chk.RuneBounded(34, BoundedClosed, min, max, "not ", "displayed")
-	chk.RuneBoundedf(35, BoundedClosed, min, max, "not %s", "displayed")
+	chk.RuneBounded(33, BoundedClosed, minV, maxV)
+	chk.RuneBounded(34, BoundedClosed, minV, maxV, "not ", "displayed")
+	chk.RuneBoundedf(35, BoundedClosed, minV, maxV, "not %s", "displayed")
 
 	// Bad: Error displayed.
-	chk.RuneBounded(36, BoundedClosed, min, max)
+	chk.RuneBounded(36, BoundedClosed, minV, maxV)
 
 	const (
 		wntMsg = "out of bounds: [33,35] - { want | 33 <= want <= 35 }"

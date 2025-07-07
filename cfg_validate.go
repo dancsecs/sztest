@@ -30,6 +30,7 @@ const (
 	errMsg = "error environment variable: %s (got: %s want: %s default: %v)"
 	base8  = 8
 	base10 = 10
+	bits32 = 32
 	bits64 = 64
 )
 
@@ -64,9 +65,9 @@ func validateFailFast(rawSetting string) (bool, bool) {
 
 func valPerm(s, prefix string) (os.FileMode, bool) {
 	if len(s) == 4 && strings.HasPrefix(s, prefix) {
-		v, err := strconv.ParseInt(s, base8, bits64)
+		v, err := strconv.ParseUint(s, base8, bits32)
 		if err == nil {
-			return os.FileMode(v), true
+			return os.FileMode(uint32(v)), true
 		}
 	}
 

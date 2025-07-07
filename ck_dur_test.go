@@ -420,21 +420,21 @@ func chkDurBoundedTestAll(t *testing.T) {
 	chk := CaptureNothing(iT)
 	iT.chk = chk
 
-	min := time.Duration(33)
-	max := time.Duration(35)
+	minV := time.Duration(33)
+	maxV := time.Duration(35)
 
 	// Bad: Error displayed.
-	chk.DurBounded(30, BoundedClosed, min, max)
-	chk.DurBounded(31, BoundedClosed, min, max, "msg:", "31")
-	chk.DurBoundedf(32, BoundedClosed, min, max, "msg:%d", 32)
+	chk.DurBounded(30, BoundedClosed, minV, maxV)
+	chk.DurBounded(31, BoundedClosed, minV, maxV, "msg:", "31")
+	chk.DurBoundedf(32, BoundedClosed, minV, maxV, "msg:%d", 32)
 
 	// Good:  No error displayed.
-	chk.DurBounded(33, BoundedClosed, min, max)
-	chk.DurBounded(34, BoundedClosed, min, max, "not ", "displayed")
-	chk.DurBoundedf(35, BoundedClosed, min, max, "not %s", "displayed")
+	chk.DurBounded(33, BoundedClosed, minV, maxV)
+	chk.DurBounded(34, BoundedClosed, minV, maxV, "not ", "displayed")
+	chk.DurBoundedf(35, BoundedClosed, minV, maxV, "not %s", "displayed")
 
 	// Bad: Error displayed.
-	chk.DurBounded(36, BoundedClosed, min, max)
+	chk.DurBounded(36, BoundedClosed, minV, maxV)
 
 	const (
 		wntMsg = "out of bounds: [33ns,35ns] - { want | 33ns <= want <= 35ns }"

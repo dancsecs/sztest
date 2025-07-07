@@ -64,7 +64,7 @@ func chkEnvSetExisting(t *testing.T) {
 		_ = os.Unsetenv(tstName)
 	}()
 
-	chk.NoErr(os.Setenv(tstName, origValue))
+	chk.NoErr(os.Setenv(tstName, origValue)) //nolint:tenv,usetesting // Ok.
 
 	foundValue, found := os.LookupEnv((tstName))
 	chk.True(found)
@@ -115,7 +115,7 @@ func chkEnvDelExisting(t *testing.T) {
 		_ = os.Unsetenv(tstName)
 	}()
 
-	chk.NoErr(os.Setenv(tstName, origValue))
+	chk.NoErr(os.Setenv(tstName, origValue)) //nolint:tenv,usetesting // Ok.
 
 	foundValue, found := os.LookupEnv((tstName))
 	chk.True(found)

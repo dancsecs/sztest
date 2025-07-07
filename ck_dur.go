@@ -99,10 +99,10 @@ func (chk *Chk) DurSlice(got, want []time.Duration, msg ...any) bool {
 
 // DurBoundedf checks value is within specified bounded range.
 func (chk *Chk) DurBoundedf(
-	got time.Duration, option BoundedOption, min, max time.Duration,
+	got time.Duration, option BoundedOption, minV, maxV time.Duration,
 	msgFmt string, msgArgs ...any,
 ) bool {
-	inRange, want := inBoundedRange(got, option, min, max)
+	inRange, want := inBoundedRange(got, option, minV, maxV)
 	if inRange {
 		return true
 	}
@@ -116,10 +116,10 @@ func (chk *Chk) DurBoundedf(
 func (chk *Chk) DurBounded(
 	got time.Duration,
 	option BoundedOption,
-	min, max time.Duration,
+	minV, maxV time.Duration,
 	msg ...any,
 ) bool {
-	inRange, want := inBoundedRange(got, option, min, max)
+	inRange, want := inBoundedRange(got, option, minV, maxV)
 	if inRange {
 		return true
 	}
