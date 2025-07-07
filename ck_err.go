@@ -18,6 +18,8 @@
 
 package sztest
 
+import "fmt"
+
 const (
 	nilStr      = ""
 	errTypeName = "err"
@@ -184,4 +186,15 @@ func (chk *Chk) ErrSlice(
 		defaultCmpFunc[string],
 		msg...,
 	)
+}
+
+// ErrChain returns a string concatenating all of the errors and strings with
+// the separator.
+func (chk *Chk) ErrChain(first any, rest ...any) string {
+	result := fmt.Sprintf("%v", first)
+	for _, v := range rest {
+		result += ": " + fmt.Sprintf("%v", v)
+	}
+
+	return result
 }

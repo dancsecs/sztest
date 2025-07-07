@@ -45,6 +45,8 @@ func tstChkErr(t *testing.T) {
 	t.Run("Slice-BadMsg2", chkErrSliceTestBadMsg2)
 	t.Run("Slice-BadMsg3", chkErrSliceTestBadMsg3)
 	t.Run("Slice-BadMsg4", chkErrSliceTestBadMsg4)
+
+	t.Run("ErrChain", chkErrChain)
 }
 
 func chkErrTestGood(t *testing.T) {
@@ -381,6 +383,28 @@ func chkErrSliceTestBadMsg4(t *testing.T) {
 			chkOutLnChanged("1", "1", "entry"+markAsChg("1", "2", DiffMerge)),
 			chkOutLnSame("2", "2", "entry3"),
 		),
+		chkOutRelease(),
+	)
+}
+
+func chkErrChain(t *testing.T) {
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
+	iT.chk = chk
+
+	tstErr1 := errors.New(tstStr1)
+	tstErr3 := errors.New(tstStr3)
+
+	chk.Str(
+		chk.ErrChain(tstErr1, "and this statement", tstErr3),
+		tstErr1.Error()+
+			": and this statement: "+
+			tstErr3.Error(),
+	)
+
+	chk.Release()
+	iT.check(t,
+		chkOutCapture("Nothing"),
 		chkOutRelease(),
 	)
 }
