@@ -23,6 +23,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"os"
 	"testing"
 )
 
@@ -34,6 +35,7 @@ func tstChkIoReader(t *testing.T) {
 	t.Run("IOReaderError3", chkIoReaderIOReaderError3)
 	t.Run("SetReadError", chkIOReaderSetReadError)
 	t.Run("SetStdinData", chkIOReaderSetStdinData)
+	t.Run("SetStdinDataWithClose", chkIOReaderSetStdinDataWithClose)
 }
 
 func chkIoReaderTestIOReaderNoError1(t *testing.T) {
@@ -214,4 +216,16 @@ func chkIOReaderSetStdinData(t *testing.T) {
 	chk.NoErr(err)
 	chk.Int(n, 1)
 	chk.Str(str, "hello")
+}
+
+func chkIOReaderSetStdinDataWithClose(t *testing.T) {
+	chk := CaptureNothing(t)
+	defer chk.Release()
+
+	chk.SetStdinData("hello\nthere\n")
+
+	bytes, err := io.ReadAll(os.Stdin)
+
+	chk.NoErr(err)
+	chk.Str(string(bytes), "hello\nthere\n")
 }

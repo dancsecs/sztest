@@ -100,15 +100,17 @@ func (chk *Chk) Read(dataBuf []byte) (int, error) {
 func (chk *Chk) SetStdinData(lines ...string) {
 	chk.t.Helper()
 
+	wPipeClosed := false
+
 	origStdin := os.Stdin
 	rPipe, wPipe, err := os.Pipe()
 
 	if chk.NoErr(err) {
 		chk.PushPostReleaseFunc(func() error {
 			os.Stdin = origStdin
-			err = wPipe.Close()
 
-			if err == nil {
+			err = wPipe.Close()
+			if err == nil || wPipeClosed {
 				err = rPipe.Close()
 			}
 
@@ -121,5 +123,9 @@ func (chk *Chk) SetStdinData(lines ...string) {
 
 		_, err = fmt.Fprint(wPipe, strings.Join(lines, ""))
 		chk.NoErr(err)
+
+		chk.NoErr(wPipe.Close())
+
+		wPipeClosed = true
 	}
 }
