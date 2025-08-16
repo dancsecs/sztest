@@ -38,7 +38,7 @@ func (chk *Chk) AddSub(expr, subStr string) {
 	re, err := regexp.Compile(expr)
 	if err != nil {
 		chk.t.Helper()
-		chk.Fatalf(err.Error())
+		chk.Fatalf("%v", err)
 
 		return
 	}

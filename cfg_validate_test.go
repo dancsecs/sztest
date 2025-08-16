@@ -292,7 +292,7 @@ func testConfigValidateTmpDir(t *testing.T) {
 
 	err = os.Mkdir(newTmpPath, 0o0700)
 	if err != nil {
-		t.Fatalf("could not setup tmp dir test: " + err.Error())
+		t.Fatalf("could not setup tmp dir test: %v", err)
 	}
 
 	defer func() {
