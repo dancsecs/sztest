@@ -96,7 +96,21 @@ func chkEnvDelNonExistent(t *testing.T) {
 	_, found = os.LookupEnv((tstName))
 	chk.False(found) // Just make sure it continues to not exist.
 
-	chk.Release() // Will do nothing.
+	chk.SetEnv(tstName, "value1")
+
+	tmpValue, found := os.LookupEnv(tstName)
+
+	chk.Str(tmpValue, "value1")
+	chk.True(found)
+
+	chk.SetEnv(tstName, "value2")
+
+	tmpValue, found = os.LookupEnv(tstName)
+
+	chk.Str(tmpValue, "value2")
+	chk.True(found)
+
+	chk.Release()
 
 	_, found = os.LookupEnv(tstName)
 	chk.False(found) // Make sure it still is not there for completeness.
@@ -126,7 +140,7 @@ func chkEnvDelExisting(t *testing.T) {
 	_, found = os.LookupEnv((tstName))
 	chk.False(found) // Make sure it removed.
 
-	chk.Release() // Will do nothing.
+	chk.Release()
 
 	foundValue, found = os.LookupEnv((tstName))
 	chk.True(found)

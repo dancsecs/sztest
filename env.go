@@ -18,7 +18,9 @@
 
 package sztest
 
-import "os"
+import (
+	"os"
+)
 
 // SetEnv adds or modifies the names environment variable to the specified
 // value.  Any Changes made are reset when chk.Release() is called.
@@ -38,22 +40,28 @@ func (chk *Chk) SetEnv(name, value string) {
 		}
 	}
 
-	chk.PushPostReleaseFunc(reverseFunc)
+	chk.PushPreReleaseFunc(reverseFunc)
 	chk.NoErr(os.Setenv(name, value))
 }
 
 // DelEnv removes the env variable if it exists.  Any changes are reversed
 // when chk.Release() is called.
 func (chk *Chk) DelEnv(name string) {
+	var reverseFunc func() error
+
 	chk.T().Helper()
 
 	currentValue, found := os.LookupEnv(name)
 	if found {
-		reverseFunc := func() error {
+		reverseFunc = func() error {
 			return os.Setenv(name, currentValue)
 		}
-		chk.PushPostReleaseFunc(reverseFunc)
+	} else {
+		reverseFunc = func() error {
+			return os.Unsetenv(name)
+		}
 	}
 
+	chk.PushPreReleaseFunc(reverseFunc)
 	chk.NoErr(os.Unsetenv(name))
 }
