@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -20,8 +20,10 @@ package sztest
 
 const int64TypeName = "int64"
 
-// Int64f compares the wanted int64 against the gotten int64 invoking an
-// error should they not match.
+// Int64f compares the got int64 against want.
+//
+// If they differ, the failure is reported with a formatted message built from
+// msgFmt and msgArgs. Returns true if got == want.
 func (chk *Chk) Int64f(got, want int64, msgFmt string, msgArgs ...any) bool {
 	if got == want {
 		return true
@@ -32,8 +34,11 @@ func (chk *Chk) Int64f(got, want int64, msgFmt string, msgArgs ...any) bool {
 	return chk.errChkf(got, want, int64TypeName, msgFmt, msgArgs...)
 }
 
-// Int64 compares the wanted int64 against the gotten int64 invoking an
-// error should they not match.
+// Int64 compares the got int64 against want.
+//
+// If they differ, the failure is reported via the underlying testingT and the
+// optional msg values are formatted and appended to the report. Returns true
+// if got == want.
 func (chk *Chk) Int64(got, want int64, msg ...any) bool {
 	if got == want {
 		return true
@@ -44,7 +49,10 @@ func (chk *Chk) Int64(got, want int64, msg ...any) bool {
 	return chk.errChk(got, want, int64TypeName, msg...)
 }
 
-// Int64Slicef checks two int64 slices for equality.
+// Int64Slicef compares two int64 slices for equality.
+//
+// A mismatch is reported to the underlying test with a formatted message
+// built from msgFmt and msgArgs. Returns true if slices are exactly equal.
 func (chk *Chk) Int64Slicef(
 	got, want []int64, msgFmt string, msgArgs ...any,
 ) bool {
@@ -66,7 +74,11 @@ func (chk *Chk) Int64Slicef(
 	)
 }
 
-// Int64Slice checks two int64 slices for equality.
+// Int64Slice compares two int64 slices for equality.
+//
+// A mismatch in length or element values is reported to the underlying test.
+// Optional msg values are included in the failure output. Returns true if
+// slices are exactly equal.
 func (chk *Chk) Int64Slice(got, want []int64, msg ...any) bool {
 	l := len(got)
 	equal := l == len(want)
@@ -90,7 +102,11 @@ func (chk *Chk) Int64Slice(got, want []int64, msg ...any) bool {
 // Bounded and Unbounded Ranges.
 //
 
-// Int64Boundedf checks value is within specified bounded range.
+// Int64Boundedf checks that got lies within the bounded interval defined by
+// minV and maxV according to the chosen option.
+//
+// On failure, the test is reported with a formatted message built from msgFmt
+// and msgArgs. Returns true if got is within bounds.
 func (chk *Chk) Int64Boundedf(
 	got int64, option BoundedOption, minV, maxV int64,
 	msgFmt string, msgArgs ...any,
@@ -105,7 +121,11 @@ func (chk *Chk) Int64Boundedf(
 	return chk.errGotWntf(int64TypeName, got, want, msgFmt, msgArgs...)
 }
 
-// Int64Bounded checks value is within specified bounded range.
+// Int64Bounded checks that got lies within the bounded interval defined by
+// minV and maxV according to the chosen option.
+//
+// On failure, the test is reported with the optional msg values appended.
+// Returns true if got is within bounds.
 func (chk *Chk) Int64Bounded(
 	got int64, option BoundedOption, minV, maxV int64, msg ...any,
 ) bool {
@@ -119,7 +139,11 @@ func (chk *Chk) Int64Bounded(
 	return chk.errGotWnt(int64TypeName, got, want, msg...)
 }
 
-// Int64Unboundedf checks value is within specified unbounded range.
+// Int64Unboundedf checks that got lies within the unbounded interval defined
+// by bound and option.
+//
+// On failure, the test is reported with a formatted message built from msgFmt
+// and msgArgs. Returns true if got is within bounds.
 func (chk *Chk) Int64Unboundedf(
 	got int64, option UnboundedOption, bound int64,
 	msgFmt string, msgArgs ...any,
@@ -134,7 +158,11 @@ func (chk *Chk) Int64Unboundedf(
 	return chk.errGotWntf(int64TypeName, got, want, msgFmt, msgArgs...)
 }
 
-// Int64Unbounded checks value is within specified unbounded range.
+// Int64Unbounded checks that got lies within the unbounded interval defined by
+// bound and option.
+//
+// On failure, the test is reported with optional msg values appended. Returns
+// true if got is within bounds.
 func (chk *Chk) Int64Unbounded(
 	got int64, option UnboundedOption, bound int64, msg ...any,
 ) bool {

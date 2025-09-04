@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -20,8 +20,10 @@ package sztest
 
 const uintptrTypeName = "uintptr"
 
-// Uintptrf compares the wanted uintptr against the gotten uintptr invoking an
-// error should they not match.
+// Uintptrf compares the got uintptr against want.
+//
+// If they differ, the failure is reported with a formatted message built from
+// msgFmt and msgArgs. Returns true if got == want.
 func (chk *Chk) Uintptrf(
 	got, want uintptr, msgFmt string, msgArgs ...any,
 ) bool {
@@ -34,8 +36,11 @@ func (chk *Chk) Uintptrf(
 	return chk.errChkf(got, want, uintptrTypeName, msgFmt, msgArgs...)
 }
 
-// Uintptr compares the wanted uintptr against the gotten uintptr invoking an
-// error should they not match.
+// Uintptr compares the got uintptr against want.
+//
+// If they differ, the failure is reported via the underlying testingT and the
+// optional msg values are formatted and appended to the report. Returns true
+// if got == want.
 func (chk *Chk) Uintptr(got, want uintptr, msg ...any) bool {
 	if got == want {
 		return true
@@ -46,7 +51,10 @@ func (chk *Chk) Uintptr(got, want uintptr, msg ...any) bool {
 	return chk.errChk(got, want, uintptrTypeName, msg...)
 }
 
-// UintptrSlicef checks two uintptr slices for equality.
+// UintptrSlicef compares two uintptr slices for equality.
+//
+// A mismatch is reported to the underlying test with a formatted message
+// built from msgFmt and msgArgs. Returns true if slices are exactly equal.
 func (chk *Chk) UintptrSlicef(
 	got, want []uintptr, msgFmt string, msgArgs ...any,
 ) bool {
@@ -69,7 +77,11 @@ func (chk *Chk) UintptrSlicef(
 	)
 }
 
-// UintptrSlice checks two uintptr slices for equality.
+// UintptrSlice compares two uintptr slices for equality.
+//
+// A mismatch in length or element values is reported to the underlying test.
+// Optional msg values are included in the failure output. Returns true if
+// slices are exactly equal.
 func (chk *Chk) UintptrSlice(got, want []uintptr, msg ...any) bool {
 	l := len(got)
 	equal := l == len(want)

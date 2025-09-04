@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -20,8 +20,10 @@ package sztest
 
 const uintTypeName = "uint"
 
-// Uintf compares the wanted uint against the gotten uint invoking an
-// error should they not match.
+// Uintf compares the got uint against want.
+//
+// If they differ, the failure is reported with a formatted message built from
+// msgFmt and msgArgs. Returns true if got == want.
 func (chk *Chk) Uintf(got, want uint, msgFmt string, msgArgs ...any) bool {
 	if got == want {
 		return true
@@ -32,8 +34,11 @@ func (chk *Chk) Uintf(got, want uint, msgFmt string, msgArgs ...any) bool {
 	return chk.errChkf(got, want, uintTypeName, msgFmt, msgArgs...)
 }
 
-// Uint compares the wanted uint against the gotten uint invoking an
-// error should they not match.
+// Uint compares the got uint against want.
+//
+// If they differ, the failure is reported via the underlying testingT and the
+// optional msg values are formatted and appended to the report. Returns true
+// if got == want.
 func (chk *Chk) Uint(got, want uint, msg ...any) bool {
 	if got == want {
 		return true
@@ -44,7 +49,10 @@ func (chk *Chk) Uint(got, want uint, msg ...any) bool {
 	return chk.errChk(got, want, uintTypeName, msg...)
 }
 
-// UintSlicef checks two uint slices for equality.
+// UintSlicef compares two uint slices for equality.
+//
+// A mismatch is reported to the underlying test with a formatted message
+// built from msgFmt and msgArgs. Returns true if slices are exactly equal.
 func (chk *Chk) UintSlicef(
 	got, want []uint, msgFmt string, msgArgs ...any,
 ) bool {
@@ -66,7 +74,11 @@ func (chk *Chk) UintSlicef(
 	)
 }
 
-// UintSlice checks two uint slices for equality.
+// UintSlice compares two uint slices for equality.
+//
+// A mismatch in length or element values is reported to the underlying test.
+// Optional msg values are included in the failure output. Returns true if
+// slices are exactly equal.
 func (chk *Chk) UintSlice(got, want []uint, msg ...any) bool {
 	l := len(got)
 	equal := l == len(want)
@@ -88,7 +100,11 @@ func (chk *Chk) UintSlice(got, want []uint, msg ...any) bool {
 // Bounded and Unbounded Ranges.
 //
 
-// UintBoundedf checks value is within specified bounded range.
+// UintBoundedf checks that got lies within the bounded interval defined by
+// minV and maxV according to the chosen option.
+//
+// On failure, the test is reported with a formatted message built from msgFmt
+// and msgArgs. Returns true if got is within bounds.
 func (chk *Chk) UintBoundedf(
 	got uint,
 	option BoundedOption,
@@ -105,7 +121,11 @@ func (chk *Chk) UintBoundedf(
 	return chk.errGotWntf(uintTypeName, got, want, msgFmt, msgArgs...)
 }
 
-// UintBounded checks value is within specified bounded range.
+// UintBounded checks that got lies within the bounded interval defined by
+// minV and maxV according to the chosen option.
+//
+// On failure, the test is reported with the optional msg values appended.
+// Returns true if got is within bounds.
 func (chk *Chk) UintBounded(
 	got uint, option BoundedOption, minV, maxV uint, msg ...any,
 ) bool {
@@ -119,7 +139,11 @@ func (chk *Chk) UintBounded(
 	return chk.errGotWnt(uintTypeName, got, want, msg...)
 }
 
-// UintUnboundedf checks value is within specified unbounded range.
+// UintUnboundedf checks that got lies within the unbounded interval defined by
+// bound and option.
+//
+// On failure, the test is reported with a formatted message built from msgFmt
+// and msgArgs. Returns true if got is within bounds.
 func (chk *Chk) UintUnboundedf(
 	got uint,
 	option UnboundedOption,
@@ -136,7 +160,11 @@ func (chk *Chk) UintUnboundedf(
 	return chk.errGotWntf(uintTypeName, got, want, msgFmt, msgArgs...)
 }
 
-// UintUnbounded checks value is within specified unbounded range.
+// UintUnbounded checks that got lies within the unbounded interval defined by
+// bound and option.
+//
+// On failure, the test is reported with optional msg values appended. Returns
+// true if got is within bounds.
 func (chk *Chk) UintUnbounded(
 	got uint, option UnboundedOption, bound uint, msg ...any,
 ) bool {

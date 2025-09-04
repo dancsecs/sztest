@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -24,8 +24,10 @@ import (
 
 const durTypeName = "time.Duration"
 
-// Durf compare the wanted boolean against the gotten bool invoking an
-// error should they not match.
+// Durf compares the got time.Duration against want.
+//
+// If they differ, the failure is reported with a formatted message built from
+// msgFmt and msgArgs. Returns true if got == want.
 func (chk *Chk) Durf(
 	got, want time.Duration, msgFmt string, msgArgs ...any,
 ) bool {
@@ -38,8 +40,11 @@ func (chk *Chk) Durf(
 	return chk.errChkf(got, want, durTypeName, msgFmt, msgArgs...)
 }
 
-// Dur compare the wanted boolean against the gotten bool invoking an
-// error should they not match.
+// Dur compares the got time.Duration against want.
+//
+// If they differ, the failure is reported via the underlying testingT and the
+// optional msg values are formatted and appended to the report. Returns true
+// if got == want.
 func (chk *Chk) Dur(got, want time.Duration, msg ...any) bool {
 	if got == want {
 		return true
@@ -50,7 +55,10 @@ func (chk *Chk) Dur(got, want time.Duration, msg ...any) bool {
 	return chk.errChk(got, want, durTypeName, msg...)
 }
 
-// DurSlicef checks two time.Duration slices for equality.
+// DurSlicef compares two time.Duration slices for equality.
+//
+// A mismatch is reported to the underlying test with a formatted message
+// built from msgFmt and msgArgs. Returns true if slices are exactly equal.
 func (chk *Chk) DurSlicef(
 	got, want []time.Duration, msgFmt string, msgArgs ...any,
 ) bool {
@@ -73,7 +81,11 @@ func (chk *Chk) DurSlicef(
 	)
 }
 
-// DurSlice checks two time.Duration slices for equality.
+// DurSlice compares two time.Duration slices for equality.
+//
+// A mismatch in length or element values is reported to the underlying test.
+// Optional msg values are included in the failure output. Returns true if
+// slices are exactly equal.
 func (chk *Chk) DurSlice(got, want []time.Duration, msg ...any) bool {
 	l := len(got)
 	equal := l == len(want)
@@ -97,7 +109,11 @@ func (chk *Chk) DurSlice(got, want []time.Duration, msg ...any) bool {
 // Bounded and Unbounded Ranges.
 //
 
-// DurBoundedf checks value is within specified bounded range.
+// DurBoundedf checks that got lies within the bounded interval defined by
+// minV and maxV according to the chosen option.
+//
+// On failure, the test is reported with a formatted message built from msgFmt
+// and msgArgs. Returns true if got is within bounds.
 func (chk *Chk) DurBoundedf(
 	got time.Duration, option BoundedOption, minV, maxV time.Duration,
 	msgFmt string, msgArgs ...any,
@@ -112,7 +128,11 @@ func (chk *Chk) DurBoundedf(
 	return chk.errGotWntf(durTypeName, got, want, msgFmt, msgArgs...)
 }
 
-// DurBounded checks value is within specified bounded range.
+// DurBounded checks that got lies within the bounded interval defined by
+// minV and maxV according to the chosen option.
+//
+// On failure, the test is reported with the optional msg values appended.
+// Returns true if got is within bounds.
 func (chk *Chk) DurBounded(
 	got time.Duration,
 	option BoundedOption,
@@ -129,7 +149,11 @@ func (chk *Chk) DurBounded(
 	return chk.errGotWnt(durTypeName, got, want, msg...)
 }
 
-// DurUnboundedf checks value is within specified unbounded range.
+// DurUnboundedf checks that got lies within the unbounded interval defined by
+// bound and option.
+//
+// On failure, the test is reported with a formatted message built from msgFmt
+// and msgArgs. Returns true if got is within bounds.
 func (chk *Chk) DurUnboundedf(
 	got time.Duration, option UnboundedOption, bound time.Duration,
 	msgFmt string, msgArgs ...any,
@@ -144,7 +168,11 @@ func (chk *Chk) DurUnboundedf(
 	return chk.errGotWntf(durTypeName, got, want, msgFmt, msgArgs...)
 }
 
-// DurUnbounded checks value is within specified unbounded range.
+// DurUnbounded checks that got lies within the unbounded interval defined by
+// bound and option.
+//
+// On failure, the test is reported with optional msg values appended. Returns
+// true if got is within bounds.
 func (chk *Chk) DurUnbounded(
 	got time.Duration, option UnboundedOption, bound time.Duration, msg ...any,
 ) bool {

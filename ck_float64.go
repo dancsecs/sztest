@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -35,8 +35,12 @@ func float64TypeString(tolerance float64) string {
 		")"
 }
 
-// Float64f compare the wanted boolean against the gotten bool invoking an
-// error should they not match.
+// Float64f compares got and want within the given tolerance.
+//
+// The values are considered equal if |got - want| <= tolerance. A tolerance of
+// 0.0 requires exact equality. On mismatch, the failure is reported with a
+// formatted message built from msgFmt and msgArgs. Returns true if the
+// comparison succeeds.
 func (chk *Chk) Float64f(
 	got, want, tolerance float64, msgFmt string, msgArgs ...any,
 ) bool {
@@ -51,8 +55,12 @@ func (chk *Chk) Float64f(
 	)
 }
 
-// Float64 compare the wanted boolean against the gotten bool invoking an
-// error should they not match.
+// Float64 compares got and want within the given tolerance.
+//
+// The values are considered equal if |got - want| <= tolerance. A tolerance of
+// 0.0 requires exact equality. On mismatch, the failure is reported to the
+// underlying testingT and the optional msg values are appended. Returns true
+// if the comparison succeeds.
 func (chk *Chk) Float64(
 	got, want, tolerance float64, msg ...any,
 ) bool {
@@ -67,8 +75,14 @@ func (chk *Chk) Float64(
 	)
 }
 
-// Float64Slicef compare the wanted boolean against the gotten bool invoking an
-// error should they not match.
+// Float64Slicef compares two float64 slices element-wise within the given
+// tolerance.
+//
+// Each pair of elements must satisfy |got[i] - want[i]| <= tolerance. A
+// tolerance of 0.0 requires exact equality. Length mismatches or element
+// mismatches are reported to the underlying testingT with a formatted message
+// built from msgFmt and msgArgs. Returns true if slices are equal within
+// tolerance.
 func (chk *Chk) Float64Slicef(
 	got, want []float64, tolerance float64, msgFmt string, msgArgs ...any,
 ) bool {
@@ -94,8 +108,14 @@ func (chk *Chk) Float64Slicef(
 	)
 }
 
-// Float64Slice compare the wanted boolean against the gotten bool invoking an
-// error should they not match.
+// Float64Slice compares two float64 slices element-wise within the given
+// tolerance.
+//
+// Each pair of elements must satisfy |got[i] - want[i]| <= tolerance. A
+// tolerance of 0.0 requires exact equality. Length mismatches or element
+// mismatches are reported to the underlying testingT. Optional msg values are
+// included in the failure output. Returns true if slices are equal within
+// tolerance.
 func (chk *Chk) Float64Slice(
 	got, want []float64, tolerance float64, msg ...any,
 ) bool {
@@ -128,26 +148,18 @@ func IsFloat64Similar(num1, num2, tolerance float64) bool {
 		return true
 	}
 
-	if tolerance == 0.0 {
-		return num1 == num2
-	}
-
-	// Are a and b within tolerance t
-	switch {
-	case num1 < num2:
-		return (num2 - num1) <= tolerance
-	case num1 > num2:
-		return (num1 - num2) <= tolerance
-	}
-
-	return true // a == b
+	return math.Abs(num1-num2) <= tolerance
 }
 
 ////////////////////////////////////////////////////////////////
 // Bounded and Unbounded Ranges.
 ////////////////////////////////////////////////////////////////
 
-// Float64Boundedf checks value is within specified bounded range.
+// Float64Boundedf checks that got lies within the bounded interval defined by
+// minV and maxV according to the chosen option.
+//
+// On failure, the test is reported with a formatted message built from msgFmt
+// and msgArgs. Returns true if got is within bounds.
 func (chk *Chk) Float64Boundedf(
 	got float64, option BoundedOption, minV, maxV float64,
 	msgFmt string, msgArgs ...any,
@@ -162,7 +174,11 @@ func (chk *Chk) Float64Boundedf(
 	return chk.errGotWntf(float64TypeName, got, want, msgFmt, msgArgs...)
 }
 
-// Float64Bounded checks value is within specified bounded range.
+// Float64Bounded checks that got lies within the bounded interval defined by
+// minV and maxV according to the chosen option.
+//
+// On failure, the test is reported with the optional msg values appended.
+// Returns true if got is within bounds.
 func (chk *Chk) Float64Bounded(
 	got float64, option BoundedOption, minV, maxV float64, msg ...any,
 ) bool {
@@ -176,7 +192,11 @@ func (chk *Chk) Float64Bounded(
 	return chk.errGotWnt(float64TypeName, got, want, msg...)
 }
 
-// Float64Unboundedf checks value is within specified unbounded range.
+// Float64Unboundedf checks that got lies within the unbounded interval
+// defined by bound and option.
+//
+// On failure, the test is reported with a formatted message built from msgFmt
+// and msgArgs. Returns true if got is within bounds.
 func (chk *Chk) Float64Unboundedf(
 	got float64, option UnboundedOption, bound float64,
 	msgFmt string, msgArgs ...any,
@@ -191,7 +211,11 @@ func (chk *Chk) Float64Unboundedf(
 	return chk.errGotWntf(float64TypeName, got, want, msgFmt, msgArgs...)
 }
 
-// Float64Unbounded checks value is within specified unbounded range.
+// Float64Unbounded checks that got lies within the unbounded interval defined
+// by bound and option.
+//
+// On failure, the test is reported with optional msg values appended. Returns
+// true if got is within bounds.
 func (chk *Chk) Float64Unbounded(
 	got float64, option UnboundedOption, bound float64, msg ...any,
 ) bool {

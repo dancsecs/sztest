@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -20,8 +20,10 @@ package sztest
 
 const complex128TypeName = "complex128"
 
-// Complex128f compares the wanted complex128 against the gotten complex128
-// invoking an error should they not match.
+// Complex128f compares the got complex128 against want.
+//
+// If they differ, the failure is reported with a formatted message built from
+// msgFmt and msgArgs. Returns true if got == want.
 func (chk *Chk) Complex128f(
 	got, want complex128, msgFmt string, msgArgs ...any,
 ) bool {
@@ -34,8 +36,11 @@ func (chk *Chk) Complex128f(
 	return chk.errChkf(got, want, complex128TypeName, msgFmt, msgArgs...)
 }
 
-// Complex128 compares the wanted complex128 against the gotten complex128
-// invoking an error should they not match.
+// Complex128 compares the got complex128 against want.
+//
+// If they differ, the failure is reported via the underlying testingT and the
+// optional msg values are formatted and appended to the report. Returns true
+// if got == want.
 func (chk *Chk) Complex128(got, want complex128, msg ...any) bool {
 	if got == want {
 		return true
@@ -46,7 +51,10 @@ func (chk *Chk) Complex128(got, want complex128, msg ...any) bool {
 	return chk.errChk(got, want, complex128TypeName, msg...)
 }
 
-// Complex128Slicef checks two complex128 slices for equality.
+// Complex128Slicef compares two complex128 slices for equality.
+//
+// A mismatch is reported to the underlying test with a formatted message
+// built from msgFmt and msgArgs. Returns true if slices are exactly equal.
 func (chk *Chk) Complex128Slicef(
 	got, want []complex128, msgFmt string, msgArgs ...any,
 ) bool {
@@ -69,7 +77,11 @@ func (chk *Chk) Complex128Slicef(
 	)
 }
 
-// Complex128Slice checks two complex128 slices for equality.
+// Complex128Slice compares two complex128 slices for equality.
+//
+// A mismatch in length or element values is reported to the underlying test.
+// Optional msg values are included in the failure output. Returns true if
+// slices are exactly equal.
 func (chk *Chk) Complex128Slice(
 	got, want []complex128, msg ...any,
 ) bool {

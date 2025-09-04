@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -20,8 +20,10 @@ package sztest
 
 const runeTypeName = "rune"
 
-// Runef compares the wanted rune against the gotten rune invoking an
-// error should they not match.
+// Runef compares the got rune against want.
+//
+// If they differ, the failure is reported with a formatted message built from
+// msgFmt and msgArgs. Returns true if got == want.
 func (chk *Chk) Runef(got, want rune, msgFmt string, msgArgs ...any) bool {
 	if got == want {
 		return true
@@ -32,8 +34,11 @@ func (chk *Chk) Runef(got, want rune, msgFmt string, msgArgs ...any) bool {
 	return chk.errChkf(got, want, runeTypeName, msgFmt, msgArgs...)
 }
 
-// Rune compares the wanted rune against the gotten rune invoking an
-// error should they not match.
+// Rune compares the got rune against want.
+//
+// If they differ, the failure is reported via the underlying testingT and the
+// optional msg values are formatted and appended to the report. Returns true
+// if got == want.
 func (chk *Chk) Rune(got, want rune, msg ...any) bool {
 	if got == want {
 		return true
@@ -44,7 +49,10 @@ func (chk *Chk) Rune(got, want rune, msg ...any) bool {
 	return chk.errChk(got, want, runeTypeName, msg...)
 }
 
-// RuneSlicef checks two rune slices for equality.
+// RuneSlicef compares two rune slices for equality.
+//
+// A mismatch is reported to the underlying test with a formatted message
+// built from msgFmt and msgArgs. Returns true if slices are exactly equal.
 func (chk *Chk) RuneSlicef(
 	got, want []rune, msgFmt string, msgArgs ...any,
 ) bool {
@@ -66,7 +74,11 @@ func (chk *Chk) RuneSlicef(
 	)
 }
 
-// RuneSlice checks two rune slices for equality.
+// RuneSlice compares two rune slices for equality.
+//
+// A mismatch in length or element values is reported to the underlying test.
+// Optional msg values are included in the failure output. Returns true if
+// slices are exactly equal.
 func (chk *Chk) RuneSlice(got, want []rune, msg ...any) bool {
 	l := len(got)
 	equal := l == len(want)
@@ -88,7 +100,11 @@ func (chk *Chk) RuneSlice(got, want []rune, msg ...any) bool {
 // Bounded and Unbounded Ranges.
 //
 
-// RuneBoundedf checks value is within specified bounded range.
+// RuneBoundedf checks that got lies within the bounded interval defined by
+// minV and maxV according to the chosen option.
+//
+// On failure, the test is reported with a formatted message built from msgFmt
+// and msgArgs. Returns true if got is within bounds.
 func (chk *Chk) RuneBoundedf(
 	got rune,
 	option BoundedOption,
@@ -105,7 +121,11 @@ func (chk *Chk) RuneBoundedf(
 	return chk.errGotWntf(runeTypeName, got, want, msgFmt, msgArgs...)
 }
 
-// RuneBounded checks value is within specified bounded range.
+// RuneBounded checks that got lies within the bounded interval defined by
+// minV and maxV according to the chosen option.
+//
+// On failure, the test is reported with the optional msg values appended.
+// Returns true if got is within bounds.
 func (chk *Chk) RuneBounded(
 	got rune, option BoundedOption, minV, maxV rune, msg ...any,
 ) bool {
@@ -119,7 +139,11 @@ func (chk *Chk) RuneBounded(
 	return chk.errGotWnt(runeTypeName, got, want, msg...)
 }
 
-// RuneUnboundedf checks value is within specified unbounded range.
+// RuneUnboundedf checks that got lies within the unbounded interval defined by
+// bound and option.
+//
+// On failure, the test is reported with a formatted message built from msgFmt
+// and msgArgs. Returns true if got is within bounds.
 func (chk *Chk) RuneUnboundedf(
 	got rune,
 	option UnboundedOption,
@@ -136,7 +160,11 @@ func (chk *Chk) RuneUnboundedf(
 	return chk.errGotWntf(runeTypeName, got, want, msgFmt, msgArgs...)
 }
 
-// RuneUnbounded checks value is within specified unbounded range.
+// RuneUnbounded checks that got lies within the unbounded interval defined by
+// bound and option.
+//
+// On failure, the test is reported with optional msg values appended. Returns
+// true if got is within bounds.
 func (chk *Chk) RuneUnbounded(
 	got rune, option UnboundedOption, bound rune, msg ...any,
 ) bool {

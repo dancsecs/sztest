@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -20,8 +20,10 @@ package sztest
 
 const uint32TypeName = "uint32"
 
-// Uint32f compares the wanted uint32 against the gotten uint32 invoking an
-// error should they not match.
+// Uint32f compares the got uint32 against want.
+//
+// If they differ, the failure is reported with a formatted message built from
+// msgFmt and msgArgs. Returns true if got == want.
 func (chk *Chk) Uint32f(
 	got, want uint32, msgFmt string, msgArgs ...any,
 ) bool {
@@ -34,8 +36,11 @@ func (chk *Chk) Uint32f(
 	return chk.errChkf(got, want, uint32TypeName, msgFmt, msgArgs...)
 }
 
-// Uint32 compares the wanted uint32 against the gotten uint32 invoking an
-// error should they not match.
+// Uint32 compares the got uint32 against want.
+//
+// If they differ, the failure is reported via the underlying testingT and the
+// optional msg values are formatted and appended to the report. Returns true
+// if got == want.
 func (chk *Chk) Uint32(got, want uint32, msg ...any) bool {
 	if got == want {
 		return true
@@ -46,7 +51,10 @@ func (chk *Chk) Uint32(got, want uint32, msg ...any) bool {
 	return chk.errChk(got, want, uint32TypeName, msg...)
 }
 
-// Uint32Slicef checks two uint32 slices for equality.
+// Uint32Slicef compares two uint32 slices for equality.
+//
+// A mismatch is reported to the underlying test with a formatted message
+// built from msgFmt and msgArgs. Returns true if slices are exactly equal.
 func (chk *Chk) Uint32Slicef(
 	got, want []uint32, msgFmt string, msgArgs ...any,
 ) bool {
@@ -69,7 +77,11 @@ func (chk *Chk) Uint32Slicef(
 	)
 }
 
-// Uint32Slice checks two uint32 slices for equality.
+// Uint32Slice compares two uint32 slices for equality.
+//
+// A mismatch in length or element values is reported to the underlying test.
+// Optional msg values are included in the failure output. Returns true if
+// slices are exactly equal.
 func (chk *Chk) Uint32Slice(got, want []uint32, msg ...any) bool {
 	l := len(got)
 	equal := l == len(want)
@@ -93,7 +105,11 @@ func (chk *Chk) Uint32Slice(got, want []uint32, msg ...any) bool {
 // Bounded and Unbounded Ranges.
 //
 
-// Uint32Boundedf checks value is within specified bounded range.
+// Uint32Boundedf checks that got lies within the bounded interval defined by
+// minV and maxV according to the chosen option.
+//
+// On failure, the test is reported with a formatted message built from msgFmt
+// and msgArgs. Returns true if got is within bounds.
 func (chk *Chk) Uint32Boundedf(
 	got uint32, option BoundedOption, minV, maxV uint32,
 	msgFmt string, msgArgs ...any,
@@ -108,7 +124,11 @@ func (chk *Chk) Uint32Boundedf(
 	return chk.errGotWntf(uint32TypeName, got, want, msgFmt, msgArgs...)
 }
 
-// Uint32Bounded checks value is within specified bounded range.
+// Uint32Bounded checks that got lies within the bounded interval defined by
+// minV and maxV according to the chosen option.
+//
+// On failure, the test is reported with the optional msg values appended.
+// Returns true if got is within bounds.
 func (chk *Chk) Uint32Bounded(
 	got uint32, option BoundedOption, minV, maxV uint32, msg ...any,
 ) bool {
@@ -122,7 +142,11 @@ func (chk *Chk) Uint32Bounded(
 	return chk.errGotWnt(uint32TypeName, got, want, msg...)
 }
 
-// Uint32Unboundedf checks value is within specified unbounded range.
+// Uint32Unboundedf checks that got lies within the unbounded interval defined
+// by bound and option.
+//
+// On failure, the test is reported with a formatted message built from msgFmt
+// and msgArgs. Returns true if got is within bounds.
 func (chk *Chk) Uint32Unboundedf(
 	got uint32, option UnboundedOption, bound uint32,
 	msgFmt string, msgArgs ...any,
@@ -137,7 +161,11 @@ func (chk *Chk) Uint32Unboundedf(
 	return chk.errGotWntf(uint32TypeName, got, want, msgFmt, msgArgs...)
 }
 
-// Uint32Unbounded checks value is within specified unbounded range.
+// Uint32Unbounded checks that got lies within the unbounded interval defined
+// by bound and option.
+//
+// On failure, the test is reported with optional msg values appended. Returns
+// true if got is within bounds.
 func (chk *Chk) Uint32Unbounded(
 	got uint32, option UnboundedOption, bound uint32, msg ...any,
 ) bool {

@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -20,8 +20,10 @@ package sztest
 
 const complex64TypeName = "complex64"
 
-// Complex64f compares the wanted complex64 against the gotten complex64
-// invoking an error should they not match.
+// Complex64f compares the got complex64 against want.
+//
+// If they differ, the failure is reported with a formatted message built from
+// msgFmt and msgArgs. Returns true if got == want.
 func (chk *Chk) Complex64f(
 	got, want complex64, msgFmt string, msgArgs ...any,
 ) bool {
@@ -34,8 +36,11 @@ func (chk *Chk) Complex64f(
 	return chk.errChkf(got, want, complex64TypeName, msgFmt, msgArgs...)
 }
 
-// Complex64 compares the wanted complex64 against the gotten complex64
-// invoking an error should they not match.
+// Complex64 compares the got complex64 against want.
+//
+// If they differ, the failure is reported via the underlying testingT and the
+// optional msg values are formatted and appended to the report. Returns true
+// if got == want.
 func (chk *Chk) Complex64(got, want complex64, msg ...any) bool {
 	if got == want {
 		return true
@@ -46,7 +51,10 @@ func (chk *Chk) Complex64(got, want complex64, msg ...any) bool {
 	return chk.errChk(got, want, complex64TypeName, msg...)
 }
 
-// Complex64Slicef checks two complex64 slices for equality.
+// Complex64Slicef compares two complex64 slices for equality.
+//
+// A mismatch is reported to the underlying test with a formatted message
+// built from msgFmt and msgArgs. Returns true if slices are exactly equal.
 func (chk *Chk) Complex64Slicef(
 	got, want []complex64, msgFmt string, msgArgs ...any,
 ) bool {
@@ -69,7 +77,11 @@ func (chk *Chk) Complex64Slicef(
 	)
 }
 
-// Complex64Slice checks two complex64 slices for equality.
+// Complex64Slice compares two complex64 slices for equality.
+//
+// A mismatch in length or element values is reported to the underlying test.
+// Optional msg values are included in the failure output. Returns true if
+// slices are exactly equal.
 func (chk *Chk) Complex64Slice(
 	got, want []complex64, msg ...any,
 ) bool {

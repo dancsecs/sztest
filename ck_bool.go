@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -22,7 +22,10 @@ const boolTypeName = "bool"
 
 // Helpers.
 
-// Truef simply invokes Bool with want set to true and msg formatted.
+// Truef compares the got bool against true.
+//
+// If they differ, the failure is reported with a formatted message built from
+// msgFmt and msgArgs. Returns true if got == want.
 func (chk *Chk) Truef(got bool, msgFmt string, msgArgs ...any) bool {
 	if got {
 		return true
@@ -33,7 +36,11 @@ func (chk *Chk) Truef(got bool, msgFmt string, msgArgs ...any) bool {
 	return chk.errChkf(got, true, boolTypeName, msgFmt, msgArgs...)
 }
 
-// True simply invokes Bool with want set to true.
+// True compares the got bool against true.
+//
+// If they differ, the failure is reported via the underlying testingT and the
+// optional msg values are formatted and appended to the report. Returns true
+// if got == want.
 func (chk *Chk) True(got bool, msg ...any) bool {
 	if got {
 		return true
@@ -44,7 +51,10 @@ func (chk *Chk) True(got bool, msg ...any) bool {
 	return chk.errChk(got, true, boolTypeName, msg...)
 }
 
-// Falsef simply invokes Bool with want set to true and msg formatted.
+// Falsef compares the got bool against false.
+//
+// If they differ, the failure is reported with a formatted message built from
+// msgFmt and msgArgs. Returns true if got == want.
 func (chk *Chk) Falsef(got bool, msgFmt string, msgArgs ...any) bool {
 	if !got {
 		return true
@@ -55,7 +65,11 @@ func (chk *Chk) Falsef(got bool, msgFmt string, msgArgs ...any) bool {
 	return chk.errChkf(got, false, boolTypeName, msgFmt, msgArgs...)
 }
 
-// False simply invokes Bool with want set to true.
+// False compares the got bool against false.
+//
+// If they differ, the failure is reported via the underlying testingT and the
+// optional msg values are formatted and appended to the report. Returns true
+// if got == want.
 func (chk *Chk) False(got bool, msg ...any) bool {
 	if !got {
 		return true
@@ -66,8 +80,10 @@ func (chk *Chk) False(got bool, msg ...any) bool {
 	return chk.errChk(got, false, boolTypeName, msg...)
 }
 
-// Boolf compare the wanted boolean against the gotten bool invoking an
-// error should they not match.
+// Boolf compares the got bool against want.
+//
+// If they differ, the failure is reported with a formatted message built from
+// msgFmt and msgArgs. Returns true if got == want.
 func (chk *Chk) Boolf(got, want bool, msgFmt string, msgArgs ...any) bool {
 	if got == want {
 		return true
@@ -78,8 +94,11 @@ func (chk *Chk) Boolf(got, want bool, msgFmt string, msgArgs ...any) bool {
 	return chk.errChkf(got, want, boolTypeName, msgFmt, msgArgs...)
 }
 
-// Bool compare the wanted boolean against the gotten bool invoking an
-// error should they not match.
+// Bool compares the got bool against want.
+//
+// If they differ, the failure is reported via the underlying testingT and the
+// optional msg values are formatted and appended to the report. Returns true
+// if got == want.
 func (chk *Chk) Bool(got, want bool, msg ...any) bool {
 	if got == want {
 		return true
@@ -90,7 +109,10 @@ func (chk *Chk) Bool(got, want bool, msg ...any) bool {
 	return chk.errChk(got, want, boolTypeName, msg...)
 }
 
-// BoolSlicef checks two boolean slices for equality.
+// BoolSlicef compares two bool slices for equality.
+//
+// A mismatch is reported to the underlying test with a formatted message
+// built from msgFmt and msgArgs. Returns true if slices are exactly equal.
 func (chk *Chk) BoolSlicef(
 	got, want []bool, msgFmt string, msgArgs ...any,
 ) bool {
@@ -112,7 +134,11 @@ func (chk *Chk) BoolSlicef(
 	)
 }
 
-// BoolSlice checks two boolean slices for equality.
+// BoolSlice compares two bool slices for equality.
+//
+// A mismatch in length or element values is reported to the underlying test.
+// Optional msg values are included in the failure output. Returns true if
+// slices are exactly equal.
 func (chk *Chk) BoolSlice(got, want []bool, msg ...any) bool {
 	l := len(got)
 	equal := l == len(want)
