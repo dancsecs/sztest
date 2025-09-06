@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -28,7 +28,9 @@ const (
 	notNilTypeName = "not " + nilTypeName
 )
 
-// Nilf checks that the interface value is nil with formatted msg.
+// Nilf reports whether got is nil, including cases where got is an interface
+// holding a typed nil pointer. It reports a failure through chk’s testingT
+// if got is non-nil. The message is formatted according to msgFmt and msgArgs.
 func (chk *Chk) Nilf(got any, msgFmt string, msgArgs ...any) bool {
 	if got == nil || reflect.ValueOf(got).IsNil() {
 		return true
@@ -42,7 +44,9 @@ func (chk *Chk) Nilf(got any, msgFmt string, msgArgs ...any) bool {
 	return false
 }
 
-// Nil checks that the interface value is nil.
+// Nil reports whether got is nil, including cases where got is an interface
+// holding a typed nil pointer. It reports a failure through chk’s testingT
+// if got is non-nil. An optional message may be provided.
 func (chk *Chk) Nil(got any, msg ...any) bool {
 	if got == nil || reflect.ValueOf(got).IsNil() {
 		return true
@@ -56,7 +60,10 @@ func (chk *Chk) Nil(got any, msg ...any) bool {
 	return false
 }
 
-// NotNilf checks that the interface value is nil with formatted msg.
+// NotNilf reports whether got is non-nil. Unlike Nil, this treats an
+// interface holding a typed nil pointer as nil. It reports a failure through
+// chk’s testingT if got is nil. The message is formatted according to msgFmt
+// and msgArgs.
 func (chk *Chk) NotNilf(got any, msgFmt string, msgArgs ...any) bool {
 	if got != nil && !reflect.ValueOf(got).IsNil() {
 		return true
@@ -70,7 +77,9 @@ func (chk *Chk) NotNilf(got any, msgFmt string, msgArgs ...any) bool {
 	return false
 }
 
-// NotNil checks that the interface value is nil.
+// NotNil reports whether got is non-nil. Unlike Nil, this treats an interface
+// holding a typed nil pointer as nil. It reports a failure through chk’s
+// testingT if got is nil. An optional message may be provided.
 func (chk *Chk) NotNil(got any, msg ...any) bool {
 	if got != nil && !reflect.ValueOf(got).IsNil() {
 		return true
