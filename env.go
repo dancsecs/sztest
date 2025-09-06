@@ -22,8 +22,9 @@ import (
 	"os"
 )
 
-// SetEnv adds or modifies the names environment variable to the specified
-// value.  Any Changes made are reset when chk.Release() is called.
+// SetEnv sets or updates the named environment variable to the given value.
+// Changes are reverted automatically when chk.Release() is called. Any error
+// encountered is reported to the underlying *testingT.
 func (chk *Chk) SetEnv(name, value string) {
 	var reverseFunc func() error
 
@@ -44,8 +45,9 @@ func (chk *Chk) SetEnv(name, value string) {
 	chk.NoErr(os.Setenv(name, value))
 }
 
-// DelEnv removes the env variable if it exists.  Any changes are reversed
-// when chk.Release() is called.
+// DelEnv removes the named environment variable if it exists. The removal is
+// reverted automatically when chk.Release() is called. Any error encountered
+// is reported to the underlying *testingT.
 func (chk *Chk) DelEnv(name string) {
 	var reverseFunc func() error
 
