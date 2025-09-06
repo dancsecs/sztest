@@ -18,8 +18,14 @@
 
 package sztest
 
-// LastErr returns the last argument in the list as an error.  If there are
-// no arguments or the last parameter is not an Error interface then
+// LastErr extracts the final argument from args as an error.
+//
+// This is useful for functions that return multiple values when only the
+// trailing error needs to be checked. For example:
+//
+//	chk.NoErr(chk.LastErr(fmt.Fprintln(f, "msg")))
+//
+// If args is empty or the final argument does not implement error,
 // ErrInvalidLastErrArg is returned.
 func (*Chk) LastErr(args ...any) error {
 	var (

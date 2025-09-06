@@ -42,7 +42,9 @@ func (chk *Chk) runPanicTest(testFunc func()) (panicMessage string) {
 	return
 }
 
-// NoPanicf simply invokes Panic with want set to "" and msg formatted.
+// NoPanicf verifies that gotF does not panic.
+//
+// Equivalent to calling Panicf with want set to "".
 func (chk *Chk) NoPanicf(gotF func(), msgFmt string, msgArgs ...any) bool {
 	defer func() {
 		chk.runningPanicFunction = false
@@ -58,7 +60,9 @@ func (chk *Chk) NoPanicf(gotF func(), msgFmt string, msgArgs ...any) bool {
 	return chk.errChkf(panicMsg, "", "panic", msgFmt, msgArgs...)
 }
 
-// NoPanic simply invokes Err with want set to "".
+// NoPanic verifies that gotF does not panic.
+//
+// Equivalent to calling Panic with want set to "".
 func (chk *Chk) NoPanic(gotF func(), msg ...any) bool {
 	defer func() {
 		chk.runningPanicFunction = false
@@ -74,8 +78,10 @@ func (chk *Chk) NoPanic(gotF func(), msg ...any) bool {
 	return chk.errChk(panicMsg, "", "panic", msg...)
 }
 
-// Panicf runs the supplied function and compares the panic value asserted
-// to the supplied string.
+// Panicf runs gotF and compares its panic value against want.
+//
+// Behaves like Panic but formats msg using msgFmt and msgArgs when reporting
+// a mismatch. A want of "" or "<nil>" indicates that no panic is expected.
 func (chk *Chk) Panicf(
 	gotF func(), want string, msgFmt string, msgArgs ...any,
 ) bool {
@@ -93,8 +99,10 @@ func (chk *Chk) Panicf(
 	return chk.errChkf(panicMsg, want, "panic", msgFmt, msgArgs...)
 }
 
-// Panic runs the supplied function and compares the panic value asserted to
-// the supplied string.
+// Panic runs gotF and compares its panic value against want.
+//
+// The stack trace is ignored; only the string form of the panic value is
+// compared. A want of "" or "<nil>" indicates that no panic is expected.
 func (chk *Chk) Panic(gotF func(), want string, msg ...any) bool {
 	defer func() {
 		chk.runningPanicFunction = false

@@ -75,7 +75,10 @@ func (chk *Chk) errPrepareGotSlice(got []error) []string {
 	return r
 }
 
-// NoErrf simply invokes Err with want set to "" and msg formatted.
+// NoErrf asserts that an error is nil.
+//
+// It is equivalent to calling Errf(got, "", msgFmt, msgArgs...). Extra context
+// may be supplied using a printf-style format string and arguments.
 func (chk *Chk) NoErrf(got error, msgFmt string, msgArgs ...any) bool {
 	if chk.errPrepareGot(got) == nilStr {
 		return true
@@ -88,7 +91,10 @@ func (chk *Chk) NoErrf(got error, msgFmt string, msgArgs ...any) bool {
 	)
 }
 
-// NoErr simply invokes Err with want set to "".
+// NoErr asserts that an error is nil.
+//
+// It is equivalent to calling Err(got, ""). Extra context may be supplied via
+// msg.
 func (chk *Chk) NoErr(got error, msg ...any) bool {
 	if chk.errPrepareGot(got) == nilStr {
 		return true
@@ -99,8 +105,11 @@ func (chk *Chk) NoErr(got error, msg ...any) bool {
 	return chk.errChk(chk.errPrepareGot(got), nilStr, errTypeName, msg...)
 }
 
-// Errf compare the gotten error against the wanted error string.
-// If either  "" or "<nil>" is wanted the error should be a nil.
+// Errf compares a received error against its expected string form.
+//
+// A nil error is matched by a want string of "" or "<nil>". The comparison
+// uses err.Error() when got is non-nil. Extra context may be supplied using
+// a printf-style format string and arguments.
 func (chk *Chk) Errf(
 	got error, want string, msgFmt string, msgArgs ...any,
 ) bool {
@@ -118,8 +127,10 @@ func (chk *Chk) Errf(
 	)
 }
 
-// Err compare the gotten error against the wanted error string.
-// If either  "" or "<nil>" is wanted the error should be a nil.
+// Err compares a received error against its expected string form.
+//
+// A nil error is matched by a want string of "" or "<nil>". The comparison
+// uses err.Error() when got is non-nil. Extra context may be supplied via msg.
 func (chk *Chk) Err(got error, want string, msg ...any) bool {
 	if chk.errPrepareGot(got) == chk.errPrepareWant(want) {
 		return true
@@ -132,8 +143,11 @@ func (chk *Chk) Err(got error, want string, msg ...any) bool {
 	)
 }
 
-// ErrSlicef compare the gotten error against the wanted error string.
-// If either  "" or "<nil>" is wanted the error should be a nil.
+// ErrSlicef compares a slice of errors against a slice of expected strings.
+//
+// Each error is converted to its string form (or "<nil>" if nil) before
+// comparison. A nil error matches either "" or "<nil>" in want. Extra context
+// may be supplied using a printf-style format string and arguments.
 func (chk *Chk) ErrSlicef(
 	got []error, want []string, msgFmt string, msgArgs ...any,
 ) bool {
@@ -160,8 +174,11 @@ func (chk *Chk) ErrSlicef(
 	)
 }
 
-// ErrSlice compare the gotten error against the wanted error string.
-// If either  "" or "<nil>" is wanted the error should be a nil.
+// ErrSlice compares a slice of errors against a slice of expected strings.
+//
+// Each error is converted to its string form (or "<nil>" if nil) before
+// comparison. A nil error matches either "" or "<nil>" in want. Extra context
+// may be supplied via msg.
 func (chk *Chk) ErrSlice(
 	got []error, want []string, msg ...any,
 ) bool {
@@ -188,8 +205,11 @@ func (chk *Chk) ErrSlice(
 	)
 }
 
-// ErrChain returns a string concatenating all of the errors and strings with
-// the separator.
+// ErrChain builds a string representation of an error chain.
+//
+// Each element may be an error or a string. They are concatenated in order
+// with the separator ": ". This allows construction of expected error
+// messages for wrapped errors, suitable for comparison with Err or Errf.
 func (chk *Chk) ErrChain(first any, rest ...any) string {
 	result := fmt.Sprintf("%v", first)
 	for _, v := range rest {
