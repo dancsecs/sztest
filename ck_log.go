@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -219,180 +219,135 @@ func (chk *Chk) copyStderr() error {
 	return err //nolint:wrapcheck // Ok.
 }
 
-// CaptureStdout returns a new *sztest.Chk reference
-// capturing:
+// CaptureStdout returns a *Chk that captures os.Stdout.
 //
-// - os.Stdout
-//
-// which must be tested by calling the methods:
-//
-// - (*Chk).Stdout(wantLines ...string) bool
-//
-// before (*Chk).Release() is invoked.
+// Call (*Chk).Stdout(wantLines...) to assert the captured stdout before
+// calling chk.Release(). After Release the captured data is no longer
+// available.
 func CaptureStdout(t testingT) *Chk {
 	t.Helper()
 
 	return newChk(t, captureStdout)
 }
 
-// CaptureLog returns a new *sztest.Chk reference
-// capturing:
+// CaptureLog returns a *Chk that captures the package logger (log.Writer()).
 //
-// - log.Writer() io.Writer
-//
-// which must be tested by calling the methods:
-//
-// - (*Chk).Log(wantLines ...string) bool
-//
-// before (*Chk).Release() is invoked.
+// Call (*Chk).Log(wantLines...) to assert captured log output before
+// calling chk.Release().
 func CaptureLog(t testingT) *Chk {
 	t.Helper()
 
 	return newChk(t, captureLog)
 }
 
-// CaptureLogAndStdout returns a new *sztest.Chk reference
-// capturing:
+// CaptureLogAndStdout returns a *Chk that captures both log.Writer()
+// and os.Stdout.
 //
-// - log.Writer() io.Writer
-// - os.Stdout
-//
-// which must be tested by calling the methods:
-//
-// - (*Chk).Log(wantLines ...string) bool
-// - (*Chk).Stdout(wantLines ...string) bool
-//
-// before (*Chk).Release() is invoked.
+// Use (*Chk).Log(...) to assert the logger output and (*Chk).Stdout(...)
+// to assert stdout. Perform these checks before calling chk.Release().
 func CaptureLogAndStdout(t testingT) *Chk {
 	t.Helper()
 
 	return newChk(t, captureLogAndStdout)
 }
 
-// CaptureLogAndStderr returns a new *sztest.Chk reference
-// capturing:
+// CaptureLogAndStderr returns a *Chk that captures log.Writer() and os.Stderr.
 //
-// - log.Writer() io.Writer
-// - os.Stderr
-//
-// which must be tested by calling the methods:
-//
-// - (*Chk).Log(wantLines ...string) bool
-// - (*Chk).Stderr(wantLines ...string) bool
-//
-// before (*Chk).Release() is invoked.
+// Use (*Chk).Log(...) to assert the logger output and (*Chk).Stderr(...)
+// to assert stderr. Perform these checks before calling chk.Release().
 func CaptureLogAndStderr(t testingT) *Chk {
 	t.Helper()
 
 	return newChk(t, captureLogAndStderr)
 }
 
-// CaptureLogAndStderrAndStdout returns a new *sztest.Chk reference
-// capturing:
+// CaptureLogAndStderrAndStdout returns a *Chk that captures the package
+// logger, os.Stderr and os.Stdout.
 //
-// - log.Writer() io.Writer
-// - os.Stderr
-// - os.Stdout
-//
-// which must be tested by calling the methods:
-//
-// - (*Chk).Log(wantLines ...string) bool
-// - (*Chk).Stderr(wantLines ...string) bool
-// - (*Chk).Stdout(wantLines ...string) bool
-//
-// before (*Chk).Release() is invoked.
+// Assert the captured streams with the corresponding methods
+// ((*Chk).Log(...), (*Chk).Stdout(...) and (*Chk).Stderr(...)) before calling
+// chk.Release().
 func CaptureLogAndStderrAndStdout(t testingT) *Chk {
 	t.Helper()
 
 	return newChk(t, captureLogAndStderrAndStdout)
 }
 
-// CaptureLogWithStderr returns a new *sztest.Chk reference
-// combining and capturing:
+// CaptureLogWithStderr returns a *Chk that combines the package logger
+// output and os.Stderr into a single capture buffer.
 //
-// - (log.Writer() io.Writer) + os.Stderr
-//
-// which must be tested by calling ONE the methods:
-//
-// - (*Chk).Log(wantLines ...string) bool
-// - OR
-// - (*Chk).Stderr(wantLines ...string) bool
-//
-// before (*Chk).Release() is invoked.
+// In this combined mode the same underlying data may be inspected by either
+// (*Chk).Log(...) or (*Chk).Stderr(...). Call exactly one of those two
+// methods to assert the combined contents, and do so before calling
+// chk.Release().
 func CaptureLogWithStderr(t testingT) *Chk {
 	t.Helper()
 
 	return newChk(t, captureLogWithStderr)
 }
 
-// CaptureLogWithStderrAndStdout returns a new *sztest.Chk reference
-// capturing:
+// CaptureLogWithStderrAndStdout returns a *Chk that combines the package
+// logger and os.Stderr into one capture buffer and also captures os.Stdout.
 //
-// - (log.Writer() io.Writer) + os.Stderr
-// - os.Stdout
-//
-// which must be tested by calling ONE the methods:
-//
-// - (*Chk).Log(wantLines ...string) bool
-// - OR
-// - (*Chk).Stderr(wantLines ...string) bool
-//
-// and the method:
-//
-// - (*Chk).Stdout(wantLines ...string) bool
-//
-// before (*Chk).Release() is invoked.
+// Assert the combined logger/stderr with either (*Chk).Log(...) or
+// (*Chk).Stderr(...), and assert stdout with (*Chk).Stdout(...). Do all
+// assertions before calling chk.Release().
 func CaptureLogWithStderrAndStdout(t testingT) *Chk {
 	t.Helper()
 
 	return newChk(t, captureLogWithStderrAndStdout)
 }
 
-// CaptureStderr returns a new *sztest.Chk reference
-// capturing:
+// CaptureStderr returns a *Chk that captures os.Stderr.
 //
-// - os.Stderr
-//
-// which must be tested by calling the method:
-//
-// - (*Chk).Stderr(wantLines ...string) bool
-//
-// before (*Chk).Release() is invoked.
+// Call (*Chk).Stderr(wantLines...) to assert the captured stderr before
+// invoking chk.Release().
 func CaptureStderr(t testingT) *Chk {
 	t.Helper()
 
 	return newChk(t, captureStderr)
 }
 
-// CaptureStderrAndStdout returns a new *sztest.Chk reference
-// capturing:
+// CaptureStderrAndStdout returns a *Chk that captures both stderr and stdout.
 //
-// - os.Stderr
-// - os.Stdout
-//
-// which must be tested by calling the methods:
-//
-// - (*Chk).Stderr(wantLines ...string) bool
-// - (*Chk).Stdout(wantLines ...string) bool
-//
-// before (*Chk).Release() is invoked.
+// Call the corresponding assertion helpers ((*Chk).Stdout(...) and
+// (*Chk).Stderr(...)) before calling chk.Release().
 func CaptureStderrAndStdout(t testingT) *Chk {
 	t.Helper()
 
 	return newChk(t, captureStderrAndStdout)
 }
 
-func (chk *Chk) prepareSlice(
-	processFunc func(string) string,
-	rawLines ...string,
-) []string {
-	var lines []string
+// TrimAll normalizes a multi-line string into a compact form suitable for
+// output assertions.
+//
+// It splits str into lines, removes common leading indentation, trims
+// trailing whitespace from each line, and discards leading/trailing blank
+// lines. The cleaned lines are then rejoined with a single '\n' between
+// them and returned as one string.
+//
+// To preserve intentional leading or trailing spaces/tabs, replace the first
+// or last space/tab with the escape markers `\s` or `\t`. This allows test
+// data to remain both human-readable and assertion-accurate. It is especially
+// useful when comparing against captured output via Log, Stdout, or Stderr.
+func (chk *Chk) TrimAll(str string) string {
+	lines := make([]string, 0, strings.Count(str, "\n")+1)
 
-	for _, rl := range rawLines {
-		for _, l := range strings.Split(rl, "\n") {
-			l = processFunc(l)
-			lines = append(lines, chk.isStringify(l))
+	for l := range strings.SplitSeq(str, "\n") {
+		line := strings.TrimSpace(l)
+
+		// Replace first hard space.
+		if strings.HasPrefix(line, `\s`) {
+			line = " " + line[2:]
+		} else if strings.HasPrefix(line, `\t`) {
+			line = "\t" + line[2:]
 		}
+
+		if strings.HasSuffix(line, `\s`) {
+			line = line[:len(line)-2] + " "
+		}
+
+		lines = append(lines, line)
 	}
 	// remove leading blank lines
 	firstPos := 0
@@ -406,22 +361,23 @@ func (chk *Chk) prepareSlice(
 		lastPos--
 	}
 
-	return lines[firstPos:lastPos]
+	return strings.Join(lines[firstPos:lastPos], "\n")
 }
 
-func prepareWantString(line string) string {
-	line = strings.TrimSpace(line)
+func (chk *Chk) prepareSlice(
+	processFunc func(string) string,
+	rawLines ...string,
+) []string {
+	var lines []string
 
-	// Replace first hard space.
-	if strings.HasPrefix(line, `\s`) {
-		line = " " + line[2:]
+	for _, rl := range rawLines {
+		for l := range strings.SplitSeq(rl, "\n") {
+			l = processFunc(l)
+			lines = append(lines, chk.isStringify(l))
+		}
 	}
 
-	if strings.HasSuffix(line, `\s`) {
-		line = line[:len(line)-2] + " "
-	}
-
-	return line
+	return lines
 }
 
 func (chk *Chk) compareLog(
@@ -430,11 +386,18 @@ func (chk *Chk) compareLog(
 	wantLines ...string,
 ) bool {
 	chk.t.Helper()
+
+	var gotSlice []string
+
+	if got != "" {
+		gotSlice = []string{strings.TrimSuffix(got, "\n")}
+	}
+
 	ret := CompareSlices(
 		fmt.Sprint("Unexpected ", name, " Entry"),
 		chk.prepareSlice(
 			gotFilter,
-			got,
+			gotSlice...,
 		),
 		chk.prepareSlice(
 			wantFilter,
@@ -449,10 +412,10 @@ func (chk *Chk) compareLog(
 	if ret != "" {
 		chk.Error(ret)
 
-		return true
+		return false
 	}
 
-	return false
+	return true
 }
 
 func buildLogPrefixRegexpStr(prefix string, flags int) string {
@@ -507,7 +470,16 @@ func removeLogPrefixes(line string) string {
 	return clearLogPrefix.ReplaceAllString(line, "")
 }
 
-// Log checks the internally captured log data with the supplied list.
+// Log compares the internally captured logger output against wantLines.
+//
+// Any decorations applied by the standard library log package (such as
+// timestamps, optional flags, or prefixes) are stripped before comparison.
+// This ensures that tests focus only on the actual log message content rather
+// than on formatting applied by the logger itself.
+//
+// Returns true when the captured lines match exactly the supplied sequence.
+// Failures are reported to the underlying testingT. Call this before
+// chk.Release().
 func (chk *Chk) Log(wantLines ...string) bool {
 	chk.t.Helper()
 
@@ -540,12 +512,18 @@ func (chk *Chk) Log(wantLines ...string) bool {
 		name,
 		gotString,
 		removeLogPrefixes,
-		prepareWantString,
+		func(s string) string {
+			return s
+		},
+		//		prepareWantString,
 		wantLines...,
 	)
 }
 
-// Stderr checks the internally captured log data with the supplied list.
+// Stderr compares the internally captured stderr output against wantLines.
+//
+// It returns true on an exact match and reports test failures via the Chk's
+// testingT. Call this before chk.Release().
 func (chk *Chk) Stderr(wantLines ...string) bool {
 	chk.t.Helper()
 
@@ -578,12 +556,18 @@ func (chk *Chk) Stderr(wantLines ...string) bool {
 		name,
 		chk.errBuf.String(),
 		getFilterFunc,
-		prepareWantString,
+		func(s string) string {
+			return s
+		},
+		//		prepareWantString,
 		wantLines...,
 	)
 }
 
-// Stdout checks the internally captured log data with the supplied list.
+// Stdout compares the internally captured stdout output against wantLines.
+//
+// It returns true on an exact match and reports test failures via the Chk's
+// testingT. Call this before chk.Release().
 func (chk *Chk) Stdout(wantLines ...string) bool {
 	chk.t.Helper()
 
@@ -603,7 +587,10 @@ func (chk *Chk) Stdout(wantLines ...string) bool {
 		func(s string) string {
 			return s
 		},
-		prepareWantString,
+		func(s string) string {
+			return s
+		},
+		//		prepareWantString,
 		wantLines...,
 	)
 }

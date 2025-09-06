@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -679,9 +679,9 @@ func chkLogTestCheckLoggingNotStdoutWithExpected(t *testing.T) {
 		return s
 	}
 
-	chk.Stdout(`
+	chk.Stdout(chk.TrimAll(`
 		This line should be flagged as not in log
-	`,
+	`),
 	)
 
 	chk.Log()
@@ -724,10 +724,10 @@ func chkLogTestCheckLoggingNoLoggingWithExpected(t *testing.T) {
 
 	chk.Stdout()
 
-	chk.Log(`
+	chk.Log(chk.TrimAll(`
 		This line should be flagged as not in log
 	`,
-	)
+	))
 
 	chk.Stderr()
 
@@ -769,10 +769,10 @@ func chkLogTestCheckLoggingNotStderrWithExpected(t *testing.T) {
 
 	chk.Log()
 
-	chk.Stderr(`
+	chk.Stderr(chk.TrimAll(`
 		This line should be flagged as not in log
 	`,
-	)
+	))
 
 	chk.Release()
 	iT.check(t,
@@ -980,8 +980,7 @@ func chkLogTestReleasePanicInteractionPanicInternal(t *testing.T) {
 		"panic \tmessage difference",
 	)
 
-	chk.Log(`
-		`)
+	chk.Log()
 
 	chk.Release()
 
@@ -1008,21 +1007,21 @@ func chkLogTestLeadingAndTrainingSpaces(t *testing.T) {
 	iT.chk = chk
 
 	//nolint:forbidigo // Ok testing print capture.
-	fmt.Println("   stdout   ")
+	fmt.Println("\t  stdout   ")
 	fmt.Fprintln(os.Stderr, "   stderr   ")
 	log.Print("   logger   ")
 
-	chk.Log(`
+	chk.Log(chk.TrimAll(`
     \s  logger  \s
-		`)
+		`))
 
-	chk.Stderr(`
+	chk.Stderr(chk.TrimAll(`
     \s  stderr  \s
-		`)
+		`))
 
-	chk.Stdout(`
-    \s  stdout  \s
-		`)
+	chk.Stdout(chk.TrimAll(`
+    \t  stdout  \s
+		`))
 
 	chk.Release()
 
@@ -1054,7 +1053,7 @@ func chkLogTestSlog(t *testing.T) {
 
 	slog.Info("    logger     ")
 
-	chk.Log(`INFO     logger    \s`)
+	chk.Log(`INFO     logger     `)
 
 	chk.Release()
 

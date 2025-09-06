@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -33,7 +33,18 @@ type substitution struct {
 	subStr string
 }
 
-// AddSub compiles and adds a new regexp and substitute string.
+// AddSub registers a regexp pattern and its replacement string to normalize
+// variable output before assertions.
+//
+// Each AddSub call compiles expr and stores it with subStr for later use.
+// During comparison, substitutions are applied recursively across captured
+// output and string assertions (e.g., Str, Err, Panic, Stdout, Stderr, Log)
+// until no further matches remain.
+//
+// This is useful for masking nondeterministic values such as timestamps,
+// memory addresses, or counters. Compilation failures cause an immediate
+// fatal error. Currently subStr does not support regexp submatches, but this
+// is planned for future versions.
 func (chk *Chk) AddSub(expr, subStr string) {
 	re, err := regexp.Compile(expr)
 	if err != nil {
