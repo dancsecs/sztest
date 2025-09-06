@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -18,15 +18,18 @@
 
 package sztest
 
-// SetSeekError primes the chk object to return the provided error.
+// SetSeekError primes the chk object to return the provided error on a
+// future Seek call. The error is returned once, after which normal seek
+// behavior resumes.
 func (chk *Chk) SetSeekError(pos int64, err error) {
 	chk.ioSeekErrPos = pos
 	chk.ioSeekErr = err
 	chk.ioSeekErrSet = true
 }
 
-// Seek implements the interface to simulate a Seek operation returning an
-// error if provided.
+// Seek implements the io.Seeker interface. It updates the current seek
+// position and returns any pending error set via SetSeekError. If no
+// error is pending, it behaves as a successful seek.
 func (chk *Chk) Seek(_ int64, _ int) (int64, error) {
 	seekPos := chk.ioSeekErrPos
 	seekErr := chk.ioSeekErr

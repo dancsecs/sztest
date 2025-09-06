@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -18,14 +18,18 @@
 
 package sztest
 
-// SetCloseError primes the chk object to return the provided error.
+// SetCloseError primes chk so that the next call to Close returns err.
+// After returning err once, Close resets to return nil on subsequent calls
+// unless SetCloseError is invoked again.
 func (chk *Chk) SetCloseError(err error) {
 	chk.ioCloseErr = err
 	chk.ioCloseErrSet = true
 }
 
-// Close implements the interface to simulate a close operation returning an
-// error if provided.
+// Close implements io.Closer for chk. It returns the error previously set
+// by SetCloseError, or nil if no error is pending. After returning a
+// non-nil error, Close resets to return nil on future calls until
+// re-primed.
 func (chk *Chk) Close() error {
 	closeErr := chk.ioCloseErr
 

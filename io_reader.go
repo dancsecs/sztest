@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -25,7 +25,9 @@ import (
 	"strings"
 )
 
-// SetIOReaderData initializes the IO reader interface for testing.
+// SetIOReaderData initializes chk’s io.Reader with the supplied strings.
+// The strings are concatenated and served sequentially through Read. Once
+// exhausted, Read returns io.EOF.
 func (chk *Chk) SetIOReaderData(d ...string) {
 	lines := ""
 	for _, e := range d {
@@ -39,22 +41,27 @@ func (chk *Chk) SetIOReaderData(d ...string) {
 	chk.rErr = nil
 }
 
-// SetIOReaderError initializes the IO reader to return en error after the
-// specified number of bytes have been read.
+// SetIOReaderError configures chk’s io.Reader to return err once the given
+// byteCount has been read. After returning err, chk clears it and continues
+// serving any remaining data until EOF.
 func (chk *Chk) SetIOReaderError(byteCount int, err error) {
 	chk.rErrPos = byteCount
 	chk.rErr = err
 }
 
-// SetReadError primes the chk object to return the provided error on the
-// next read operation.
+// SetReadError primes chk’s io.Reader to return (pos, err) on the next
+// call to Read. After returning, chk clears the error and resumes normal
+// reading for subsequent calls.
 func (chk *Chk) SetReadError(pos int, err error) {
 	chk.ioReadErrPos = pos
 	chk.ioReadErr = err
 	chk.ioReadErrSet = true
 }
 
-// Read implements the ioReader interface.
+// Read implements io.Reader for chk. It serves data provided by
+// SetIOReaderData, returns injected errors as configured by
+// SetIOReaderError or SetReadError, and yields io.EOF once all data is
+// consumed.
 //
 //nolint:cyclop // Ok.
 func (chk *Chk) Read(dataBuf []byte) (int, error) {
@@ -96,7 +103,10 @@ func (chk *Chk) Read(dataBuf []byte) (int, error) {
 	return i, nil
 }
 
-// SetStdinData sets the os.Stdin to stream the provided data.
+// SetStdinData replaces os.Stdin with a stream that sequentially provides
+// the supplied lines. Once exhausted, reads return io.EOF. This is not part
+// of io.Reader itself but enables testing of code that directly consumes
+// os.Stdin.
 func (chk *Chk) SetStdinData(lines ...string) {
 	chk.t.Helper()
 
