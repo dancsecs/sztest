@@ -24,10 +24,10 @@ import (
 	"strings"
 )
 
-// SetArgs invokes the current arguments in os.Args and
-// flag.CommandLine.  Package variable os.Args is set to the provided arguments
-// and a new flag set is assigned to flag.CommandLine and is ready to use.
-// Original values are restores with the chk object is released.
+// SetArgs replaces the process arguments used by os.Args and the default
+// flag.CommandLine. It sets os.Args to progName followed by args, and creates
+// a new flag set configured with flag.PanicOnError. The original arguments and
+// flag.CommandLine are restored when chk.Release() is called.
 func (chk *Chk) SetArgs(progName string, args ...string) {
 	if progName == "" {
 		progName = "unspecifiedProgram"
@@ -49,8 +49,9 @@ func (chk *Chk) SetArgs(progName string, args ...string) {
 	flag.CommandLine = flag.NewFlagSet(progName, flag.PanicOnError)
 }
 
-// CaptureFlagUsage is a convenience function that captures the output
-// of the provided *flag.FlagSet.
+// CaptureFlagUsage captures and returns the usage output of the supplied
+// *flag.FlagSet as a string. This is useful for verifying custom flag
+// definitions and usage messages in tests.
 func (*Chk) CaptureFlagUsage(flagSet *flag.FlagSet) string {
 	buf := strings.Builder{}
 	origOut := flagSet.Output()

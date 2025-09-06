@@ -203,8 +203,8 @@ func chkArgsAndFlagsTestBadParseInteger(t *testing.T) {
 	chk.Stderr("" +
 		`invalid value "NotANumber" for flag -n: parse error` + "\n" +
 		"Usage of progName:\n" +
-		`\s -n int` + "\n" +
-		`\s   ` + "\tusage of default int value (default 10)",
+		`  -n int` + "\n" +
+		`    ` + "\tusage of default int value (default 10)",
 	)
 }
 
