@@ -18,12 +18,17 @@
 
 package sztest
 
-// Used internally to represent the testing.T object.
+// testingT is the minimal interface sztest requires from *testing.T.
+// It exists to decouple chk from the concrete *testing.T type so that
+// sztest can test itself by substituting a recorder or mock. This enables
+// full coverage while still integrating seamlessly with Go's testing
+// framework in normal use.
 type testingT interface {
 	Helper()
 	Logf(msgFmt string, msgArgs ...any)
 	Errorf(msgFmt string, msgArgs ...any)
 	Error(msgArgs ...any)
+	Fatalf(msgFmt string, msgArgs ...any)
 	FailNow()
 	SkipNow()
 	Name() string

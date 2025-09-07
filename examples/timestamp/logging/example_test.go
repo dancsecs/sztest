@@ -16,7 +16,7 @@ func Test_PASS_TimestampLogging(t *testing.T) {
 	defer func() {
 		now = origNow
 	}()
-	chk.ClockSetSub(sztest.ClockSubTS)
+	chk.ClockSetSub(sztest.ClkFmtTS)
 	chk.ClockSet(
 		time.Date(1999, time.July, 7, 8, 9, 10, 0, time.Local),
 		time.Second*9, time.Second*7, time.Second*11,
@@ -56,7 +56,7 @@ func Test_Fail_BoundedFloat64WithNoMessage(t *testing.T) {
 	defer func() {
 		now = origNow
 	}()
-	chk.ClockSetSub(sztest.ClockSubTS)
+	chk.ClockSetSub(sztest.ClkFmtTS)
 	chk.ClockSet(
 		time.Date(1999, time.July, 7, 8, 9, 10, 0, time.Local),
 		time.Second*9, time.Second*7, time.Second*11,

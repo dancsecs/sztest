@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -51,6 +51,8 @@ type chkType interface {
 
 type captureOption int
 
+// Internal constants used to identify the output areas to capture used by
+// the various Capture* methods.
 const (
 	// Nothing is captured.
 	captureNothing captureOption = iota
@@ -98,18 +100,33 @@ const (
 
 const commonMsgPrefix = "unexpected "
 
-// Chk structure provides a selector and data to perform testing functions.
+// Chk provides the core test harness used by sztest.
+//
+// It holds selectors and captured data (stdout, stderr, package log output,
+// temp resources, environment changes, deterministic clock state, and other
+// helpers) that the assertion helpers operate against.
+//
+// Create a *Chk with one of the Capture* constructors and always defer
+// chk.Release() to restore global state and clean up resources.
+//
+// Example:
+//
+// chk := sztest.CaptureNothing(t)
+// defer chk.Release()
+// chk.Str(got, want)
+//
+// The concrete fields are intentionally unexported; use the provided
+// constructors and methods to interact with a Chk instance.
 type Chk struct {
 	t testingT
 
 	subs             []substitution
 	markupForDisplay markupFunction
 
-	// Invoked by the method Release which must be called by the owner.
+	// Invoked by the method Release for pre and post release functions.
 	releaseFunc func() error
 
-	// Logging info.
-	//
+	// Output capture fields.
 
 	errBuf          *bytes.Buffer
 	errOrig         *os.File
@@ -151,7 +168,6 @@ type Chk struct {
 
 	runningPanicFunction bool
 
-	// Group smaller width fields at end to minimize structure space.
 	errOn      bool
 	errChecked bool
 	errIncLog  bool
@@ -164,7 +180,7 @@ type Chk struct {
 	tmpDirCreated bool
 
 	clk      *tstClk
-	clkSub   int
+	clkSub   ClkFmt
 	clkCusA  string
 	clkCusB  string
 	clkCusC  string
@@ -188,15 +204,23 @@ func newChk(t testingT, option captureOption) *Chk {
 	return chk
 }
 
-// CaptureNothing returns a new sztest object without any logs or
-// standard io being captured.
+// CaptureNothing returns a *Chk that performs no output capturing.
+//
+// Use this when a test needs the sztest helper object but does not need to
+// capture stdout, stderr, or the package logger. The supplied t must be a
+// testing helper (*testing.T).
+//
+// Always defer chk.Release() to ensure any modified global state is
+// restored and temporary resources are cleaned up.
 func CaptureNothing(t testingT) *Chk {
 	t.Helper()
 
 	return newChk(t, captureNothing)
 }
 
-// FailFast sets the action takin after an error is discovered.
+// FailFast controls whether chk stops execution immediately after the first
+// error (true) or continues accumulating further checks (false). This only
+// applies to the current test and is independent of `go test -failfast`.
 func (chk *Chk) FailFast(failFast bool) bool {
 	oldSetting := settingFailFast
 	settingFailFast = failFast
@@ -204,13 +228,13 @@ func (chk *Chk) FailFast(failFast bool) bool {
 	return oldSetting
 }
 
-// Logf passthrough to t.
+// Logf forwards a formatted log message to the underlying testingT.
 func (chk *Chk) Logf(msgFmt string, msgArgs ...any) {
 	chk.t.Helper()
 	chk.t.Logf(msgFmt, msgArgs...)
 }
 
-// Error passthrough to t.
+// Error forwards an error message to the underlying testingT.
 func (chk *Chk) Error(args ...any) {
 	chk.t.Helper()
 
@@ -222,7 +246,7 @@ func (chk *Chk) Error(args ...any) {
 	}
 }
 
-// Errorf passthrough to t.
+// Errorf forwards a formatted error message to the underlying testingT.
 func (chk *Chk) Errorf(msgFmt string, msgArgs ...any) {
 	chk.t.Helper()
 
@@ -234,7 +258,8 @@ func (chk *Chk) Errorf(msgFmt string, msgArgs ...any) {
 	}
 }
 
-// Fatalf passthrough to t.
+// Fatalf forwards a formatted fatal error message to the underlying testingT.
+// Internally it calls Errorf before aborting the current test.
 func (chk *Chk) Fatalf(msgFmt string, msgArgs ...any) {
 	chk.t.Helper()
 
@@ -243,26 +268,34 @@ func (chk *Chk) Fatalf(msgFmt string, msgArgs ...any) {
 	chk.t.FailNow()
 }
 
-// Name returns the name of the saved test object.
+// Name returns the name of the current test from the underlying testingT.
 func (chk *Chk) Name() string {
 	return strings.ReplaceAll(chk.t.Name(), string(os.PathSeparator), "-")
 }
 
-// T returns an interface to sztest object provided on creation.
+// T exposes the chk's underlying testingT object, as provided at creation.
+// Useful for advanced scenarios where direct access is required.
 //
 //nolint:ireturn // By design.
 func (chk *Chk) T() testingT {
 	return chk.t
 }
 
-// KeepTmpFiles stops the removal of tmp files when the check is
-// fault free.
+// KeepTmpFiles prevents automatic cleanup of the temporary
+// directory tree when the test completes successfully. Applies
+// only to the current test and is useful for debugging setups
+// by inspecting intermediate files.
 func (chk *Chk) KeepTmpFiles() {
 	chk.keepTmpFiles = true
 }
 
-// PushPreReleaseFunc adds a new release function to the front of the
-// queue.
+// PushPreReleaseFunc prepends a new cleanup function to the pre-release queue.
+//
+// Pre-release functions are executed before the Chk's internal cleanup. Since
+// each new function is placed at the front of the queue, pre-release funcs
+// run in LIFO order (most recently pushed runs first). Return a non-nil
+// error from a pre-release function to signal a cleanup failure; Release will
+// report such errors to the test.
 func (chk *Chk) PushPreReleaseFunc(newFunc func() error) {
 	chk.t.Helper()
 
@@ -290,8 +323,13 @@ func (chk *Chk) PushPreReleaseFunc(newFunc func() error) {
 	}
 }
 
-// PushPostReleaseFunc adds a new release function to the end of the
+// PushPostReleaseFunc appends a new cleanup function to the post-release
 // queue.
+//
+// Post-release functions are executed after the Chk's internal cleanup and
+// after pre-release functions. Functions are executed in the order they are
+// pushed (FIFO). Each function should return a non-nil error to indicate a
+// cleanup failure; Release will report such errors to the test.
 func (chk *Chk) PushPostReleaseFunc(newFunc func() error) {
 	chk.t.Helper()
 
@@ -318,7 +356,14 @@ func (chk *Chk) PushPostReleaseFunc(newFunc func() error) {
 	}
 }
 
-// Release invokes all pushed release functions.
+// Release restores global state, runs any pushed pre-release functions,
+// performs the Chk's internal cleanup (restoring os.Stdout/os.Stderr,
+// log.Writer(), env vars, tmp files, clock state, etc.), and then runs any
+// pushed post-release functions.
+//
+// Release must be called (typically via defer) to avoid leaking global state
+// or temporary resources. Any non-nil errors returned by pushed release
+// functions are reported to the underlying testingT.
 func (chk *Chk) Release() {
 	chk.t.Helper()
 
@@ -440,7 +485,7 @@ func errSlice[V chkType](
 		diffFound bool
 	)
 
-	gDiff := DiffSlice(
+	gDiff := diffSlice(
 		got,
 		want,
 		newDiffLnFmt(len(got), len(want)),
@@ -477,7 +522,7 @@ func errSlicef[V chkType](
 		diffFound bool
 	)
 
-	gDiff := DiffSlice(
+	gDiff := diffSlice(
 		got,
 		want,
 		newDiffLnFmt(len(got), len(want)),
@@ -502,35 +547,49 @@ func errSlicef[V chkType](
 	return false
 }
 
-// BoundedOption constant type.
+// BoundedOption specifies the inclusivity of bounds in a closed interval
+// check.
 type BoundedOption int
 
 const (
-	// BoundedOpen (a,b) = { x | a < x < b }.
+	// BoundedOpen checks (a,b) = { x | a < x < b }.
 	BoundedOpen BoundedOption = iota
-	// BoundedClosed [a,b] = { x | a ≦ x ≦ b }.
+
+	// BoundedClosed checks [a,b] = { x | a <= x <= b }.
 	BoundedClosed
-	// BoundedMinOpen (a,b] = { x | a < x ≦ b }.
+
+	// BoundedMinOpen checks (a,b] = { x | a < x <= b }.
+	// Alias of BoundedMaxClosed.
 	BoundedMinOpen
-	// BoundedMaxClosed (a,b] = { x | a < x ≦ b }.
+
+	// BoundedMaxClosed checks (a,b] = { x | a < x <= b }.
+	// Alias of BoundedMinOpen.
 	BoundedMaxClosed
-	// BoundedMaxOpen [a,b) = { x | a ≦ x < b }.
+
+	// BoundedMaxOpen checks [a,b) = { x | a <= x < b }.
+	// Alias of BoundedMinClosed.
 	BoundedMaxOpen
-	// BoundedMinClosed [a,b) = { x | a ≦ x < b }.
+
+	// BoundedMinClosed checks [a,b) = { x | a <= x < b }.
+	// Alias of BoundedMaxOpen.
 	BoundedMinClosed
 )
 
-// UnboundedOption constant type.
+// UnboundedOption specifies the inclusivity of bounds in a half-infinite
+// interval check.
 type UnboundedOption int
 
 const (
-	// UnboundedMinOpen (a,+∞) = { x | x > a }.
+	// UnboundedMinOpen checks (a,+∞) = { x | x > a }.
 	UnboundedMinOpen UnboundedOption = iota
-	// UnboundedMinClosed [a,+∞) = { x | x ≧ a }.
+
+	// UnboundedMinClosed checks [a,+∞) = { x | x >= a }.
 	UnboundedMinClosed
-	// UnboundedMaxOpen (-∞, b) = { x | x < b }.
+
+	// UnboundedMaxOpen checks (-∞, b) = { x | x < b }.
 	UnboundedMaxOpen
-	// UnboundedMaxClosed (-∞, b] = { x | x ≦ b }.
+
+	// UnboundedMaxClosed checks (-∞, b] = { x | x <= b }.
 	UnboundedMaxClosed
 )
 

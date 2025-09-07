@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -46,6 +46,11 @@ func (t *iTst) Logf(msgFmt string, msgArgs ...any) {
 
 func (t *iTst) Errorf(msgFmt string, msgArgs ...any) {
 	t.output += "Errorf: " + t.getCallerName() + "\n" +
+		fmt.Sprintf(msgFmt, msgArgs...) + "\n"
+}
+
+func (t *iTst) Fatalf(msgFmt string, msgArgs ...any) {
+	t.output += "Fatalf: " + t.getCallerName() + "\n" +
 		fmt.Sprintf(msgFmt, msgArgs...) + "\n"
 }
 
@@ -116,7 +121,7 @@ func (t *iTst) check(testT testingT, rawLines ...string) {
 				testT.FailNow()
 			}
 
-			return prepareWantString(line)
+			return strings.TrimSpace(line)
 		},
 		rawLines...,
 	)
@@ -135,7 +140,7 @@ func (t *iTst) check(testT testingT, rawLines ...string) {
 		t.output,
 	)
 
-	ret := CompareSlices(fmt.Sprint("Unexpected Log Entry for ", t.Name()),
+	ret := compareSlices(fmt.Sprint("Unexpected Log Entry for ", t.Name()),
 		gotLines,
 		wantLines,
 		settingDiffSlice,
@@ -169,6 +174,10 @@ func tstOutFailNow(caller string) string {
 
 func tstOutErrorf(caller string) string {
 	return tstOut("Errorf", caller)
+}
+
+func tstOutFatalf(caller string) string {
+	return tstOut("Fatalf", caller)
 }
 
 func tstOutError(caller string) string {
@@ -353,17 +362,17 @@ func chkOutLnSame(g, w, s string) string {
 func chkOutLnChanged(gLn, wLn, gStr string, wStr ...string) string {
 	if len(wStr) == 1 {
 		return "" +
-			markAsChg(gLn, "", DiffGot) +
+			markAsChg(gLn, "", diffGot) +
 			":" +
-			markAsChg("", wLn, DiffWant) +
+			markAsChg("", wLn, diffWant) +
 			" " +
-			markAsChg(gStr, wStr[0], DiffMerge)
+			markAsChg(gStr, wStr[0], diffMerge)
 	}
 
 	return "" +
-		markAsChg(gLn, "", DiffGot) +
+		markAsChg(gLn, "", diffGot) +
 		":" +
-		markAsChg("", wLn, DiffWant) +
+		markAsChg("", wLn, diffWant) +
 		" " +
 		gStr
 }

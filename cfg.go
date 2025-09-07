@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -49,8 +49,17 @@ var (
 	settingMarkSepOff string
 )
 
-// ReloadSettings re-initializes the settings permitting an application
-// to force certain settings required for embedded runs.
+// ReloadSettings re-initializes the settings maintaining global configuration
+// that control defaults such as permissions, temporary directories, diff
+// granularity, and ANSI markup styles. Each setting can be overridden by
+// environment variables, or falls back to a built-in default if unset. Tests
+// can reload the settings explicitly with ReloadSettings().
+//
+// Most of these values are surfaced through accessor functions (e.g.,
+// SettingPermFile(), SettingDiffChars(), SettingMarkWntOn()) so that
+// code and tests always consult the resolved value rather than reading
+// environment variables directly. This makes behavior deterministic and
+// consistent across environments.
 func ReloadSettings() {
 	initAll()
 }
@@ -85,82 +94,125 @@ func SettingTmpDir() string {
 	return settingTmpDir
 }
 
-// SettingDiffChars returns the default setting overridden by env settings.
+// SettingDiffChars returns the minimum number of consecutive matching
+// characters required within a line for sztest to treat regions of
+// `got` and `wnt` strings as identical when computing diffs. In effect,
+// this defines the size of the "diff window" horizontally across a line.
+// Smaller values increase sensitivity but may produce noisier diffs.
 func SettingDiffChars() int {
 	return settingDiffChars
 }
 
-// SettingDiffSlice returns the default setting overridden by env settings.
+// SettingDiffSlice returns the minimum number of consecutive matching lines
+// required within two slices for sztest to treat regions as identical when
+// computing diffs. This is the vertical "diff window" size. Lower values
+// highlight finer-grained changes, higher values collapse noise and make
+// large blocks of similarity clearer.
 func SettingDiffSlice() int {
 	return settingDiffSlice
 }
 
-// SettingMarkWntOn returns the default setting overridden by env settings.
+// SettingMarkWntOn returns the resolved "wanted value start" marker string.
+// This may be an ANSI escape sequence or plain text decoration, and is used
+// when highlighting differences in test output. A blank string disables
+// markup for this element.
 func SettingMarkWntOn() string {
 	return settingMarkWntOn
 }
 
-// SettingMarkWntOff returns the default setting overridden by env settings.
+// SettingMarkWntOff returns the resolved "wanted value end" marker string.
+// This complements SettingMarkWntOn(), delimiting where the highlight
+// decoration stops.
 func SettingMarkWntOff() string {
 	return settingMarkWntOff
 }
 
-// SettingMarkGotOn returns the default setting overridden by env settings.
+// SettingMarkGotOn returns the resolved "wanted value start" marker string.
+// This may be an ANSI escape sequence or plain text decoration, and is used
+// when highlighting differences in test output. A blank string disables
+// markup for this element.
 func SettingMarkGotOn() string {
 	return settingMarkGotOn
 }
 
-// SettingMarkGotOff returns the default setting overridden by env settings.
+// SettingMarkGotOff returns the resolved "wanted value end" marker string.
+// This complements SettingMarkGotOn(), delimiting where the highlight
+// decoration stops.
 func SettingMarkGotOff() string {
 	return settingMarkGotOff
 }
 
-// SettingMarkMsgOn returns the default setting overridden by env settings.
+// SettingMarkMsgOn returns the resolved "wanted value start" marker string.
+// This may be an ANSI escape sequence or plain text decoration, and is used
+// when highlighting differences in test output. A blank string disables
+// markup for this element.
 func SettingMarkMsgOn() string {
 	return settingMarkMsgOn
 }
 
-// SettingMarkMsgOff returns the default setting overridden by env settings.
+// SettingMarkMsgOff returns the resolved "wanted value end" marker string.
+// This complements SettingMarkMsgOn(), delimiting where the highlight
+// decoration stops.
 func SettingMarkMsgOff() string {
 	return settingMarkMsgOff
 }
 
-// SettingMarkInsOn returns the default setting overridden by env settings.
+// SettingMarkInsOn returns the resolved "wanted value start" marker string.
+// This may be an ANSI escape sequence or plain text decoration, and is used
+// when highlighting differences in test output. A blank string disables
+// markup for this element.
 func SettingMarkInsOn() string {
 	return settingMarkInsOn
 }
 
-// SettingMarkInsOff returns the default setting overridden by env settings.
+// SettingMarkInsOff returns the resolved "wanted value end" marker string.
+// This complements SettingMarkInsOn(), delimiting where the highlight
+// decoration stops.
 func SettingMarkInsOff() string {
 	return settingMarkInsOff
 }
 
-// SettingMarkDelOn returns the default setting overridden by env settings.
+// SettingMarkDelOn returns the resolved "wanted value start" marker string.
+// This may be an ANSI escape sequence or plain text decoration, and is used
+// when highlighting differences in test output. A blank string disables
+// markup for this element.
 func SettingMarkDelOn() string {
 	return settingMarkDelOn
 }
 
-// SettingMarkDelOff returns the default setting overridden by env settings.
+// SettingMarkDelOff returns the resolved "wanted value end" marker string.
+// This complements SettingMarkDelOn(), delimiting where the highlight
+// decoration stops.
 func SettingMarkDelOff() string {
 	return settingMarkDelOff
 }
 
-// SettingMarkChgOn returns the default setting overridden by env settings.
+// SettingMarkChgOn returns the resolved "wanted value start" marker string.
+// This may be an ANSI escape sequence or plain text decoration, and is used
+// when highlighting differences in test output. A blank string disables
+// markup for this element.
 func SettingMarkChgOn() string {
 	return settingMarkChgOn
 }
 
-// SettingMarkChgOff returns the default setting overridden by env settings.
+// SettingMarkChgOff returns the resolved "wanted value end" marker string.
+// This complements SettingMarkChgOn(), delimiting where the highlight
+// decoration stops.
 func SettingMarkChgOff() string {
 	return settingMarkChgOff
 }
 
-// SettingMarkSepOn returns the default setting overridden by env settings.
+// SettingMarkSepOn returns the resolved "wanted value start" marker string.
+// This may be an ANSI escape sequence or plain text decoration, and is used
+// when highlighting differences in test output. A blank string disables
+// markup for this element.
 func SettingMarkSepOn() string {
 	return settingMarkSepOn
 }
 
-// SettingMarkSepOff returns the default setting overridden by env settings.
+// SettingMarkSepOff returns the resolved "wanted value end" marker string.
+// This complements SettingMarkSepOn(), delimiting where the highlight
+// decoration stops.
 func SettingMarkSepOff() string {
 	return settingMarkSepOff
 }

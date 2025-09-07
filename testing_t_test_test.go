@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -36,6 +36,7 @@ func testSzTestingPrerequisites(t *testing.T) {
 	t.Run("Logf", testPrerequisiteLogf)
 	t.Run("Error", testPrerequisiteError)
 	t.Run("Errorf", testPrerequisiteErrorf)
+	t.Run("Fatalf", testPrerequisiteFatalf)
 	t.Run("FailNow", testPrerequisiteFailNow)
 	t.Run("SkipNow", testPrerequisiteSkipNow)
 	t.Run("Name", testPrerequisiteName)
@@ -174,6 +175,27 @@ func testPrerequisiteErrorf(t *testing.T) {
 		"Errorf: " + tstName + "\n" +
 		"the error with no args\n" +
 		tstOutErrorf(tstName) +
+		"the error with 1 args\n" +
+		""
+	if iT.output != wntOut {
+		t.Error(errGotWnt(tstName, iT.output, wntOut))
+	}
+}
+
+func testPrerequisiteFatalf(t *testing.T) {
+	const tstName = "testPrerequisiteFatalf"
+
+	iT := new(iTst)
+
+	iT.Fatalf("the error with no args")
+
+	iT.Fatalf("the error with %d args", 1)
+
+	// Check for iTst invocations.
+	wntOut := "" +
+		"Fatalf: " + tstName + "\n" +
+		"the error with no args\n" +
+		tstOutFatalf(tstName) +
 		"the error with 1 args\n" +
 		""
 	if iT.output != wntOut {

@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -447,13 +447,13 @@ func chkTestChkIs(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError("f",
 			chkOutCommonMsg("fMessage displayed", "bool"),
-			g(markAsChg("false", "true", DiffGot)),
-			w(markAsChg("false", "true", DiffWant)),
+			g(markAsChg("false", "true", diffGot)),
+			w(markAsChg("false", "true", diffWant)),
 		),
 		chkOutIsError("",
 			chkOutCommonMsg("message", "bool"),
-			g(markAsChg("false", "true", DiffGot)),
-			w(markAsChg("false", "true", DiffWant)),
+			g(markAsChg("false", "true", diffGot)),
+			w(markAsChg("false", "true", diffWant)),
 		),
 		chkOutRelease(),
 	)
@@ -524,11 +524,11 @@ func chkTestChkIsSlice(t *testing.T) {
 		chkOutIsSliceError(false, 2, 2, "[]bool", "",
 			"message",
 			"0:0 true",
-			markAsChg("1", "", DiffGot)+
+			markAsChg("1", "", diffGot)+
 				":"+
-				markAsChg("", "1", DiffWant)+
+				markAsChg("", "1", diffWant)+
 				" "+
-				markAsChg("false", "true", DiffMerge),
+				markAsChg("false", "true", diffMerge),
 		),
 		chkOutRelease(),
 	)
