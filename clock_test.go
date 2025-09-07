@@ -232,7 +232,7 @@ func chkClockSubs(t *testing.T) {
 	chk.ClockSetCusA("")
 	chk.Str(chk.ClockNext().Format(tstTS), "{{clkCusB1}}")
 
-	chk.ClockSetSub(ClockSubDate)
+	chk.ClockSetSub(ClkFmtDate)
 	chk.Str(chk.ClockNext().Format(tstTS), "{{clkDate2}}")
 
 	tstTS = "150405"
@@ -240,18 +240,18 @@ func chkClockSubs(t *testing.T) {
 	chk.ClockSetCusB("")
 	chk.Str(chk.ClockNext().Format(tstTS), "{{clkCusC3}}")
 
-	chk.ClockSetSub(ClockSubTime)
+	chk.ClockSetSub(ClkFmtTime)
 	chk.ClockSetCusC("")
 	chk.Str(chk.ClockNext().Format(tstTS), "{{clkTime4}}")
 
 	tstTS = "20060102150405"
 
-	chk.ClockAddSub(ClockSubTS)
+	chk.ClockAddSub(ClkFmtTS)
 	chk.Str(chk.ClockNext().Format(tstTS), "{{clkTS5}}")
 
 	tstTS = "20060102150405.000000000"
 
-	chk.ClockAddSub(ClockSubNano)
+	chk.ClockAddSub(ClkFmtNano)
 	chk.Str(chk.ClockNext().Format(tstTS), "{{clkNano6}}")
 }
 
