@@ -30,6 +30,7 @@ func tstChkFloat64(t *testing.T) {
 	t.Run("BadMsg1", chkFloat64TestBad1)
 	t.Run("BadMsg2", chkFloat64TestBad2)
 	t.Run("BadMsg3", chkFloat64TestBad3)
+	t.Run("BadMsg4", chkFloat64TestBad4)
 
 	t.Run("Slice-Good", chkFloat64SliceTestGood)
 	t.Run("Slice-BadMsg1", chkFloat64SliceTestBadMsg1)
@@ -60,6 +61,8 @@ func chkFloat64TestGood(t *testing.T) {
 	chk.Float64f(0.02, 0.01, 0.1, "not %s", "displayed")
 
 	chk.Float64f(math.NaN(), math.NaN(), 0, "not %s", "displayed")
+	chk.Float64f(math.Inf(1), math.Inf(1), 0, "not %s", "displayed")
+	chk.Float64f(math.Inf(-1), math.Inf(-1), 0, "not %s", "displayed")
 
 	chk.Release()
 	iT.check(t,
@@ -157,6 +160,32 @@ func chkFloat64TestBad3(t *testing.T) {
 			),
 			g(markAsChg("0", "-0.01", diffGot)),
 			w(markAsChg("0", "-0.01", diffWant)),
+		),
+		chkOutRelease(),
+	)
+}
+
+func chkFloat64TestBad4(t *testing.T) {
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
+	iT.chk = chk
+
+	chk.Float64(
+		math.Inf(-1), -0.01, 0.005,
+		"This message will be displayed ", "fourth",
+	)
+
+	chk.Release()
+	iT.check(t,
+		chkOutCapture("Nothing"),
+		chkOutIsError(
+			"Float64",
+			chkOutCommonMsg(
+				"This message will be displayed fourth",
+				float64TypeString(0.005),
+			),
+			g(markAsChg("-Inf", "-0.01", diffGot)),
+			w(markAsChg("-Inf", "-0.01", diffWant)),
 		),
 		chkOutRelease(),
 	)

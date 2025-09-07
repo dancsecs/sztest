@@ -30,6 +30,7 @@ func tstChkFloat32(t *testing.T) {
 	t.Run("BadMsg1", chkFloat32TestBad1)
 	t.Run("BadMsg2", chkFloat32TestBad2)
 	t.Run("BadMsg3", chkFloat32TestBad3)
+	t.Run("BadMsg4", chkFloat32TestBad4)
 
 	t.Run("Slice-Good", chkFloat32SliceTestGood)
 	t.Run("Slice-BadMsg1", chkFloat32SliceTestBadMsg1)
@@ -60,6 +61,14 @@ func chkFloat32TestGood(t *testing.T) {
 	chk.Float32f(0.02, 0.01, 0.1, "not %s", "displayed")
 
 	chk.Float32f(float32(math.NaN()), float32(math.NaN()),
+		0, "not %s", "displayed",
+	)
+
+	chk.Float32f(float32(math.Inf(1)), float32(math.Inf(1)),
+		0, "not %s", "displayed",
+	)
+
+	chk.Float32f(float32(math.Inf(-1)), float32(math.Inf(-1)),
 		0, "not %s", "displayed",
 	)
 
@@ -159,6 +168,32 @@ func chkFloat32TestBad3(t *testing.T) {
 			),
 			g(markAsChg("0", "-0.01", diffGot)),
 			w(markAsChg("0", "-0.01", diffWant)),
+		),
+		chkOutRelease(),
+	)
+}
+
+func chkFloat32TestBad4(t *testing.T) {
+	iT := new(iTst)
+	chk := CaptureNothing(iT)
+	iT.chk = chk
+
+	chk.Float32(
+		float32(math.Inf(-1)), -0.01, 0.005,
+		"This message will be displayed ", "fourth",
+	)
+
+	chk.Release()
+	iT.check(t,
+		chkOutCapture("Nothing"),
+		chkOutIsError(
+			"Float32",
+			chkOutCommonMsg(
+				"This message will be displayed fourth",
+				float32TypeString(0.005),
+			),
+			g(markAsChg("-Inf", "-0.01", diffGot)),
+			w(markAsChg("-Inf", "-0.01", diffWant)),
 		),
 		chkOutRelease(),
 	)

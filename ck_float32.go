@@ -40,7 +40,8 @@ func float32TypeString(tolerance float32) string {
 // The values are considered equal if |got - want| <= tolerance. A tolerance of
 // 0.0 requires exact equality. On mismatch, the failure is reported with a
 // formatted message built from msgFmt and msgArgs. Returns true if the
-// comparison succeeds.
+// comparison succeeds.  NOTE: Values are considered equal if both are
+// math.NaN.
 func (chk *Chk) Float32f(
 	got, want, tolerance float32, msgFmt string, msgArgs ...any,
 ) bool {
@@ -60,7 +61,8 @@ func (chk *Chk) Float32f(
 // The values are considered equal if |got - want| <= tolerance. A tolerance of
 // 0.0 requires exact equality. On mismatch, the failure is reported to the
 // underlying testingT and the optional msg values are appended. Returns true
-// if the comparison succeeds.
+// if the comparison succeeds.  NOTE: Values are considered equal if both are
+// math.NaN.
 func (chk *Chk) Float32(
 	got, want, tolerance float32, msg ...any,
 ) bool {
@@ -83,7 +85,7 @@ func (chk *Chk) Float32(
 // tolerance of 0.0 requires exact equality. Length mismatches or element
 // mismatches are reported to the underlying testingT with a formatted message
 // built from msgFmt and msgArgs. Returns true if slices are equal within
-// tolerance.
+// tolerance.  NOTE: Values are considered equal if both are math.NaN.
 func (chk *Chk) Float32Slicef(
 	got, want []float32, tolerance float32, msgFmt string, msgArgs ...any,
 ) bool {
@@ -116,7 +118,7 @@ func (chk *Chk) Float32Slicef(
 // tolerance of 0.0 requires exact equality. Length mismatches or element
 // mismatches are reported to the underlying testingT. Optional msg values are
 // included in the failure output. Returns true if slices are equal within
-// tolerance.
+// tolerance.  NOTE: Values are considered equal if both are math.NaN.
 func (chk *Chk) Float32Slice(
 	got, want []float32, tolerance float32, msg ...any,
 ) bool {
@@ -145,7 +147,7 @@ func (chk *Chk) Float32Slice(
 // IsFloat32Similar compares two floats to see if they match within the
 // specified tolerance.
 func IsFloat32Similar(num1, num2, tolerance float32) bool {
-	if math.IsNaN(float64(num1)) && math.IsNaN(float64(num2)) {
+	if num1 == num2 || math.IsNaN(float64(num1)) && math.IsNaN(float64(num2)) {
 		return true
 	}
 
