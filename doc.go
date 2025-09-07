@@ -40,6 +40,8 @@ Core features include:
   - Clock utilities to capture and format test timestamps in multiple layouts.
   - Full integration with testing.T through a minimal internal interface,
     enabling sztest to be tested itself with complete coverage.
+  - The library executes with negligible overhead making it practical for
+    continuous test driven development without breaking flow.
 
 The library emphasizes a minimal usage pattern:
 
@@ -50,11 +52,14 @@ The library emphasizes a minimal usage pattern:
 By keeping the API uniform and predictable, sztest helps reduce boilerplate
 and highlight only what matters in a test: the behavior being verified.
 
-# Dedication
+---
 
-This project is dedicated to Reem. Your brilliance, courage, and quiet
-strength continue to inspire me. Every line is written in gratitude for the
-light and hope you brought into my life.
+## Dedication
+
+This project is dedicated to Reem.
+Your brilliance, courage, and quiet strength continue to inspire me.
+Every line is written in gratitude for the light and hope you brought into my
+life.
 
 ---
 
