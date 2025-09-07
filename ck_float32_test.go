@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -83,8 +83,8 @@ func chkFloat32TestBad(t *testing.T) {
 		chkOutIsError(
 			"Float32",
 			chkOutCommonMsg("", float32TypeString(0.005)),
-			g(markAsChg("0", "-0.01", DiffGot)),
-			w(markAsChg("0", "-0.01", DiffWant)),
+			g(markAsChg("0", "-0.01", diffGot)),
+			w(markAsChg("0", "-0.01", diffWant)),
 		),
 		chkOutRelease(),
 	)
@@ -108,8 +108,8 @@ func chkFloat32TestBad1(t *testing.T) {
 				"This message will be displayed first",
 				float32TypeString(0.005),
 			),
-			g("0.0"+markAsChg("2", "1", DiffGot)),
-			w("0.0"+markAsChg("2", "1", DiffWant)),
+			g("0.0"+markAsChg("2", "1", diffGot)),
+			w("0.0"+markAsChg("2", "1", diffWant)),
 		),
 		chkOutRelease(),
 	)
@@ -134,8 +134,8 @@ func chkFloat32TestBad2(t *testing.T) {
 				"This message will be displayed second",
 				float32TypeString(0.005),
 			),
-			g("-0.0"+markAsChg("2", "1", DiffGot)),
-			w("-0.0"+markAsChg("2", "1", DiffWant)),
+			g("-0.0"+markAsChg("2", "1", diffGot)),
+			w("-0.0"+markAsChg("2", "1", diffWant)),
 		),
 		chkOutRelease(),
 	)
@@ -157,8 +157,8 @@ func chkFloat32TestBad3(t *testing.T) {
 				"This message will be displayed third",
 				float32TypeString(0.005),
 			),
-			g(markAsChg("0", "-0.01", DiffGot)),
-			w(markAsChg("0", "-0.01", DiffWant)),
+			g(markAsChg("0", "-0.01", diffGot)),
+			w(markAsChg("0", "-0.01", diffWant)),
 		),
 		chkOutRelease(),
 	)
@@ -372,7 +372,7 @@ func chkFloat32SliceTestBadMsg7(t *testing.T) {
 			"[]"+float32TypeString(0.005), "Float32Slicef",
 			"This message will be displayed seventh",
 			chkOutLnSame("0", "0", "0.01"),
-			chkOutLnChanged("1", "1", "0.0"+markAsChg("2", "3", DiffMerge)),
+			chkOutLnChanged("1", "1", "0.0"+markAsChg("2", "3", diffMerge)),
 		),
 		chkOutRelease(),
 	)
@@ -397,7 +397,7 @@ func chkFloat32SliceTestBadMsg8(t *testing.T) {
 			"[]"+float32TypeString(0.005), "Float32Slice",
 			"This message will be displayed eighth",
 			chkOutLnSame("0", "0", "0.01"),
-			chkOutLnChanged("1", "1", "0.0"+markAsChg("3", "2", DiffMerge)),
+			chkOutLnChanged("1", "1", "0.0"+markAsChg("3", "2", diffMerge)),
 		),
 		chkOutRelease(),
 	)
@@ -419,7 +419,7 @@ func chkFloat32SliceTestBadMsg9(t *testing.T) {
 			"[]"+float32TypeString(0.005), "Float32Slice",
 			"",
 			chkOutLnSame("0", "0", "0.01"),
-			chkOutLnChanged("1", "1", "0.0"+markAsChg("3", "2", DiffMerge)),
+			chkOutLnChanged("1", "1", "0.0"+markAsChg("3", "2", diffMerge)),
 		),
 		chkOutRelease(),
 	)

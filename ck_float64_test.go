@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -81,8 +81,8 @@ func chkFloat64TestBad(t *testing.T) {
 		chkOutIsError(
 			"Float64",
 			chkOutCommonMsg("", float64TypeString(0.005)),
-			g(markAsChg("0", "-0.01", DiffGot)),
-			w(markAsChg("0", "-0.01", DiffWant)),
+			g(markAsChg("0", "-0.01", diffGot)),
+			w(markAsChg("0", "-0.01", diffWant)),
 		),
 		chkOutRelease(),
 	)
@@ -106,8 +106,8 @@ func chkFloat64TestBad1(t *testing.T) {
 				"This message will be displayed first",
 				float64TypeString(0.005),
 			),
-			g("0.0"+markAsChg("2", "1", DiffGot)),
-			w("0.0"+markAsChg("2", "1", DiffWant)),
+			g("0.0"+markAsChg("2", "1", diffGot)),
+			w("0.0"+markAsChg("2", "1", diffWant)),
 		),
 		chkOutRelease(),
 	)
@@ -132,8 +132,8 @@ func chkFloat64TestBad2(t *testing.T) {
 				"This message will be displayed second",
 				float64TypeString(0.005),
 			),
-			g("-0.0"+markAsChg("2", "1", DiffGot)),
-			w("-0.0"+markAsChg("2", "1", DiffWant)),
+			g("-0.0"+markAsChg("2", "1", diffGot)),
+			w("-0.0"+markAsChg("2", "1", diffWant)),
 		),
 		chkOutRelease(),
 	)
@@ -155,8 +155,8 @@ func chkFloat64TestBad3(t *testing.T) {
 				"This message will be displayed third",
 				float64TypeString(0.005),
 			),
-			g(markAsChg("0", "-0.01", DiffGot)),
-			w(markAsChg("0", "-0.01", DiffWant)),
+			g(markAsChg("0", "-0.01", diffGot)),
+			w(markAsChg("0", "-0.01", diffWant)),
 		),
 		chkOutRelease(),
 	)
@@ -371,7 +371,7 @@ func chkFloat64SliceTestBadMsg7(t *testing.T) {
 			"[]"+float64TypeString(0.005), "Float64Slicef",
 			"This message will be displayed seventh",
 			chkOutLnSame("0", "0", "0.01"),
-			chkOutLnChanged("1", "1", "0.0"+markAsChg("2", "3", DiffMerge)),
+			chkOutLnChanged("1", "1", "0.0"+markAsChg("2", "3", diffMerge)),
 		),
 		chkOutRelease(),
 	)
@@ -396,7 +396,7 @@ func chkFloat64SliceTestBadMsg8(t *testing.T) {
 			"[]"+float64TypeString(0.005), "Float64Slice",
 			"This message will be displayed eighth",
 			chkOutLnSame("0", "0", "0.01"),
-			chkOutLnChanged("1", "1", "0.0"+markAsChg("3", "2", DiffMerge)),
+			chkOutLnChanged("1", "1", "0.0"+markAsChg("3", "2", diffMerge)),
 		),
 		chkOutRelease(),
 	)
@@ -418,7 +418,7 @@ func chkFloat64SliceTestBadMsg9(t *testing.T) {
 			"[]"+float64TypeString(0.005), "Float64Slice",
 			"",
 			chkOutLnSame("0", "0", "0.01"),
-			chkOutLnChanged("1", "1", "0.0"+markAsChg("3", "2", DiffMerge)),
+			chkOutLnChanged("1", "1", "0.0"+markAsChg("3", "2", diffMerge)),
 		),
 		chkOutRelease(),
 	)

@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -193,9 +193,9 @@ func testSzTestDiffFmtFmtChangedLine(t *testing.T) {
 
 	got := dFmt.changed(0, 0, "the line")
 	wnt := "" +
-		markAsChg("000", "", DiffGot) +
+		markAsChg("000", "", diffGot) +
 		":" +
-		markAsChg("", "000", DiffWant) +
+		markAsChg("", "000", diffWant) +
 		" the line"
 
 	if got != wnt {
@@ -204,9 +204,9 @@ func testSzTestDiffFmtFmtChangedLine(t *testing.T) {
 
 	got = dFmt.changed(223, 159, "the line")
 	wnt = "" +
-		markAsChg("223", "", DiffGot) +
+		markAsChg("223", "", diffGot) +
 		":" +
-		markAsChg("", "159", DiffWant) +
+		markAsChg("", "159", diffWant) +
 		" the line"
 
 	if got != wnt {
@@ -217,9 +217,9 @@ func testSzTestDiffFmtFmtChangedLine(t *testing.T) {
 
 	got = dFmt.changed(0, 0, "the line")
 	wnt = "" +
-		markAsChg("008", "", DiffGot) +
+		markAsChg("008", "", diffGot) +
 		":" +
-		markAsChg("", "012", DiffWant) +
+		markAsChg("", "012", diffWant) +
 		" the line"
 
 	if got != wnt {
@@ -228,9 +228,9 @@ func testSzTestDiffFmtFmtChangedLine(t *testing.T) {
 
 	got = dFmt.changed(223, 159, "the line")
 	wnt = "" +
-		markAsChg("231", "", DiffGot) +
+		markAsChg("231", "", diffGot) +
 		":" +
-		markAsChg("", "171", DiffWant) +
+		markAsChg("", "171", diffWant) +
 		" the line"
 
 	if got != wnt {

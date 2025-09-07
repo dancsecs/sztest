@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -74,8 +74,8 @@ func chkDurTestBad(t *testing.T) {
 		chkOutIsError(
 			"Dur",
 			chkOutCommonMsg("", durTypeName),
-			g(markAsChg("9s", "7s", DiffGot)),
-			w(markAsChg("9s", "7s", DiffWant)),
+			g(markAsChg("9s", "7s", diffGot)),
+			w(markAsChg("9s", "7s", diffWant)),
 		),
 		chkOutRelease(),
 	)
@@ -100,8 +100,8 @@ func chkDurTestBad1(t *testing.T) {
 				"This message will be displayed first",
 				durTypeName,
 			),
-			g(markAsChg("3s", "2s", DiffGot)),
-			w(markAsChg("3s", "2s", DiffWant)),
+			g(markAsChg("3s", "2s", diffGot)),
+			w(markAsChg("3s", "2s", diffWant)),
 		),
 		chkOutRelease(),
 	)
@@ -125,8 +125,8 @@ func chkDurTestBad2(t *testing.T) {
 			chkOutCommonMsg(
 				"This message will be displayed second", durTypeName,
 			),
-			g(markAsChg("6s", "5s", DiffGot)),
-			w(markAsChg("6s", "5s", DiffWant)),
+			g(markAsChg("6s", "5s", diffGot)),
+			w(markAsChg("6s", "5s", diffWant)),
 		),
 		chkOutRelease(),
 	)

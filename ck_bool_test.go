@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -77,8 +77,8 @@ func chkBoolTestBad(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError("Bool",
 			chkOutCommonMsg("", boolTypeName),
-			g(markAsChg("false", "true", DiffGot)),
-			w(markAsChg("false", "true", DiffWant)),
+			g(markAsChg("false", "true", diffGot)),
+			w(markAsChg("false", "true", diffWant)),
 		),
 		chkOutRelease(),
 	)
@@ -99,8 +99,8 @@ func chkBoolTestBadWithMsg1(t *testing.T) {
 				"This message will be displayed first",
 				boolTypeName,
 			),
-			g(markAsChg("false", "true", DiffGot)),
-			w(markAsChg("false", "true", DiffWant)),
+			g(markAsChg("false", "true", diffGot)),
+			w(markAsChg("false", "true", diffWant)),
 		),
 		chkOutRelease(),
 	)
@@ -121,8 +121,8 @@ func chkBoolTestBadWithMsg2(t *testing.T) {
 				"This message will be displayed second",
 				boolTypeName,
 			),
-			g(markAsChg("true", "false", DiffGot)),
-			w(markAsChg("true", "false", DiffWant)),
+			g(markAsChg("true", "false", diffGot)),
+			w(markAsChg("true", "false", diffWant)),
 		),
 		chkOutRelease(),
 	)
@@ -143,8 +143,8 @@ func chkBoolTestBadWithMsg3(t *testing.T) {
 				"This message will be displayed third",
 				boolTypeName,
 			),
-			g(markAsChg("true", "false", DiffGot)),
-			w(markAsChg("true", "false", DiffWant)),
+			g(markAsChg("true", "false", diffGot)),
+			w(markAsChg("true", "false", diffWant)),
 		),
 		chkOutRelease(),
 	)
@@ -165,8 +165,8 @@ func chkBoolTestBadWithMsgFmt1(t *testing.T) {
 				"This message will be displayed first",
 				boolTypeName,
 			),
-			g(markAsChg("false", "true", DiffGot)),
-			w(markAsChg("false", "true", DiffWant)),
+			g(markAsChg("false", "true", diffGot)),
+			w(markAsChg("false", "true", diffWant)),
 		),
 		chkOutRelease(),
 	)
@@ -187,8 +187,8 @@ func chkBoolTestBadWithMsgFmt2(t *testing.T) {
 				"This message will be displayed second",
 				boolTypeName,
 			),
-			g(markAsChg("true", "false", DiffGot)),
-			w(markAsChg("true", "false", DiffWant)),
+			g(markAsChg("true", "false", diffGot)),
+			w(markAsChg("true", "false", diffWant)),
 		),
 		chkOutRelease(),
 	)
@@ -209,8 +209,8 @@ func chkBoolTestBadWithMsgFmt3(t *testing.T) {
 				"This message will be displayed third",
 				boolTypeName,
 			),
-			g(markAsChg("false", "true", DiffGot)),
-			w(markAsChg("false", "true", DiffWant)),
+			g(markAsChg("false", "true", diffGot)),
+			w(markAsChg("false", "true", diffWant)),
 		),
 		chkOutRelease(),
 	)
@@ -506,8 +506,8 @@ func chkBoolHelperTestBad1(t *testing.T) {
 				"This message will be displayed first",
 				boolTypeName,
 			),
-			g(markAsChg("false", "true", DiffGot)),
-			w(markAsChg("false", "true", DiffWant)),
+			g(markAsChg("false", "true", diffGot)),
+			w(markAsChg("false", "true", diffWant)),
 		),
 		chkOutRelease(),
 	)
@@ -528,8 +528,8 @@ func chkBoolHelperTestBad2(t *testing.T) {
 				"This message will be displayed second",
 				boolTypeName,
 			),
-			g(markAsChg("true", "false", DiffGot)),
-			w(markAsChg("true", "false", DiffWant)),
+			g(markAsChg("true", "false", diffGot)),
+			w(markAsChg("true", "false", diffWant)),
 		),
 		chkOutRelease(),
 	)
@@ -550,8 +550,8 @@ func chkBoolHelperTestBad3(t *testing.T) {
 				"This message will be displayed third",
 				boolTypeName,
 			),
-			g(markAsChg("false", "true", DiffGot)),
-			w(markAsChg("false", "true", DiffWant)),
+			g(markAsChg("false", "true", diffGot)),
+			w(markAsChg("false", "true", diffWant)),
 		),
 		chkOutRelease(),
 	)
@@ -569,8 +569,8 @@ func chkBoolHelperTestBad4(t *testing.T) {
 		chkOutCapture("Nothing"),
 		chkOutIsError("False",
 			chkOutCommonMsg("", boolTypeName),
-			g(markAsChg("true", "false", DiffGot)),
-			w(markAsChg("true", "false", DiffWant)),
+			g(markAsChg("true", "false", diffGot)),
+			w(markAsChg("true", "false", diffWant)),
 		),
 		chkOutRelease(),
 	)

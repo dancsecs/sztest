@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -28,9 +28,9 @@ type diffType rune
 
 // Represents the type of output displayed when diffing strings.
 const (
-	DiffWant  = diffType('W')
-	DiffGot   = diffType('G')
-	DiffMerge = diffType('M')
+	diffWant  = diffType('W')
+	diffGot   = diffType('G')
+	diffMerge = diffType('M')
 )
 
 // Default compare function.
@@ -38,14 +38,14 @@ func defaultCmpFunc[T chkType](got, want T) bool {
 	return got == want
 }
 
-// CompareArrays returns "" an empty string if there are no differences
+// compareArrays returns "" an empty string if there are no differences
 // otherwise it returns a string outlining the differences.
-func CompareArrays[T chkType](got, wnt []T) string {
+func compareArrays[T chkType](got, wnt []T) string {
 	differencesFound := false
 
 	ret := "" +
 		strings.Join(
-			DiffSlice(
+			diffSlice(
 				got,
 				wnt,
 				newDiffLnFmt(len(got), len(wnt)),
@@ -64,8 +64,8 @@ func CompareArrays[T chkType](got, wnt []T) string {
 	return ret
 }
 
-// CompareSlices checks two slices for differences.
-func CompareSlices[T chkType](
+// compareSlices checks two slices for differences.
+func compareSlices[T chkType](
 	title string,
 	got, want []T,
 	minRunSlice, minRunString int,
@@ -76,7 +76,7 @@ func CompareSlices[T chkType](
 
 	ret := "" +
 		strings.Join(
-			DiffSlice(
+			diffSlice(
 				got,
 				want,
 				newDiffLnFmt(len(got), len(want)),
@@ -107,10 +107,10 @@ func CompareSlices[T chkType](
 	return ""
 }
 
-// DiffSlice compares two Slices.
+// diffSlice compares two Slices.
 //
 //nolint:funlen,cyclop,gocognit // Ok.
-func DiffSlice[T chkType](
+func diffSlice[T chkType](
 	gotSlice, wntSlice []T,
 	dFmt *diffLnFmt,
 	changed *bool,
@@ -174,10 +174,10 @@ func DiffSlice[T chkType](
 				result = append(
 					result,
 					dFmt.changed(i, i,
-						DiffString(
+						diffString(
 							fmt.Sprint(gotSlice[i]),
 							fmt.Sprint(wntSlice[i]),
-							DiffMerge,
+							diffMerge,
 							minRunString,
 						)),
 				)
@@ -191,10 +191,10 @@ func DiffSlice[T chkType](
 				result = append(
 					result,
 					dFmt.changed(i, i,
-						DiffString(
+						diffString(
 							fmt.Sprint(gotSlice[i]),
 							fmt.Sprint(wntSlice[i]),
-							DiffMerge,
+							diffMerge,
 							minRunString,
 						)),
 				)
@@ -208,10 +208,10 @@ func DiffSlice[T chkType](
 				result = append(
 					result,
 					dFmt.changed(i, i,
-						DiffString(
+						diffString(
 							fmt.Sprint(gotSlice[i]),
 							fmt.Sprint(wntSlice[i]),
-							DiffMerge,
+							diffMerge,
 							minRunString,
 						)),
 				)
@@ -227,7 +227,7 @@ func DiffSlice[T chkType](
 
 	// Check lines before largest identical section
 
-	result = append(result, DiffSlice(
+	result = append(result, diffSlice(
 		gotSlice[:gotIdx],
 		wntSlice[:wntInd],
 		dFmt,
@@ -259,7 +259,7 @@ func DiffSlice[T chkType](
 		endNew = wntSlice[wntInd+numLines:]
 	}
 
-	result = append(result, DiffSlice(
+	result = append(result, diffSlice(
 		endOld,
 		endNew,
 		dFmt.newOffset(gotIdx+numLines, wntInd+numLines),
@@ -272,17 +272,17 @@ func DiffSlice[T chkType](
 	return result
 }
 
-// DiffString checks two strings for differences.
+// diffString checks two strings for differences.
 //
 //nolint:cyclop // Ok.
-func DiffString(gotStr, wntStr string, dType diffType, minRun int) string {
+func diffString(gotStr, wntStr string, dType diffType, minRun int) string {
 	if gotStr == wntStr {
 		// unchanged
 		return gotStr
 	}
 
 	switch dType { //nolint:exhaustive // Default handles all other cases.
-	case DiffWant:
+	case diffWant:
 		if wntStr == "" {
 			// missing from section
 			return wntStr
@@ -292,7 +292,7 @@ func DiffString(gotStr, wntStr string, dType diffType, minRun int) string {
 			// new to section
 			return markAsDel(wntStr)
 		}
-	case DiffGot:
+	case diffGot:
 		if gotStr == "" {
 			// new to section
 			return gotStr
@@ -324,9 +324,9 @@ func DiffString(gotStr, wntStr string, dType diffType, minRun int) string {
 	// suffixed by recursively calling DiffString with prefix and suffix
 	// strings respectively.
 	return "" +
-		DiffString(gotStr[:gotIdx], wntStr[:wntIdx], dType, minRun) +
+		diffString(gotStr[:gotIdx], wntStr[:wntIdx], dType, minRun) +
 		gotStr[gotIdx:gotIdx+numChars] +
-		DiffString(
+		diffString(
 			gotStr[gotIdx+numChars:], wntStr[wntIdx+numChars:], dType, minRun,
 		)
 }

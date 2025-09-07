@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -353,7 +353,7 @@ func chkErrSliceTestBadMsg3(t *testing.T) {
 		chkOutIsSliceError(
 			false,
 			1, 1, "[]err", "ErrSlicef", "This message will be displayed",
-			chkOutLnChanged("0", "0", "entry"+markAsChg("3", "1", DiffMerge)),
+			chkOutLnChanged("0", "0", "entry"+markAsChg("3", "1", diffMerge)),
 		),
 		chkOutRelease(),
 	)
@@ -380,7 +380,7 @@ func chkErrSliceTestBadMsg4(t *testing.T) {
 			false,
 			3, 3, "[]err", "ErrSlice", "This message will be displayed",
 			chkOutLnSame("0", "0", "entry1"),
-			chkOutLnChanged("1", "1", "entry"+markAsChg("1", "2", DiffMerge)),
+			chkOutLnChanged("1", "1", "entry"+markAsChg("1", "2", diffMerge)),
 			chkOutLnSame("2", "2", "entry3"),
 		),
 		chkOutRelease(),

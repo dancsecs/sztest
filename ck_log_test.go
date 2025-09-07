@@ -947,8 +947,8 @@ func chkLogTestWriteLogLoggerWithStderrAndStdoutWithCheckErrorBlockingCheck(
 		chkOutIsError(
 			"Str",
 			chkOutCommonMsg("", "string"),
-			g(markAsChg("this", "that", DiffGot)),
-			w(markAsChg("this", "that", DiffWant)),
+			g(markAsChg("this", "that", diffGot)),
+			w(markAsChg("this", "that", diffWant)),
 		),
 		chkOutHelper("Stdout"),
 		chkOutError(

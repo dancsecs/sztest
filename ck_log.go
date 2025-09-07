@@ -393,7 +393,7 @@ func (chk *Chk) compareLog(
 		gotSlice = []string{strings.TrimSuffix(got, "\n")}
 	}
 
-	ret := CompareSlices(
+	ret := compareSlices(
 		fmt.Sprint("Unexpected ", name, " Entry"),
 		chk.prepareSlice(
 			gotFilter,

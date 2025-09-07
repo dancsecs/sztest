@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -136,7 +136,7 @@ func chkDiffString(
 	t.Helper()
 
 	resolvedGot := resolveMarksForDisplay(
-		DiffString(tst.got, tst.wnt, DiffGot, tst.minRun),
+		diffString(tst.got, tst.wnt, diffGot, tst.minRun),
 	)
 
 	got, err := freezeMarks(resolvedGot)
@@ -155,7 +155,7 @@ func chkDiffString(
 	}
 
 	resolvedGot = resolveMarksForDisplay(
-		DiffString(tst.got, tst.wnt, DiffWant, tst.minRun),
+		diffString(tst.got, tst.wnt, diffWant, tst.minRun),
 	)
 
 	got, err = freezeMarks(resolvedGot)
@@ -174,7 +174,7 @@ func chkDiffString(
 	}
 
 	resolvedGot = resolveMarksForDisplay(
-		DiffString(tst.got, tst.wnt, DiffMerge, tst.minRun),
+		diffString(tst.got, tst.wnt, diffMerge, tst.minRun),
 	)
 
 	got, err = freezeMarks(resolvedGot)
@@ -545,7 +545,7 @@ func chkDiffSlice(t *testing.T, tst *tstDiffSlice) {
 		wnt     []string
 	)
 
-	diffResult := DiffSlice(
+	diffResult := diffSlice(
 		tst.got, tst.wnt,
 		newDiffLnFmt(len(tst.got), len(tst.wnt)),
 		&changed,
@@ -1038,7 +1038,7 @@ func chkCompareSlices(t *testing.T, tst *tstCompareSlices) {
 		wnt []string
 	)
 
-	diffResult := CompareSlices(
+	diffResult := compareSlices(
 		"[[Test Title]]",
 		tst.got,
 		tst.wnt,
@@ -1141,7 +1141,7 @@ func chkCompareArrays(t *testing.T, tst *tstCompareArrays) {
 		wnt []string
 	)
 
-	diffResult := CompareArrays(
+	diffResult := compareArrays(
 		tst.got,
 		tst.wnt,
 	)

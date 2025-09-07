@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -65,21 +65,21 @@ func testSzTestInternalMarkup(t *testing.T) {
 		t.Error(errGotWnt(area, got, wnt))
 	}
 
-	got = markAsChg(msg, strings.ToLower(msg), DiffGot)
+	got = markAsChg(msg, strings.ToLower(msg), diffGot)
 	wnt = markChgOn + msg + markChgOff
 
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
 
-	got = markAsChg(msg, strings.ToLower(msg), DiffWant)
+	got = markAsChg(msg, strings.ToLower(msg), diffWant)
 	wnt = markChgOn + strings.ToLower(msg) + markChgOff
 
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
 
-	got = markAsChg(msg, strings.ToLower(msg), DiffMerge)
+	got = markAsChg(msg, strings.ToLower(msg), diffMerge)
 	wnt = markDelOn + strings.ToLower(msg) + markDelOff +
 		markSepOn + "/" + markSepOff +
 		markInsOn + msg + markInsOff
@@ -112,21 +112,21 @@ func testSzTestMarkupForTerminal(t *testing.T) {
 		t.Error(errGotWnt(area, got, wnt))
 	}
 
-	got = resolveMarksForDisplay(markAsChg(tstStr1, tstStr2, DiffGot))
+	got = resolveMarksForDisplay(markAsChg(tstStr1, tstStr2, diffGot))
 	wnt = settingMarkChgOn + tstStr1 + settingMarkChgOff
 
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
 
-	got = resolveMarksForDisplay(markAsChg(tstStr1, tstStr2, DiffWant))
+	got = resolveMarksForDisplay(markAsChg(tstStr1, tstStr2, diffWant))
 	wnt = settingMarkChgOn + tstStr2 + settingMarkChgOff
 
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
 	}
 
-	got = resolveMarksForDisplay(markAsChg(tstStr1, tstStr2, DiffMerge))
+	got = resolveMarksForDisplay(markAsChg(tstStr1, tstStr2, diffMerge))
 	wnt = "" +
 		settingMarkDelOn + tstStr2 + settingMarkDelOff +
 		settingMarkSepOn + "/" + settingMarkSepOff +
@@ -152,9 +152,9 @@ func testSzTestGotWant(t *testing.T) {
 
 	got = gotWntDiff("ABC", "ADC", 1)
 	wnt = "" +
-		g("A"+markAsChg("B", "D", DiffGot)+"C") +
+		g("A"+markAsChg("B", "D", diffGot)+"C") +
 		"\n" +
-		w("A"+markAsChg("B", "D", DiffWant)+"C")
+		w("A"+markAsChg("B", "D", diffWant)+"C")
 
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))
@@ -162,9 +162,9 @@ func testSzTestGotWant(t *testing.T) {
 
 	got = gotWntDiff("AB\n", "AC\n", 3)
 	wnt = "" +
-		g("\n"+markAsChg("AB\n", "AC\n", DiffGot)) +
+		g("\n"+markAsChg("AB\n", "AC\n", diffGot)) +
 		"\n" +
-		w("\n"+markAsChg("AB\n", "AC\n", DiffWant))
+		w("\n"+markAsChg("AB\n", "AC\n", diffWant))
 
 	if got != wnt {
 		t.Error(errGotWnt(area, got, wnt))

@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -69,8 +69,8 @@ func chkComplex128TestBad(t *testing.T) {
 		chkOutIsError(
 			"Complex128",
 			chkOutCommonMsg("", complex128TypeName),
-			g(markAsChg("(2", "(1", DiffGot)+"+0i)"),
-			w(markAsChg("(2", "(1", DiffWant)+"+0i)"),
+			g(markAsChg("(2", "(1", diffGot)+"+0i)"),
+			w(markAsChg("(2", "(1", diffWant)+"+0i)"),
 		),
 		chkOutRelease(),
 	)
@@ -92,8 +92,8 @@ func chkComplex128TestBad1(t *testing.T) {
 				"This message will be displayed first",
 				complex128TypeName,
 			),
-			g(markAsChg("(2", "(1", DiffGot)+"+0i)"),
-			w(markAsChg("(2", "(1", DiffWant)+"+0i)"),
+			g(markAsChg("(2", "(1", diffGot)+"+0i)"),
+			w(markAsChg("(2", "(1", diffWant)+"+0i)"),
 		),
 		chkOutRelease(),
 	)
@@ -115,8 +115,8 @@ func chkComplex128TestBad2(t *testing.T) {
 				"This message will be displayed second",
 				complex128TypeName,
 			),
-			g(markAsChg("(2", "(1", DiffGot)+"+0i)"),
-			w(markAsChg("(2", "(1", DiffWant)+"+0i)"),
+			g(markAsChg("(2", "(1", diffGot)+"+0i)"),
+			w(markAsChg("(2", "(1", diffWant)+"+0i)"),
 		),
 		chkOutRelease(),
 	)
@@ -138,8 +138,8 @@ func chkComplex128TestBad3(t *testing.T) {
 				"This message will be displayed third",
 				complex128TypeName,
 			),
-			g(markAsChg("(0", "(1", DiffGot)+"+0i)"),
-			w(markAsChg("(0", "(1", DiffWant)+"+0i)"),
+			g(markAsChg("(0", "(1", diffGot)+"+0i)"),
+			w(markAsChg("(0", "(1", diffWant)+"+0i)"),
 		),
 		chkOutRelease(),
 	)

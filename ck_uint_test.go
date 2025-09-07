@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -74,8 +74,8 @@ func chkUintTestBad(t *testing.T) {
 		chkOutIsError(
 			"Uint",
 			chkOutCommonMsg("", uintTypeName),
-			g(markAsChg("2", "1", DiffGot)),
-			w(markAsChg("2", "1", DiffWant)),
+			g(markAsChg("2", "1", diffGot)),
+			w(markAsChg("2", "1", diffWant)),
 		),
 		chkOutRelease(),
 	)
@@ -97,8 +97,8 @@ func chkUintTestBad1(t *testing.T) {
 				"This message will be displayed first",
 				uintTypeName,
 			),
-			g(markAsChg("2", "1", DiffGot)),
-			w(markAsChg("2", "1", DiffWant)),
+			g(markAsChg("2", "1", diffGot)),
+			w(markAsChg("2", "1", diffWant)),
 		),
 		chkOutRelease(),
 	)
@@ -120,8 +120,8 @@ func chkUintTestBad2(t *testing.T) {
 				"This message will be displayed second",
 				uintTypeName,
 			),
-			g(markAsChg("2", "1", DiffGot)),
-			w(markAsChg("2", "1", DiffWant)),
+			g(markAsChg("2", "1", diffGot)),
+			w(markAsChg("2", "1", diffWant)),
 		),
 		chkOutRelease(),
 	)
@@ -143,8 +143,8 @@ func chkUintTestBad3(t *testing.T) {
 				"This message will be displayed third",
 				uintTypeName,
 			),
-			g(markAsChg("0", "1", DiffGot)),
-			w(markAsChg("0", "1", DiffWant)),
+			g(markAsChg("0", "1", diffGot)),
+			w(markAsChg("0", "1", diffWant)),
 		),
 		chkOutRelease(),
 	)

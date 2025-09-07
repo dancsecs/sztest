@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -76,9 +76,9 @@ func (lnFmt *diffLnFmt) same(g, w int, value any) string {
 
 func (lnFmt *diffLnFmt) changed(g, w int, line string) string {
 	return "" +
-		markAsChg(lnFmt.fmtLnNbr(g+lnFmt.gOffset), "", DiffGot) +
+		markAsChg(lnFmt.fmtLnNbr(g+lnFmt.gOffset), "", diffGot) +
 		":" +
-		markAsChg("", lnFmt.fmtLnNbr(w+lnFmt.wOffset), DiffWant) +
+		markAsChg("", lnFmt.fmtLnNbr(w+lnFmt.wOffset), diffWant) +
 		" " +
 		line
 }

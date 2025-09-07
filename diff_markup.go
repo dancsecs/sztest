@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -64,9 +64,9 @@ func markAsDel(s string) string {
 
 func markAsChg(got, wnt string, dType diffType) string {
 	switch dType { //nolint:exhaustive // Default handles all other cases.
-	case DiffGot:
+	case diffGot:
 		return markChgOn + got + markChgOff
-	case DiffWant:
+	case diffWant:
 		return markChgOn + wnt + markChgOff
 	default:
 		return markDelOn + wnt + markDelOff + markSepOn +
@@ -112,7 +112,7 @@ func gotWnt(got, wnt string) string {
 
 func gotWntDiff(got, wnt string, minRun int) string {
 	return gotWnt(
-		DiffString(got, wnt, DiffGot, minRun),
-		DiffString(got, wnt, DiffWant, minRun),
+		diffString(got, wnt, diffGot, minRun),
+		diffString(got, wnt, diffWant, minRun),
 	)
 }

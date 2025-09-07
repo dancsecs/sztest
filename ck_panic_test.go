@@ -1,6 +1,6 @@
 /*
    Golang test helper library: sztest.
-   Copyright (C) 2023, 2024 Leslie Dancsecs
+   Copyright (C) 2023-2025 Leslie Dancsecs
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -171,8 +171,8 @@ func chkPanicTestBad3(t *testing.T) {
 		chkOutIsError(
 			"Panicf",
 			chkOutCommonMsg("This message will be displayed third", "panic"),
-			g(markAsChg("got", "want", DiffGot)),
-			w(markAsChg("got", "want", DiffWant)),
+			g(markAsChg("got", "want", diffGot)),
+			w(markAsChg("got", "want", diffWant)),
 		),
 		chkOutRelease(),
 	)
