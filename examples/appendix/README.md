@@ -91,11 +91,11 @@ func Test_PASS_GeneralForm(t *testing.T) {
     )
 
     // Check logging.
-    chk.Log(`
+    chk.Log(chk.TrimAll(`
       Entered process(0, "failing message")
       factor (0) out of bounds: "failing message"
       Entered process(2, "Hello")
-  `)
+  `))
 }
 
 // Failing test.
@@ -127,11 +127,11 @@ func Test_FAIL_GeneralForm(t *testing.T) {
     )
 
     // Check logging.
-    chk.Log(`
+    chk.Log(chk.TrimAll(`
       Entered process(0, "wrong message")
       factor (0) out of bounds: "wrong message"
       Entered process(2, "Processed Hello")
-  `)
+  `))
 }
 ```
 <!--- gotomd::End::file::./large_example_function/example_test.go -->
@@ -145,19 +145,7 @@ go test -v -cover ./large_example_function
 
 $\small{\texttt{===&#xA0;&#x34F;&#xA0;&#x34F;RUN&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Test&#xA0;&#x332;&#xA0;&#x332;PASS&#xA0;&#x332;&#xA0;&#x332;GeneralForm}}$
 <br>
-$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;example&#xA0;&#x332;&#xA0;&#x332;test.go:37:&#xA0;&#x34F;&#xA0;&#x34F;Unexpected&#xA0;&#x34F;&#xA0;&#x34F;log&#xA0;&#x34F;&#xA0;&#x34F;Entry:&#xA0;&#x34F;&#xA0;&#x34F;got&#xA0;&#x34F;&#xA0;&#x34F;(3&#xA0;&#x34F;&#xA0;&#x34F;lines)&#xA0;&#x34F;&#xA0;&#x34F;-&#xA0;&#x34F;&#xA0;&#x34F;want&#xA0;&#x34F;&#xA0;&#x34F;(5&#xA0;&#x34F;&#xA0;&#x34F;lines)}}$
-<br>
-$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;{\color{darkturquoise}{0}}:{\color{darkturquoise}{0}}&#xA0;&#x34F;&#xA0;&#x34F;{\color{green}{Entered&#xA0;&#x34F;&#xA0;&#x34F;process(0,&#xA0;&#x34F;&#xA0;&#x34F;"failing&#xA0;&#x34F;&#xA0;&#x34F;message")}}}}$
-<br>
-$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;{\color{darkturquoise}{1}}:{\color{darkturquoise}{1}}&#xA0;&#x34F;&#xA0;&#x34F;{\color{red}{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Entered&#xA0;&#x34F;&#xA0;&#x34F;process(0,}}{\color{yellow}{/}}{\color{green}{factor&#xA0;&#x34F;&#xA0;&#x34F;(0)&#xA0;&#x34F;&#xA0;&#x34F;out&#xA0;&#x34F;&#xA0;&#x34F;of&#xA0;&#x34F;&#xA0;&#x34F;bounds:}}&#xA0;&#x34F;&#xA0;&#x34F;"failing&#xA0;&#x34F;&#xA0;&#x34F;message"{\color{red}{)}}}}$
-<br>
-$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;{\color{darkturquoise}{2}}:{\color{darkturquoise}{2}}&#xA0;&#x34F;&#xA0;&#x34F;{\color{red}{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;factor&#xA0;&#x34F;&#xA0;&#x34F;(0)&#xA0;&#x34F;&#xA0;&#x34F;out&#xA0;&#x34F;&#xA0;&#x34F;of&#xA0;&#x34F;&#xA0;&#x34F;bounds:&#xA0;&#x34F;&#xA0;&#x34F;"failing&#xA0;&#x34F;&#xA0;&#x34F;m}}{\color{yellow}{/}}{\color{green}{Entered&#xA0;&#x34F;&#xA0;&#x34F;proc}}ess{\color{red}{age"}}{\color{yellow}{/}}{\color{green}{(2,&#xA0;&#x34F;&#xA0;&#x34F;"Hello")}}}}$
-<br>
-$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;-:{\color{red}{3}}&#xA0;&#x34F;&#xA0;&#x34F;{\color{red}{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Entered&#xA0;&#x34F;&#xA0;&#x34F;process(2,&#xA0;&#x34F;&#xA0;&#x34F;"Hello")}}}}$
-<br>
-$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;-:{\color{red}{4}}&#xA0;&#x34F;&#xA0;&#x34F;{\color{red}{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;}}}}$
-<br>
-$\small{\texttt{‒‒‒&#xA0;&#x34F;&#xA0;&#x34F;FAIL:&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Test&#xA0;&#x332;&#xA0;&#x332;PASS&#xA0;&#x332;&#xA0;&#x332;GeneralForm&#xA0;&#x34F;&#xA0;&#x34F;(0.0s)}}$
+$\small{\texttt{‒‒‒&#xA0;&#x34F;&#xA0;&#x34F;PASS:&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Test&#xA0;&#x332;&#xA0;&#x332;PASS&#xA0;&#x332;&#xA0;&#x332;GeneralForm&#xA0;&#x34F;&#xA0;&#x34F;(0.0s)}}$
 <br>
 $\small{\texttt{===&#xA0;&#x34F;&#xA0;&#x34F;RUN&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Test&#xA0;&#x332;&#xA0;&#x332;FAIL&#xA0;&#x332;&#xA0;&#x332;GeneralForm}}$
 <br>
@@ -193,17 +181,13 @@ $\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F
 <br>
 $\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;{\color{darkturquoise}{0}}:{\color{darkturquoise}{0}}&#xA0;&#x34F;&#xA0;&#x34F;Processing&#xA0;&#x34F;&#xA0;&#x34F;with&#xA0;&#x34F;&#xA0;&#x34F;factor:&#xA0;&#x34F;&#xA0;&#x34F;2&#xA0;&#x34F;&#xA0;&#x34F;and&#xA0;&#x34F;&#xA0;&#x34F;message:&#xA0;&#x34F;&#xA0;&#x34F;{\color{red}{Processed&#xA0;&#x34F;&#xA0;&#x34F;}}Hello}}$
 <br>
-$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;example&#xA0;&#x332;&#xA0;&#x332;test.go:73:&#xA0;&#x34F;&#xA0;&#x34F;Unexpected&#xA0;&#x34F;&#xA0;&#x34F;log&#xA0;&#x34F;&#xA0;&#x34F;Entry:&#xA0;&#x34F;&#xA0;&#x34F;got&#xA0;&#x34F;&#xA0;&#x34F;(3&#xA0;&#x34F;&#xA0;&#x34F;lines)&#xA0;&#x34F;&#xA0;&#x34F;-&#xA0;&#x34F;&#xA0;&#x34F;want&#xA0;&#x34F;&#xA0;&#x34F;(5&#xA0;&#x34F;&#xA0;&#x34F;lines)}}$
+$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;example&#xA0;&#x332;&#xA0;&#x332;test.go:73:&#xA0;&#x34F;&#xA0;&#x34F;Unexpected&#xA0;&#x34F;&#xA0;&#x34F;log&#xA0;&#x34F;&#xA0;&#x34F;Entry:&#xA0;&#x34F;&#xA0;&#x34F;got&#xA0;&#x34F;&#xA0;&#x34F;(3&#xA0;&#x34F;&#xA0;&#x34F;lines)&#xA0;&#x34F;&#xA0;&#x34F;-&#xA0;&#x34F;&#xA0;&#x34F;want&#xA0;&#x34F;&#xA0;&#x34F;(3&#xA0;&#x34F;&#xA0;&#x34F;lines)}}$
 <br>
-$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;{\color{darkturquoise}{0}}:{\color{darkturquoise}{0}}&#xA0;&#x34F;&#xA0;&#x34F;{\color{green}{Entered&#xA0;&#x34F;&#xA0;&#x34F;process(0,&#xA0;&#x34F;&#xA0;&#x34F;"failing&#xA0;&#x34F;&#xA0;&#x34F;message")}}}}$
+$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;{\color{darkturquoise}{0}}:{\color{darkturquoise}{0}}&#xA0;&#x34F;&#xA0;&#x34F;Entered&#xA0;&#x34F;&#xA0;&#x34F;process(0,&#xA0;&#x34F;&#xA0;&#x34F;"{\color{red}{wro}}{\color{yellow}{/}}{\color{green}{faili}}ng&#xA0;&#x34F;&#xA0;&#x34F;message")}}$
 <br>
-$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;{\color{darkturquoise}{1}}:{\color{darkturquoise}{1}}&#xA0;&#x34F;&#xA0;&#x34F;{\color{red}{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Entered&#xA0;&#x34F;&#xA0;&#x34F;process(0,&#xA0;&#x34F;&#xA0;&#x34F;"wro}}{\color{yellow}{/}}{\color{green}{factor&#xA0;&#x34F;&#xA0;&#x34F;(0)&#xA0;&#x34F;&#xA0;&#x34F;out&#xA0;&#x34F;&#xA0;&#x34F;of&#xA0;&#x34F;&#xA0;&#x34F;bounds:&#xA0;&#x34F;&#xA0;&#x34F;"faili}}ng&#xA0;&#x34F;&#xA0;&#x34F;message"{\color{red}{)}}}}$
+$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;{\color{darkturquoise}{1}}:{\color{darkturquoise}{1}}&#xA0;&#x34F;&#xA0;&#x34F;factor&#xA0;&#x34F;&#xA0;&#x34F;(0)&#xA0;&#x34F;&#xA0;&#x34F;out&#xA0;&#x34F;&#xA0;&#x34F;of&#xA0;&#x34F;&#xA0;&#x34F;bounds:&#xA0;&#x34F;&#xA0;&#x34F;"{\color{red}{wro}}{\color{yellow}{/}}{\color{green}{faili}}ng&#xA0;&#x34F;&#xA0;&#x34F;message"}}$
 <br>
-$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;{\color{darkturquoise}{2}}:{\color{darkturquoise}{2}}&#xA0;&#x34F;&#xA0;&#x34F;{\color{red}{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;factor&#xA0;&#x34F;&#xA0;&#x34F;(0)&#xA0;&#x34F;&#xA0;&#x34F;out&#xA0;&#x34F;&#xA0;&#x34F;of&#xA0;&#x34F;&#xA0;&#x34F;bounds:&#xA0;&#x34F;&#xA0;&#x34F;"wrong&#xA0;&#x34F;&#xA0;&#x34F;m}}{\color{yellow}{/}}{\color{green}{Entered&#xA0;&#x34F;&#xA0;&#x34F;proc}}ess{\color{red}{age"}}{\color{yellow}{/}}{\color{green}{(2,&#xA0;&#x34F;&#xA0;&#x34F;"Hello")}}}}$
-<br>
-$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;-:{\color{red}{3}}&#xA0;&#x34F;&#xA0;&#x34F;{\color{red}{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Entered&#xA0;&#x34F;&#xA0;&#x34F;process(2,&#xA0;&#x34F;&#xA0;&#x34F;"Processed&#xA0;&#x34F;&#xA0;&#x34F;Hello")}}}}$
-<br>
-$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;-:{\color{red}{4}}&#xA0;&#x34F;&#xA0;&#x34F;{\color{red}{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;}}}}$
+$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;{\color{darkturquoise}{2}}:{\color{darkturquoise}{2}}&#xA0;&#x34F;&#xA0;&#x34F;Entered&#xA0;&#x34F;&#xA0;&#x34F;process(2,&#xA0;&#x34F;&#xA0;&#x34F;"{\color{red}{Processed&#xA0;&#x34F;&#xA0;&#x34F;}}Hello")}}$
 <br>
 $\small{\texttt{‒‒‒&#xA0;&#x34F;&#xA0;&#x34F;FAIL:&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Test&#xA0;&#x332;&#xA0;&#x332;FAIL&#xA0;&#x332;&#xA0;&#x332;GeneralForm&#xA0;&#x34F;&#xA0;&#x34F;(0.0s)}}$
 <br>

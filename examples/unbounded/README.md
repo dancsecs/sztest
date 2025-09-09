@@ -54,25 +54,25 @@ func Test_Fail_BoundedFloat64WithNoMessage(t *testing.T) {
 go test -v -cover ./float64_with_no_message
 ```
 
-$\small{\texttt{===&#xa0;RUN&#xa0;&#xa0;&#xa0;Test&#x332;PASS&#x332;BoundedFloat64WithNoMessage}}$
+$\small{\texttt{===&#xA0;&#x34F;&#xA0;&#x34F;RUN&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Test&#xA0;&#x332;&#xA0;&#x332;PASS&#xA0;&#x332;&#xA0;&#x332;BoundedFloat64WithNoMessage}}$
 <br>
-$\small{\texttt{---&#xa0;PASS:&#xa0;Test&#x332;PASS&#x332;BoundedFloat64WithNoMessage&#xa0;(0.0s)}}$
+$\small{\texttt{‒‒‒&#xA0;&#x34F;&#xA0;&#x34F;PASS:&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Test&#xA0;&#x332;&#xA0;&#x332;PASS&#xA0;&#x332;&#xA0;&#x332;BoundedFloat64WithNoMessage&#xA0;&#x34F;&#xA0;&#x34F;(0.0s)}}$
 <br>
-$\small{\texttt{===&#xa0;RUN&#xa0;&#xa0;&#xa0;Test&#x332;Fail&#x332;BoundedFloat64WithNoMessage}}$
+$\small{\texttt{===&#xA0;&#x34F;&#xA0;&#x34F;RUN&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Test&#xA0;&#x332;&#xA0;&#x332;Fail&#xA0;&#x332;&#xA0;&#x332;BoundedFloat64WithNoMessage}}$
 <br>
-$\small{\texttt{&#xa0;&#xa0;&#xa0;&#xa0;example&#x332;test.go:29:&#xa0;unexpected&#xa0;float64:}}$
+$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;example&#xA0;&#x332;&#xA0;&#x332;test.go:29:&#xA0;&#x34F;&#xA0;&#x34F;unexpected&#xA0;&#x34F;&#xA0;&#x34F;float64:}}$
 <br>
-$\small{\texttt{&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;\color{magenta}GOT:&#xa0;\color{default}0.6172835}}$
+$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;{\color{magenta}{GOT:&#xA0;&#x34F;&#xA0;&#x34F;}}0.6172835}}$
 <br>
-$\small{\texttt{&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;\color{cyan}WNT:&#xa0;\color{default}out&#xa0;of&#xa0;bounds:&#xa0;(2,MAX)&#xa0;-&#xa0;{&#xa0;want&#xa0;|&#xa0;want&#xa0;>&#xa0;2&#xa0;}}}$
+$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;{\color{cyan}{WNT:&#xA0;&#x34F;&#xA0;&#x34F;}}out&#xA0;&#x34F;&#xA0;&#x34F;of&#xA0;&#x34F;&#xA0;&#x34F;bounds:&#xA0;&#x34F;&#xA0;&#x34F;(2,MAX)&#xA0;&#x34F;&#xA0;&#x34F;-&#xA0;&#x34F;&#xA0;&#x34F;{&#xA0;&#x34F;&#xA0;&#x34F;want&#xA0;&#x34F;&#xA0;&#x34F;|&#xA0;&#x34F;&#xA0;&#x34F;want&#xA0;&#x34F;&#xA0;&#x34F;>&#xA0;&#x34F;&#xA0;&#x34F;2&#xA0;&#x34F;&#xA0;&#x34F;}}}$
 <br>
-$\small{\texttt{---&#xa0;FAIL:&#xa0;Test&#x332;Fail&#x332;BoundedFloat64WithNoMessage&#xa0;(0.0s)}}$
+$\small{\texttt{‒‒‒&#xA0;&#x34F;&#xA0;&#x34F;FAIL:&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Test&#xA0;&#x332;&#xA0;&#x332;Fail&#xA0;&#x332;&#xA0;&#x332;BoundedFloat64WithNoMessage&#xA0;&#x34F;&#xA0;&#x34F;(0.0s)}}$
 <br>
 $\small{\texttt{FAIL}}$
 <br>
-$\small{\texttt{coverage:&#xa0;[no&#xa0;statements]}}$
+$\small{\texttt{coverage:&#xA0;&#x34F;&#xA0;&#x34F;[no&#xA0;&#x34F;&#xA0;&#x34F;statements]}}$
 <br>
-$\small{\texttt{FAIL&#xa0;github.com/dancsecs/sztest/examples/unbounded/float64&#x332;with&#x332;no&#x332;message&#xa0;0.0s}}$
+$\small{\texttt{FAIL&#xA0;&#x34F;&#xA0;&#x34F;github.com/dancsecs/sztest/examples/unbounded/float64&#xA0;&#x332;&#xA0;&#x332;with&#xA0;&#x332;&#xA0;&#x332;no&#xA0;&#x332;&#xA0;&#x332;message&#xA0;&#x34F;&#xA0;&#x34F;0.0s}}$
 <br>
 $\small{\texttt{FAIL}}$
 <br>

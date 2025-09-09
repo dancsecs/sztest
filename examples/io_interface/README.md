@@ -127,15 +127,15 @@ func Test_IoInterface_ReadError(t *testing.T) {
 go test -v -cover ./read_error
 ```
 
-$\small{\texttt{===&#xa0;RUN&#xa0;&#xa0;&#xa0;Test&#x332;IoInterface&#x332;ReadError}}$
+$\small{\texttt{===&#xA0;&#x34F;&#xA0;&#x34F;RUN&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Test&#xA0;&#x332;&#xA0;&#x332;IoInterface&#xA0;&#x332;&#xA0;&#x332;ReadError}}$
 <br>
-$\small{\texttt{---&#xa0;PASS:&#xa0;Test&#x332;IoInterface&#x332;ReadError&#xa0;(0.0s)}}$
+$\small{\texttt{‒‒‒&#xA0;&#x34F;&#xA0;&#x34F;PASS:&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Test&#xA0;&#x332;&#xA0;&#x332;IoInterface&#xA0;&#x332;&#xA0;&#x332;ReadError&#xA0;&#x34F;&#xA0;&#x34F;(0.0s)}}$
 <br>
 $\small{\texttt{PASS}}$
 <br>
-$\small{\texttt{coverage:&#xa0;100.0&#xFE6A;&#xa0;of&#xa0;statements}}$
+$\small{\texttt{coverage:&#xA0;&#x34F;&#xA0;&#x34F;100.0&#xFE6A;&#xA0;&#x34F;&#xA0;&#x34F;of&#xA0;&#x34F;&#xA0;&#x34F;statements}}$
 <br>
-$\small{\texttt{ok&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;github.com/dancsecs/sztest/examples/io&#x332;interface/read&#x332;error&#xa0;&#xa0;&#xa0;&#xa0;coverage:&#xa0;100.0&#xFE6A;&#xa0;of&#xa0;statements}}$
+$\small{\texttt{ok&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;github.com/dancsecs/sztest/examples/io&#xA0;&#x332;&#xA0;&#x332;interface/read&#xA0;&#x332;&#xA0;&#x332;error&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;coverage:&#xA0;&#x34F;&#xA0;&#x34F;100.0&#xFE6A;&#xA0;&#x34F;&#xA0;&#x34F;of&#xA0;&#x34F;&#xA0;&#x34F;statements}}$
 <br>
 <!--- gotomd::End::tst::./read_error/package -->
 
@@ -157,6 +157,8 @@ import (
 )
 
 func writeFile(w io.Writer) (int, error) {
+    // Attempt to write 10 characters to the io.Writer.
+
     n, err := w.Write([]byte("0123456789"))
 
     return n, err
@@ -211,15 +213,15 @@ func Test_IoInterface_ReadError(t *testing.T) {
 go test -v -cover ./write_error
 ```
 
-$\small{\texttt{===&#xa0;RUN&#xa0;&#xa0;&#xa0;Test&#x332;IoInterface&#x332;ReadError}}$
+$\small{\texttt{===&#xA0;&#x34F;&#xA0;&#x34F;RUN&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Test&#xA0;&#x332;&#xA0;&#x332;IoInterface&#xA0;&#x332;&#xA0;&#x332;ReadError}}$
 <br>
-$\small{\texttt{---&#xa0;PASS:&#xa0;Test&#x332;IoInterface&#x332;ReadError&#xa0;(0.0s)}}$
+$\small{\texttt{‒‒‒&#xA0;&#x34F;&#xA0;&#x34F;PASS:&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Test&#xA0;&#x332;&#xA0;&#x332;IoInterface&#xA0;&#x332;&#xA0;&#x332;ReadError&#xA0;&#x34F;&#xA0;&#x34F;(0.0s)}}$
 <br>
 $\small{\texttt{PASS}}$
 <br>
-$\small{\texttt{coverage:&#xa0;100.0&#xFE6A;&#xa0;of&#xa0;statements}}$
+$\small{\texttt{coverage:&#xA0;&#x34F;&#xA0;&#x34F;100.0&#xFE6A;&#xA0;&#x34F;&#xA0;&#x34F;of&#xA0;&#x34F;&#xA0;&#x34F;statements}}$
 <br>
-$\small{\texttt{ok&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;github.com/dancsecs/sztest/examples/io&#x332;interface/write&#x332;error&#xa0;&#xa0;&#xa0;&#xa0;coverage:&#xa0;100.0&#xFE6A;&#xa0;of&#xa0;statements}}$
+$\small{\texttt{ok&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;github.com/dancsecs/sztest/examples/io&#xA0;&#x332;&#xA0;&#x332;interface/write&#xA0;&#x332;&#xA0;&#x332;error&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;coverage:&#xA0;&#x34F;&#xA0;&#x34F;100.0&#xFE6A;&#xA0;&#x34F;&#xA0;&#x34F;of&#xA0;&#x34F;&#xA0;&#x34F;statements}}$
 <br>
 <!--- gotomd::End::tst::./write_error/package -->
 
@@ -241,8 +243,8 @@ import (
 )
 
 func seekFile(r io.ReadSeeker, pos int64) (int64, error) {
-    // This example will attempt to read 10 bytes from r read until an error or
-    // eof is returned.
+    // This example will attempt position the io.ReadSeeker to the position
+    // provided.
 
     return r.Seek(pos, io.SeekStart)
 }
@@ -282,15 +284,15 @@ func Test_IoInterface_ReadError(t *testing.T) {
 go test -v -cover ./read_seek_error
 ```
 
-$\small{\texttt{===&#xa0;RUN&#xa0;&#xa0;&#xa0;Test&#x332;IoInterface&#x332;ReadError}}$
+$\small{\texttt{===&#xA0;&#x34F;&#xA0;&#x34F;RUN&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Test&#xA0;&#x332;&#xA0;&#x332;IoInterface&#xA0;&#x332;&#xA0;&#x332;ReadError}}$
 <br>
-$\small{\texttt{---&#xa0;PASS:&#xa0;Test&#x332;IoInterface&#x332;ReadError&#xa0;(0.0s)}}$
+$\small{\texttt{‒‒‒&#xA0;&#x34F;&#xA0;&#x34F;PASS:&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Test&#xA0;&#x332;&#xA0;&#x332;IoInterface&#xA0;&#x332;&#xA0;&#x332;ReadError&#xA0;&#x34F;&#xA0;&#x34F;(0.0s)}}$
 <br>
 $\small{\texttt{PASS}}$
 <br>
-$\small{\texttt{coverage:&#xa0;100.0&#xFE6A;&#xa0;of&#xa0;statements}}$
+$\small{\texttt{coverage:&#xA0;&#x34F;&#xA0;&#x34F;100.0&#xFE6A;&#xA0;&#x34F;&#xA0;&#x34F;of&#xA0;&#x34F;&#xA0;&#x34F;statements}}$
 <br>
-$\small{\texttt{ok&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;github.com/dancsecs/sztest/examples/io&#x332;interface/read&#x332;seek&#x332;error&#xa0;&#xa0;&#xa0;&#xa0;coverage:&#xa0;100.0&#xFE6A;&#xa0;of&#xa0;statements}}$
+$\small{\texttt{ok&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;github.com/dancsecs/sztest/examples/io&#xA0;&#x332;&#xA0;&#x332;interface/read&#xA0;&#x332;&#xA0;&#x332;seek&#xA0;&#x332;&#xA0;&#x332;error&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;coverage:&#xA0;&#x34F;&#xA0;&#x34F;100.0&#xFE6A;&#xA0;&#x34F;&#xA0;&#x34F;of&#xA0;&#x34F;&#xA0;&#x34F;statements}}$
 <br>
 <!--- gotomd::End::tst::./read_seek_error/package -->
 
@@ -312,8 +314,8 @@ import (
 )
 
 func seekFile(w io.WriteSeeker, pos int64) (int64, error) {
-    // This example will attempt to read 10 bytes from r read until an error or
-    // eof is returned.
+    // This example will attempt position the io.WriteSeeker to the position
+    // provided.
 
     return w.Seek(pos, io.SeekStart)
 }
@@ -353,15 +355,15 @@ func Test_IoInterface_ReadError(t *testing.T) {
 go test -v -cover ./write_seek_error
 ```
 
-$\small{\texttt{===&#xa0;RUN&#xa0;&#xa0;&#xa0;Test&#x332;IoInterface&#x332;ReadError}}$
+$\small{\texttt{===&#xA0;&#x34F;&#xA0;&#x34F;RUN&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Test&#xA0;&#x332;&#xA0;&#x332;IoInterface&#xA0;&#x332;&#xA0;&#x332;ReadError}}$
 <br>
-$\small{\texttt{---&#xa0;PASS:&#xa0;Test&#x332;IoInterface&#x332;ReadError&#xa0;(0.0s)}}$
+$\small{\texttt{‒‒‒&#xA0;&#x34F;&#xA0;&#x34F;PASS:&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Test&#xA0;&#x332;&#xA0;&#x332;IoInterface&#xA0;&#x332;&#xA0;&#x332;ReadError&#xA0;&#x34F;&#xA0;&#x34F;(0.0s)}}$
 <br>
 $\small{\texttt{PASS}}$
 <br>
-$\small{\texttt{coverage:&#xa0;100.0&#xFE6A;&#xa0;of&#xa0;statements}}$
+$\small{\texttt{coverage:&#xA0;&#x34F;&#xA0;&#x34F;100.0&#xFE6A;&#xA0;&#x34F;&#xA0;&#x34F;of&#xA0;&#x34F;&#xA0;&#x34F;statements}}$
 <br>
-$\small{\texttt{ok&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;github.com/dancsecs/sztest/examples/io&#x332;interface/write&#x332;seek&#x332;error&#xa0;&#xa0;&#xa0;&#xa0;coverage:&#xa0;100.0&#xFE6A;&#xa0;of&#xa0;statements}}$
+$\small{\texttt{ok&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;github.com/dancsecs/sztest/examples/io&#xA0;&#x332;&#xA0;&#x332;interface/write&#xA0;&#x332;&#xA0;&#x332;seek&#xA0;&#x332;&#xA0;&#x332;error&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;coverage:&#xA0;&#x34F;&#xA0;&#x34F;100.0&#xFE6A;&#xA0;&#x34F;&#xA0;&#x34F;of&#xA0;&#x34F;&#xA0;&#x34F;statements}}$
 <br>
 <!--- gotomd::End::tst::./write_seek_error/package -->
 
@@ -383,8 +385,8 @@ import (
 )
 
 func closeFile(r io.Closer) error {
-    // This example will attempt to read 10 bytes from r read until an error or
-    // eof is returned.
+    // This example will attempt to close the closer returning any error
+    // generated by the close action.
 
     return r.Close()
 }
@@ -422,15 +424,15 @@ func Test_IoInterface_ReadError(t *testing.T) {
 go test -v -cover ./close_error
 ```
 
-$\small{\texttt{===&#xa0;RUN&#xa0;&#xa0;&#xa0;Test&#x332;IoInterface&#x332;ReadError}}$
+$\small{\texttt{===&#xA0;&#x34F;&#xA0;&#x34F;RUN&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Test&#xA0;&#x332;&#xA0;&#x332;IoInterface&#xA0;&#x332;&#xA0;&#x332;ReadError}}$
 <br>
-$\small{\texttt{---&#xa0;PASS:&#xa0;Test&#x332;IoInterface&#x332;ReadError&#xa0;(0.0s)}}$
+$\small{\texttt{‒‒‒&#xA0;&#x34F;&#xA0;&#x34F;PASS:&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Test&#xA0;&#x332;&#xA0;&#x332;IoInterface&#xA0;&#x332;&#xA0;&#x332;ReadError&#xA0;&#x34F;&#xA0;&#x34F;(0.0s)}}$
 <br>
 $\small{\texttt{PASS}}$
 <br>
-$\small{\texttt{coverage:&#xa0;100.0&#xFE6A;&#xa0;of&#xa0;statements}}$
+$\small{\texttt{coverage:&#xA0;&#x34F;&#xA0;&#x34F;100.0&#xFE6A;&#xA0;&#x34F;&#xA0;&#x34F;of&#xA0;&#x34F;&#xA0;&#x34F;statements}}$
 <br>
-$\small{\texttt{ok&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;github.com/dancsecs/sztest/examples/io&#x332;interface/close&#x332;error&#xa0;&#xa0;&#xa0;&#xa0;coverage:&#xa0;100.0&#xFE6A;&#xa0;of&#xa0;statements}}$
+$\small{\texttt{ok&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;github.com/dancsecs/sztest/examples/io&#xA0;&#x332;&#xA0;&#x332;interface/close&#xA0;&#x332;&#xA0;&#x332;error&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;coverage:&#xA0;&#x34F;&#xA0;&#x34F;100.0&#xFE6A;&#xA0;&#x34F;&#xA0;&#x34F;of&#xA0;&#x34F;&#xA0;&#x34F;statements}}$
 <br>
 <!--- gotomd::End::tst::./close_error/package -->
 

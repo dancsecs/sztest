@@ -87,7 +87,7 @@ func Test_PASS_TimestampLogging(t *testing.T) {
     defer func() {
         now = origNow
     }()
-    chk.ClockSetSub(sztest.ClockSubTS)
+    chk.ClockSetSub(sztest.ClkFmtTS)
     chk.ClockSet(
         time.Date(1999, time.July, 7, 8, 9, 10, 0, time.Local),
         time.Second*9, time.Second*7, time.Second*11,
@@ -112,8 +112,7 @@ func Test_PASS_TimestampLogging(t *testing.T) {
             "{{clkTS3}} - 40 DELAYED\n" +
             "{{clkTS4}} - 50\n" +
             "{{clkTS5}} - 60\n" +
-            "{{clkTS6}} - 70 DELAYED\n" +
-            "",
+            "{{clkTS6}} - 70 DELAYED",
     )
 }
 
@@ -127,7 +126,7 @@ func Test_Fail_BoundedFloat64WithNoMessage(t *testing.T) {
     defer func() {
         now = origNow
     }()
-    chk.ClockSetSub(sztest.ClockSubTS)
+    chk.ClockSetSub(sztest.ClkFmtTS)
     chk.ClockSet(
         time.Date(1999, time.July, 7, 8, 9, 10, 0, time.Local),
         time.Second*9, time.Second*7, time.Second*11,
@@ -153,7 +152,7 @@ func Test_Fail_BoundedFloat64WithNoMessage(t *testing.T) {
             "{{clkTS4}} - 50\n" +
             "{{clkTS5}} - 60\n" +
             "{{clkTS6}} - 70\n" + // Missing DELAYED flag.
-            "",
+            "", // Extra Line.
     )
 }
 ```
@@ -164,35 +163,37 @@ func Test_Fail_BoundedFloat64WithNoMessage(t *testing.T) {
 go test -v -cover ./logging
 ```
 
-$\small{\texttt{===&#xa0;RUN&#xa0;&#xa0;&#xa0;Test&#x332;PASS&#x332;TimestampLogging}}$
+$\small{\texttt{===&#xA0;&#x34F;&#xA0;&#x34F;RUN&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Test&#xA0;&#x332;&#xA0;&#x332;PASS&#xA0;&#x332;&#xA0;&#x332;TimestampLogging}}$
 <br>
-$\small{\texttt{---&#xa0;PASS:&#xa0;Test&#x332;PASS&#x332;TimestampLogging&#xa0;(0.0s)}}$
+$\small{\texttt{‒‒‒&#xA0;&#x34F;&#xA0;&#x34F;PASS:&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Test&#xA0;&#x332;&#xA0;&#x332;PASS&#xA0;&#x332;&#xA0;&#x332;TimestampLogging&#xA0;&#x34F;&#xA0;&#x34F;(0.0s)}}$
 <br>
-$\small{\texttt{===&#xa0;RUN&#xa0;&#xa0;&#xa0;Test&#x332;Fail&#x332;BoundedFloat64WithNoMessage}}$
+$\small{\texttt{===&#xA0;&#x34F;&#xA0;&#x34F;RUN&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Test&#xA0;&#x332;&#xA0;&#x332;Fail&#xA0;&#x332;&#xA0;&#x332;BoundedFloat64WithNoMessage}}$
 <br>
-$\small{\texttt{&#xa0;&#xa0;&#xa0;&#xa0;example&#x332;test.go:76:&#xa0;Unexpected&#xa0;stdout&#xa0;Entry:&#xa0;got&#xa0;(7&#xa0;lines)&#xa0;-&#xa0;want&#xa0;(7&#xa0;lines)}}$
+$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;example&#xA0;&#x332;&#xA0;&#x332;test.go:75:&#xA0;&#x34F;&#xA0;&#x34F;Unexpected&#xA0;&#x34F;&#xA0;&#x34F;stdout&#xA0;&#x34F;&#xA0;&#x34F;Entry:&#xA0;&#x34F;&#xA0;&#x34F;got&#xA0;&#x34F;&#xA0;&#x34F;(7&#xA0;&#x34F;&#xA0;&#x34F;lines)&#xA0;&#x34F;&#xA0;&#x34F;-&#xA0;&#x34F;&#xA0;&#x34F;want&#xA0;&#x34F;&#xA0;&#x34F;(8&#xA0;&#x34F;&#xA0;&#x34F;lines)}}$
 <br>
-$\small{\texttt{&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;0:0&#xa0;19990707080910&#xa0;-&#xa0;10}}$
+$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;0:0&#xA0;&#x34F;&#xA0;&#x34F;19990707080910&#xA0;&#x34F;&#xA0;&#x34F;-&#xA0;&#x34F;&#xA0;&#x34F;10}}$
 <br>
-$\small{\texttt{&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;1:1&#xa0;19990707080919&#xa0;-&#xa0;20}}$
+$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;1:1&#xA0;&#x34F;&#xA0;&#x34F;19990707080919&#xA0;&#x34F;&#xA0;&#x34F;-&#xA0;&#x34F;&#xA0;&#x34F;20}}$
 <br>
-$\small{\texttt{&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;2:2&#xa0;19990707080926&#xa0;-&#xa0;30}}$
+$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;2:2&#xA0;&#x34F;&#xA0;&#x34F;19990707080926&#xA0;&#x34F;&#xA0;&#x34F;-&#xA0;&#x34F;&#xA0;&#x34F;30}}$
 <br>
-$\small{\texttt{&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;\color{darkturquoise}3\color{default}:\color{darkturquoise}3\color{default}&#xa0;199907070809\color{red}26\color{default}\color{yellow}/\color{default}\color{green}37\color{default}&#xa0;-&#xa0;40&#xa0;DELAYED}}$
+$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;{\color{darkturquoise}{3}}:{\color{darkturquoise}{3}}&#xA0;&#x34F;&#xA0;&#x34F;199907070809{\color{red}{26}}{\color{yellow}{/}}{\color{green}{37}}&#xA0;&#x34F;&#xA0;&#x34F;-&#xA0;&#x34F;&#xA0;&#x34F;40&#xA0;&#x34F;&#xA0;&#x34F;DELAYED}}$
 <br>
-$\small{\texttt{&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;4:4&#xa0;19990707080946&#xa0;-&#xa0;50}}$
+$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;4:4&#xA0;&#x34F;&#xA0;&#x34F;19990707080946&#xA0;&#x34F;&#xA0;&#x34F;-&#xA0;&#x34F;&#xA0;&#x34F;50}}$
 <br>
-$\small{\texttt{&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;5:5&#xa0;19990707080953&#xa0;-&#xa0;60}}$
+$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;5:5&#xA0;&#x34F;&#xA0;&#x34F;19990707080953&#xA0;&#x34F;&#xA0;&#x34F;-&#xA0;&#x34F;&#xA0;&#x34F;60}}$
 <br>
-$\small{\texttt{&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;\color{darkturquoise}6\color{default}:\color{darkturquoise}6\color{default}&#xa0;19990707081004&#xa0;-&#xa0;70\color{green}&#xa0;DELAYED\color{default}}}$
+$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;{\color{darkturquoise}{6}}:{\color{darkturquoise}{6}}&#xA0;&#x34F;&#xA0;&#x34F;19990707081004&#xA0;&#x34F;&#xA0;&#x34F;-&#xA0;&#x34F;&#xA0;&#x34F;70{\color{green}{&#xA0;&#x34F;&#xA0;&#x34F;DELAYED}}}}$
 <br>
-$\small{\texttt{---&#xa0;FAIL:&#xa0;Test&#x332;Fail&#x332;BoundedFloat64WithNoMessage&#xa0;(0.0s)}}$
+$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;-:{\color{red}{7}}&#xA0;&#x34F;&#xA0;&#x34F;{\color{red}{}}}}$
+<br>
+$\small{\texttt{‒‒‒&#xA0;&#x34F;&#xA0;&#x34F;FAIL:&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Test&#xA0;&#x332;&#xA0;&#x332;Fail&#xA0;&#x332;&#xA0;&#x332;BoundedFloat64WithNoMessage&#xA0;&#x34F;&#xA0;&#x34F;(0.0s)}}$
 <br>
 $\small{\texttt{FAIL}}$
 <br>
-$\small{\texttt{coverage:&#xa0;100.0&#xFE6A;&#xa0;of&#xa0;statements}}$
+$\small{\texttt{coverage:&#xA0;&#x34F;&#xA0;&#x34F;100.0&#xFE6A;&#xA0;&#x34F;&#xA0;&#x34F;of&#xA0;&#x34F;&#xA0;&#x34F;statements}}$
 <br>
-$\small{\texttt{FAIL&#xa0;github.com/dancsecs/sztest/examples/timestamp/logging&#xa0;0.0s}}$
+$\small{\texttt{FAIL&#xA0;&#x34F;&#xA0;&#x34F;github.com/dancsecs/sztest/examples/timestamp/logging&#xA0;&#x34F;&#xA0;&#x34F;0.0s}}$
 <br>
 $\small{\texttt{FAIL}}$
 <br>

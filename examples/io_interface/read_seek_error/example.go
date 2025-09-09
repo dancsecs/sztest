@@ -6,8 +6,8 @@ import (
 )
 
 func seekFile(r io.ReadSeeker, pos int64) (int64, error) {
-	// This example will attempt to read 10 bytes from r read until an error or
-	// eof is returned.
+	// This example will attempt position the io.ReadSeeker to the position
+	// provided.
 
 	return r.Seek(pos, io.SeekStart)
 }

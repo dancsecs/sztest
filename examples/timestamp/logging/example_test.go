@@ -41,8 +41,7 @@ func Test_PASS_TimestampLogging(t *testing.T) {
 			"{{clkTS3}} - 40 DELAYED\n" +
 			"{{clkTS4}} - 50\n" +
 			"{{clkTS5}} - 60\n" +
-			"{{clkTS6}} - 70 DELAYED\n" +
-			"",
+			"{{clkTS6}} - 70 DELAYED",
 	)
 }
 
@@ -82,6 +81,6 @@ func Test_Fail_BoundedFloat64WithNoMessage(t *testing.T) {
 			"{{clkTS4}} - 50\n" +
 			"{{clkTS5}} - 60\n" +
 			"{{clkTS6}} - 70\n" + // Missing DELAYED flag.
-			"",
+			"", // Extra Line.
 	)
 }

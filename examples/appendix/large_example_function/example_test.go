@@ -34,11 +34,11 @@ func Test_PASS_GeneralForm(t *testing.T) {
 	)
 
 	// Check logging.
-	chk.Log(`
+	chk.Log(chk.TrimAll(`
       Entered process(0, "failing message")
       factor (0) out of bounds: "failing message"
       Entered process(2, "Hello")
-  `)
+  `))
 }
 
 // Failing test.
@@ -70,9 +70,9 @@ func Test_FAIL_GeneralForm(t *testing.T) {
 	)
 
 	// Check logging.
-	chk.Log(`
+	chk.Log(chk.TrimAll(`
       Entered process(0, "wrong message")
       factor (0) out of bounds: "wrong message"
       Entered process(2, "Processed Hello")
-  `)
+  `))
 }

@@ -33,7 +33,7 @@ func Test_ArgsAndFlags_InvalidInteger(t *testing.T) {
 	chk.Stderr(
 		"invalid value \"thisIsNotAnInteger\" for flag -n: parse error",
 		"Usage of program/name:",
-		"\\s -n int", // Note: initial leading space.
-		"\\s   \tusage of int value (default 10)",
+		"  -n int",
+		"    \tusage of int value (default 10)",
 	)
 }

@@ -60,15 +60,15 @@ func Test_ArgsAndFlags_SingleGoodFlag(t *testing.T) {
 go test -v -cover ./valid_flag
 ```
 
-$\small{\texttt{===&#xa0;RUN&#xa0;&#xa0;&#xa0;Test&#x332;ArgsAndFlags&#x332;SingleGoodFlag}}$
+$\small{\texttt{===&#xA0;&#x34F;&#xA0;&#x34F;RUN&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Test&#xA0;&#x332;&#xA0;&#x332;ArgsAndFlags&#xA0;&#x332;&#xA0;&#x332;SingleGoodFlag}}$
 <br>
-$\small{\texttt{---&#xa0;PASS:&#xa0;Test&#x332;ArgsAndFlags&#x332;SingleGoodFlag&#xa0;(0.0s)}}$
+$\small{\texttt{‒‒‒&#xA0;&#x34F;&#xA0;&#x34F;PASS:&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Test&#xA0;&#x332;&#xA0;&#x332;ArgsAndFlags&#xA0;&#x332;&#xA0;&#x332;SingleGoodFlag&#xA0;&#x34F;&#xA0;&#x34F;(0.0s)}}$
 <br>
 $\small{\texttt{PASS}}$
 <br>
-$\small{\texttt{coverage:&#xa0;[no&#xa0;statements]}}$
+$\small{\texttt{coverage:&#xA0;&#x34F;&#xA0;&#x34F;[no&#xA0;&#x34F;&#xA0;&#x34F;statements]}}$
 <br>
-$\small{\texttt{ok&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;github.com/dancsecs/sztest/examples/arguments&#x332;and&#x332;flags/valid&#x332;flag&#xa0;&#xa0;&#xa0;&#xa0;coverage:&#xa0;[no&#xa0;statements]}}$
+$\small{\texttt{ok&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;github.com/dancsecs/sztest/examples/arguments&#xA0;&#x332;&#xA0;&#x332;and&#xA0;&#x332;&#xA0;&#x332;flags/valid&#xA0;&#x332;&#xA0;&#x332;flag&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;coverage:&#xA0;&#x34F;&#xA0;&#x34F;[no&#xA0;&#x34F;&#xA0;&#x34F;statements]}}$
 <br>
 <!--- gotomd::End::tst::./valid_flag/package -->
 
@@ -135,15 +135,27 @@ func Test_ArgsAndFlags_InvalidFlag(t *testing.T) {
 go test -v -cover ./invalid_flag
 ```
 
-$\small{\texttt{===&#xa0;RUN&#xa0;&#xa0;&#xa0;Test&#x332;ArgsAndFlags&#x332;InvalidFlag}}$
+$\small{\texttt{===&#xA0;&#x34F;&#xA0;&#x34F;RUN&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Test&#xA0;&#x332;&#xA0;&#x332;ArgsAndFlags&#xA0;&#x332;&#xA0;&#x332;InvalidFlag}}$
 <br>
-$\small{\texttt{---&#xa0;PASS:&#xa0;Test&#x332;ArgsAndFlags&#x332;InvalidFlag&#xa0;(0.0s)}}$
+$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;example&#xA0;&#x332;&#xA0;&#x332;test.go:39:&#xA0;&#x34F;&#xA0;&#x34F;Unexpected&#xA0;&#x34F;&#xA0;&#x34F;stderr&#xA0;&#x34F;&#xA0;&#x34F;Entry:&#xA0;&#x34F;&#xA0;&#x34F;got&#xA0;&#x34F;&#xA0;&#x34F;(4&#xA0;&#x34F;&#xA0;&#x34F;lines)&#xA0;&#x34F;&#xA0;&#x34F;-&#xA0;&#x34F;&#xA0;&#x34F;want&#xA0;&#x34F;&#xA0;&#x34F;(4&#xA0;&#x34F;&#xA0;&#x34F;lines)}}$
 <br>
-$\small{\texttt{PASS}}$
+$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;0:0&#xA0;&#x34F;&#xA0;&#x34F;flag&#xA0;&#x34F;&#xA0;&#x34F;provided&#xA0;&#x34F;&#xA0;&#x34F;but&#xA0;&#x34F;&#xA0;&#x34F;not&#xA0;&#x34F;&#xA0;&#x34F;defined:&#xA0;&#x34F;&#xA0;&#x34F;-x}}$
 <br>
-$\small{\texttt{coverage:&#xa0;[no&#xa0;statements]}}$
+$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;1:1&#xA0;&#x34F;&#xA0;&#x34F;Usage&#xA0;&#x34F;&#xA0;&#x34F;of&#xA0;&#x34F;&#xA0;&#x34F;program/name:}}$
 <br>
-$\small{\texttt{ok&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;github.com/dancsecs/sztest/examples/arguments&#x332;and&#x332;flags/invalid&#x332;flag&#xa0;&#xa0;&#xa0;&#xa0;coverage:&#xa0;[no&#xa0;statements]}}$
+$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;{\color{darkturquoise}{2}}:{\color{darkturquoise}{2}}&#xA0;&#x34F;&#xA0;&#x34F;{\color{red}{\s}}{\color{yellow}{/}}{\color{green}{&#xA0;&#x34F;&#xA0;&#x34F;}}&#xA0;&#x34F;&#xA0;&#x34F;-s&#xA0;&#x34F;&#xA0;&#x34F;string}}$
+<br>
+$\small{\texttt{&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;{\color{darkturquoise}{3}}:{\color{darkturquoise}{3}}&#xA0;&#x34F;&#xA0;&#x34F;{\color{red}{\s}}{\color{yellow}{/}}{\color{green}{&#xA0;&#x34F;&#xA0;&#x34F;}}&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;\tusage&#xA0;&#x34F;&#xA0;&#x34F;of&#xA0;&#x34F;&#xA0;&#x34F;default&#xA0;&#x34F;&#xA0;&#x34F;string&#xA0;&#x34F;&#xA0;&#x34F;value&#xA0;&#x34F;&#xA0;&#x34F;(default&#xA0;&#x34F;&#xA0;&#x34F;"defaultStrValue")}}$
+<br>
+$\small{\texttt{‒‒‒&#xA0;&#x34F;&#xA0;&#x34F;FAIL:&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Test&#xA0;&#x332;&#xA0;&#x332;ArgsAndFlags&#xA0;&#x332;&#xA0;&#x332;InvalidFlag&#xA0;&#x34F;&#xA0;&#x34F;(0.0s)}}$
+<br>
+$\small{\texttt{FAIL}}$
+<br>
+$\small{\texttt{coverage:&#xA0;&#x34F;&#xA0;&#x34F;[no&#xA0;&#x34F;&#xA0;&#x34F;statements]}}$
+<br>
+$\small{\texttt{FAIL&#xA0;&#x34F;&#xA0;&#x34F;github.com/dancsecs/sztest/examples/arguments&#xA0;&#x332;&#xA0;&#x332;and&#xA0;&#x332;&#xA0;&#x332;flags/invalid&#xA0;&#x332;&#xA0;&#x332;flag&#xA0;&#x34F;&#xA0;&#x34F;0.0s}}$
+<br>
+$\small{\texttt{FAIL}}$
 <br>
 <!--- gotomd::End::tst::./invalid_flag/package -->
 
@@ -192,8 +204,8 @@ func Test_ArgsAndFlags_InvalidInteger(t *testing.T) {
     chk.Stderr(
         "invalid value \"thisIsNotAnInteger\" for flag -n: parse error",
         "Usage of program/name:",
-        "\\s -n int", // Note: initial leading space.
-        "\\s   \tusage of int value (default 10)",
+        "  -n int",
+        "    \tusage of int value (default 10)",
     )
 }
 ```
@@ -204,15 +216,15 @@ func Test_ArgsAndFlags_InvalidInteger(t *testing.T) {
 go test -v -cover ./invalid_integer
 ```
 
-$\small{\texttt{===&#xa0;RUN&#xa0;&#xa0;&#xa0;Test&#x332;ArgsAndFlags&#x332;InvalidInteger}}$
+$\small{\texttt{===&#xA0;&#x34F;&#xA0;&#x34F;RUN&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Test&#xA0;&#x332;&#xA0;&#x332;ArgsAndFlags&#xA0;&#x332;&#xA0;&#x332;InvalidInteger}}$
 <br>
-$\small{\texttt{---&#xa0;PASS:&#xa0;Test&#x332;ArgsAndFlags&#x332;InvalidInteger&#xa0;(0.0s)}}$
+$\small{\texttt{‒‒‒&#xA0;&#x34F;&#xA0;&#x34F;PASS:&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;Test&#xA0;&#x332;&#xA0;&#x332;ArgsAndFlags&#xA0;&#x332;&#xA0;&#x332;InvalidInteger&#xA0;&#x34F;&#xA0;&#x34F;(0.0s)}}$
 <br>
 $\small{\texttt{PASS}}$
 <br>
-$\small{\texttt{coverage:&#xa0;[no&#xa0;statements]}}$
+$\small{\texttt{coverage:&#xA0;&#x34F;&#xA0;&#x34F;[no&#xA0;&#x34F;&#xA0;&#x34F;statements]}}$
 <br>
-$\small{\texttt{ok&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;github.com/dancsecs/sztest/examples/arguments&#x332;and&#x332;flags/invalid&#x332;integer&#xa0;&#xa0;&#xa0;&#xa0;coverage:&#xa0;[no&#xa0;statements]}}$
+$\small{\texttt{ok&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;github.com/dancsecs/sztest/examples/arguments&#xA0;&#x332;&#xA0;&#x332;and&#xA0;&#x332;&#xA0;&#x332;flags/invalid&#xA0;&#x332;&#xA0;&#x332;integer&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;&#xA0;&#x34F;coverage:&#xA0;&#x34F;&#xA0;&#x34F;[no&#xA0;&#x34F;&#xA0;&#x34F;statements]}}$
 <br>
 <!--- gotomd::End::tst::./invalid_integer/package -->
 
