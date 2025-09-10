@@ -21,6 +21,7 @@
         "Bytef",
         "Chkf",
         "dcls",
+        "dcln",
         "Durf",
         "Errf",
         "Errorf",

@@ -338,24 +338,44 @@ For a complete list of builtin got/wnt slice tests and their helpers see
 These tests compare a comparable got against a range of values. The general
 forms are:
 
+<!--- gotomd::Bgn::dcln::./BoundedOption -->
 ```go
-// BoundedOption constant type.
+// BoundedOption specifies the inclusivity of bounds in a closed interval
+// check.
 type BoundedOption int
+```
+<!--- gotomd::End::dcln::./BoundedOption -->
+
+<!--- gotomd::Bgn::docConstGrp::./BoundedOpen -->
+```go
+// List of bounded options.
 const (
-    // BoundedOpen (a,b) = { x | a < x < b }.
+    // BoundedOpen checks (a,b) = { x | a < x < b }.
     BoundedOpen BoundedOption = iota
-    // BoundedClosed [a,b] = { x | a ≦ x ≦ b }.
+
+    // BoundedClosed checks [a,b] = { x | a <= x <= b }.
     BoundedClosed
-    // BoundedMinOpen (a,b] = { x | a < x ≦ b }.
+
+    // BoundedMinOpen checks (a,b] = { x | a < x <= b }.
+    // Alias of BoundedMaxClosed.
     BoundedMinOpen
-    // BoundedMaxClosed (a,b] = { x | a < x ≦ b }.
+
+    // BoundedMaxClosed checks (a,b] = { x | a < x <= b }.
+    // Alias of BoundedMinOpen.
     BoundedMaxClosed
-    // BoundedMaxOpen [a,b) = { x | a ≦ x < b }.
+
+    // BoundedMaxOpen checks [a,b) = { x | a <= x < b }.
+    // Alias of BoundedMinClosed.
     BoundedMaxOpen
-    // BoundedMinClosed [a,b) = { x | a ≦ x < b }.
+
+    // BoundedMinClosed checks [a,b) = { x | a <= x < b }.
+    // Alias of BoundedMaxOpen.
     BoundedMinClosed
 )
+```
+<!--- gotomd::End::docConstGrp::./BoundedOpen -->
 
+```go
 func (*CHK) TypeBounded(got Type, option BoundedOption,  min, max Type, msg ...any)
 func (*CHK) TypeBoundedf(got Type, option BoundedOption,  min, max Type, fmtMsg string, msgArgs ...any)
 
@@ -383,20 +403,35 @@ Were Type is one of:
 These tests compare a comparable got against a range of values. The general
 forms are:
 
+<!--- gotomd::Bgn::dcln::./UnboundedOption -->
 ```go
-// UnboundedOption constant type.
+// UnboundedOption specifies the inclusivity of bounds in a half-infinite
+// interval check.
 type UnboundedOption int
+```
+<!--- gotomd::End::dcln::./UnboundedOption -->
+
+<!--- gotomd::Bgn::docConstGrp::./UnboundedMinOpen -->
+```go
+// 
 const (
-    // UnboundedMinOpen (a,+∞) = { x | x > a }.
+    // UnboundedMinOpen checks (a,+∞) = { x | x > a }.
     UnboundedMinOpen UnboundedOption = iota
-    // UnboundedMinClosed [a,+∞) = { x | x ≧ a }.
+
+    // UnboundedMinClosed checks [a,+∞) = { x | x >= a }.
     UnboundedMinClosed
-    // UnboundedMaxOpen (-∞, b) = { x | x < b }.
+
+    // UnboundedMaxOpen checks (-∞, b) = { x | x < b }.
     UnboundedMaxOpen
-    // UnboundedMaxClosed (-∞, b] = { x | x ≦ b }.
+
+    // UnboundedMaxClosed checks (-∞, b] = { x | x <= b }.
     UnboundedMaxClosed
 )
+```
+<!--- gotomd::End::docConstGrp::./UnboundedMinOpen -->
 
+
+```go
 func (*CHK) TypeUnbounded(got Type, option UnboundedOption, bound Type, msg ...any)
 func (*CHK) TypeUnboundedf(got Type, option UnboundedOption, bound Type, fmtMsg string, msgArgs ...any)
 
@@ -787,23 +822,28 @@ Further chk substitutions can be generated for each timestamp produced
 including up to three custom date formats with the following constants and
 methods:
 
+<!--- gotomd::Bgn::dcln::./ClkFmt -->
 ```go
 // ClkFmt represents supported clock formats.
 type ClkFmt int
+```
+<!--- gotomd::End::dcln::./ClkFmt -->
 
+<!--- gotomd::Bgn::docConstGrp::./ClkFmtNone -->
+```go
 // Clock formats and substitutions.
 // Substitution strings allow clock ticks to be referenced in output and
 // string assertions. If the corresponding format is enabled, {{clkXXXX#}}
 // is replaced with the tick at the given sequence index (#):
-//
-//    ClkFmtTime  {{clkTime#}} // HHmmSS
-//    ClkFmtDate  {{clkDate#}} // YYYYMMDD
-//    ClkFmtTS    {{clkTS#}}   // YYYYMMDDHHmmSS
-//    ClkFmtNano  {{clkNano#}} // YYYYMMDDHHmmSS.#########
-//    ClkFmtCusA  {{clkCusA#}} // custom format string
-//    ClkFmtCusB  {{clkCusB#}} // custom format string
-//    ClkFmtCusC  {{clkCusC#}} // custom format string
-//
+// 
+//     ClkFmtTime  {{clkTime#}} // HHmmSS
+//     ClkFmtDate  {{clkDate#}} // YYYYMMDD
+//     ClkFmtTS    {{clkTS#}}   // YYYYMMDDHHmmSS
+//     ClkFmtNano  {{clkNano#}} // YYYYMMDDHHmmSS.#########
+//     ClkFmtCusA  {{clkCusA#}} // custom format string
+//     ClkFmtCusB  {{clkCusB#}} // custom format string
+//     ClkFmtCusC  {{clkCusC#}} // custom format string
+// 
 // Multiple substitution formats can be active at once, since the format
 // flags are combined bitwise.
 const (
@@ -819,6 +859,7 @@ const (
     ClkFmtAll = math.MaxInt // All defined formats.
 )
 ```
+<!--- gotomd::End::docConstGrp::./ClkFmtNone -->
 
 <!--- gotomd::Bgn::doc::./Chk.ClockSetSub Chk.ClockAddSub Chk.ClockRemoveSub Chk.ClockSetCusA Chk.ClockSetCusB Chk.ClockSetCusC -->
 ```go
